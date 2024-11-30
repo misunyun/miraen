@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="format-detection" content="telephone=no" />
+  <title>퍼블리싱 가이드</title>
+  <!-- 기존 엠티처에서 사용중인 JS (includeJS) -->
+  <script src="/static/assets/js/jquery-3.7.0.min.js"></script>
+  <script src="/static/assets/js/plugin/select2.min.js"></script>
+  <script src="/static/assets/js/plugin/swiper-bundle-v8.js"></script>
+  <script src="/static/assets/js/plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+  <!-- 기존 엠티처에서 사용한 퍼블리싱 가이드 관련 JS (확인용) -->
+  <script src="https://e.m-teacher.co.kr/assets/pc/guide/syntax-hightlight4/syntaxhighlighter.js"></script>
+  <link href="https://e.m-teacher.co.kr/assets/pc/guide/syntax-hightlight4/theme-midnight.css" rel="stylesheet" />
+  <!-- 신규(추가필요) -->
+  <link rel="stylesheet" type="text/css" href="/static/assets/pc/css/map.css" rel="stylesheet" />
+  <script src="/static/assets/js/ui.map.js"></script>
+  
+  <!-- 가이드용 style (확인용) -->
+  <style>
+    .guide-header {padding: 40px 40px 20px; background-color: #202020; color: #fff;}
+    .guide-header h1 {font-size: 46px; font-weight: 100; letter-spacing: 0.02em; text-transform: uppercase;}
+    .guide-body {padding: 40px 40px 80px;}
+    .guide-body {font-size: 16px; line-height: 1.5;}
+    .guide-body h2 {position: relative; margin-bottom: 30px; padding: 80px 0 10px; font-size: 25px; font-weight: 700;}
+    .guide-body h2::before {content: ""; display: block; position: absolute; left: 0; bottom: 0; width: 240px; height: 1px; background-color: #202020;}
+    .guide-body h3 {margin-bottom: 20px; font-size: 20px; font-weight: 600;}
+    .guide-body section:first-child h2 {padding-top: 0;}
+    .guide-box {margin-bottom: 30px; padding: 20px; background-color: #F7F7FB;}
+    .guide-font {font-size: 24px;}
+    .guide-font p + p {margin-top: 20px;}
+    .guide-font .sm {display: block; font-size: 20px;}
+    .guide-color ul {display: flex; flex-wrap: wrap; gap: 20px;}
+    .guide-color li {display: flex; flex-direction: column; gap: 8px; font-size: 14px; text-align: center;}
+    .guide-color .bg {display:inline-flex; align-items: center; justify-content: center; width: 90px; height: 90px; border-radius: 16px; color: #202020;}
+    .guide-body section .guide-view {margin-top: 30px;}
+    .guide-table {width: 100%; border: 1px solid #202020; border-collapse: collapse;}
+    .guide-table th, .guide-table td {padding: 10px; border: 1px solid #eee; font-size: 14px; color: #838383;}
+    .guide-table th {background-color: #fafafa;}
+    .guide-table thead + tbody td {text-align: center;}
+
+    @media (max-width:768px){
+      .guide-header {padding: 20px 20px 10px;}
+      .guide-header h1 {font-size: 32px;}
+      .guide-body {padding: 20px 20px 40px;}
+      .guide-body h2 {padding: 60px 0 10px;}
+      .guide-body section:first-child h2 {padding-top: 0;}
+    }
+  </style>
+
+</head>
+<body>
+<div class="guide-wrap">
+  <div class="guide-header">
+    <h1>PC Publishing Guide</h1>
+  </div>
+  <div class="guide-body">
+    <!------- Ttypography ------->
+    <section>
+      <h2>Ttypography</h2>
+      <div class="guide-box">
+        <p>국문 영문 모두 Pretendard 폰트를 사용하며, 폰트 굵기는 font-weight로 구분한다.</p>
+        <p>폰트 속성은 Regular, Medium, Semibold 3가지만 사용한다.</p>
+        <p>기본 설정은 {font-family: Pretendard, "malgun gothic", "맑은 고딕", sans-serif; font-weight:400;}</p>
+      </div>
+      <div class="guide-view guide-font">
+        <p style="font-weight: 400;">400 - Pretendard Regular <span class="sm">가나다라마바사아자차카타파하</span></p>
+        <p style="font-weight: 500;">500 - Pretendard Medium <span class="sm">가나다라마바사아자차카타파하</span></p>
+        <p style="font-weight: 600;">600 - Pretendard Semibold <span class="sm">가나다라마바사아자차카타파하</span></p>
+      </div>
+    </section>
+
+    <!------- Color ------->
+    <section>
+      <h2>Color</h2>
+      <div class="guide-box">
+        <p>사용 빈도가 많은 컬러는 변수로 선언한다.</p>
+      </div>
+      <div class="guide-view guide-color">
+        <ul>
+          <li><span class="bg" style="background-color: #5177FF;">#5177FF</span>--color-point</li>
+          <li><span class="bg" style="background-color: #F7F7FB;">#F7F7FB</span>--bg-light</li>
+          <li><span class="bg" style="background-color: #F1F1F5;">#F1F1F5</span>--bg-regular</li>
+          <li><span class="bg" style="background-color: #E5E5EC;">#E5E5EC</span>--bg-medium</li>
+        </ul>
+      </div>
+      <!-- source pre -->
+      <pre class="brush:css">
+        /* css 변수 선언 */
+        :root {
+          --color-point: #5177FF;
+          --bg-light: #F7F7FB;
+          --bg-regular: #F1F1F5;
+          --bg-medium: #E5E5EC;
+        }
+        /* css 변수 사용 예시 */
+        div {
+          background-color: var(--color-point);
+        }
+      </pre>
+    </section>
+
+    <!------- Input ------->
+    <section>
+      <h2>Input</h2>
+      <div class="guide-view">
+        <table class="guide-table">
+          <colgroup>
+            <col span="4" style="width: 25%;">
+          </colgroup>
+          <thead>
+            <tr>
+              <th></th>
+              <th>placeholder</th>
+              <th>value(+focus)</th>
+              <th>disabled</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>default</th>
+              <td>
+                <div class="f-input">
+                  <input type="text" id="" name="" class="inp" placeholder="검색어를 입력하세요." />
+                  <button type="button" class="btn-clear"><span class="blind">삭제</span></button>
+                </div>
+              </td>
+              <td>
+                <div class="f-input">
+                  <input type="text" id="" name="" class="inp" placeholder="검색어를 입력하세요." value="검색어" />
+                  <button type="button" class="btn-clear"><span class="blind">삭제</span></button>
+                </div>
+              </td>
+              <td>
+                <div class="f-input">
+                  <input type="text" id="" name="" class="inp" placeholder="검색어를 입력하세요." disabled />
+                  <button type="button" class="btn-clear"><span class="blind">삭제</span></button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th>search</th>
+              <td>
+                <div class="f-input f-search">
+                  <input type="search" id="" name="" class="inp" placeholder="검색어를 입력하세요." />
+                  <button type="button" class="btn-clear"><span class="blind">삭제</span></button>
+                  <button type="button" class="btn-search"><span class="blind">검색</span></button>
+                </div>
+              </td>
+              <td>
+                <div class="f-input f-search">
+                  <input type="search" id="" name="" class="inp" placeholder="검색어를 입력하세요." value="검색어" />
+                  <button type="button" class="btn-clear"><span class="blind">삭제</span></button>
+                  <button type="button" class="btn-search"><span class="blind">검색</span></button>
+                </div>
+              </td>
+              <td>
+                <div class="f-input f-search">
+                  <input type="search" id="" name="" class="inp" placeholder="검색어를 입력하세요." disabled />
+                  <button type="button" class="btn-clear"><span class="blind">삭제</span></button>
+                  <button type="button" class="btn-search"><span class="blind">검색</span></button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- source pre -->
+      <pre class="brush:html">
+        <!-- default -->
+        <div class="f-input">
+          <input type="text" id="" name="" class="inp" placeholder="검색어를 입력하세요." />
+          <button type="button" class="btn-clear"><span class="blind">삭제</span></button>
+        </div>
+        <!-- search -->
+        <div class="f-input f-search">
+          <input type="search" id="" name="" class="inp" placeholder="검색어를 입력하세요." />
+          <button type="button" class="btn-clear"><span class="blind">삭제</span></button>
+          <button type="button" class="btn-search"><span class="blind">검색</span></button>
+        </div>
+      </pre>
+      <!-- //source pre -->
+    </section>
+
+    <!------- Checkbox ------->
+    <section>
+      <h2>Checkbox</h2>
+      <div class="guide-view">
+        <table class="guide-table">
+          <colgroup>
+            <col span="5" style="width: 20%;">
+          </colgroup>
+          <thead>
+            <tr>
+              <th></th>
+              <th>default</th>
+              <th>checked</th>
+              <th>disabled</th>
+              <th>checked + disabled</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>default</th>
+              <td>
+                <span class="f-check">
+                  <input type="checkbox" id="chk-only1">
+                  <label for="chk-only1"></label>
+                </span>
+              </td>
+              <td>
+                <span class="f-check">
+                  <input type="checkbox" id="chk-only2" checked />
+                  <label for="chk-only2"></label>
+                </span>
+              </td>
+              <td>
+                <span class="f-check">
+                  <input type="checkbox" id="chk-only3" disabled />
+                  <label for="chk-only3"></label>
+                </span>
+              </td>
+              <td>
+                <span class="f-check">
+                  <input type="checkbox" id="chk-only4" checked disabled />
+                  <label for="chk-only4"></label>
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <th>text</th>
+              <td>
+                <span class="f-check">
+                  <input type="checkbox" id="chk1-1">
+                  <label for="chk1-1">텍스트(미선택)</label>
+                </span>
+              </td>
+              <td>
+                <span class="f-check">
+                  <input type="checkbox" id="chk1-2" checked />
+                  <label for="chk1-2">텍스트(선택)</label>
+                </span>
+              </td>
+              <td>
+                <span class="f-check">
+                  <input type="checkbox" id="chk1-3" disabled />
+                  <label for="chk1-3">텍스트(비활성화)</label>
+                </span>
+              </td>
+              <td>
+                <span class="f-check">
+                  <input type="checkbox" id="chk1-4" disabled checked />
+                  <label for="chk1-4">텍스트(선택 비활성화)</label>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- source pre -->
+      <pre class="brush:html">
+        <!-- 라벨 텍스트 없는 경우 -->
+        <span class="f-check">
+          <input type="checkbox" id="chk-only1">
+          <label for="chk-only1"></label>
+        </span>
+        <!-- 라벨 텍스트 있는 경우 -->
+        <span class="f-check">
+          <input type="checkbox" id="chk1-1">
+          <label for="chk1-1">텍스트</label>
+        </span>
+      </pre>
+      <!-- //source pre -->
+
+      <div class="guide-view">
+        <h3>.f-group (그룹으로 사용 시)</h3>
+        <table class="guide-table">
+          <colgroup>
+            <col style="width: 20%;">
+            <col style="width: auto;">
+          </colgroup>
+          <tbody>
+            <tr>
+              <th>group</th>
+              <td>
+                <div class="f-group">
+                  <span class="f-check">
+                    <input type="checkbox" id="chk2-1">
+                    <label for="chk2-1">그룹1</label>
+                  </span>
+                  <span class="f-check">
+                    <input type="checkbox" id="chk2-2" checked />
+                    <label for="chk2-2">그룹2</label>
+                  </span>
+                  <span class="f-check">
+                    <input type="checkbox" id="chk2-3" disabled />
+                    <label for="chk2-3">그룹3</label>
+                  </span>
+                  <span class="f-check">
+                    <input type="checkbox" id="chk2-4" disabled checked />
+                    <label for="chk2-4">그룹4</label>
+                  </span>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- source pre -->
+      <pre class="brush:html">
+        <div class="f-group">
+          <span class="f-check">
+            <input type="checkbox" id="chk2-1">
+            <label for="chk1-1">그룹1</label>
+          </span>
+          <span class="f-check">
+            <input type="checkbox" id="chk2-2" checked />
+            <label for="chk1-2">그룹2</label>
+          </span>
+        </div>
+      </pre>
+      <!-- //source pre -->
+    </section>
+
+    <!------- Radio ------->
+    <section>
+      <h2>Radio</h2>
+      <div class="guide-box">
+        <p>name의 값을 동일하게 사용해야 radio 그룹으로 동작한다.</p>
+      </div>
+      <div class="guide-view">
+        <table class="guide-table">
+          <colgroup>
+            <col span="5" style="width: 20%;">
+          </colgroup>
+          <thead>
+            <tr>
+              <th></th>
+              <th>default</th>
+              <th>checked</th>
+              <th>disabled</th>
+              <th>checked + disabled</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>default</th>
+              <td>
+                <span class="f-check">
+                  <input type="radio" name="radio-only1" id="radio-only1-1">
+                  <label for="radio-only1-1"></label>
+                </span>
+              </td>
+              <td>
+                <span class="f-check">
+                  <input type="radio" name="radio-only1" id="radio-only1-2" checked />
+                  <label for="radio-only1-2"></label>
+                </span>
+              </td>
+              <td>
+                <span class="f-check">
+                  <input type="radio" name="radio-only2" id="radio-only2-1" disabled />
+                  <label for="radio-only2-1"></label>
+                </span>
+              </td>
+              <td>
+                <span class="f-check">
+                  <input type="radio" name="radio-only2" id="radio-only2-2" checked disabled />
+                  <label for="radio-only2-2"></label>
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <th>text</th>
+              <td>
+                <span class="f-check">
+                  <input type="radio" name="radio1" id="radio1-1">
+                  <label for="radio1-1">텍스트(미선택)</label>
+                </span>
+              </td>
+              <td>
+                <span class="f-check">
+                  <input type="radio" name="radio1" id="radio1-2" checked />
+                  <label for="radio1-2">텍스트(미선택)</label>
+                </span>
+              </td>
+              <td>
+                <span class="f-check">
+                  <input type="radio" name="radio2" id="radio2-1" disabled />
+                  <label for="radio2-1">텍스트(미선택)</label>
+                </span>
+              </td>
+              <td>
+                <span class="f-check">
+                  <input type="radio" name="radio2" id="radio2-2" checked disabled />
+                  <label for="radio2-2">텍스트(미선택)</label>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- source pre -->
+      <pre class="brush:html">
+        <!-- 라벨 텍스트 없는 경우 -->
+        <span class="f-check">
+          <input type="radio" name="radio-only1" id="radio-only1-1">
+          <label for="radio-only1-1"></label>
+        </span>
+        <!-- 라벨 텍스트 있는 경우 -->
+        <span class="f-check">
+          <input type="radio" name="radio1" id="radio1-1">
+          <label for="radio1-1">텍스트(미선택)</label>
+        </span>
+      </pre>
+      <!-- //source pre -->
+
+      <div class="guide-view">
+        <h3>.f-group (그룹으로 사용 시)</h3>
+        <table class="guide-table">
+          <colgroup>
+            <col style="width: 20%;">
+            <col style="width: auto;">
+          </colgroup>
+          <tbody>
+            <tr>
+              <th>group</th>
+              <td>
+                <div class="f-group">
+                  <span class="f-check">
+                    <input type="radio" name="radio3" id="radio3-1" checked />
+                    <label for="radio3-1">그룹1</label>
+                  </span>
+                  <span class="f-check">
+                    <input type="radio" name="radio3" id="radio3-2">
+                    <label for="radio3-2">그룹2</label>
+                  </span>
+                  <span class="f-check">
+                    <input type="radio" name="radio3" id="radio3-3">
+                    <label for="radio3-3">그룹3</label>
+                  </span>
+                  <span class="f-check">
+                    <input type="radio" name="radio3" id="radio3-4">
+                    <label for="radio3-4">그룹4</label>
+                  </span>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- source pre -->
+      <pre class="brush:html">
+        <div class="f-group">
+          <span class="f-check">
+            <input type="radio" name="radio4" id="radio4-1" checked />
+            <label for="radio4-1">그룹1</label>
+          </span>
+          <span class="f-check">
+            <input type="radio" name="radio4" id="radio4-2">
+            <label for="radio4-2">그룹2</label>
+          </span>
+        </div>
+      </pre>
+      <!-- //source pre -->
+    </section>
+
+    <!------- Switch ------->
+    <section>
+      <h2>Switch</h2>
+      <div class="guide-view">
+        <table class="guide-table">
+          <colgroup>
+            <col span="5" style="width: 20%;">
+          </colgroup>
+          <thead>
+            <tr>
+              <th></th>
+              <th>default</th>
+              <th>checked</th>
+              <th>disabled</th>
+              <th>checked + disabled</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>default</th>
+              <td>
+                <span class="f-switch">
+                  <input type="checkbox" id="switch1-1">
+                  <label for="switch1-1"></label>
+                </span>
+              </td>
+              <td>
+                <span class="f-switch">
+                  <input type="checkbox" id="switch1-2" checked />
+                  <label for="switch1-2"></label>
+                </span>
+              </td>
+              <td>
+                <span class="f-switch">
+                  <input type="checkbox" id="switch1-3" disabled />
+                  <label for="switch1-3"></label>
+                </span>
+              </td>
+              <td>
+                <span class="f-switch">
+                  <input type="checkbox" id="switch1-3" disabled checked />
+                  <label for="switch1-3"></label>
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <th>text</th>
+              <td>
+                <span class="f-switch">
+                  <input type="checkbox" id="switch2-1">
+                  <label for="switch2-1">텍스트</label>
+                </span>
+              </td>
+              <td>
+                <span class="f-switch">
+                  <input type="checkbox" id="switch2-2" checked />
+                  <label for="switch2-2">텍스트</label>
+                </span>
+              </td>
+              <td>
+                <span class="f-switch">
+                  <input type="checkbox" id="switch2-3" disabled />
+                  <label for="switch2-3">텍스트</label>
+                </span>
+              </td>
+              <td>
+                <span class="f-switch">
+                  <input type="checkbox" id="switch2-4" disabled checked />
+                  <label for="switch2-4">텍스트</label>
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <th>text + .reverse</th>
+              <td>
+                <span class="f-switch reverse">
+                  <input type="checkbox" id="switch3-1">
+                  <label for="switch3-1">텍스트</label>
+                </span>
+              </td>
+              <td>
+                <span class="f-switch reverse">
+                  <input type="checkbox" id="switch3-2" checked />
+                  <label for="switch3-2">텍스트</label>
+                </span>
+              </td>
+              <td>
+                <span class="f-switch reverse">
+                  <input type="checkbox" id="switch3-3" disabled />
+                  <label for="switch3-3">텍스트</label>
+                </span>
+              </td>
+              <td>
+                <span class="f-switch reverse">
+                  <input type="checkbox" id="switch3-4" disabled checked />
+                  <label for="switch3-4">텍스트</label>
+                </span>
+              </td>
+              
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- source pre -->
+      <pre class="brush:html">
+        <!-- 텍스트 라벨 없는 경우 -->
+        <span class="f-switch">
+          <input type="checkbox" id="switch1-1">
+          <label for="switch1-1"></label>
+        </span>
+        <!-- 텍스트 라벨 있는 경우 -->
+        <span class="f-switch">
+          <input type="checkbox" id="switch1-4">
+          <label for="switch1-4">텍스트</label>
+        </span>
+        <!-- reverse : 텍스트 라벨 있는 경우 -->
+        <span class="f-switch reverse">
+          <input type="checkbox" id="switch1-5">
+          <label for="switch1-5">텍스트</label>
+        </span>
+      </pre>
+      <!-- //source pre -->
+
+      <h3>.txt-switch</h3>
+      <div class="guide-view">
+        <span class="txt-switch">
+          <input type="checkbox" id="switch4-1">
+          <label for="switch4-1">
+            <span>대힌민국</span>
+            <span>세계</span>
+          </label>
+        </span>
+      </div>
+      <!-- source pre -->
+      <pre class="brush:html">
+        <span class="txt-switch">
+          <input type="checkbox" id="switch4-1">
+          <label for="switch4-1">
+            <span>대힌민국</span>
+            <span>세계</span>
+          </label>
+        </span>
+      </pre>
+      <!-- //source pre -->
+    </section>
+
+    <!------- Select ------->
+    <section>
+      <h2>Select</h2>
+      <div class="guide-box">
+        <p>기존에 엠티처에서 사용하는 select2.min.js 를 동일하게 사용하였다.</p>
+      </div>
+      <div class="guide-view">
+        <select name="" id="">
+          <option value="one">옵션값 First</option>
+          <option value="two" disabled="disabled">옵션값 Second (disabled)</option>
+          <option value="three">옵션값 Third</option>
+        </select>
+
+        <select name="" id="" disabled>
+          <option value="one">옵션값 First</option>
+          <option value="two" disabled="disabled">옵션값 Second (disabled)</option>
+          <option value="three">옵션값 Third</option>
+        </select>
+      </div>
+    </section>
+
+    <!------- Button ------->
+    <section>
+      <h2>Button</h2>
+      <div class="guide-view">
+        <button type="button" class="btn-md bctype1"><span>텍스트</span></button>
+        <button type="button" class="btn-md bctype2"><span>텍스트</span></button>
+      </div>
+    </section>
+
+  </div>
+</div>
+</body>
+</html>

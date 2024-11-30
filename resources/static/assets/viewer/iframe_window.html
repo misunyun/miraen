@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>iframe 영역</title>
+    <style>
+        html {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0px;
+            position: absolute;
+            overflow: hidden;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -ms-overflow-style: none;
+        }
+        #viewer_content {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+        #iframe_content {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+    </style>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/viewer/viewer.js"></script>
+    <!--<script src="http://localhost:3000/socket.io/socket.io.js"></script>-->
+</head>
+<body>
+<div id="viewerInfo">
+    <p>보조모니터로 옮긴뒤 시작버튼을 누르세요</p>
+    <button onclick="startMirroring()">시작</button>
+</div>
+<!--    초기에는 iframe 이 보이지 않고 시작버튼과 안내메세지가 출력된다 .-->
+<div id="viewer_content" style="display: none">
+    <iframe id="iframe_content" allowfullscreen allowtransparency="true" background="transparent"></iframe>
+</div>
+
+</body>
+<script src="js/viewer.layout.js"></script>
+<script>
+    function open () {
+        var iframe = document.getElementById("viewer_content")
+        iframe.style.display = 'block'
+        var viewInfo = document.getElementById("viewerInfo")
+        viewInfo.style.display = 'none'
+    }
+
+    function closeWindow () {
+        alert('연결이 끊어졌으므로 창이 종료됩니다.')
+
+        parent.opener.closeWindow();
+        // if ( $.browser.msie ) {
+        //     window.opener='Self';
+        //     window.open('','_parent','');
+        //     window.close();
+        // } else {
+        //     window.close(); // 일반적인 현재 창 닫기
+        //     window.open('about:blank','_self').self.close();  // IE에서 묻지 않고 창 닫기
+        // }
+
+    }
+
+</script>
+</html>

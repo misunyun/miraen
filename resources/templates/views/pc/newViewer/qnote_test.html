@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+
+</head>
+<body>
+hahahah
+<div id="ebook_wrap" data-ebookPage="" data-ebookStatus="double">
+    <button class="btn" >init</button>
+    <button class="btn2" >showAnswer</button>
+    <button class="btn3" >hideAnswer</button>
+    <button class="btn4" >showSolution</button>
+    <button class="btn5" >hideSolution</button>
+</div>
+
+<iframe id="iframe1" name="iframe1" frameborder="0" src="http://localhost:8100/assets/viewer/qnote-mt/qnote/viewer.html" width="100%" height="800" ></iframe>
+<div>
+    안녕하세요?
+    <iframe id="iframe2" name="iframe2" src="http://localhost:8100/assets/viewer/videoTestHls.html"
+            style="border: 1px solid red;width : 100%;height: 800px;" ></iframe>
+</div>
+
+<div>
+    안녕하세요?
+    <iframe id="iframe3" name="iframe2"
+            src="http://localhost:8100/js/pc/ele/viewer/pdf/web/pdf.html?&page=1&file=https://privw-cms.mirae-n.com/document/435901/2/%EB%AF%B8%EB%9E%98%EC%97%94_%EC%B4%88%EB%93%B1_%EC%82%AC%ED%9A%8C3-1_1_1_%ED%95%B5%EC%8B%AC%EC%A0%95%EB%A6%AC.hwp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL3ByaXZ3LWNtcy5taXJhZS1uLmNvbSIsImV4cCI6MTcyMzEwNTcwMCwiaWF0IjoxNzIzMTAyMTAwLCJwYXRoIjoiZG9jdW1lbnQvNDM1OTAxIn0.cS5h0kH2v11MLgF-IEBKlaXAblIa-TymI_Yw9UpVq0A"
+            style="border: 1px solid blue;width : 100%;height: 800px;" ></iframe>
+</div>
+
+<!--
+<br />
+
+<button class="btn11" >init</button>
+<button class="btn22" >showAnswer</button>
+<iframe id="iframe2" name="iframe2" frameborder="0" src="http://contents.m-teacher.co.kr/qnote_viewer/viewer.html" width="100%" height="400" ></iframe>
+</body>-->
+
+<script>
+    /* $('.btn').click(function(){
+      console.log("!!!");
+      document.getElementById('ifm').contentWindow.onMessage('@showAnswer');
+    }); */
+
+    $('.btn').click(function(){
+
+        const Http = new XMLHttpRequest();
+
+        const url = 'https://devapi-cms.mirae-n.com/view_content?service=mteacher&params=2ZHcZSc%2FqbtQfzG1o8iEXvFiz43i7zjwid9Vo5AVEp65ixujUoFhDgmxwBmkmR8N';
+
+        //const url ="https://api-cms.mirae-n.com/view_content?service=mteacher&params=2ZHcZSc%2FqbtQfzG1o8iEXuX9R8cggRMwD9UE0YUlRGatjhOrHwvJ0EC2QXaNMEHIfelgsDvLbAi0mvMofH835Ui3XHncOSRTR2vC6NfoOzyF8sqrbLu8p%2B1Xn%2F22euR5A8TYkf%2F4nMgpFujRw35cpg%3D%3D";
+
+        Http.open('GET', url);
+        Http.send();
+        Http.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log(Http.responseURL);
+                var responseUrl = Http.responseURL;
+                var qnote = document.getElementById('iframe1');
+                var gocoderFrameGo = qnote.contentWindow || qnote.contentDocument;
+                //var e = '{"action": "@sendURL","data": {"contentList": [{"contentId": "AAA-0001","url": "https://devapi-cms.mirae-n.com/view_content?service=mteacher&params=2ZHcZSc%2FqbtQfzG1o8iEXrNOIQ4%2F09dI2BgedmBlzjICKMwxMM6iG2vao3B6iNVB"}],"contentTotal": 1}}';
+                var e = '{"action": "@sendURL","data": {"contentList": [{"contentId": "150063", "url": "'+ responseUrl +'"}], "contentTotal": 1}}';
+                gocoderFrameGo.qnoteViewer.onMessage(e+ "");
+            }
+        };
+        // Http.onreadystatechange = (e) => {
+        // };
+
+    });
+
+    $('.btn2').click(function(){
+        // if (confirm("볼까?")) {
+            var qnote = document.getElementById('iframe1');
+            var gocoderFrameGo = qnote.contentWindow || qnote.contentDocument;
+            var e = '{"action": "@showAnswer"}';
+            gocoderFrameGo.qnoteViewer.onMessage(e+"");
+        // }
+    });
+
+
+    $('.btn3').click(function(){
+        var qnote = document.getElementById('iframe1');
+        var gocoderFrameGo = qnote.contentWindow || qnote.contentDocument;
+        var e = '{"action": "@hideAnswer"}';
+        gocoderFrameGo.qnoteViewer.onMessage(e);
+    });
+
+    $('.btn4').click(function(){
+        var qnote = document.getElementById('iframe1');
+        var gocoderFrameGo = qnote.contentWindow || qnote.contentDocument;
+        var e = '{"action": "@showSolution"}';
+        gocoderFrameGo.qnoteViewer.onMessage(e);
+    });
+
+    $('.btn5').click(function(){
+        var qnote = document.getElementById('iframe1');
+        var gocoderFrameGo = qnote.contentWindow || qnote.contentDocument;
+        var e = '{"action": "@hideSolution"}';
+        gocoderFrameGo.qnoteViewer.onMessage(e);
+    });
+
+/*
+    $('.btn11').click(function(){
+        var qnote = document.getElementById('iframe2');
+        var gocoderFrameGo = qnote.contentWindow || qnote.contentDocument;
+        var e = '{"action": "@sendURL","data": {"contentList": [{"contentId": "AAA-0001","url": "https://miraen-contents.s3.ap-northeast-2.amazonaws.com/cp/qnote/questions/contents/sub/2015/e/mat/31/0100/04/ac/emat31010004_ac_04/pages/main.xml"}],"contentTotal": 1}}';
+        gocoderFrameGo.qnoteViewer.onMessage(e+ "");
+    });
+
+    $('.btn22').click(function(){
+        // if (confirm("볼까?")) {
+        var qnote = document.getElementById('iframe2');
+        var gocoderFrameGo = qnote.contentWindow || qnote.contentDocument;
+        var e = '{"action": "@showAnswer"}';
+        gocoderFrameGo.qnoteViewer.onMessage(e+"");
+        // }
+    });*/
+</script>
+</html>

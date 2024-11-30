@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block th:fragment="footerFragment">
+  <footer class="layout-footer">
+    <div class="footer-info">
+      <div class="inner">
+        <div class="policy">
+          <ul>
+            <li><a href="https://www.mirae-n.com/ft/mn-ft-2.frm" target="_blank">이용약관</a></li>
+            <li><a href="https://www.mirae-n.com/ft/mn-ft-1.frm" target="_blank"><strong>개인정보처리방침</strong></a></li>
+            <li><a href="/pages/common/copyrightPolicy.mrn" target="_blank">저작권정책</a></li>
+            <li><a href="/pages/common/emailPolicy.mrn" target="_blank">이메일무단수집거부</a></li>
+          </ul>
+        </div>
+        <div class="sns">
+          <a href="https://www.youtube.com/channel/UChdMHllT208TaLyEhiqjLAA" class="ft-link" target="_blank"
+            title="새창으로 유튜브 사이트 가기">
+            <img src="/assets/images/common/icon-footer-youtube.svg" alt="유튜브 아이콘" />
+          </a>
+          <a href="https://www.facebook.com/HAPPY.miraeN/" class="ft-link" target="_blank" title="새창으로 페이스북 사이트 가기">
+            <img src="/assets/images/common/icon-footer-facebook.svg" alt="페이스북 아이콘" />
+          </a>
+          <a href="https://pf.kakao.com/_xixbxkJl" class="ft-link" target="_blank" title="새창으로 카카오 사이트 가기">
+            <img src="/assets/images/common/icon-footer-kakao.svg" alt="카카오 아이콘" />
+          </a>
+          <a href="https://blog.naver.com/mirae-n" class="ft-link" target="_blank" title="새창으로 네이버 블로그 사이트 가기">
+            <img src="/assets/images/common/icon-footer-naverblog.svg" alt="네이버 블로그 아이콘" />
+          </a>
+        </div>
+        <button type="button" class="family-site-button" method-type="toggle" target-obj="family-site">Family
+          site</button>
+        <div class="family-site" obj-type="popup" id="family-site">
+          <div class="wrap">
+            <button type="button" class="close-button" close-obj>닫기</button>
+            <ul class="list" dialog></ul>
+
+            <!-- START 패밀리 사이트 하드코딩 -->
+            <!--
+            <ul class="list" dialog>
+              <li>
+                <h4><strong>본사</strong></h4>
+                <ul class="ul-dot size-sm">
+                  <li><a href="https://www.mirae-n.com/" target="_blank" title="미래엔">미래엔</a></li>
+                </ul>
+              </li>
+              <li>
+                <h4><strong>브랜드</strong></h4>
+                <ul class="ul-dot size-sm">
+                  <li><a href="https://www.mirae-n.com/si/mn-si-1.frm?pageGubun=2" target="_blank" title="미래엔 교과서">미래엔 교과서</a></li>
+                  <li><a href="https://www.mirae-n.com/si/mn-si-2.frm" target="_blank" title="미래엔 에듀">미래엔 에듀</a></li>
+                </ul>
+              </li>
+              <li>
+                <h4><strong>서비스</strong></h4>
+                <ul class="ul-dot size-sm">
+                  <li><a href="https://www.printn.co.kr/" target="_blank" title="인쇄서비스">인쇄서비스</a></li>
+                  <li><a href="https://mall.mirae-n.com/main/index.do" target="_blank" title="Vol.321">Vol.321</a></li>
+                  <li><a th:href="@{${host_ele}+'/pages/ele/Main.mrn'}" target="_blank" title="초등 엠티처">초등 엠티처</a></li>
+                  <li><a th:href="@{${host_mid}+'/pages/mid/Main.mrn'}" target="_blank" title="중학 엠티처">중학 엠티처</a></li>
+                  <li><a th:href="@{${host_high}+'/pages/high/Main.mrn'}" target="_blank" title="고등 엠티처">고등 엠티처</a></li>
+                  <li><a href="https://mall.m-teacher.co.kr/" target="_blank" title="라운지M">라운지M</a></li>
+                </ul>
+              </li>
+              <li>
+                <h4><strong>사회공헌</strong></h4>
+                <ul class="ul-dot size-sm">
+                  <li><a href="http://www.mjmirae.or.kr/index.mrn" target="_blank" title="목정미래재단">목정미래재단</a></li>
+                  <li><a href="https://www.textbookmuseum.co.kr/index.mrn" target="_blank" title="교과서 박물관">교과서 박물관</a></li>
+                </ul>
+              </li>
+            </ul>
+            -->
+            <!-- END 패밀리 사이트 하드코딩 -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <address class="footer-address">
+      <div class="inner">
+        <div class="ft-logo">
+          <!-- <a href="#"> -->
+          <svg>
+            <title>mirae N</title>
+            <use href="/assets/images/svg-sprite-solid.svg#logo-mirae-n"></use>
+          </svg>
+          <!-- </a> -->
+        </div>
+        <div class="ft-address">
+          <ul>
+            <li>(주)미래엔</li>
+            <li>대표 신광수</li>
+            <li>주소 06532 서울특별시 서초구 신반포로 321</li>
+            <li>사업자등록번호 214-81-04977</li>
+          </ul>
+          <ul>
+            <li>통신판매신고 서초04494호</li>
+            <li>개인정보보호책임자 한범석</li>
+            <li>이메일 mteacher@mirae-n.com</li>
+          </ul>
+          <ul>
+            <li>Tel 1800-8890</li>
+            <li>Fax 02-541-8152</li>
+          </ul>
+          <p>MIRAEN CO., LTD. ALL Right Reserved</p>
+        </div>
+      </div>
+    </address>
+  </footer>
+  <th:block th:replace="~{views/pc/comonutlty/mteacherUrl :: mteacherUrl}"></th:block>
+</th:block>
+
+</html>

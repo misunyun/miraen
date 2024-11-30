@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>connected list</title>
+</head>
+<body>
+    <h2>동일한 유저로 접속된 connected list</h2>
+    <ul id="connectedList"></ul>
+    <button onclick="submit()">삭제</button>
+    <button onclick="cancel()">취소</button>
+
+</body>
+<script src="js/jquery.min.js"></script>
+<script>
+    //부모로 부터 컨넧트 리스트를 받아 화면에 출력
+
+    window.onload = function () {
+        parent.opener.getConnectedList();
+
+    }
+    function showConnectedList (param) {
+
+
+        for(var i=0; i<param.length; i++) {
+            var uid = param[i]['uid']
+            var info = param[i]['id'];
+            var el = "<li><input type='checkbox' id='cb' name='cb' value='"+uid+"'/>"+info+"</li>";
+            $('#connectedList').append( el )
+        }
+    }
+
+    function submit () {
+        var chk_obj = document.getElementsByName("cb")
+        var checked = 0;
+        var value = null;
+        for(var i=0; i<chk_obj.length; i++) {
+           if(chk_obj[i].checked == true) {
+               value = chk_obj[i].value
+               checked++;
+           }
+        }
+
+        if(checked == 0) {
+            alert('선택한 항목이 없습니다.');
+            return;
+        }
+
+        parent.opener.disconnect(value);
+
+    }
+
+    function cancel () {
+
+    }
+</script>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="format-detection" content="telephone=no" />
+  <title>미래엔 디지털 지도 수업 자료실</title>
+  <!-- 기존 엠티처에서 사용중인 JS (includeJS) -->
+  <script src="/static/assets/js/jquery-3.7.0.min.js"></script>
+  <script src="/static/assets/js/plugin/select2.min.js"></script>
+  <script src="/static/assets/js/plugin/swiper-bundle-v8.js"></script>
+  <script src="/static/assets/js/plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+  <!-- 신규(추가필요) -->
+  <link rel="stylesheet" type="text/css" href="/static/assets/pc/css/map.css" rel="stylesheet" />
+  <script src="/static/assets/js/ui.map.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-rwdImageMaps/1.6/jquery.rwdImageMaps.min.js"></script>
+  <script>
+  $(document).ready(function() {
+    $('img[usemap]').rwdImageMaps();
+  });
+  </script>
+
+  <style>
+    * {margin: 0; padding: 0;}
+    .wrapper {width: 100%; min-width: 1320px;}
+    .sec {display: flex;}
+    .sec > div {flex: 1;}
+    .sec .s_left {display: flex; align-items: center; justify-content: center;}
+    .imageChoice {width: 500px; position: relative;}
+    .imageChoice img {width: 100%; opacity: 0.8;}
+    [class^="spot"] {z-index: 1;}
+    .spot9 {position: absolute; left: 36%; top: 17.5%; font-size: 12px; font-weight: 500; pointer-events: none;}
+    .spot10 {position: absolute; left: 40%; top: 41.5%; font-size: 12px; font-weight: 500; pointer-events: none;}
+    .spot11 {position: absolute; left: 60.5%; top: 51.5%; font-size: 12px; font-weight: 500; pointer-events: none;}
+    .spot12 {position: absolute; left: 31%; top: 65%; font-size: 12px; font-weight: 500; pointer-events: none;}
+    .spot13 {position: absolute; left: 68%; top: 65%; font-size: 12px; font-weight: 500; pointer-events: none;}
+    .spot14 {position: absolute; left: 73%; top: 57%; font-size: 12px; font-weight: 500; pointer-events: none;}
+    .spot15 {position: absolute; left: 27%; top: 90.5%; font-size: 12px; font-weight: 500; pointer-events: none;}
+    .spot0 {position: absolute; left: 38%; top: 24%; font-size: 12px; font-weight: 500; pointer-events: none;}
+    .spot1 {position: absolute; left: 56%; top: 14%; font-size: 12px; font-weight: 500; pointer-events: none;}
+    .spot2 {position: absolute; left: 49%; top: 31%; font-size: 12px; font-weight: 500; pointer-events: none;}
+    .spot3 {position: absolute; left: 30%; top: 35%; font-size: 12px; font-weight: 500; pointer-events: none;}
+    .spot4 {position: absolute; left: 64%; top: 40%; font-size: 12px; font-weight: 500; pointer-events: none;}
+    .spot5 {position: absolute; left: 56%; top: 62%; font-size: 12px; font-weight: 500; pointer-events: none;}
+    .spot6 {position: absolute; left: 36%; top: 54%; font-size: 12px; font-weight: 500; pointer-events: none;}
+    .spot7 {position: absolute; left: 31%; top: 73%; font-size: 12px; font-weight: 500; pointer-events: none;}
+    .spot8 {position: absolute; left: 23%; top: 20%; font-size: 12px; font-weight: 500; pointer-events: none;}
+    .spot16 {position: absolute; left: 38%; top: 38%; font-size: 12px; font-weight: 500; pointer-events: none;}
+  </style>
+
+<script>
+  $(document).ready(function () {
+      const $mainMap = $('#main-map');
+
+      $('area').on('mouseenter mouseleave', function (e) {
+        const areaId = $(this).data('area');
+        const $targetSpan = $(`.spot${areaId}`);
+
+        if (e.type === 'mouseenter') {
+            const hoverImage = $(this).data('hover');
+            $mainMap.attr('src', hoverImage);
+            $targetSpan.css('color', '#fff');
+        } else if (e.type === 'mouseleave') {
+            $mainMap.attr('src', 'http://themnj.com/better/map/images/map.gif');
+            $targetSpan.css('color', '');
+        }
+    });
+
+      $('area').on('click', function () {
+          const areaId = $(this).data('area');
+          fnMap(areaId);
+      });
+  });
+
+  // fnMap 함수 예제
+  function fnMap(areaId) {
+      alert(`지역 ID: ${areaId} 선택됨!`);
+
+      // 실제 동작 추가
+      const areaLinks = {
+          9: 'https://google.com', // 서울
+          0: 'https://naver.com', // 경기
+      };
+      const link = areaLinks[areaId]; // 해당 지역의 링크 가져오기
+    if (link) {
+        window.location.href = link; // 링크로 이동
+    } else {
+        alert(`지역 ID: ${areaId}에 해당하는 링크가 없습니다.`);
+    }
+  }
+</script>
+
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="sec">
+      <div class="s_left">
+        왼쪽영역
+
+      </div>
+      <div class="s_right">
+        <div class="imageChoice">
+          <span class="spot9">서울(9)</span>
+          <span class="spot10">대전(10)</span>
+          <span class="spot11">대구(11)</span>
+          <span class="spot12">광주(12)</span>
+          <span class="spot13">부산(13)</span>
+          <span class="spot14">울산(14)</span>
+          <span class="spot15">제주(15)</span>
+
+          <span class="spot0">경기(0)</span>
+          <span class="spot1">강원(1)</span>
+          <span class="spot2">충북(2)</span>
+          <span class="spot3">충남(3)</span>
+          <span class="spot4">경북(4)</span>
+          <span class="spot5">경남(5)</span>
+          <span class="spot6">전북(6)</span>
+          <span class="spot7">전남(7)</span>
+          <span class="spot8">인천(8)</span>
+          <span class="spot16">세종(16)</span>
+
+          <img src="http://themnj.com/better/map/images/map.gif" alt="한반도 지도" class="base-map" usemap="#smartMap" id="main-map">
+          <map name="smartMap">
+            <area shape="poly" coords="109,70,108,63,114,60,118,53,126,53,132,66,131,70,121,74" href="javascript:void(0);" data-hover="http://themnj.com/better/map/images/map9.gif" data-area="9"  alt="서울" />
+
+            <area shape="poly" coords="139,132,148,135,150,140,146,150,142,153,133,149,132,139" href="javascript:void(0);" data-hover="http://themnj.com/better/map/images/map10.gif" data-area="10"  alt="대전" />
+
+            <area shape="poly" coords="191,190,192,185,194,180,191,172,201,165,210,163,214,175,205,186,196,191" href="javascript:void(0);" data-hover="http://themnj.com/better/map/images/map11.gif" data-area="11" alt="대구" />
+
+            <area shape="poly" coords="101,214,109,213,113,213,121,219,121,225,115,230,106,230,98,222" href="javascript:void(0);" data-hover="http://themnj.com/better/map/images/map12.gif" data-area="12"  alt="광주" />
+            
+            <area shape="poly" coords="215,229,208,227,203,235,196,227,205,221,217,223,221,213,225,213,234,204,241,213,237,222,225,230" href="javascript:void(0);" data-hover="http://themnj.com/better/map/images/map13.gif" data-area="13" alt="부산" />
+
+            <area shape="poly" coords="241,210,234,205,224,194,225,189,234,183,239,188,249,187,249,198" href="javascript:void(0);" data-hover="http://themnj.com/better/map/images/map14.gif" data-area="14" alt="울산" />
+
+            <area shape="poly" coords="75,303,97,294,106,293,116,295,116,307,100,318,90,318,84,322,79,322,71,310" href="javascript:void(0);" data-hover="http://themnj.com/better/map/images/map15.gif" data-area="15" alt="제주도" />
+
+            <area shape="poly" coords="108,64,104,60,98,60,95,63,93,52,99,50,103,39,111,34,104,26,118,19,127,19,128,26,144,36,147,43,147,55,150,62,160,63,163,64,163,73,158,78,159,89,152,96,141,101,137,105,120,103,116,108,109,106,97,88,103,77,109,69,119,74,131,70,131,64,126,53,119,53,113,62" href="javascript:void(0);" data-hover="http://themnj.com/better/map/images/map0.gif" data-area="0" alt="경기도" />
+
+            <area shape="poly" coords="127,18,129,26,144,36,147,45,150,61,160,64,163,73,157,78,159,91,167,90,172,85,184,87,200,96,219,96,235,93,244,87,226,58,226,52,210,38,199,9,188,1,185,14,177,11,170,18,152,18,147,12,139,18,133,15" href="javascript:void(0);" data-hover="http://themnj.com/better/map/images/map1.gif" data-area="1"  alt="강원도" />
+
+            <area shape="poly" coords="141,132,135,124,135,116,142,117,138,104,159,91,173,84,182,86,186,91,194,91,200,97,197,103,197,110,193,114,179,110,165,125,165,143,177,150,167,168,157,164,146,150,150,139,148,133" href="javascript:void(0);" data-hover="http://themnj.com/better/map/images/map2.gif" data-area="2" alt="충청북도" />
+
+            <area shape="poly" coords="81,97,86,97,94,94,102,97,110,100,110,107,120,100,132,101,139,105,146,112,142,120,135,123,129,121,124,121,123,129,128,133,133,138,134,142,138,149,143,152,148,150,156,160,160,163,156,166,153,166,149,170,143,166,140,163,137,159,135,154,132,159,126,163,123,162,119,154,116,156,111,165,104,168,99,163,90,153,92,146,84,142,78,139,77,133,82,125,80,121,77,123,73,127,70,122,70,112,76,107,81,102,81,98,82,96" href="javascript:void(0);" data-hover="http://themnj.com/better/map/images/map3.gif" data-area="3" alt="충청남도" />
+
+            <area shape="poly" coords="201,97,244,88,261,72,261,63,273,59,282,64,286,78,277,79,264,75,244,93,250,121,243,149,254,159,257,167,249,188,239,188,233,183,227,190,219,190,219,193,207,193,199,188,206,184,214,174,210,163,202,163,191,173,193,181,192,191,183,190,183,179,167,172,166,165,177,149,163,141,165,124,182,109,192,113,197,113,197,100" href="javascript:void(0);" data-hover="http://themnj.com/better/map/images/map4.gif" data-area="4" alt="경상북도" />
+
+            <area shape="poly" coords="165,171,183,179,183,190,204,190,206,195,215,195,221,189,226,190,225,196,234,205,220,216,217,224,205,222,196,227,202,234,209,228,214,227,215,230,212,234,212,246,205,254,190,243,177,246,173,253,165,250,163,246,164,235,152,214,153,202,151,190,155,179" href="javascript:void(0);" data-hover="http://themnj.com/better/map/images/map5.gif" data-area="5" alt="경상남도" />
+
+            <area shape="poly" coords="91,168,99,164,104,166,115,157,122,155,125,163,134,157,141,163,146,168,155,163,166,167,166,172,155,181,154,188,149,192,153,202,153,215,146,209,140,212,133,209,126,212,120,203,110,202,106,209,96,209,86,201,89,192,99,185,99,178" href="javascript:void(0);" data-hover="http://themnj.com/better/map/images/map6.gif" data-area="6" alt="전라북도" />
+
+            <area shape="poly" coords="86,200,92,201,97,208,103,208,111,201,120,203,124,212,132,209,149,209,153,216,165,236,165,244,167,248,162,256,145,259,150,269,144,271,140,269,125,281,100,279,90,272,75,282,60,291,54,282,62,267,68,260,58,256,58,243,69,229,63,225,75,218,81,222,85,212" href="javascript:void(0);" data-hover="http://themnj.com/better/map/images/map7.gif" data-area="7" alt="전라남도" />
+
+            <area shape="poly" coords="87,44,77,49,71,59,81,64,85,73,68,82,65,92,82,95,91,87,96,84,94,78,102,77,106,75,109,70,107,64,103,60,97,63,94,60,94,53,100,52" href="javascript:void(0);" data-hover="http://themnj.com/better/map/images/map8.gif" data-area="8" alt="인천" />
+
+            <area shape="poly" coords="120,119,128,118,139,119,145,129,143,136,136,138,127,138,125,131,125,127,118,121,119,116" href="javascript:void(0);" data-hover="http://themnj.com/better/map/images/map16.gif" data-area="16" alt="세종시" />
+          </map>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>

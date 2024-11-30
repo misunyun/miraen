@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block th:fragment="gatefooterFragment">
+  <footer class="gate-footer">
+    <div class="logo-wrap">
+          <span class="logo">
+            <svg>
+              <title>mirae N</title>
+              <use href="/assets/images/svg-sprite-solid.svg#logo-mirae-n"></use>
+            </svg>
+          </span>
+      <p><strong>MIRAEN</strong> CO., LTD. ALL Right Reserved</p>
+    </div>
+    <div class="customer">
+      <ul class="divider-group">
+        <li><a th:href="@{${host_common}+'/pages/common/customer/notice.mrn'}">엠티처 공지사항</a></li>
+        <li><a th:href="@{${host_common}+'/pages/common/customer/event.mrn'}">엠티처 이벤트</a></li>
+      </ul>
+      <p>엠티처 고객센터 : 1800-8890</p>
+    </div>
+  </footer>
+</th:block>
+
+</html>

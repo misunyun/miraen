@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="icon" href="/assets/viewer/img/favicon.ico" type="image/x-icon" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>엠티처 뷰어</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+</head>
+
+<body>
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    엠티처 전자저작물 뷰어 데모 사이트
+                </h1>
+                <p class="has-text-lightgrey">
+                    현재 크롬에 최적화 되어 있습니다.
+                </p>
+            </div>
+        </div>
+    </section>
+    <!-- <section class="section">
+        <div class="container">
+            <div class="field" style="max-width: 400px;">
+                <div class="field-body">
+                    <div class="field">
+                        <p class="control has-icons-left">
+                            <input type="text" class="input" id="userid" placeholder="아이디를 입력해주세요. 그리고 꼭 기억해주세요."/>
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-user"></i>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <h2 class="subtitle has-text-grey">
+                사용할 아이디를 입력한 후 수업을 선택해주세요.
+            </h2>
+        </div>
+    </section> -->
+    <section class="section has-background-info">
+        <div class="container">
+            <h1 class="title has-text-white">
+                수업 프로토타입
+            </h1>
+            <h3 class="has-text-white">아래 링크를 클릭해주세요.</h3>
+            <div class="content">
+                <ul class="has-text-white">
+                    <li>
+                        <a class="has-text-white" href="javascript:open_viewer('playlist=demo/json/demo.ma.3.1.3.1', true);">[SmartPPT] 3학년 > 1학기 > 수학 > 3. 나눗셈</a>
+                    </li>
+                    <li>
+                        <a class="has-text-white" href="javascript:open_viewer('playlist=demo/json/demo.ma.4.1.4.1', true);">[SmartPPT] 4학년 > 1학기 > 수학 > 4. 평면도형</a>
+                    </li>
+                    <li>
+                        <a class="has-text-white" href="javascript:open_viewer('playlist=demo/json/demo.so.3.1.1.1', true);">[SmartPPT] 3학년 > 1학기 > 사회 > 1. 우리가 생각하는 고장의 모습</a>
+                    </li>
+                    <li>
+                        <a class="has-text-white" href="javascript:open_viewer('playlist=demo/json/demo.so.4.1.3.1-2', true);">[SmartPPT] 4학년 > 1학기 > 사회 > 3. 지역의 공공 기관과 주민 참여</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <h1 class="title">기능 안내</h1>
+            <div>
+                <p>이 사이트는 엠티처 전자저작물 콘텐츠를 살펴볼 수 있는 사이트입니다.</p>
+            </div>
+            </br>
+            <div class="">
+                <p>1. 그리기 기능 - 그리기, 텍스트 입력, 도형 삽입, 지우개, 삭제, 가리기 기능을 사용할 수 있습니다.</p>
+                <p>2. 수업 도구 기능 - 판서, 타미어, 깜깜이, 주의집중, 발표자선정, 모둠점수판 기능을 사용할 수 있습니다. </p>
+                <p>3. 페이지 이동 - 좌/우 버튼으로 페이지를 이동하거나 목차의 링크를 이용하여 페이지를 이동할 수 있습니다.</p>
+                <p>4. 확대/축소 - 하단의 버튼을 통해 콘텐츠 확대/축소를 할 수 있습니다.</p>
+                <p>5. 설정 - 스킨 컬러 변경, 콘텐츠 화면 비율 변경을 할 수 있습니다.</p>
+                <p>6. 접기/펴기 - 하단의 버튼을 통해 목차를 펴고 접을 수 있습니다.</p>
+            </div>
+        </div>
+    </section>
+    <script src="js/jquery.min.js"></script>
+    <script>
+        var viewer_url = "./v.html";
+        // var mobile_viewer_url = "./mv.html";
+        var mobile_viewer_url = "./v.html";
+
+        function is_mobile() {
+            var filter = "win16/win32/win64/mac/macintel";
+            if (navigator.platform) {
+                return filter.indexOf(navigator.platform.toLowerCase()) < 0;
+            }
+            return false;
+        };
+
+        function get_viewer_url() {
+            if (is_mobile()) {
+                return mobile_viewer_url;
+            }
+            return viewer_url;
+        };
+
+        function open_viewer(param, test_data) {
+            // mobile true
+            // if (is_mobile()) {
+            //     alert("모바일에서는 사용이 불가능합니다.");
+            //     return;
+            // }
+            var userid = guid();
+
+            // var userid = $("#userid").val().trim();
+            // if (userid.length <= 0) {
+            //     alert("사용할 아이디를 입력하신 후 이용해주세요.");
+            //     return;
+            // }
+
+            var url = get_viewer_url() + '?' + param + '&user=' + userid;
+            if (test_data) {
+                url += '&test_data=1';
+            }
+            var popup = window.open(url, 'smartppt', 'height=' + screen.height + ',width=' + screen.width + ' titlebar=yes, location=yes ,scrollbars=no, resizable=yes');
+            // var popup = window.open(url, 'smartppt', 'height=' + screen.height + ',width=' + screen.width + ',fullscreen=yes');
+            popup.moveTo(0, 0);
+            popup.resizeTo(screen.availWidth, screen.availHeight);
+        };
+        function guid() {
+            function s4() {
+                return ((1 + Math.random()) * 0x10000 | 0).toString(16).substring(1);
+            }
+            return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+        };
+    </script>
+</body>
+
+</html>

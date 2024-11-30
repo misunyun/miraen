@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorate="~{common/layouts/mo/lo_gatepage}"
+      xmlns="http://www.w3.org/1999/html">
+<!-- !NOTE : theme 4 case : 초등 theme-elementary, 중학 theme-middle, 고등 theme-high, 유틸공통 theme-common -->
+<th:block layout:fragment="content">
+
+    <main>
+        <!--<a href="https://main.m-teacher.co.kr/Main/Gate.mrn" class="origin-mteacher size-md"> 기존 엠티처에서 보기 <svg>
+            <title>아이콘 - icon-play-rounded</title>
+            <use href="/assets/images/svg-sprite-solid.svg#icon-play-rounded"></use>
+        </svg>
+        </a>-->
+        <div class="buttons">
+            <button type="button" name="ele" class="gate-button type-elementary">
+                <img src="/assets/images/common/icon-arrow-rounded-elementary.svg" alt="화살표 초등">
+                <span class="logo">
+                <img src="/assets/images/common/logo-elementary.svg" alt="엠티처 초등 로고">
+              </span>
+                <input type="hidden" name="host_ele" th:value="${host_ele}+'/pages/ele/Main.mrn'">
+            </button>
+            <button type="button" name="mid" class="gate-button type-middle">
+                <img src="/assets/images/common/icon-arrow-rounded-middle.svg" alt="화살표 중학">
+                <span class="logo">
+                <img src="/assets/images/common/logo-middle.svg" alt="엠티처 중학 로고">
+              </span>
+                <input type="hidden" name="host_mid" th:value="${host_mid}+'/pages/mid/Main.mrn'">
+            </button>
+            <button type="button" name="high" class="gate-button type-high">
+                <img src="/assets/images/common/icon-arrow-rounded-high.svg" alt="화살표 고등">
+                <span class="logo">
+                <img src="/assets/images/common/logo-high.svg" alt="엠티처 고등 로고">
+              </span>
+                <input type="hidden" name="host_high" th:value="${host_high}+'/pages/high/Main.mrn'">
+            </button>
+        </div>
+        <div class="gate-slider">
+            <div class="swiper visual-slider">
+                <div class="swiper-wrapper">
+                    <th:block th:each="gateBannerItem, gateBannerItemStat : ${gateBanner}">
+                        <a class="item swiper-slide"
+                           th:href="${gateBannerItem['mobileImageLink']}"
+                           th:target="${gateBannerItem['linkType'] eq 'NEW' ? '_blank' : ''}"
+                           th:if="${gateBannerItem['bannerLocation'] eq 'GT100_PC'}">
+                            <!-- TODO - 현재 tb_banner -> banner_seq 68번에 mobileImageFileId가 없으므로 mobileImageFileId가 없을 때 더미 이미지나오도록. 수정 예정. -->
+                            <img th:src="${gateBannerItem['mobileImageFileId'] eq '/pages/api/file/view/' ? '/assets/images/temp/img-etc-banner@x2.png' : gateBannerItem['mobileImageFileId']}" th:alt="${gateBannerItem['altText']}">
+                        </a>
+                    </th:block>
+                </div>
+                <div class="controller">
+                    <div class="controls">
+                        <button class="slider-button button-player pause" title="슬라이드 자동재생 정지">
+                            <svg>
+                                <use xlink:href="/assets/images/svg-sprite-solid.svg#icon-pause"></use>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="indicator">
+                        <span class="this-index"></span>
+                        <span class="last-index"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="buttons">
+            <a href="https://mh-aiclass.m-teacher.co.kr/" class="extra-button">
+                <div>
+                    <img src="/assets/images/common/icon-aiclass-vertical.svg" alt="AI Class">
+                </div> AI Class
+            </a>
+            <a href="https://multi.m-teacher.co.kr/" class="extra-button">
+                <div>
+                    <img src="/assets/images/common/icon-mchive-black.svg" alt="M카이브">
+                </div> M카이브
+            </a>
+            <!-- !NOTE : 02-06 기획요청으로 2월 오픈전 티처 LIVE 메뉴 숨김
+            <a href="https://www.mirae-n.com/si/mn-si-1.frm?pageGubun=2" class="extra-button">
+                <div>
+                    <img src="/assets/images/common/icon-teacher-live.svg" alt="티처 LIVE">
+                </div> 티처 LIVE
+            </a> -->
+            <a href="https://www.mirae-n.com/si/mn-si-1.frm?pageGubun=2" class="extra-button">
+                <div>
+                    <img src="/assets/images/common/icon-text-book.svg" alt="미래엔 교과서">
+                </div> 미래엔 교과서
+            </a>
+            <a href="https://e.m-teacher.co.kr/pages/award/mjmirae11.mrn" class="extra-button">
+                <div>
+                    <img src="/assets/images/common/icon-education.svg" alt="미래교육상">
+                </div> 미래교육상
+            </a>
+        </div>
+    </main>
+
+</th:block>
+
+<th:block layout:fragment="addScript">
+    <script src="/js/mo/comonutlty/gate.js"></script>
+</th:block>
+
+</html>

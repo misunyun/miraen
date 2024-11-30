@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>다운로드</title>
+    <script src="/assets/js/jquery-3.7.0.min.js"></script>
+    <link href="/raonk/css/raon.common.css" rel="stylesheet">
+    <script src="/raonk/js/raonkupload.js" type="text/javascript"></script>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        RAONKUPLOAD.rootPath = "/raonk/";
+        
+        function setKUploadHandler(p) {
+            // p.HandlerUrl = '${pageContext.request.contextPath}/download.mrn';
+            
+            p.HandlerUrl = location.origin + '/pages/api/file/down/multi/download.mrn';
+            console.log("p.HandlerUrl", p.HandlerUrl);
+
+            // var protocol = currProtocol + '//';
+
+            // p.HandlerUrl = protocol + 'efs.raonwiz.com:' + port + '/kupload/handler/raonkhandler.jsp';
+            // p.ViewerHandlerUrl = protocol + 'efs.raonwiz.com:' + port + '/kupload/handler/raonkviewer.jsp';
+        }
+        $(function(){
+            if(/*[[${error}]]*/) {
+                alert(/*[[${error}]]*/);
+                window.close();
+            }
+            var raonkParam = {
+                Id:'upload1',
+                Width:'100%',
+                Height:'250px',
+                // UploadHolder:'uploadHoder_PlaceHolder',
+                Mode:'view',
+                Runtimes:'html5',
+                // DirectDownload: '1',
+                SilentDownload: "0",
+                // StatusBarShowStatus: '0',
+                ResumeDownload: '0',
+                UserCssUrl:'/raonk/css/RAONKUpload_custom_css.css',
+                InitServerXml: location.origin + '/raonk/xml/raonkupload.config.xml'
+            };
+            setKUploadHandler(raonkParam);
+            var upload = new RAONKUpload(raonkParam);
+            console.log((upload));
+        });
+        /*]]>*/
+    
+
+        var G_UploadID = "";
+        // 생성완료 이벤트
+        function RAONKUPLOAD_CreationComplete(uploadID) {
+            
+            G_UploadID = uploadID;
+            // 실제 서버상의 파일을 작성합니다.
+            /*<![CDATA[*/
+            console.log(/*[[${tbCmsContent}]]*/);
+            let tbCmsContent = /*[[${tbCmsContent}]]*/
+            console.log("tbCmsContent", tbCmsContent);
+            for(let i=0; i<tbCmsContent.length; i++) {
+                console.log(tbCmsContent[i].name , tbCmsContent[i].param)
+                RAONKUPLOAD.AddUploadedFile(i, tbCmsContent[i].name, 'https://api-cms.mirae-n.com/down_content?service=mteacher&params=' + tbCmsContent[i].param, '', tbCmsContent[i].param, G_UploadID);
+            }
+            RAONKUPLOAD.SetSelectFile('-1', '1', G_UploadID);
+            /*]]>*/
+        }
+
+        function RAONKUPLOAD_OnError(uploadID, paramObj) {
+            // 오류 이벤트
+            alert("에러가 발생하였습니다." + paramObj.strCode + ', ' + paramObj.strMessage);
+            // modal off 필요 24.03.04
+        }
+
+        function RAONKUPLOAD_BeforeDownloadFile(uploadID, paramObj) {
+            // 다운로드 전 처리할 내용
+            // 개별적으로 modal 을 띄우시거나 컨트롤이 가능
+            // 모달 분기처리
+
+        }
+
+        function RAONKUPLOAD_DownloadCompleteFile(uploadID, paramObj) {
+            // 다운로드 완료 이벤트(파일당 발생)
+        }
+
+        function RAONKUPLOAD_DownloadCompleteAllFile(uploadID, paramObj) {
+            // 모든 파일 다운로드 완료 이벤트
+            // 완료후 modal off 하거나 등의 처리 가능
+        }
+
+        function RAONKUPLOAD_DownloadCancel(uploadID, paramObj) {
+            // 다운로드 취소 이벤트(agent 모드만 해당)
+            // 
+        }
+    </script>
+</head>
+<body style="text-align:center;">
+    <!-- <th:block th:each="contentItem, contentStat : ${tbCmsContent}">
+        <h3 th:text="${contentItem.param}"></h3>
+        <h3 th:text="${contentItem.name}"></h3>
+        
+    </th:block> -->
+    <div id="component_holder" style="width: 800px; margin: 0 auto;"></div>
+</body>
+</html>

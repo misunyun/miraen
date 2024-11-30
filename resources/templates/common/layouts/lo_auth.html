@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{common/fragments/common_head :: commonHeadFragment}"></head>
+  <body>
+    <th:block th:replace="~{common/fragments/ga4_body :: ga4BodyFragment}"></th:block>
+    <header class="header-members">
+      <div class="inner">
+        <img src="/assets/images/common/logo-m-teacher-white.svg" alt="엠티처" />
+        <span class="logo-mirae-n">
+          <svg>
+            <title>mirae N</title>
+            <use href="/assets/images/svg-sprite-solid.svg#logo-mirae-n"></use>
+          </svg>
+        </span>
+      </div>
+    </header>
+    <div class="wrapper members">
+      <th:block layout:fragment="content"></th:block>
+
+      <!--modal-->
+      <!--학교검색-->
+      <div class="popup" obj-type="modal" id="popup-search-school">
+        <div class="popup-container" dialog>
+          <button class="icon-button close-button" id="popup-search-school-close-button" close-obj>
+            <svg>
+              <title>아이콘 - icon-close</title>
+              <use href="/assets/images/svg-sprite-solid.svg#icon-close"></use>
+            </svg>
+          </button>
+          <div class="header">
+            <h3 class="title">학교 검색</h3>
+          </div>
+          <form id="schoolFrm" onsubmit="return false;">
+            <div class="body">
+              <div class="box-outlined-gray fill-light">
+                <div class="forms">
+                  <label for="search-school" class="text-black">학교명을 띄어쓰기 없이 정확하게 입력해 주세요</label>
+                  <!-- !note :  class="flag-error" 붙이면 에러 메세지가 나타납니다. -->
+                  <fieldset>
+                    <div class="input-inner-extra type-dark size-xl">
+                      <input class="size-xl" type="text" name="searchKeyword" id="searchKeyword" placeholder="학교명을 입력해주세요." maxlength="40"/>
+                      <button type="button" class="icon-button" title="검색" id="searchSchool">
+                        <svg>
+                          <use xlink:href="/assets/images/svg-sprite-solid.svg#icon-search"></use>
+                        </svg>
+                      </button>
+                    </div>
+                    <span class="caution">오류 메시지 나타납니다.</span>
+                  </fieldset>
+                </div>
+              </div>
+
+              <div id="school-list"></div>
+
+            </div>
+            <div class="footer">
+              <button type="button" class="button size-xl type-dark" close-obj>취소</button>
+              <button type="button" class="button size-xl type-primary" id="selectSchool">확인</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!--//학교검색-->
+      <!--인증관련-->
+      <!--메일-->
+      <div class="popup" id="popup-authentication-mail">
+        <div class="popup-container size-sm">
+          <button class="icon-button close-button" close-obj>
+            <svg>
+              <title>아이콘 - icon-close</title>
+              <use href="/assets/images/svg-sprite-solid.svg#icon-close"></use>
+            </svg>
+          </button>
+          <div class="header">
+            <h3>공직자 메일 인증</h3>
+          </div>
+          <div class="body">
+            <p class="text-info-dark">공직자 메일로 발송한 인증코드를 입력 후 인증하실 수 있습니다.</p>
+            <div class="forms">
+              <fieldset class="cert-req-area">
+                <input class="size-xl" type="search" title="이메일 아이디" name="" id="forms1" placeholder="이메일 아이디" />
+                <select class="size-xl" name="" id="forms2" title="메일 선택">
+                  <option value="" disabled selected>선택</option>
+                  <option value="korea.kr">korea.kr</option>
+                  <option value="sen.go.kr">sen.go.kr</option>
+                </select>
+                <button type="button" class="button size-xl type-gray">인증요청</button>
+                <span class="caution type-float">입력 시간이 초과되었습니다.</span>
+              </fieldset>
+              <fieldset class="display-hide cert-area mailCertNumFieldset">
+                <input class="size-xl" type="search" title="인증번호를 입력해 주세요." name="" id="certMailNum" placeholder="인증번호를 입력해 주세요." />
+                <button type="button" class="button size-xl type-gray">인증하기</button>
+              </fieldset>
+              <div class="message-info type-gray display-hide">
+                <span id="timeout4"></span>
+              </div>
+            </div>
+          </div>
+          <div class="footer">
+            <button class="button size-xl type-dark fluid" close-obj>취소</button>
+          </div>
+        </div>
+      </div>
+      <!--//메일-->
+      <!--코드-->
+      <div class="popup" id="popup-authentication-code">
+        <div class="popup-container size-sm">
+          <button class="icon-button close-button" close-obj>
+            <svg>
+              <title>아이콘 - icon-close</title>
+              <use href="/assets/images/svg-sprite-solid.svg#icon-close"></use>
+            </svg>
+          </button>
+          <div class="header">
+            <h3>코드 인증</h3>
+          </div>
+          <div class="body">
+            <p class="text-info-dark">인증코드를 받으신 선생님은 코드 인증으로 간편하게 인증하실 수 있습니다.</p>
+            <form>
+              <div class="forms">
+                <fieldset class="no-margin cert-area">
+                  <input class="size-xl" type="search" title="인증코드" name="" id="certCode" placeholder="인증코드" value="" onkeypress="if( e.keyCode == 13 ){ e.preventDefault(); }"/>
+                  <button type="button" class="button size-xl type-gray">인증하기</button>
+                  <span class="caution type-float">입력 시간이 초과되었습니다.</span>
+                </fieldset>
+              </div>
+            </form>
+          </div>
+          <div class="footer">
+            <button class="button size-xl type-dark" close-obj>취소</button>
+          </div>
+        </div>
+      </div>
+      <!--//코드-->
+      <!--서류-->
+      <div class="popup" id="popup-certify-papers">
+        <div class="popup-container size-sm">
+          <button class="icon-button close-button" close-obj>
+            <svg>
+              <title>아이콘 - icon-close</title>
+              <use href="/assets/images/svg-sprite-solid.svg#icon-close"></use>
+            </svg>
+          </button>
+          <div class="header">
+            <h3>서류 인증</h3>
+          </div>
+          <form>
+            <div class="body">
+              <p class="text-info-dark">재직증명서, 경력증명서 등 교사용 확인 서류로 인증하실 수 있습니다.</p>
+              <div class="box-outlined-gray fill-lighten">
+                <div class="file-upload size-xl type-vertical">
+                  <div class="inner-form">
+                    <input type="file" name="cert-file" id="f1" placeholder="파일을 첨부해 주세요." />
+                    <button type="button" class="button type-gray file-del-btn">삭제</button>
+                  </div>
+                  <label for="f1" class="button type-line">
+                    <svg>
+                      <title>아이콘 - icon-plus</title>
+                      <use href="/assets/images/svg-sprite-solid.svg#icon-plus"></use>
+                    </svg>파일 선택 </label>
+                </div>
+                <ul class="ul-dot size-md margin-top-xl">
+                  <li>hwp, pdf, jpg 확장자 파일만 첨부하실 수 있습니다.</li>
+                  <li>서류 인증 후 48시간 이내 인증이 완료됩니다. (근무일 기준)</li>
+                  <li>인증 요청 후에는 파일을 수정할 수 없습니다.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="footer">
+              <button type="button" class="button size-xl type-dark" close-obj>취소</button>
+              <button type="button" class="button size-xl type-primary">확인</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!--//서류-->
+      <!--// 인증관련-->
+      <!--//modal-->
+
+      <!--GPKI-->
+      <div class="display-hide">
+        <!--SignDataP7.html-->
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td height="37" bgcolor="#0099CC">
+              &nbsp;<font color="#FFFFFF"><b>[전자서명 페이지]</b></font>
+            </td>
+          </tr>
+        </table>
+        <h3><font color="red"> hidden 처리 대상 : 원문, 전자서명값<br>
+          <br>
+          브라우저사인+HDD+USB</font></h3>
+        <br>
+        form 속성에 onsubmit="return false" 을 설정해야 함 <br>
+        <form name="frm" onsubmit="return false">
+          <table cellpadding="0" cellspacing="0" width="100%" align="center">
+            <tr>
+              <td align="center">
+                <br>
+                <br>
+                <br>
+                원문<br>
+                <textarea name="plainText" rows="5" cols="40">test 123</textarea>
+                <br>
+                <input type="button" value="전자서명(인증서선택)">
+              </td>
+              <td align="center">
+                <br>
+                <br>
+                <br>
+                전자서명값<br>
+                <textarea name="signedText" rows="5" cols="40"></textarea>
+                <br>
+                <input type=button id="gpkiCert">
+              </td>
+            </tr>
+          </table>
+        </form>
+      </div>
+      <!--//GPKI-->
+
+      <footer>MIRAEN CO., LTD. ALL Right Reserved</footer>
+    </div>
+    <th:block th:replace="~{common/fragments/auth_fragment}"></th:block>
+    <th:block th:replace="~{common/fragments/includeCertJs :: includeCertJsFragment}"></th:block>
+
+    <!-- sns -->
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script async defer src="https://connect.facebook.net/en_US/sdk.js"></script>
+    <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <!-- post -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+    <script>
+      // GPKI
+      function SignData()
+      {
+        if (document.frm.plainText.value == "")
+        {
+          alert("서명할 원문이 없습니다.");
+          return;
+        }
+        unisign.SignDataEx( document.frm.plainText.value, null,function(resultObject)
+        {
+          if ( null == resultObject || '' == resultObject )
+          {
+            unisign.GetLastError(
+                    function(errCode, errMsg)
+                    {
+                      alert('Error code : ' + errCode + '\n\nError Msg : ' + errMsg);
+                    }
+            );
+          }
+          else
+          {
+            document.frm.signedText.value = resultObject.signedData;
+            console.log(resultObject.certAttrs.subjectName);//인증서 이름
+            $('#gpkiCert').trigger('click');
+          }
+        });
+      }
+
+      // 숫자 이 외 문자열 Key In 무시 처리
+      function setNum(obj){
+        val=obj.value;
+        re=/[^0-9]/gi;
+        obj.value=val.replace(re,"");
+      }
+
+      // 숫자와 영문 이 외 문자열 Key In 무시 처리
+      function setNumEng(obj){
+        val=obj.value;
+        re=/[^0-9a-zA-Z`~!@#$%^&*|\\\'\";:\/(){}?]/g; // 숫자,특수문자, 영문자만 허용
+        obj.value=val.replace(re,"");
+      }
+
+
+      /// 주소 api
+      function findAddr(no){
+        new daum.Postcode({
+          oncomplete: function(data) {
+
+            console.log(data);
+            var addressId = 'address1-'+ no;
+            var postId = 'member_post-'+ no;
+
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+            // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+            var roadAddr = data.roadAddress; // 도로명 주소 변수
+            var jibunAddr = data.jibunAddress; // 지번 주소 변수
+            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+            document.getElementById(postId).value = data.zonecode;
+            if(roadAddr !== ''){
+              document.getElementById(addressId).value = roadAddr;
+            }
+            else if(jibunAddr !== ''){
+              document.getElementById(addressId).value = jibunAddr;
+            }
+          }
+        }).open();
+      }
+    </script>
+  </body>
+</html>

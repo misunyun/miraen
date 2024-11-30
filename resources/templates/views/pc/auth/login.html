@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorate="~{common/layouts/lo_auth}" xmlns="http://www.w3.org/1999/html">
+<!-- <link href="/assets/pc/css/pages/common/members.css" rel="stylesheet" /> -->
+<th:block layout:fragment="content">
+  <input type="hidden" class="th-value" data-th-key="kakaoId" th:value="${kakaoId}">
+  <input type="hidden" class="th-value" data-th-key="facebookId" th:value="${facebookId}">
+  <input type="hidden" class="th-value" data-th-key="naverId" th:value="${naverId}">
+  <input type="hidden" class="th-value" data-th-key="nhnId" th:value="${nhnId}">
+  <input type="hidden" class="th-value" data-th-key="nhnServerDomain" th:value="${nhnServerDomain}">
+  <input type="hidden" class="th-value" data-th-key="whalespaceId" th:value="${whalespaceId}">
+  <input type="hidden" class="th-value" data-th-key="googleId" th:value="${googleId}">
+  <input type="hidden" class="th-value" data-th-key="serviceDomain" th:value="${serviceDomain}">
+  <input type="hidden" class="th-value" data-th-key="redirectUrl" th:value="${redirectUrl}">
+  <input type="hidden" class="th-value" data-th-key="redirectUri" th:value="${redirectUri}">
+
+  <body class="theme-elementary">
+    <div class="vertical-center">
+      <div class="inner">
+        <div class="banners">
+          <a href="https://22txbook.m-teacher.co.kr/" target="_blank">
+            <img src="/assets/images/temp/img-login-banner.jpg" alt="배너01" />
+          </a>
+        </div>
+        <div class="login-box">
+          <form id="form">
+            <!-- <input class="size-xl" type="text" title="아이디 입력란" name="userId" id="user-id" placeholder="아이디 또는 이메일 정보를 입력해 주세요." /> -->
+            <!-- <input class="size-xl" type="password" title="비밀번호 입력란" name="usrPw" id="user-pw" placeholder="비밀번호를 입력해 주세요." style="-webkit-text-security:disc;" /> -->
+            <div class="clear-container">
+              <input class="size-xl" type="text" title="아이디 입력란" name="userId" id="user-id" placeholder="아이디 또는 이메일 정보를 입력해 주세요.">
+              <button type="button" class="button-clear"><svg><title>삭제</title><use href="/assets/images/svg-sprite-solid.svg#icon-close-round"></use></svg></button>
+            </div>
+            <div class="clear-container">
+              <input class="size-xl" type="password" title="비밀번호 입력란" name="usrPw" id="user-pw" placeholder="비밀번호를 입력해 주세요." style="-webkit-text-security:disc;">
+              <button type="button" class="button-clear"><svg><title>삭제</title><use href="/assets/images/svg-sprite-solid.svg#icon-close-round"></use></svg></button>
+            </div>
+
+            <div class="split-container">
+                <span class="ox">
+                  <input class="size-xl" type="checkbox" id="save-id" />
+                  <label for="save-id" class="text-black">아이디 저장</label>
+                </span>
+              <ul class="divider-group text-xs">
+                <li><a target='_blank' href="https://oneid.mirae-n.com/simple/findId.mrn" class="">아이디 찾기</a></li>
+                <li><a target='_blank' href="https://oneid.mirae-n.com/simple/findPw.mrn" class="">비밀번호 찾기</a></li>
+              </ul>
+            </div>
+            <button type="button" class="button size-xl type-primary fluid" id="btn-login">
+              로그인
+              <svg>
+                <use xlink:href="/assets/images/svg-sprite-arrow.svg#icon-chevron-right"></use>
+              </svg>
+            </button>
+          </form>
+
+          <div class="divider-line">
+              <span class="text-xs">
+                또는
+              </span>
+          </div>
+          <div class="sns-box">
+            <button type="button" class="naver btn-sns-login" data-sns-type="naver" title="네이버 로그인"></button>
+            <button type="button" class="kakao btn-sns-login" data-sns-type="kakao" title="카카오 로그인"></button>
+            <button type="button" class="facebook btn-sns-login" data-sns-type="facebook" title="페이스북 로그인"></button>
+            <button type="button" class="google btn-sns-login" data-sns-type="google" title="구글 로그인"></button>
+            <button type="button" class="whale btn-sns-login" data-sns-type="whale" title="웨일 로그인"></button>
+            <button type="button" class="iamteacher btn-sns-login" data-sns-type="iamteacher" title="아이엠티처 로그인"></button>
+            <!-- <button type="button" class="class123" title="클래스123 로그인"></button> -->
+          </div>
+
+          <div class="join-wrap">
+            엠티처 회원이 아니신가요?
+            <a href="#" id="go-signup-page" class="text-primary">
+              회원가입
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</th:block>
+<th:block layout:fragment="addScript">
+  <script src="/js/pc/auth/login.js"></script>
+</th:block>
+</html>

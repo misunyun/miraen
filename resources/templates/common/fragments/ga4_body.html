@@ -1,0 +1,9 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+  <th:block th:fragment="ga4BodyFragment">
+        <!-- [4] Google Tag Manager (Body 영역에 삽입되는 스크립트)여는 Body 태그 바로 아래에 삽입 (noscript) -->
+    <noscript>
+      <iframe th:src="'https://www.googletagmanager.com/ns.html?id=' + ${GTMID}" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  </th:block>
+</html>

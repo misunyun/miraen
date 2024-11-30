@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorate="~{common/layouts/lo_auth}" xmlns="http://www.w3.org/1999/html">
+<th:block layout:fragment="content">
+
+  <!--step 3-->
+  <form id="step3" class="display-show step" method="post" onsubmit="return false">
+    <div class="page-buttons">
+      <button type="button" class="button size-xl type-dark step-button" th:attr="data-step=3,data-btn-step=2">이전 단계</button>
+      <a type="button" class="button size-xl type-primary" href="javascript:viewerTest();">다음 단계</a>
+    </div>
+  </form>
+  <!--step 3-->
+
+</th:block>
+
+</html>
+<script>
+    function viewerTest() {
+        let previewUrl = '/pages/api/preview/viewer.mrn?source=HLS&file=FILE-lqx4ihpb-D38E284qW2';
+        screenUI.f.winOpen(previewUrl, 1100, 1000, null, 'preview');
+    }
+</script>

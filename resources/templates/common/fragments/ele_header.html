@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+  <th:block th:fragment="eleHeaderFragment">
+    <header class="header" school-grade="ELEMENT">
+      <div class="header-inner">
+        <div class="common-nav">
+          <a href="/pages/ele/Main.mrn" class="active" target="_blank">초등</a>
+          <a th:href="@{${host_mid}+'/pages/mid/Main.mrn'}" target="_blank">중학</a>
+          <a th:href="@{${host_high}+'/pages/high/Main.mrn'}" target="_blank">고등</a>
+          <!-- !NOTE 02-05 기획팀 요청으로 페이지 링크 하드코딩 임시처리  -->
+<!--          <a href="/pages/ele/Main.mrn" class="active">초등</a>-->
+<!--          <a href="/pages/mid/Main.mrn">중학</a>-->
+<!--          <a href="/pages/high/Main.mrn">고등</a>-->
+          <a href="https://22txbook.m-teacher.co.kr/main/index.mrn" target="_blank">교과서홍보관</a>
+          <a id="mteacherDirect" target-obj="mteacher-shortcut">엠티처 바로 접속</a>
+          <a id="addFavorites">즐겨찾기 추가</a>
+        </div>
+        <div class="common-nav" th:switch="${isLogin}">
+          <!--<a href="https://ele.m-teacher.co.kr/Main/Main.mrn" class="origin-mteacher size-sm"> 기존 엠티처에서 보기 <svg>
+            <title>아이콘 - icon-play-rounded</title>
+            <use href="/assets/images/svg-sprite-solid.svg#icon-play-rounded"></use>
+          </svg>
+          </a> -->
+          <div class="dropdown ai">
+            <button type="button">
+              <span class="aiclass">AI Class</span>
+              <svg>
+                <title>아이콘 화살표</title>
+                <use xlink:href="/assets/images/svg-sprite-arrow.svg#icon-caret-down"></use>
+              </svg>
+            </button>
+            <div class="items">
+              <a href="https://aiclass.m-teacher.co.kr/" class="button type-text" title="초등" target="_blank">
+                초등
+                <svg>
+                  <title>아이콘 화살표</title>
+                  <use xlink:href="/assets/images/svg-sprite-arrow.svg#icon-chevron-right"></use>
+                </svg>
+              </a>
+              <a href="https://mh-aiclass.m-teacher.co.kr" class="button type-text" title="중등" target="_blank">
+                중학
+                <svg>
+                  <title>아이콘 화살표</title>
+                  <use xlink:href="/assets/images/svg-sprite-arrow.svg#icon-chevron-right"></use>
+                </svg>
+              </a>
+              <a href="https://mh-aiclass.m-teacher.co.kr/#/teacher/high" class="button type-text" title="고등" target="_blank">
+                고등
+                <svg>
+                  <title>아이콘 화살표</title>
+                  <use xlink:href="/assets/images/svg-sprite-arrow.svg#icon-chevron-right"></use>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- <a href="https://mh-aiclass.m-teacher.co.kr/" class="aiclass" target="_blank">AI Class</a> -->
+          <!-- <a href="https://multi.m-teacher.co.kr/" class="mkaive" target="_blank">M카이브</a>
+          <a href="https://g.m-teacher.co.kr/pages/live/ott/Main.mrn" class="tlive" target="_blank">티처라이브</a> -->
+          <a href="javascript:void(0);" onclick="logout()" th:if="${isLogin}" th:text="로그아웃">로그아웃</a>
+          <a th:href="@{${host_common}+'/pages/common/User/Login.mrn?redirectURI='+${returnURI}}" th:if="${!isLogin}" th:text="로그인">로그인</a>
+          <a th:href="@{${host_common}+'/pages/common/User/Join.mrn?redirectURI='+${returnURI}}" th:if="${!isLogin}" th:text="회원가입">회원가입</a>
+          <a th:href="@{${host_common}+'/pages/common/mypage/myclass.mrn'}" th:if="${isLogin}" th:text="|${userInfo.getUserName()}님의 마이페이지|">마이페이지</a> <!--로그인 정보 활용 예시-->
+          <a href="#" th:unless="${isLogin}" class="display-hide">마이페이지</a>
+          <!-- <a th:href="@{${host_common}+'/pages/common/customer/notice.mrn?type=ele'}">고객센터</a> -->
+          <a th:href="@{${host_common}+'/pages/common/customer/event.mrn'}" target="_blank">이벤트</a>
+        </div>
+      </div>
+      <div class="header-contents">
+        <!-- !NOTE : 기존 .header-inner class를 .gnb-wrap로 변경하여 스타일 수정 하였습니다. -->
+        [(${eleGnb})]
+
+
+      </div>
+    </header>
+    <th:block th:replace="~{views/pc/comonutlty/mteacherUrl :: mteacherUrl}"></th:block>
+  </th:block>
+</html>

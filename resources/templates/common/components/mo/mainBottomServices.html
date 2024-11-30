@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/mo/lo_ele_totalboard}">
+<th:block th:fragment="mainBottomServicesFragment">
+    <section class="services ignore-last">
+        <div class="services-inner">
+            <a th:href="@{${host_common}+'/pages/common/customer/faq.mrn'}" target="_blank">
+                <i id="faq" class="icon-button">
+                    <svg>
+                        <use xlink:href="/assets/images/svg-sprite-solid.svg#icon-faq"></use>
+                    </svg>
+                </i>
+                <h3>자주 찾는 질문</h3>
+            </a>
+            <a th:href="@{${host_common}+'/pages/common/customer/request.mrn'}" target="_blank">
+                <i id="ask" class="icon-button">
+                    <svg>
+                        <use xlink:href="/assets/images/svg-sprite-solid.svg#icon-ask"></use>
+                    </svg>
+                </i>
+                <h3>1:1 문의</h3>
+            </a>
+            <a id="remote" href="javascript:void(0);">
+                <i class="icon-button">
+                    <svg>
+                        <use xlink:href="/assets/images/svg-sprite-solid.svg#icon-remote"></use>
+                    </svg>
+                </i>
+                <h3>원격지원 요청</h3>
+            </a>
+            <a th:href="@{${host_common}+'/pages/common/customer/serviceinfo.mrn'}" target="_blank">
+                <i id="map" class="icon-button">
+                    <svg>
+                        <use xlink:href="/assets/images/svg-sprite-solid.svg#icon-map"></use>
+                    </svg>
+                </i>
+                <h3>전국 지사 안내</h3>
+            </a>
+            <a href="tel:1800-8890">
+                <i id="telephone" class="icon-button">
+                    <svg>
+                        <use xlink:href="/assets/images/svg-sprite-solid.svg#icon-telephone"></use>
+                    </svg>
+                </i>
+                <h3>전화문의</h3>
+            </a>
+            <a id="kakao">
+                <i class="icon-button">
+                    <svg>
+                        <use xlink:href="/assets/images/svg-sprite-solid.svg#icon-kakao"></use>
+                    </svg>
+                </i>
+                <h3>카카오톡 상담</h3>
+            </a>
+        </div>
+    </section>
+
+
+</th:block>
+
+</html>

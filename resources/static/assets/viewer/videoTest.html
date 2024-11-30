@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="icon" href="/assets/viewer/img/favicon.ico" type="image/x-icon" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>엠티처 뷰어</title>
+
+    <link rel="stylesheet" type="text/css" href="/viewer/css/video-js.css" />
+
+    <script src="/viewer/js/videojs-ie8.min.js"></script>
+    <script src="/viewer/js/video.js"></script>
+    <script src="/viewer/js/videojs-playlist.js"></script>
+
+    <script>
+        function UtilModule() {
+            this.isNull = function(obj) {
+                if (typeof obj === 'undefined' || obj === null || obj === 'null') {
+                    return true;
+                }
+                return false;
+            }
+            
+            this.isEmpty = function(obj) {
+                if (this.isNull(obj)) {
+                    return true;
+                }
+                if (Array.isArray(obj)) {
+                    if (!obj.length) {
+                        return true;
+                    }
+                    return false;
+                }
+                if (typeof obj === 'object') {
+                    if (!Object.keys(obj).length) {
+                        return true;
+                    }
+                    return false;
+                }
+                var str = String(obj).trim();
+                if (str.length <= 0) {
+                    return true;
+                }
+                if (str === 'NaN') {
+                    return true;
+                }
+                return false;
+            }
+        }
+        function PlayerModule() {
+            this.player = null;
+            this.sources = [];
+            this.util = new UtilModule();
+            this.load = function(id) {
+                if (this.util.isEmpty(id)) {
+                    return;
+                }
+                
+                this.player = videojs(id);
+                
+                var _this = this;
+                var button = videojs.getComponent('Button');
+                var prevButton = videojs.extend(button, {
+                    constructor: function() {
+                        button.apply(this, arguments);
+                        this.addClass('icon-angle-left');
+                        this.controlText("Previous");
+                    },
+                    handleClick: function() {
+                        _this.player.playlist.previous();
+                    }
+                });
+                
+                var nextButton = videojs.extend(button, {
+                    constructor: function() {
+                        button.apply(this, arguments);
+                        this.addClass('icon-angle-right');
+                        this.controlText("Next");
+                    },
+                    handleClick: function() {
+                        _this.player.playlist.next();
+                    }
+                });
+                
+                videojs.registerComponent('PrevButton', prevButton);
+                videojs.registerComponent('NextButton', nextButton);
+                this.player.getChild('controlBar').addChild('PrevButton', {}, 0);
+                this.player.getChild('controlBar').addChild('NextButton', {}, 2);
+            };
+            
+            this.width = function(width) {
+                if (this.util.isEmpty(player)) {
+                    return;
+                }
+                
+                if (this.util.isEmpty(width)) {
+                    width = 640;
+                }
+                
+                this.player.width(width);
+                this.player.videoWidth(width);
+            };
+            
+            this.height = function(height) {
+                if (this.util.isEmpty(player)) {
+                    return;
+                }
+                
+                if (this.util.isEmpty(height)) {
+                    this.height = 480;
+                }
+                
+                this.player.height(height);
+                this.player.videoHeight(height);
+            };
+            
+            this.play = function() {
+                if (this.util.isEmpty(this.player)) {
+                    return;
+                }
+                
+                this.player.play();
+            };
+            
+            this.pause = function() {
+                if (this.util.isEmpty(this.player)) {
+                    return;
+                }
+                
+                this.player.pause();
+            };
+            
+            this.muted = function() {
+                if (this.util.isEmpty(this.player)) {
+                    return;
+                }
+                
+                if (this.player.muted()) {
+                    this.player.muted(false);
+                } else {
+                    this.player.muted(true);
+                }
+            };
+            
+            this.previous = function() {
+                if (this.util.isEmpty(this.player)) {
+                    return;
+                }
+                
+                this.player.playlist.previous();
+            };
+            
+            this.next = function() {
+                if (this.util.isEmpty(this.player)) {
+                    return;
+                }
+                
+                this.player.playlist.next();
+            };
+            
+            this.currentTime = function(time) {
+                if (this.util.isEmpty(this.player)) {
+                    return;
+                }
+                
+                if (this.util.isEmpty(time)) {
+                    time = 0;
+                }
+                
+                this.player.currentTime(time);
+            };
+            
+            this.fullscreen = function() {
+                if (this.util.isEmpty(this.player)) {
+                    return;
+                }
+                
+                if (this.player.isFullscreen()) {
+                    this.player.exitFullscreen();
+                } else {
+                    this.player.requestFullscreen();
+                }
+            };
+            
+            this.playlist = function(src, type, poster) {
+                if (this.util.isEmpty(this.player)) {
+                    return;
+                }
+                
+                var source = [{'src': src, 'type': type}];
+                this.sources.push({'sources':source, 'poster': poster});
+                this.player.playlist(this.sources);
+            };
+        }
+     </script>
+</head>
+
+<body onload="load()">
+    <video id= "video" class="video-js vjs-default-skin vjs-big-play-centered" controls width="500px" height="300px"></video>
+
+    <a href="javascript:scale();">scale</a>
+    <a href="javascript:play();">play</a>
+    <a href="javascript:pause();">pause</a>
+    <a href="javascript:muted();">muted</a>
+    <a href="javascript:currentTime();">currentTime</a>
+    <a href="javascript:fullscreen();">fullscreen</a>
+
+    <iframe width="1000px" height="800px" src="http://www.safetv.go.kr/GenCMS/gencms/cmsMng.do?sub_num=244&BBS_STATE=view&BOARD_IDX=1095&gcode=CG0000014&pageNo=1" allowfullscreen></iframe>
+    <script>
+        var player = null;
+
+        function load() {
+            player = new PlayerModule();
+            player.load('video');
+            
+            player.playlist('http://kubusevmwqjf3473674.cdn.ntruss.com/pr/ALIVE_seat_belt.mp4', 'video/mp4');
+        }
+
+        function scale() {
+            player.width(1000);
+            player.height(600);
+        }
+
+        function play() {
+            player.play();
+        }
+
+        function pause() {
+            player.pause();
+        }
+
+        function muted() {
+            player.muted();
+        }
+
+        function currentTime() {
+            player.currentTime(30);
+        }
+
+        function fullscreen() {
+            player.fullscreen();
+        }      
+    </script>
+</body>
+</html>

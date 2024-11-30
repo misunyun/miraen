@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorate="~{common/layouts/mo/lo_ele_totalboard}" xmlns="http://www.w3.org/1999/html">
+<th:block layout:fragment="content">
+    <div class="container">
+        <main id="main-contents">
+            <div class="board-view">
+                <!-- !NOTE : combo 혹은 source 둘중 하나라도 true면 .etc-box 가 출력 됩니다. -->
+                <div class="header">
+                    <h2><span class="text-primary" th:text="'[' + ${totalboardDetail.tabTitle} + ']'"></span> [[${totalboardDetail.title}]]</h2>
+
+                    <div class="board-buttons" th:with="scrapHide=${totalboardDetail.scrapUseYn eq 'Y' ? '' : ' display-hide'}, shareHide=${totalboardDetail.shareUseYn eq 'Y' ? '' : ' display-hide'}, scrapActive=${totalboardDetail.scrapYn eq 'Y' ? ' active' : ''}, likeActive=${totalboardDetail.likeYn eq 'Y' ? ' active' : ''}">
+                        <div class="buttons">
+                            <input type="hidden" name="masterSeq" th:value="${totalboardDetail.masterSeq}" />
+                            <!-- !NOTE : 스크랩버튼은 toggle-this 에 active 클래스가 on/off 됩니다.  -->
+                            <button type="button" name="scrapBtn" th:class="'icon-button size-sm toggle-this' + ${scrapActive} + ${scrapHide}">
+                                <svg>
+                                    <title>스크랩</title>
+                                    <use xlink:href="/assets/images/svg-sprite-solid.svg#icon-pin-diagonal"></use>
+                                </svg>
+                            </button>
+                            <button type="button" name="shareBtn" th:class="'icon-button size-sm' + ${shareHide}">
+                                <svg>
+                                    <title>공유하기</title>
+                                    <use xlink:href="/assets/images/svg-sprite-solid.svg#icon-share"></use>
+                                </svg>
+                            </button>
+                            <button type="button" name="likeBtn" th:class="'like size-sm toggle-this' + ${likeActive}">
+                                <svg>
+                                    <title>좋아요</title>
+                                    <use xlink:href="/assets/images/svg-sprite-solid.svg#icon-like"></use>
+                                </svg>
+                                <span>[[${totalboardDetail.likeCount}]]</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category">
+                    <ul class="divider-group">
+                        <li th:text="${totalboardDetail['gradeName']}"   th:if="${not #strings.isEmpty(totalboardDetail['gradeName']) and totalboardMainInfo['gradeUseYn'] eq 'Y'}"></li>
+                        <li th:text="${totalboardDetail['termName']}"    th:if="${not #strings.isEmpty(totalboardDetail['termName']) and totalboardMainInfo['gradeUseYn'] eq 'Y'}"></li>
+                        <li th:text="${totalboardDetail['subjectName']}" th:if="${not #strings.isEmpty(totalboardDetail['subjectName']) and totalboardMainInfo['subjectUseYn'] eq 'Y'}"></li>
+
+                        <th:block th:if="${totalboardMainInfo['categoryGroupUseYn'] eq 'Y'}">
+                            <li th:text="${totalboardDetail['categoryGroupName1']}" th:if="${not #strings.isEmpty(totalboardDetail['categoryGroupName1'])}"></li>
+                            <li th:text="${totalboardDetail['categoryGroupName2']}" th:if="${not #strings.isEmpty(totalboardDetail['categoryGroupName2'])}"></li>
+                            <li th:text="${totalboardDetail['categoryGroupName3']}" th:if="${not #strings.isEmpty(totalboardDetail['categoryGroupName3'])}"></li>
+                            <li th:text="${totalboardDetail['categoryGroupName4']}" th:if="${not #strings.isEmpty(totalboardDetail['categoryGroupName4'])}"></li>
+                            <li th:text="${totalboardDetail['categoryGroupName5']}" th:if="${not #strings.isEmpty(totalboardDetail['categoryGroupName5'])}"></li>
+                            <li th:text="${totalboardDetail['categoryGroupName6']}" th:if="${not #strings.isEmpty(totalboardDetail['categoryGroupName6'])}"></li>
+                            <li th:text="${totalboardDetail['categoryGroupName7']}" th:if="${not #strings.isEmpty(totalboardDetail['categoryGroupName7'])}"></li>
+                            <li th:text="${totalboardDetail['categoryGroupName8']}" th:if="${not #strings.isEmpty(totalboardDetail['categoryGroupName8'])}"></li>
+                            <li th:text="${totalboardDetail['categoryGroupName9']}" th:if="${not #strings.isEmpty(totalboardDetail['categoryGroupName9'])}"></li>
+                        </th:block>
+                    </ul>
+                    <!-- <div class="writer"> 작성자 <p class="text-black" th:text="${totalboardDetail.createUser}"></p></div> -->
+
+                </div>
+
+                <ul class="attach-items" th:if="${#lists.size(totalboardFileList) > 0}">
+                    <th:block th:each="fileItem : ${totalboardFileList}">
+                        <li>
+                            <span class="badge type-round-box fill-green" th:text="${fileItem.actionTypeName}"></span>
+                            <p class="file-name" th:text="${fileItem.displayFileName}"></p>
+                            <div class="extra">
+                                <span class="byte" th:text="${fileItem.fileSizeByteToMb + 'MB'}" th:if="${fileItem.uploadMethod eq 'DIRECT'}"></span>
+                                <div class="buttons">
+                                    <button type="button" name="previewBtn" th:data-id="${fileItem.fileId}" th:data-type="${fileItem.uploadMethod}" th:data-cmstype="${fileItem['cmsType']}" th:data-seq="${totalboardDetail.masterSeq}" class="button type-icon size-sm">
+                                        <svg>
+                                            <title>미리보기</title>
+                                            <use xlink:href="/assets/images/svg-sprite-solid.svg#icon-search"></use>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </li>
+                    </th:block>
+                </ul>
+
+                <div class="page-buttons type-vertical" th:if="${(totalboardMainInfo.playListUseYn eq 'Y' and (not #strings.isEmpty(totalboardDetail['playGroupId1']) or not #strings.isEmpty(totalboardDetail['playGroupId2']))) or (not #strings.isEmpty(totalboardExternalContentUrlRow) and totalboardMainInfo.externalContentUrlUseYn eq 'Y')}">
+                    <button class="button size-xl type-secondary"
+                            name="play1Btn"
+                            th:data-id="${totalboardDetail['playGroupId1']}"
+                            th:text="${totalboardDetail['playName1']}"
+                            th:if="${not #strings.isEmpty(totalboardDetail['playGroupId1'])}"></button>
+                    <button class="button size-xl type-secondary"
+                            name="play2Btn"
+                            th:data-id="${totalboardDetail['playGroupId2']}"
+                            th:text="${totalboardDetail['playName2']}"
+                            th:if="${not #strings.isEmpty(totalboardDetail['playGroupId2'])}"></button>
+                    <button class="button size-xl"
+                            name="extContUrlBtn"
+                            th:data-url="${totalboardExternalContentUrlRow['displayFileName']}"
+                            th:data-method="${totalboardDetail['externalContentLinkMethod']}"
+                            th:text="${totalboardDetail['externalContentButtonName']}"
+                            th:if="${not #strings.isEmpty(totalboardExternalContentUrlRow)}">
+                        <svg>
+                            <title>외부콘텐츠URL</title>
+                            <use href="../../../images/svg-sprite-solid.svg#icon-link"></use>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="view-body">
+                    <th:block th:if="${totalboardMainInfo.videoUseYn eq 'Y'}">
+
+                        <!-- !NOTE : 비디오 영역 입니다. -->
+                        <th:block th:if="${not #strings.isEmpty(totalboardVideoRow)}">
+                            <th:block th:if="${totalboardVideoRow.uploadMethod eq 'YOUTUBE'}">
+                                <div class="youtube-box">
+                                    <iframe th:src="${totalboardVideoRow.fileName}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                </div>
+                            </th:block>
+                            <th:block th:if="${totalboardVideoRow.uploadMethod ne 'YOUTUBE'}">
+                                <th:block th:if="${totalboardVideoRow.uploadMethod eq 'LINK'}">
+                                    <div class="video-box">
+                                        <video id="totalboardDetailVideo" th:src="${totalboardVideoRow.fileName}" controls="" preload="auto" autoplay="autoplay" playsinline="playsinline" loop="loop" muted="muted" volume="0"></video>
+                                    </div>
+                                </th:block>
+                                <th:block th:if="${totalboardVideoRow.uploadMethod ne 'LINK'}">
+                                    <div class="video-box">
+                                        <video id="totalboardDetailVideo" th:src="${'/pages/api/file/view/' + totalboardVideoRow.videoFileId}" controls="" preload="auto" autoplay="autoplay" playsinline="playsinline" loop="loop" muted="muted" volume="0"></video>
+                                    </div>
+                                </th:block>
+                            </th:block>
+                        </th:block>
+
+                    </th:block>
+
+                    <div class="summary-box" th:text="${totalboardDetail['summary']}" th:if="${not #strings.isEmpty(totalboardDetail['summary'])}">
+                        <!-- !NOTE : 요약 영역 입니다. -->
+                    </div>
+
+                    <div class="editor-area" th:text="${totalboardDetail['content']}" th:if="${not #strings.isEmpty(totalboardDetail['content'])}">
+                        <!-- 내용 영역 -->
+                    </div>
+
+                    <div class="tags" th:if="${not #strings.isEmpty(totalboardDetail['tag'])}">
+                        <th:block th:each="tagItem, tagItemStat : ${#strings.setSplit(totalboardDetail.tag, ';')}">
+                            <span class="badge type-rounded fill-light" th:title="${tagItem}" th:text="${tagItem}"></span>
+                        </th:block>
+                    </div>
+
+                    <div class="etc-box">
+
+                        <div class="combo-box" th:if="${#lists.size(totalboardCurriculumList) ne 0}">
+                            <h4>연계 교과</h4>
+                            <ul class="ul-dot">
+                                <th:block th:each="curriculumItem, curriculumStat : ${totalboardCurriculumList}">
+                                    <li th:text="${curriculumItem.displayCurriculum}">[[[${curriculumItem.startSubject}]] ~ [[${curriculumItem.endSubject}]]차시]</li>
+                                </th:block>
+                            </ul>
+                        </div>
+
+
+                        <div class="source-box" th:if="${not #strings.isEmpty(totalboardDetail['source'])}">
+                            <h4>출처</h4>
+                            <span th:text="${totalboardDetail.source}"></span>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="board-pagination">
+                    <a th:href="${not #strings.isEmpty(totalboardPrevAndNext['prevSeq']) ? #strings.replace(servletPath, '/'+totalboardDetail.masterSeq, '/'+totalboardPrevAndNext['prevSeq']) : 'javascript:void(0);'}">
+                        <span>이전</span>
+                        <p th:text="${not #strings.isEmpty(totalboardPrevAndNext['prevSeq']) ? totalboardPrevAndNext['prevTitle'] : '없음'}"></p>
+                    </a>
+                    <a th:href="${not #strings.isEmpty(totalboardPrevAndNext['nextSeq']) ? #strings.replace(servletPath, '/'+totalboardDetail.masterSeq, '/'+totalboardPrevAndNext['nextSeq']) : 'javascript:void(0);'}">
+                        <span>다음</span>
+                        <p th:text="${not #strings.isEmpty(totalboardPrevAndNext['nextSeq']) ? totalboardPrevAndNext['nextTitle'] : '없음'}"></p>
+                    </a>
+                </div>
+                <div class="page-buttons">
+                    <button name="listBtn" class="button fluid size-xl">
+                        <svg>
+                            <use href="/assets/images/svg-sprite-solid.svg#icon-menu"></use>
+                        </svg> 목록 </button>
+                </div>
+            </div>
+
+            <th:block th:if="${totalboardDetail.relatedContentYn eq 'Y'}">
+                <section class="recommend type-thick">
+                    <h3>연관추천</h3>
+                    <div class="board-items type-gallery">
+                        <div class="slides">
+                            <div class="swiper-wrapper">
+                                <th:block th:each="recommendItem : ${totalboardRecommendList}">
+                                    <a class="item swiper-slide" th:href="${#strings.replace(servletPath, '/'+totalboardDetail.masterSeq, '/'+recommendItem.masterSeq)}">
+                                        <div class="image-wrap">
+                                            <img th:src="${#strings.isEmpty(recommendItem['thumbnailFilePath']) ? '/assets/images/common/img-no-img.png' : recommendItem.thumbnailFilePath}" alt="" />
+                                        </div>
+                                        <p class="title" th:text="${recommendItem.title}"></p>
+                                    </a>
+                                </th:block>
+                            </div>
+                            <button class="swiper-button-prev">
+                            </button>
+                            <button class="swiper-button-next">
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            </th:block>
+
+            <!-- 댓글 -->
+            <th:block th:if="${totalboardDetail.commentUseYn eq 'Y'}">
+                <th:block th:replace="~{common/components/mo/totalboardComment :: totalboardCommentFragment}"></th:block>
+            </th:block>
+
+        </main>
+
+        <th:block layout:fragment="addScript" th:if="${totalboardDetail.commentUseYn eq 'Y'}">
+            <script src="/js/common/mo/totalboardComment.js"></script>
+        </th:block>
+        <th:block layout:fragment="addScript">
+            <script src="/js/pc/ele/viewer/js/mteacherViewer.js"></script>
+            <script src="/js/common/totalboardDetailHLS.js"></script>
+            <script src="https://fastly.jsdelivr.net/npm/hls.js@latest"></script>
+        </th:block>
+
+        <th:block th:if="${totalboardMainInfo.videoUseYn eq 'Y' and not #strings.isEmpty(totalboardVideoRow)}">
+            <input type="hidden" name="videoUploadMethod" th:value="${totalboardVideoRow['uploadMethod']}">
+            <input type="hidden" name="videoFileId" th:value="${totalboardVideoRow['videoFileId']}">
+        </th:block>
+
+        <input type="hidden" name="hostEle" th:value="${host_ele}+'/pages/ele/Main.mrn'">
+        <input type="hidden" name="hostMid" th:value="${host_mid}+'/pages/mid/Main.mrn'">
+        <input type="hidden" name="hostHigh" th:value="${host_high}+'/pages/high/Main.mrn'">
+        <input type="hidden" name="mainInfo" th:value="${jsTotalboardMainInfo}" />
+        <input type="hidden" name="tabSeq" th:value="${tabIdx}" />
+    </div>
+</th:block>
+</html>

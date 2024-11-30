@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block th:fragment="commonHeaderFragment">
+  <header class="header" school-grade="COMMON">
+    <div class="header-inner">
+      <div class="header-inner"> 
+        <div class="common-nav">
+          <a th:href="@{${host_ele}+'/pages/ele/Main.mrn'}" target="_blank">초등</a>
+          <a th:href="@{${host_mid}+'/pages/mid/Main.mrn'}" target="_blank">중학</a>
+          <a th:href="@{${host_high}+'/pages/high/Main.mrn'}" target="_blank">고등</a>
+          <a href="https://22txbook.m-teacher.co.kr/main/index.mrn" target="_blank">교과서홍보관</a>
+          <a id="mteacherDirect" target-obj="mteacher-shortcut">엠티처 바로 접속</a>
+          <a id="addFavorites">즐겨찾기 추가</a>
+        </div>
+        <div class="common-nav" th:switch="${isLogin}">
+          <div class="dropdown ai">
+            <button type="button"> 
+              <span class="aiclass">AI Class</span>
+              <svg>
+                <title>아이콘 화살표</title>
+                <use xlink:href="/assets/images/svg-sprite-arrow.svg#icon-caret-down"></use>
+              </svg>
+            </button>
+            <div class="items">
+              <a href="https://aiclass.m-teacher.co.kr/" class="button type-text" title="초등" target="_blank">
+                초등
+                <svg>
+                  <title>아이콘 화살표</title>
+                  <use xlink:href="/assets/images/svg-sprite-arrow.svg#icon-chevron-right"></use>
+                </svg>
+              </a>
+              <a href="https://mh-aiclass.m-teacher.co.kr" class="button type-text" title="중등" target="_blank">
+                중학
+                <svg>
+                  <title>아이콘 화살표</title>
+                  <use xlink:href="/assets/images/svg-sprite-arrow.svg#icon-chevron-right"></use>
+                </svg>
+              </a>
+              <a href="https://mh-aiclass.m-teacher.co.kr/#/teacher/high" class="button type-text" title="고등" target="_blank">
+                고등
+                <svg>
+                  <title>아이콘 화살표</title>
+                  <use xlink:href="/assets/images/svg-sprite-arrow.svg#icon-chevron-right"></use>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- <a href="https://mh-aiclass.m-teacher.co.kr/" target="_blank" class="aiclass">AI Class</a> -->
+          <a href="https://multi.m-teacher.co.kr/" target="_blank" class="mkaive">M카이브</a>
+          <a href="https://g.m-teacher.co.kr/pages/live/ott/Main.mrn" class="tlive" target="_blank">티처라이브</a>
+          <a href="javascript:void(0);" onclick="logout()" th:if="${isLogin}" th:text="로그아웃">로그아웃</a>
+          <a th:href="@{${host_common}+'/pages/common/User/Login.mrn?redirectURI='+${returnURI}}" th:if="${!isLogin}" th:text="로그인">로그인</a>
+          <a th:href="@{${host_common}+'/pages/common/User/Join.mrn?redirectURI='+${returnURI}}" th:if="${!isLogin}" th:text="회원가입">회원가입</a>
+          <a th:href="@{${host_common}+'/pages/common/mypage/myclass.mrn'}" th:if="${isLogin}" th:text="|${userInfo.getUserName()}님의 마이페이지|">마이페이지</a> <!--로그인 정보 활용 예시-->
+          <a href="#" target="_blank" th:unless="${isLogin}" class="display-hide">마이페이지</a>
+          <a th:href="@{${host_common} + '/pages/common/customer/notice.mrn'}">고객센터</a>
+          <a th:href="@{${host_common}+'/pages/common/customer/event.mrn'}" target="_blank">이벤트</a>
+        </div>
+      </div>
+    </div>
+  </header>
+    <div class="util-wrap">
+      <div class="inner">
+        <h1 class="util-logo">
+          <div class="dropdown">
+            <button type="button" class="button type-text">
+              <img src="/assets/images/common/logo-common.svg" alt="엠티처 로고" />
+            </button>
+            <div class="items">
+              <a th:href="@{${host_ele}+'/pages/ele/Main.mrn'}" class="button type-text" title="초등"> 초등 <svg>
+                <title>아이콘 화살표</title>
+                <use xlink:href="/assets/images/svg-sprite-arrow.svg#icon-chevron-right"></use>
+              </svg>
+              </a>
+              <a th:href="@{${host_mid}+'/pages/mid/Main.mrn'}" class="button type-text" title="중학"> 중학 <svg>
+                <title>아이콘 화살표</title>
+                <use xlink:href="/assets/images/svg-sprite-arrow.svg#icon-chevron-right"></use>
+              </svg>
+              </a>
+              <a th:href="@{${host_high}+'/pages/high/Main.mrn'}" class="button type-text" title="고등"> 고등 <svg>
+                <title>아이콘 화살표</title>
+                <use xlink:href="/assets/images/svg-sprite-arrow.svg#icon-chevron-right"></use>
+              </svg>
+              </a>
+            </div>
+          </div> 고객센터
+        </h1>
+        <div class="search-box">
+          <input type="search" name="" id="" placeholder="검색어를 입력해 주세요">
+          <button class="icon-button" title="검색">
+            <svg>
+              <use xlink:href="/assets/images/svg-sprite-solid.svg#icon-search-lg"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+</th:block>
+</html>

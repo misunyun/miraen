@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>뷰어</title>
+<script src="js/promise-polyfill.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<!--<script src="http://boinitdev.iptime.org:10000/socket.io/socket.io.js"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/jquery.ui.touch-punch.min.js"></script>
+<script src="js/jquery.simulate.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+<!-- <link rel="stylesheet" type="text/css" href="css/viewer.css" /> -->
+<link rel="stylesheet" type="text/css" href="css/viewer_demo.css" />
+</head>
+<body>
+<!--<h2>Viewer Demo</h2>-->
+<!--<p>컨텐츠 영역은 ifram을 사용한다.</p>-->
+<!--<p>미러링 클릭시 컨텐츠 영역만 새로운 window로 띄운다.</p>-->
+<div id="viewer-wrap">
+    <header>
+        <h3>뷰어헤더</h3>
+    </header>
+
+    <section>
+        <!--<input type="text" class="form-control" disabled id="uidForm">-->
+        <!--<nav id="courseNav">-->
+        <!--<a class="pageLink" href="javscript:void(0)" onclick="javascript:movePage('page010_01')" >page010_01</a>-->
+        <!--<a class="pageLink" href="javscript:void(0)" onclick="javascript:movePage('page011_01')">page011_01</a>-->
+        <!--<a class="pageLink" href="javscript:void(0)" onclick="javascript:movePage('page015_01')">page015_01</a>-->
+        <!--<a class="pageLink" href="javscript:void(0)" onclick="javascript:movePage('page017_01')">page017_01</a>-->
+        <!--<a class="pageLink" href="javscript:void(0)" onclick="javascript:movePage('page018_01')">page018_01</a>-->
+        <!--<a class="pageLink" href="javscript:void(0)" onclick="javascript:movePage('page028_01')">page028_01</a>-->
+        <!--<a class="pageLink" href="javscript:void(0)" onclick="javascript:movePage('pageSampleMp4')">비디오</a>-->
+        <!--</nav>-->
+
+        <article id="viewer_content">
+            <iframe id="iframe_content" scrolling="yes" allowfullscreen allowtransparency="true" background="transparent" ></iframe>
+        </article>
+
+    </section>
+
+    <aside>
+        <h3>수업정보 영역</h3>
+        <h5 id="course_name"></h5>
+        <ul id="page_list"></ul>
+    </aside>
+
+    <footer>
+
+        <!--<label>uid</label>-->
+        <!--<input type="text" id="uid" name="uid"/>-->
+        <!--<label>roomid</label>-->
+        <!--<input type="text" id="roomid" name="roomid"/>-->
+        <!--<br />-->
+        <button id="btn_open" class="btn btn-primary btn-sm">수업시작</button>
+        <button id="btn_close" class="btn btn-danger btn-sm" style="display:none">수업종료</button>
+        <!--<button id="btn_roomList" class="btn btn-secondary">룸목록</button>-->
+        <a href="javascript:goListPage()">수업목록페이지로 이동</a>
+        <button id="btnPrev" class="btn btn-primary btn-sm">이전</button>
+        <button id="btnNext" class="btn btn-primary btn-sm">다음</button>
+    </footer>
+</div>
+<script language="JavaScript">
+    function resizeHeight(fr) {
+        var frbody = fr.contentWindow.document.body;
+        fr.style.height = frbody.scrollHeight + ( frbody.offsetHeight - frbody.clientHeight );
+    }
+
+    function goListPage () {
+        
+        if(confirm('현재 창을 닫을 경우 미러링페이지도 종료됩니다. 닫으시겠습니까?')) {
+
+            location.href = 'index.html';
+            closeExtendWindow();
+        }
+
+    }
+</script>
+<script src="js/viewer.layout.js"></script>
+<script src="js/viewer/viewer.js"></script>
+</body>
+</html>

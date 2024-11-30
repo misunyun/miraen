@@ -1,0 +1,14 @@
+@charset "utf-8";
+
+.drag-card-item{position: relative}
+.drag-card-item .drag-item{position: relative;overflow: hidden;box-shadow: 0px 8px 6px 0px rgba(109, 109, 109, 0.4);height: 125px;border-radius: 30px;border: 3px solid #fff}
+.float-image{position: absolute;width: 100%;top: 50%;left: 0;transform: translate3d(0,-50%,0)}
+.drag-card-item .bg{position: absolute;top: 0;left: 0;right: 0;height: 125px;background: #fff8ed;border-radius: 30px;border: 4px dashed #ddc7b9}
+.dragdrop-card .flex-box-group{margin: 0 -8px}
+.dragdrop-card .flex-box-group>*{margin: 0 8px}
+.dragdrop-card .dropzone{margin-top: 45px;margin-bottom: 40px}
+.dragdrop-card .drop-box{height: 275px;border: 9px solid #fff8ed;border-radius: 30px;overflow: hidden}
+.dropbox{position: relative}
+.dropbox:before{content: 'Drag & Drop';display: flex;align-items: center;justify-content: center;height: 257px;border: 4px dashed #ddc7b9;border-radius: 20px;background: #fff8ed;font-size: 32px;color: #e2d0c5}
+.dragdrop-card .ui-draggable-dragging{border: 5px solid #ff7e00}
+.dropped{transform: scale(0)}

@@ -1,0 +1,90 @@
+#help-modalqna {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+#help-modalqna  .modal-content {
+    border-radius: 0;
+}
+#help-modalqna .modal-header {
+    background-image: url('../img/viewer/pop_title.png');
+    background-repeat: no-repeat;
+    background-size: 105% auto;
+    border-radius: 0;
+    border-bottom: none;
+}
+#table-head {
+    text-align: center;
+}
+.caption-top {
+    caption-side: top !important; 
+}
+#help-modalqna > div > div > div.modal-body > table > tbody > tr {
+    height: 56px;
+}
+#help-modalqna > div > div > div.modal-body > table > tbody > tr:nth-child(1) > td:nth-child(1) {
+    width: 91px;
+}
+#help-modalqna > div > div > div.modal-body > table > tbody > tr:nth-child(1) > td:nth-child(2) {
+    width: 131px;
+}
+tbody {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+#help-modalqna > div > div > div.modal-body > table > tbody > tr > td > span {
+    display: inline-block;
+    text-indent: -999px;
+}
+
+#help-modalqna > div > div > div.modal-body > table > tbody > tr:nth-child(1) > td:nth-child(1) > img:nth-child(-n+2) {
+    display: inline;
+}
+tbody>tr>td:nth-child(-n+2){
+    text-align: center;
+    vertical-align: middle;
+}
+tbody>tr>td:nth-child(-n+3){
+    vertical-align: middle;
+}
+/* .table-success{
+
+    background-color: rgba(0, 203, 180, 0.1) !important;
+} */
+#help-modalqna > div > div > div.modal-footer > button {
+    height: 45px;
+    width: 200px;
+    background-color: #00cbb4;
+    border: none;
+    margin: 0 3.5%;
+    box-shadow: 2px 2px 2px #ddd;
+}
+#help-modalqna > div > div > div.modal-body > table > tbody > tr > td > img {
+    /* display: block; */
+    width: 30px;
+}
+/* #modal-table > tbody > tr:nth-child(n+11):nth-child(-n+13) > td:nth-child(1) > span {
+    text-indent: 0;
+    font-size: smaller;
+} */
+span.help_course_file,
+span.help_setting {
+    background: #00cbb4;
+    color: #fff !important;
+}
+#help-modalqna > div > div > div.modal-body > table > tbody > tr > td > span.help_data_locker,
+#help-modalqna > div > div > div.modal-body > table > tbody > tr > td > span.help_course_file,
+#help-modalqna > div > div > div.modal-body > table > tbody > tr > td > span.help_setting {
+    text-indent: 0px;
+    display: flex;
+    width: 80%;
+    height: 25px;
+    margin: 0 10%;
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    font-family: 'Noto Sans KR', sans-serif;
+    letter-spacing: -.025em;
+    font-weight: 500 !important;
+    font-size: 0.7em;
+}

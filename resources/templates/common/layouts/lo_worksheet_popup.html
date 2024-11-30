@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{common/fragments/ele_head :: eleHeadFragment}"></head>
+
+<body>
+  <th:block th:replace="~{common/fragments/ga4_body :: ga4BodyFragment}"></th:block>
+  <th:block th:replace="~{views/pc/ele/specializeddata/readAllContentsModal:: readAllContentsModal}"></th:block>
+</body>
+
+<th:block th:replace="~{common/fragments/common_fragment}"></th:block>
+
+<th:block layout:fragment="addCss"></th:block>
+
+</html>

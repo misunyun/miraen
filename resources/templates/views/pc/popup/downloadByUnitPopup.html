@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="downloadByUnitPopup">
+<!-- !NOTE : 초등 theme-elementary / 중학 theme-middle / 고등 theme-high 로 붙습니다. -->
+<body class="theme-middle">
+<div class="popup" id="popup-chapter">
+    <div class="popup-container size-lg">
+        <button class="icon-button close-button" close-obj>
+            <svg>
+                <title>아이콘 - icon-close</title>
+                <use href="/assets/images/svg-sprite-solid.svg#icon-close"></use>
+            </svg>
+        </button>
+        <div class="header">
+            <h3>단원별 자료</h3>
+        </div>
+        <div class="body">
+            <div class="table-items">
+                <table>
+                    <caption> 단원별 자료 </caption>
+                    <colgroup>
+                        <col style="width: 90%;">
+                        <col style="width: 10%;">
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th scope="col" colspan="2">단원명</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row"><a href="#" class="ellipsis-single">단원 번호명. 단원명 정보 최대 50자 1줄 출력합니다. 초과 시 말줄임 표시</a></th>
+                        <td>
+                            <button class="button size-sm type-icon">
+                                <svg>
+                                    <use href="/assets/images/svg-sprite-solid.svg#icon-download"></use>
+                                </svg>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><a href="#" class="ellipsis-single">1. 문학의 빛깔</a></th>
+                        <td>
+                            <button class="button size-sm type-icon">
+                                <svg>
+                                    <use href="/assets/images/svg-sprite-solid.svg#icon-download"></use>
+                                </svg>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><a href="#" class="ellipsis-single">2. 책 속에 길이 있다.</a></th>
+                        <td>
+                            <button class="button size-sm type-icon">
+                                <svg>
+                                    <use href="/assets/images/svg-sprite-solid.svg#icon-download"></use>
+                                </svg>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><a href="#" class="ellipsis-single">3. 단원 번호명, 단원명 정보를 최대 1줄 출력 단원명 정보를 최대 1줄 출력 단원명 정보를 최대 1줄 출력</a></th>
+                        <td>
+                            <button class="button size-sm type-icon">
+                                <svg>
+                                    <use href="/assets/images/svg-sprite-solid.svg#icon-download"></use>
+                                </svg>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><a href="#" class="ellipsis-single">4. 단원 번호명, 단원명 정보를 최대 1줄 출력 단원명 정보를 최대 1줄 출력 단원명 정보를 최대 1줄 출력</a></th>
+                        <td>
+                            <button class="button size-sm type-icon">
+                                <svg>
+                                    <use href="/assets/images/svg-sprite-solid.svg#icon-download"></use>
+                                </svg>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><a href="#" class="ellipsis-single">5. 단원 번호명, 단원명 정보를 최대 1줄 출력 단원명 정보를 최대 1줄 출력 단원명 정보를 최대 1줄 출력</a></th>
+                        <td>
+                            <button class="button size-sm type-icon">
+                                <svg>
+                                    <use href="/assets/images/svg-sprite-solid.svg#icon-download"></use>
+                                </svg>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><a href="#" class="ellipsis-single">6. 단원 번호명, 단원명 정보를 최대 1줄 출력 단원명 정보를 최대 1줄 출력 단원명 정보를 최대 1줄 출력</a></th>
+                        <td>
+                            <button class="button size-sm type-icon">
+                                <svg>
+                                    <use href="/assets/images/svg-sprite-solid.svg#icon-download"></use>
+                                </svg>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="footer">
+            <button class="button size-xl type-dark" close-obj>닫기</button>
+        </div>
+    </div>
+</div>
+</body>
+<!--    <th:block th:replace="~{common/components/fileDownPopup :: fileDownPopupFragment}"></th:block>-->
+</th:block>
+</html>

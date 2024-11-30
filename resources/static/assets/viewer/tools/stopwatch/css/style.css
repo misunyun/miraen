@@ -1,0 +1,432 @@
+@font-face { 
+    font-weight: 400;
+    font-family: 'roboto';
+    font-style: normal;
+    src: url('./../../common/font/roboto.woff') format('woff');
+}
+@font-face { 
+    font-weight: 400;
+    font-family: 'NotoSansKR_Bold';
+    font-style: normal;
+    src: url('./../../common/font/NotoSansKR-Regular.woff') format('woff');
+}
+
+body {
+    background-color: #ff9f86;
+    font-family: 'Helvetica, sans-serif';
+}
+body[module=stopwatch]{
+    background-color: #00ced0;
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.wrapper {
+    height: 100vh;
+}
+.content {
+    max-height: 400px;
+    /* max-height: 636px; */
+    /* 추가 */
+    transform: scale(1.5);
+}
+.close {
+    position: absolute;
+    top : 4%;
+    right: 2%;
+    width: 5vh;
+    height: 5vh;
+    background-image: url('./../../../img/viewer/tools_close.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    cursor: pointer;
+    z-index: 10;
+    opacity: 1;
+}
+.close:not(:disabled):not(.disabled):focus, .close:not(:disabled):not(.disabled):hover {
+    opacity: 1;
+}
+.tabs {
+    position: absolute;
+    width: 50%;
+    left: 25%;
+    top: 65px;
+    transform: scale(1.5);
+}
+
+.btn-timer, .btn-stopwatch {
+    width: 25%;
+    height: 10%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin: 0 3%;
+    font-family : 'NotoSansKR_Bold';
+    font-size: 2.5vmin;
+    color: #fff;
+    font-weight : 700;
+    background-size : 100% 100%;
+    background-repeat : no-repeat;
+}
+.btn-timer:hover, .btn-stopwatch:hover {
+    color : #fff;
+}
+.btn-timer {
+    background-image: url(./../img/btn_timer_off.png);
+}
+[module=timer] .btn-timer {
+    background-image: url(./../img/btn_timer_on.png);
+}
+.btn-stopwatch {
+    background-image: url(./../img/btn_stopwatch_off.png);
+}
+[module=stopwatch] .btn-stopwatch {
+    background-image: url(./../img/btn_stopwatch_on.png);
+}
+
+.timer {
+    display: none;
+}
+[module=timer] .timer {
+    display: inline-block;
+}
+[module=timer] .body {
+    background-image: url(./../img/timer_body.png);
+    width: 647px;
+    height: 363px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-top: 80px;
+    /* margin-top: 30px; */
+}
+[module=timer] .body-shadow {
+    /* background-image: url(./../img/timer_shadow.png);
+    width: 829px;
+    height: 489px;
+    background-repeat: no-repeat;
+    background-position: 95px -1px; */
+}
+.timer_btns {
+    position: relative;
+    width: 20%;
+    top: -209px;
+    left: 470px;
+}
+.timer_btns .button {
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    width: 60px;
+    height: 40px;
+    cursor: pointer;
+}
+.timer_btns .button.start {
+    background-image: url(./../img/btn_timer_start.png);
+    background-color: #ffd703;
+}
+
+.timer_btns .button.start.pause {
+    background-image: url(./../img/icons8-pause.png);
+    background-position-x: 15px;
+    background-size: 50% auto;
+}
+.timer_btns .start.pause{
+    background-image: url(./../img/icons8-pause.png);
+    background-position-x: 15px;
+    background-size: 50% auto; 
+}
+
+.timer_btns .button.reset {
+    background-image: url(./../img/btn_replay_symbol.png);
+    background-color: #00ced0;
+}
+
+.time-setting-bg {
+    background-image: url(./../img/timer_time_bg.png);
+    width: 576px;
+    height: 62px;
+    background-repeat: no-repeat;
+    left: 36px;
+    top: -200px;
+    position: relative;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+.whistle {
+    background-image: url(./../img/whistle.png);
+    background-repeat: no-repeat;
+    width: 152px;
+    height: 169px;
+    position: relative;
+    top: -39px;
+    left: -69px;
+}
+.whistle_effect {
+    display: none;
+    background-image: url(./../img/whistle_effect.png);
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 34px;
+    position: relative;
+    left: 153px;
+    top: -7px;
+}
+.whistle_effect2 {
+    display: none;
+    background-image: url(./../img/whistle_effect2.png);
+    background-repeat: no-repeat;
+    width: 38px;
+    height: 40px;
+    position: relative;
+    left: 175px;
+    top: -44px;
+}
+.time-setting-bg * {
+    margin: 5px;
+}
+.time-setting-bg span {
+    line-height: 20px;
+}
+.time-setting-bg .button.time {
+    background-color: white;
+    border-radius: 15px;
+    width: 50px;
+    height: 30px;
+    text-align: center;
+    color: #ad8c91;
+    cursor: pointer;
+    text-decoration: none !important;
+}
+.time-setting-bg .button.time.active{
+    background-color: #ffd703;
+}
+.time-setting-bg input.custom-time{
+    background-color: white;
+    border-radius: 15px;
+    width: 50px;
+    height: 30px;
+    text-align: center;
+    color: #ad8c91;
+    cursor: pointer;
+    text-decoration: none !important;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.time-setting-bg input.custom-time:focus {
+    background-color: #ffd703;
+}
+
+.time-setting-bg .button.start {
+    background-image: url(./../img/btn_timer_start.png);
+    background-repeat: no-repeat;
+    background-color: #ffd703;
+    background-position: center;
+    border-radius: 20px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+.time-setting-bg .button.reset {
+    background-image: url(./../img/btn_timer_reset.png);
+    background-repeat: no-repeat;
+    background-color: #04ced0;
+    background-position: 9px 10px;
+    border-radius: 20px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.time-body {
+    color: white;
+    font-size: 140px;
+    font-weight: bold;
+    position: relative;
+    left: 0px;
+    top: -183px;
+    width: 100%;
+    height: 188px;
+    text-align: center;
+}
+.time-body .min,
+.time-body .sec {display: inline; margin:36px; font-family: Helvetica, sans-serif;}
+.time.custom_timer {
+    display: none;
+}
+
+
+.stopwatch {
+    display: none;
+    max-height: 495px;
+    /* max-height: 636px; */
+}
+[module=stopwatch] .stopwatch {
+    display: inline-block;
+}
+[module=stopwatch] .body {
+    background-image: url(./../img/stopwatch_body.png);
+    width: 647px;
+    height: 300px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-top: 143px;
+    /* margin-top: 210px; */
+}
+[module=stopwatch] .body-shadow {
+    /* background-image: url(./../img/timer_shadow.png);
+    width: 829px;
+    height: 489px;
+    background-repeat: no-repeat;
+    background-position: 95px -1px; */
+}
+.pendulum_frame {
+    background-image: url(./../img/pendulum_frame.png);
+    width: 125px;
+    height: 158px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    left: 35px;
+    top: -156px;
+    position: relative;
+}
+
+.pendulum {
+    background-image: url(./../img/pendulum.png);
+    width: 35px;
+    height: 115px;
+    background-repeat: no-repeat;
+    position: relative;
+    left: 45px;
+    top: 15px;
+}
+.pendulum.swing {
+    animation: swing ease-in-out 1s infinite alternate;
+    transform-origin: center 0px;
+}
+@keyframes swing {
+    0% { transform: rotate(12deg); }
+    100% { transform: rotate(-12deg); }
+}
+
+.stopwatch .btns {
+    position: relative;
+    top: -196px;
+    left: 470px;
+    width: 20%;
+}
+.stopwatch .button {
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    width: 60px;
+    height: 40px;
+    cursor: pointer;
+}
+.stopwatch .button.start {
+    background-image: url(./../img/btn_timer_start.png);
+    background-color: #ffd703;
+}
+
+.stopwatch .button.start.pause {
+    background-image: url(./../img/icons8-pause.png);
+    background-position-x: 15px;
+    background-size: 50% auto;
+}
+.time-setting-bg .start.pause{
+    background-image: url(./../img/icons8-pause.png);
+    /* background-position-x: 15px;
+    background-size: 50% auto; */
+}
+.stopwatch .button.reset {
+    background-image: url(./../img/btn_replay_symbol_2.png);
+    background-color :#eeeded;
+}
+
+.stopwatch .hand_frame {
+    background-image: url(./../img/hand.png);
+    width: 308px;
+    height: 404px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    left: 490px;
+    top: -650px;
+    position: relative;   
+}
+.hand_effect {
+    display: none;
+    background-image: url(./../img/hand_effect.png);
+    width: 24px;
+    height: 31px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    left: -25px;
+    top: 370px;
+    position: relative;   
+}
+
+.stopwatch-body {
+    top: -576px;
+    color: white;
+    font-size: 140px;
+    font-weight: bold;
+    position: relative;
+    left: 0px;
+    width: 100%;
+}
+.stopwatch-body .min, .stopwatch-body .sec, .stopwatch-body .colon{
+    display: inline;
+}
+.stopwatch-body .min {
+    position: relative;
+    margin-left: 57px;
+}
+.stopwatch-body .sec {
+    position: relative;
+    left: -50px;
+}
+.stopwatch-body .colon {
+    position: relative;
+    left: -20px;
+}
+.stopwatch-body .msec{
+    /* position: relative;
+    left: -20px;
+    display: inline-block;
+    font-size: 60px;
+    color: #ff9f86;
+    float: right;
+    margin-top: 93px;
+    margin-right: 60px; */
+    position: relative;
+    display: inline;
+    font-size: 60px;
+    color: #ff9f86;
+    margin-top: 93px;
+    margin-left: -60px;
+}
+.stopwatch_glass {
+    background-image: url(./../img/stopwatch_glass.png);
+    width: 709px;
+    height: 229px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    left: -50px;
+    top: -783px;
+    position: relative;
+}

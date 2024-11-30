@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title></title>
+<script src="mobile/js/jquery.min.js"></script>
+<script src="mobile/js/jquery-ui.min.js"></script>
+<script src="mobile/js/jquery.ui.touch-punch.min.js"></script>
+<script src="mobile/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="mobile/css/common.css" />
+<link rel="stylesheet" type="text/css" href="mobile/css/theme.css" />
+<link rel="stylesheet" type="text/css" href="mobile/css/page010.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+<style>
+	#ct {
+		width: 100%;
+		height: calc(100vh - 329px);
+		margin: 0;
+		padding: 0;
+	}
+	#viewer_content {
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		position: relative;
+	}
+	#iframe_content {
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		position: relative;
+	}
+</style>
+</head>
+<body>
+
+<div id="wrap">
+    <div class="wrap-inner">
+        <header id="hd">
+			<nav id="gnb">
+				<ul>
+					<li></li>
+				</ul>
+			</nav>
+        </header>
+        <div id="ct">
+
+<!-- 페이지 시작 -->
+			<div id="viewer_content">
+				<iframe id="iframe_content"  style="display:block; width: 100%"></iframe>
+			</div>
+
+<!-- 페이지 끝 -->
+
+        </div>
+		<div id="quick">
+			<button type="button" id="btnCC" class="btn btn-secondary" data-toggle="modal" data-target="#modal-control" onClick="connectControll()">컨트롤 연결</button>
+			<button type="button" id="btnNext" class="btn-next">다음</button>
+			<button type="button" id="btnPrev" class="btn-next">이전</button>
+			<div class="account-btn">
+				<button type="button" id="btnBookmark">북마크</button>
+				<button type="button" id="btnContents" data-toggle="modal" data-target="#modal-contetns" onclick="pageList()">목차</button>
+			</div>
+		</div>
+
+
+
+    </div>
+
+</div>
+
+<!-- 컨트롤 -->
+<div id="modal-control" class="modal fade">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">컨트롤 연결</h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div class="modal-body">
+				<ul id="controllList">
+
+				</ul>
+			</div>
+			<div class="modal-footer">
+				<button id="btnCloseControll" type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<!-- 목차 -->
+<div id="modal-contetns" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">목차</h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div class="modal-body">
+				<ul id="page_list">
+
+				</ul>
+			</div>
+			<div class="modal-footer">
+				<button  type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<script>
+
+	function connectControll () {
+		$("#controllList").html("")
+		apiModule.socketApi.roomList()
+				.then(function (res) {
+					res.data.forEach( function (item) {
+						var roomid = item.roomid
+						var el = "<li><a href='javascript:joinRoomM(\""+roomid+"\")'>"+roomid+"</a></li>";
+						$("#controllList").append( el )
+					})
+
+					console.log('res',res)
+				})
+	}
+
+	function pageList () {
+
+		var courseId = getParamter('courseId');
+
+		apiModule.cmsApi.get('/')
+				.then(function (res) {
+
+					var index = res.findIndex( function (item) {
+						return item.course_id == courseId;
+					})
+
+					if( index > -1) {
+
+						//과목명
+						//$("#course_name").html(res[index]['course_name'])
+
+						var el = ""
+						//해당 과목의 수업리스트
+						page_json = res[index]
+						res[index]['pages'].forEach( function (subitem) {
+							el += "<li><a href=\"javascript:movePage('"+subitem.page_id+"')\">"+subitem.page_name+"</a></li>"
+					})
+
+						$("#page_list").html(el)
+
+					}
+
+
+
+
+				})
+	}
+
+	function joinRoomM (roomid) {
+
+		joinRoom(roomid)
+		$("#btnCloseControll").click();
+
+	}
+</script>
+
+
+<script src="mobile/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="mobile/js/swiper.min.js"></script>
+<script src="mobile/js/common.js"></script>
+<script src="mobile/js/video.js"></script>
+<script src="mobile/js/theme.js"></script>
+<script src="js/viewer/viewer.js"></script>
+<script src="js/viewer.layout.js"></script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorate="~{common/layouts/lo_auth}" xmlns="http://www.w3.org/1999/html">
+<th:block layout:fragment="content">
+    <div id="step4" class="box-outlined-gray display-hide step">
+        <div class="inner-wrap">
+            <img src="/assets/images/common/img-signin.png" alt="가입완료 이미지" />
+            <h3>
+                안녕하세요 <span class="name"></span>님, <br />
+                가입을 환영합니다.
+            </h3>
+            <p class="desc">로그인 후, 다양한 엠티처의 서비스를 누려보세요.</p>
+        </div>
+        <div class="page-buttons">
+            <button type="submit" class="button size-xl type-line" onclick="goHome()">홈으로</button>
+            <button type="submit" class="button size-xl type-primary" onclick="goRedirect()">로그인</button>
+        </div>
+    </div>
+</th:block>
+
+</html>
+<script th:inline="javascript">
+  /*<![CDATA[*/
+  let state = [[${state}]];
+  let code = [[${code}]];
+  let serviceDomain = [[${serviceDomain}]];
+  let redirectUri = [[${redirectUri}]];
+  let sessionRedirectUri = [[${sessionRedirectUri}]];
+  let returnHome = [[${returnHome}]];
+  /*]]>*/
+
+  if (!returnHome) returnHome = serviceDomain + "/";
+
+  window.addEventListener('load', function () {
+      $('#loading').addClass("display-show");
+
+      $.ajax({
+          url:'/User/LoginSns.ax',
+          type : "post",
+          cache : false,
+          dataType : "json",
+          data : {"code":code, "state":state},
+          success:function(result){
+              if (result.successYn == 'Y') { // sns 회원가입/로그인 성공 시 자동 으로 로그인 처리 되며 기존 페이지로 이동하도록 함.
+                  if (result.resultType == 'JOIN') {
+                      $('#step4').removeClass('display-hide');
+                      $('.wrapper.members').addClass('size-narrow');
+                      let name = result.name;
+                      $('.name').text(name);
+
+                      $('#loading').removeClass("display-show");
+                  } else {
+                      if(_.isEmpty(result.ssoRes)) {
+                        location.href = sessionRedirectUri;
+                      }else {
+                        console.log(result.ssoRes);
+                        goSsoLogin(result.ssoRes);
+                      }
+                  }
+              } else if (result.successYn == 'N') {
+                  if (result.errorCd == '1') { // 이미 가입된 sns 계정이 있음. 로그인 페이지로 이동
+                      $alert.open('MG00036', ()=> {
+                          location.replace(serviceDomain+'/pages/common/User/Login.mrn?redirectURI='+result.redirectUri);
+                      });
+                  } else if (result.errorCd == '2') { // 가입 내역 없음. 회원가입 화면으로 이동
+                      $alert.open("MG00037", ()=> {
+                          location.replace('/pages/common/User/Join.mrn?redirectURI='+result.redirectUri);
+                      });
+                  } else {
+                      // 그 외 error
+                      console.log(result)
+                      alert("result.dispMessage1");
+                  }
+              } else {
+                  console.log(result)
+                  alert(result.errorMsg);
+              }
+          },
+          error:function(result){
+              alert("실패하였습니다.");
+          }
+      });
+  });
+
+  function goRedirect() {
+      if (sessionRedirectUri == null || sessionRedirectUri == '') {
+          location.href= '/';
+      } else {
+          if(sessionRedirectUri.indexOf('http') > -1){
+              location.href= sessionRedirectUri;
+          }else{
+              location.href= '/' + sessionRedirectUri;
+          }
+
+      }
+  }
+
+  function goHome() {
+      location.href= returnHome;
+  }
+
+  function goSsoLogin(data) {
+        console.log(data);
+        
+        let $newForm = $(`<form name="register2" method="POST" action="${data.ssodmain}/register2.mrn"></form>`);
+
+        let param = {};
+        param.user_id = data.userId;
+        param.return_url = location.origin + data.ssoLResult;
+        // alert('' + '\n redirectUri>>' + redirectUri + '\n sessionRedirectUri>>' + sessionRedirectUri + '\n serviceDomain>>' + serviceDomain);
+        param.go_url = $coding.encodeUnicode(serviceDomain + '/' + sessionRedirectUri);
+
+        for(const key in param) {
+          let $newInput = $(`<input type="hidden" name="${key}" value="${param[key]}" />`);
+          $newForm.append($newInput);
+          
+        }
+
+        // $('form[name=register2]').serialize();
+        $(document).find('body').append($newForm);
+        $newForm.submit();
+  }
+</script>

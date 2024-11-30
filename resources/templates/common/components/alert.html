@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+  <th:block th:fragment="alertFragment(alertType)">
+    <div class="popup-alert" th:id="'alert-' + ${alertType}">
+      <div class="popup-container">
+        <div th:class="'body flag-' + ${alertType}" th:id="'msgContent-' + ${alertType}">
+          
+        </div>
+        <div class="footer">
+          <button class="button size-lg type-dark" name="btnCancle" onclick="javascript:$alert.close(event, false);">취소</button>
+          <button class="button size-lg type-primary" name="btnConfirm" onclick="javascript:$alert.close(event, true);">확인</button>
+        </div>
+      </div>
+    </div>
+  </th:block>
+</html>

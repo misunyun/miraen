@@ -1,0 +1,15 @@
+/* page10 */
+
+.short-answer{margin:0 ;min-width: auto;box-shadow:none;background: none;}
+.short-answer.active{border:0;box-shadow:none;background: none;}
+
+.comment{display: none;position: relative;margin:0;padding:0;background:none;border-radius: 0px;}
+.comment:before{content: "";position: absolute;top:auto;left: auto;width: 0;height: 0;background:none;}
+
+.line{position: relative;}
+.line>p[class^=line]{position: absolute;width: 100%;height: 100%;top:0;left:0;z-index:5;}
+.line0{z-index:10;}
+
+.answer-line{position: absolute;border:0;z-index: 10;}
+.answer-line span{position: absolute}
+ 

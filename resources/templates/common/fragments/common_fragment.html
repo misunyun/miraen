@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block th:fragment="common_fragment">
+  <input type="hidden" id="isLogin" th:value="${isLogin}"/>
+  <input type="hidden" id="userGrade" th:value="${isLogin ? userInfo.getGrade() : ''}"/>
+  <input type="hidden" id="gCmsApiHost" th:value="${apiHost}" />
+  <input type="hidden" id="gHostCommon" th:value="${host_common}" />
+  <input type="hidden" id="eHostElement" th:value="${host_ele}" />
+  <input type="hidden" id="mHostMiddle" th:value="${host_mid}" />
+  <input type="hidden" id="hHostHigh" th:value="${host_high}" />
+  <input type="hidden" id="gReturnURI" th:value="${returnURI}" />
+  <input type="hidden" id="totalsearchYn" th:value="${totalsearchYn}" />
+
+  <th:block th:replace="~{common/fragments/includeJs :: includeJsFragment}"></th:block>
+  <th:block th:replace="~{common/components/alert :: alertFragment('positive')}"></th:block>
+  <th:block th:replace="~{common/components/alert :: alertFragment('negative')}"></th:block>
+  <th:block th:replace="~{common/components/share :: shareFragment}"></th:block>
+  <th:block th:replace="~{common/components/loading :: loadingFragment}"></th:block>
+</th:block>
+</html>

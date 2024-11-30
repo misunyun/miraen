@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>주의 집중</title>
+    <link rel="icon" href="/assets/viewer/img/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link href="css/attention.css" type="text/css" rel="stylesheet" />
+
+    <!-- [1] 로그인 했을 경우에만 user_id 설정을 최상위에 삽입
+        이후 모든 이벤트에 user_id가 포함됩니다 -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        var userID = "";
+	if (cmmUserIdx != '') {
+		function gtag(){dataLayer.push(arguments);}
+		gtag('set', {'user_id': userID});
+	}
+    </script>
+    <!-- End user_id setting -->
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		var cmmUserIdx = "${loginInfo.userIdx}";
+		if (cmmUserIdx != '') {
+			function gtag(){dataLayer.push(arguments);}
+			gtag('set', {'user_id': cmmUserIdx});
+		}
+	</script>
+
+    <!-- [2] Google Tag Manager (Head 영역에 삽입되는 스크립트)
+        GA4보다 위에 적용됩니다. -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        '[[https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f)&#93;(https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f))](https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f)](https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f)));
+        })(window,document,'script','dataLayer','GTM-W9LNPGH');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- [3] Google tag (gtag.js)
+         GA4 스크립트가 삽입됩니다 -->
+    <script async src="[[https://www.googletagmanager.com/gtag/js?id=G-VNVPYSBGFT&#93;(https://www.googletagmanager.com/gtag/js?id=G-VNVPYSBGFT)](https://www.googletagmanager.com/gtag/js?id=G-VNVPYSBGFT](https://www.googletagmanager.com/gtag/js?id=G-VNVPYSBGFT)) G-VNVPYSBGFT'"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-VNVPYSBGFT');
+
+    </script>
+    <!-- End GA4 Script -->
+</head>
+
+<body>
+
+<!-- [4] Google Tag Manager (Body 영역에 삽입되는 스크립트)
+    여는 Body 태그 바로 아래에 삽입 (noscript) -->
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W9LNPGH" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+    <div id="attention_wrap">
+        <div class="close"></div>
+        <div class='bg note'></div>
+        <div class='bg paper'></div>
+        <div id="members">
+            <div class="instrument c_1"></div>
+            <div class="instrument c_2"></div>
+            <div class="instrument c_3"></div>
+        </div>
+        <div class="attention_text"></div>
+        <div id="btn_wrap">
+            <div class="sec_btn btn_1">해금</div>
+            <div class="sec_btn btn_2">장구</div>
+            <div class="sec_btn btn_3">꽹과리</div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+        integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js"> </script>
+    <script type="text/javascript" src="js/attention.js"> </script>
+</body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W9LNPGH"height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VNVPYSBGFT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-VNVPYSBGFT');
+</script>
+
+</html>

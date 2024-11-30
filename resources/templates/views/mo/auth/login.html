@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorate="~{common/layouts/mo/lo_auth}" xmlns="http://www.w3.org/1999/html">
+<meta name="apple-mobile-web-app-title" content="엠티처 초등">
+<!-- !NOTE : theme 4 case : 초등 theme-elementary, 중학 theme-middle, 고등 theme-high, 유틸공통 theme-common -->
+
+<th:block layout:fragment="content">
+  <input type="hidden" class="th-value" data-th-key="kakaoId" th:value="${kakaoId}">
+  <input type="hidden" class="th-value" data-th-key="facebookId" th:value="${facebookId}">
+  <input type="hidden" class="th-value" data-th-key="naverId" th:value="${naverId}">
+  <input type="hidden" class="th-value" data-th-key="nhnId" th:value="${nhnId}">
+  <input type="hidden" class="th-value" data-th-key="nhnServerDomain" th:value="${nhnServerDomain}">
+  <input type="hidden" class="th-value" data-th-key="whalespaceId" th:value="${whalespaceId}">
+  <input type="hidden" class="th-value" data-th-key="googleId" th:value="${googleId}">
+  <input type="hidden" class="th-value" data-th-key="serviceDomain" th:value="${serviceDomain}">
+  <input type="hidden" class="th-value" data-th-key="redirectUrl" th:value="${redirectUrl}">
+  <input type="hidden" class="th-value" data-th-key="redirectUri" th:value="${redirectUri}">
+
+    <!-- !NOTE : 타이틀이 나오는 페이지의 경우 초/중/고 에 맞춰 아래 meta 태그를 붙여주셔야 합니다. -->
+    <meta name="theme-color" content="#ffffff">
+
+    <!--<nav class="navigation-bar">
+      <div class="box-left">
+        <button type="button">
+          <svg>
+            <title>메뉴 아이콘</title>
+            <use href="/assets/images/svg-sprite-solid.svg#icon-menu"></use>
+          </svg> 메뉴 </button>
+        <button type="button">
+          <svg>
+            <title>검색 아이콘</title>
+            <use href="/assets/images/svg-sprite-solid.svg#icon-search"></use>
+          </svg> 검색 </button>
+      </div>
+      <a href="#" class="home">
+        <svg>
+          <title>홈 아이콘</title>
+          <use href="/assets/images/svg-sprite-solid.svg#icon-home-lined"></use>
+        </svg> 홈 </a>
+      <div class="box-right">
+        <button type="button">
+          <svg>
+            <title>열람이력 아이콘</title>
+            <use href="/assets/images/svg-sprite-solid.svg#icon-history"></use>
+          </svg> 열람이력 </button>
+        <button type="button">
+          <svg>
+            <title>마이페이지 아이콘</title>
+            <use href="/assets/images/svg-sprite-solid.svg#icon-user"></use>
+          </svg> 마이 </button>
+      </div>
+    </nav>-->
+
+    <header>
+      <h2>로그인</h2>
+      <button class="icon-button" title="버튼명" onclick="window.history.back();">
+        <svg>
+          <use xlink:href="/assets/images/svg-sprite-arrow.svg#icon-chevron-left"></use>
+        </svg>
+      </button>
+    </header>
+    <main id="main-contents">
+      <section class="no-border">
+        <div class="login-box">
+          <form id="form">
+            <fieldset class="type-vertical">
+              <input class="size-xl" type="search" title="아이디 입력란" name="userId" id="user-id" placeholder="아이디 또는 이메일 정보를 입력해 주세요"/>
+              <input class="size-xl" type="password" title="비밀번호 입력란" name="usrPw" id="user-pw" placeholder="비밀번호를 입력해 주세요"/>
+            </fieldset>
+            <div class="split-container">
+                  <span class="ox">
+                    <input class="size-xl" type="checkbox" id="save-id" />
+                    <label for="save-id" class="text-black">아이디 저장</label>
+                  </span>
+              <ul class="divider-group text-xs">
+                <li><a target='_blank' href="https://oneid.mirae-n.com/simple/findId.mrn">아이디 찾기</a></li>
+                <li><a target='_blank' href="https://oneid.mirae-n.com/simple/findPw.mrn">비밀번호 찾기</a></li>
+              </ul>
+            </div>
+            <button type="button" class="button size-xl type-primary fluid" id="btn-login"> 로그인 <svg>
+              <use xlink:href="/assets/images/svg-sprite-arrow.svg#icon-chevron-right"></use>
+            </svg>
+            </button>
+          </form>
+          <div class="divider-line">
+            <span class="text-xs"> 또는 </span>
+          </div>
+          <div class="sns-box">
+            <button type="button" class="naver btn-sns-login" data-sns-type="naver" title="네이버 로그인"></button>
+            <button type="button" class="kakao btn-sns-login" data-sns-type="kakao" title="카카오 로그인"></button>
+            <button type="button" class="facebook btn-sns-login" data-sns-type="facebook" title="페이스북 로그인"></button>
+            <button type="button" class="google btn-sns-login" data-sns-type="google" title="구글 로그인"></button>
+            <button type="button" class="whale btn-sns-login" data-sns-type="whale" title="웨일 로그인"></button>
+            <button type="button" class="iamteacher btn-sns-login" data-sns-type="iamteacher" title="아이엠티처 로그인"></button>
+            <!-- <button type="button" class="class123" title="클래스123 로그인"></button> -->
+          </div>
+          <div class="join-wrap"> 엠티처 회원이 아니신가요? <a id="go-signup-page" class="text-primary"> 회원가입 </a>
+          </div>
+
+          <div class="banners">
+            <a href="https://22txbook.m-teacher.co.kr/" target="_blank">
+              <img src="/assets/images/temp/img-login-banner_mo.jpg" alt="배너" />
+            </a>
+          </div>
+
+        </div>
+      </section>
+    </main>
+<!--    <footer>
+      <svg>
+        <title>mirae N</title>
+        <use href="/assets/images/svg-sprite-solid.svg#logo-mirae-n"></use>
+      </svg>
+      <p>MIRAEN CO., LTD. ALL Right Reserved</p>
+    </footer>-->
+
+</th:block>
+
+<th:block layout:fragment="addScript">
+  <script src="/js/pc/auth/login.js"></script>
+</th:block>
+</html>

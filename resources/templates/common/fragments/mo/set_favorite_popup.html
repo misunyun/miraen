@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block th:fragment="setFavoritePopupFragment">
+    <div class="popup-sheet" id="set-favorites">
+        <div class="popup-container set-favorites">
+            <button class="icon-button close-button" close-obj>
+                <svg>
+                    <title>아이콘 - icon-close</title>
+                    <use href="/assets/images/svg-sprite-solid.svg#icon-close"></use>
+                </svg>
+            </button>
+            <div class="header">즐겨찾기 설정</div>
+            <div class="body fluid">
+                <section class="tabs type-line full no-border">
+                    <!-- !NOTE .tab의 href의 값과 .pane의 ID 이 동일해야 합니다. -->
+                    <div class="tab">
+                        <ul class="scrollable-x">
+                            <li class="active" id="mrnList"><a href="#tab1">미래엔 교과서</a></li>
+                            <li id="otherList"><a href="#tab2">타사 교과서</a></li>
+                            <li id="mteacherList"><a href="#tab3">엠티처 서비스</a></li>
+                            <li id="linkList"><a href="#tab4">링크 즐겨찾기</a></li>
+                        </ul>
+                    </div>
+                    <div class="pane-wrap">
+                        <div id="tab1" class="pane">
+                            <div class="tabs">
+                                <!-- !NOTE .tab의 href의 값과 .pane의 ID 이 동일해야 합니다. -->
+                                <div class="tab type-cols-6">
+                                    <ul id="grade-tab">
+                                    </ul>
+                                </div>
+                                <div class="pane-wrap">
+                                    <div id="tab2-1" class="pane">
+                                        <div class="forms selects no-margin" style="top: 0;">
+                                            <fieldset id="term-tab">
+                                                <!--<select id="mrnTermCode" class="size-xl" title="학기 전체">
+                                                </select>-->
+                                                <!--<select id="mrnSubjectCode" class="size-xl" title="과목 전체">
+                                                </select>-->
+                                                <!--<select id="mteacherService" class="size-xl" title="전체 서비스">
+                                                </select>-->
+                                            </fieldset>
+                                        </div>
+                                        <div class="type-thick">
+                                            <h4 id="tab-type-text"></h4>
+                                            <div class="list-items type-favorites" id="mrnBookmark">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="footer">
+                <button class="button size-md type-dark" close-obj>취소</button>
+                <button id="saveBtn" class="button size-md type-primary">저장</button>
+            </div>
+        </div>
+    </div>
+</th:block>
+</html>

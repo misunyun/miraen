@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{common/fragments/gatepage_head :: gatepageHeadFragment}"></head>
+<body class="theme-common">
+<div class="gate-wrapper">
+  <div class="gate-container">
+    <th:block th:replace="~{common/fragments/gatepage_header :: gatepageHeaderFragment}"></th:block>
+
+    <th:block layout:fragment="content"></th:block>
+    <th:block th:replace="~{common/fragments/gate_footer :: gatefooterFragment}"></th:block>
+  </div>
+
+  <th:block layout:fragment="addScript"></th:block>
+</div>
+</body>
+</html>

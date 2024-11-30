@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<!--<jsp:include page="../Main/Head.jsp"></jsp:include>-->
+<link rel="stylesheet" href="/assets/css/view.file.css?v.230330">
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		var cmmUserIdx = "${loginInfo.userIdx}";
+		if (cmmUserIdx != '') {
+			function gtag(){dataLayer.push(arguments);}
+			gtag('set', {'user_id': cmmUserIdx});
+		}
+	</script>
+</head>
+<body class="no-resize" data-userid="${sessionInfo.userIdx}" data-fileid="${param.fileId}" data-viewerhost="${apiHostCms}" data-page="${param.page}">
+	<div class="header">
+		<span class="txtTitle">제목</span>
+		<div class="block-right">
+
+			<a class="control-prev" role="button" data-slide="prev" title="이전">
+ 				<span class="prev-icon"></span>
+				<span class="sr-only">이전</span>
+			</a>
+
+			<span class="block-page" id="pageText">1 / 1</span>
+
+			<a class="control-next" role="button" data-slide="next" title="다음">
+				<span class="next-icon"></span>
+				<span class="sr-only">다음</span>
+			</a>
+
+			<button class="d-none" type="button" id="download">다운로드</button>
+			</form>
+		</div>
+	</div>
+	<div class="content">
+		<div class="block-image">
+			<img id="imgViewer" src="" style="align:center">
+		</div>
+	</div>
+
+	<script type="text/javascript" src="/assets/js/biz/Ebook/ViewFile.js"></script>
+</body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W9LNPGH"height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VNVPYSBGFT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-VNVPYSBGFT');
+</script>
+</html>

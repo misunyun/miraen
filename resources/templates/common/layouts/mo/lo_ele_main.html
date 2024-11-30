@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+
+  <head th:replace="~{common/fragments/mo/ele_head :: eleHeadFragment}"></head>
+
+    <body class="theme-elementary">
+        <div class="wrapper">
+            <th:block th:replace="~{common/fragments/mo/ele_header :: eleHeaderFragment}"></th:block>
+            <div class="gnb-dim"></div>
+            <th:block layout:fragment="content"></th:block>
+
+            <div class="popup-slider" id="popup-slider" init-show>
+                <div class="popup-container">
+                    <div class="body">
+                        <div class="slides">
+                            <div class="swiper-wrapper">
+                                <a href="#" class="swiper-slide" onclick="window.open('https://22txbook.m-teacher.co.kr/book/list.mrn?lev=1')">
+                                    <img src="/assets/images/temp/img-prom-mo-ele-popup.jpg" alt="홍보관 이미지">
+                                </a>
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <button type="button" close-obj="" id="ignore-duration">오늘 하루 열지 않기</button>
+                        <button type="button" close-obj="" id="closePop">닫기</button>
+                    </div>
+                </div>
+            </div>
+
+            <th:block th:replace="~{common/fragments/mo/footer :: footerFragment}"></th:block>
+            <th:block th:replace="~{views/mo/menu/eleGnb :: eleGnbFragment}"></th:block>
+        </div>
+
+        <!-- <th:block th:replace="~{common/fragments/quick_menu :: quick_menuFragment}"></th:block> -->
+        <th:block th:replace="~{common/fragments/mo/common_fragment}"></th:block>
+
+        <script src="/js/mo/ele/history.js"></script>
+
+        <th:block layout:fragment="screenScript" th:if="${not #strings.isEmpty(jsPath)}">
+            <script th:src="${jsPath}"></script>
+        </th:block>
+    </body>
+
+  <!--<script th:inline="javascript">
+      $(document).ready(function() {
+
+          // 홍보관 팝업 노출 설정
+          var startTime = new Date('2024-09-06T09:00:00');
+          var endTime = new Date('2024-10-17T17:00:00');
+          var currentTime = new Date();
+          var cookiedata = document.cookie;
+
+          if (currentTime >= startTime && currentTime <= endTime) {
+              if(cookiedata.indexOf("popupCookie=Y") < 0){
+                  $("#popup-slider").attr("init-show");
+              }
+              else {
+                  $("#popup-slider").removeAttr("init-show");
+              }
+          }else {
+              $("#popup-slider").removeAttr("init-show");
+          }
+
+          $("#ignore-duration").click(function(){
+              setCookie("popupCookie", "Y");
+              closePopup("#popup-slider");
+          });
+
+          $("#closePop").click(function(){
+               closePopup("#popup-slider");
+          });
+      });
+
+      function setCookie(name, value) {
+          var expires = "";
+          var now = new Date();
+
+          var endOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59, 999);  //금일 23시 59분 59초까지
+          expires = "; expires=" + endOfDay.toUTCString();
+
+          document.cookie = name + "=" + (value || "") + expires + "; path=/";
+      }
+  </script>-->
+</html>

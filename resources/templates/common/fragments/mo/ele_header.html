@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+  <th:block th:fragment="eleHeaderFragment">
+    <nav class="navigation-bar">
+      <div class="box-left">
+        <button id="mo_siteMapEle" type="button" target-obj="sitemap">
+          <svg>
+            <title>메뉴 아이콘</title>
+            <use href="/assets/images/svg-sprite-solid.svg#icon-menu"></use>
+          </svg> 메뉴 </button>
+        <!--<button id="mo_search" type="button" th:onclick="'location.href=\'/pages/common/totalsearch/totalSearch.mrn?redirectURI='+ @{${servletPath}} + '\''">-->
+        <button class="mo_search" type="button" th:onclick="|location.href='@{${host_common}+'/pages/common/totalsearch/totalSearch.mrn?redirectURI='+${returnURI}}'|">
+        <svg>
+            <title>검색 아이콘</title>
+            <use href="/assets/images/svg-sprite-solid.svg#icon-search"></use>
+          </svg> 검색 </button>
+      </div>
+      <a href="/pages/ele/Main.mrn" class="home">
+        <svg>
+          <title>홈 아이콘</title>
+          <use href="/assets/images/svg-sprite-solid.svg#icon-home-lined"></use>
+        </svg> 홈 </a>
+      <div class="box-right">
+        <button id="mo_history" type="button" target-obj="history">
+          <svg>
+            <title>열람이력 아이콘</title>
+            <use href="/assets/images/svg-sprite-solid.svg#icon-history"></use>
+          </svg> 열람이력 </button>
+        <button type="button" th:if="${isLogin}" onclick="window.open('/pages/common/mypage/myclass.mrn')">
+          <svg>
+            <title>마이페이지 아이콘</title>
+            <use href="/assets/images/svg-sprite-solid.svg#icon-user"></use>
+          </svg> 마이 </button>
+        <!--<button type="button" th:unless="${isLogin}" th:onclick="'location.href=\'/pages/common/User/Login.mrn?redirectURI='+ @{${returnURI}} + '\''">-->
+        <button type="button" th:unless="${isLogin}" th:onclick="|location.href='@{${host_common}+'/pages/common/User/Login.mrn?redirectURI='+${returnURI}}'|">
+          <svg>
+            <title>마이페이지 아이콘</title>
+            <use href="/assets/images/svg-sprite-solid.svg#icon-user"></use>
+          </svg> 마이 </button>
+      </div>
+    </nav>
+    <header>
+      <section class="header-bar">
+        <a href="/pages/ele/Main.mrn" class="logo">
+          <img th:src="${not #strings.isEmpty(eleLogo) ? eleLogo.moLogoSrc : '/assets/images/common/logo-elementary.svg'}" alt="엠티처 초등">
+        </a>
+        <button class="icon-button mypage-btn-mobile">
+          <svg>
+            <title>아이콘 - icon-setting</title>
+            <use xlink:href="/assets/images/svg-sprite-solid.svg#icon-user"></use>
+          </svg>
+        </button>
+      </section>
+      <!-- !NOTE : 기존 .header-inner class를 .gnb-wrap로 변경하여 스타일 수정 하였습니다. -->
+      <section class="gnb">
+        <nav id="gnbAreaEle">
+          <a href="/pages/ele/Main.mrn" th:class="${#strings.contains(servletPath, 'Main.mrn') ? 'active' : ''}">홈</a>
+          <!-- !NOTE : 즐겨찾기 등록된 메뉴에는 .flag-bookmark 가 붙습니다. -->
+          <th:block th:each="level1Item, level1Stat: ${eleGnb}" th:if="${level1Item.level eq 1}">
+            <a th:href="${level1Item.webName1}" th:text="${level1Item.name}" th:data-seq="${level1Item.seq}" th:unless="${level1Item.name eq '고객센터'}"></a>
+            <a th:href="${host_common + level1Item.webName1 + '?type=ele'}"  th:text="${level1Item.name}"    th:data-seq="${level1Item.seq}" th:if="${level1Item.name eq '고객센터'}"></a>
+          </th:block>
+          <!--<a href="/pages/ele/textbook/textbookList.mrn" th:class="${#strings.contains(servletPath, 'textbook') ? 'active' : ''}">교과활동</a>
+          <a href="/pages/ele/textbook/textbookList.mrn">평가자료</a>
+          <a href="/pages/ele/board/basiclearning/basicStudyBook.mrn/712" th:class="${#strings.contains(servletPath, 'basiclearning') ? 'active' : ''}">기초학력</a>
+          <a href="/pages/ele/board/specializeddata/koreanContents.mrn/1055" th:class="${#strings.contains(servletPath, 'specializeddata') ? 'active' : ''}">특화자료실</a>
+          <a href="/pages/ele/board/creativexp/chanceEducation.mrn/1067" th:class="${#strings.contains(servletPath, 'creativexp') ? 'active' : ''}">창의적 체험활동</a>
+          <a href="/pages/ele/board/breaktime/funnyStory.mrn/725" th:class="${#strings.contains(servletPath, 'breaktime') ? 'active' : ''}">쉬는시간</a>-->
+        </nav>
+      </section>
+    </header>
+
+    <div id="history" class="history" no-dimd>
+      <div class="history-header"> 열람 이력 <button class="icon-button close-button" close-obj="">
+        <svg>
+          <title>닫기 아이콘</title>
+          <use href="/assets/images/svg-sprite-solid.svg#icon-close"></use>
+        </svg>
+      </button>
+      </div>
+      <div class="history-body">
+        <div class="list-items no-mark">
+        </div>
+      </div>
+    </div>
+  </th:block>
+</html>

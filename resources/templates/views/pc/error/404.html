@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>엠티처-미래엔교수활동플랫폼</title>
+  <th:block th:replace="~{common/fragments/includeJs :: includeJsFragment}"></th:block>
+  <th:block th:replace="~{common/fragments/common_head :: commonHeadFragment}"></th:block>
+</head>
+<!-- !NOTE : theme 4 case : 초등 theme-elementary, 중학 theme-middle, 고등 theme-high, 유틸공통 theme-common -->
+<body class="theme-common">
+<div class="error-wrapper find">
+  <div class="error-container">
+    <img src="/assets/images/common/img-error-404.png">
+    <div class="error-text">
+      <p class="title">페이지를 찾을 수 없습니다.</p>
+      <p class="sub-text">원하시는 결과를 찾을 수 없습니다. 올바른 URL을 입력하셨는지<br /> 확인해 주세요. 자세한 내용은 고객센터로 문의해 주시기 바랍니다. </p>
+    </div>
+    <a href="/pages/common/Gate.mrn" class="button"> 홈으로 이동 </a>
+  </div>
+</div>
+</body>
+</html>

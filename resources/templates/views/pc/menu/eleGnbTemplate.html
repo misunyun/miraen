@@ -1,0 +1,168 @@
+<div class="gnb-wrap">
+  <div class="gnb-inner">
+    <h1 class="logo">
+        <a href="/pages/ele/Main.mrn">
+            <img th:src="${eleLogo.pcLogoSrc}" alt="엠티처 초등">
+        </a>
+    </h1>
+
+    <nav class="gnb">
+      <ul>
+        <th:block th:each="level1Item, level1Stat: ${gnbList}" th:if="${(level1Item.sortCode eq '001' or level1Item.sortCode eq '002') and level1Item.level eq 1}">
+          <li th:data-sort="${level1Item.sortCode}">
+            <a th:href="'#menu' + ${level1Item.sortCode}" th:text="${level1Item.name}" th:if="${level1Item.target == ''}"></a>
+            <a th:href="${level1Item.pageUrl}" th:target="${level1Item.target}" th:text="${level1Item.name}" th:if="${level1Item.target != ''}"></a>
+
+            <div class="lnb-wrap" th:id="'menu' + ${level1Item.sortCode}">
+              <div class="lnb-scroll">
+                <div class="lnb-inner">
+                  <div class="grade-lnb">
+                    <ul>
+                      <th:block th:each="level2Item, level2Stat: ${gnbList}" th:if="${level1Item.seq eq level2Item.parentSeq and level2Item.level eq 2}">
+                        <li th:if="${level2Item.key1 != 'etc'}" th:data-grade="${#numbers.formatInteger(level2Item.key1,2)}" th:data-sort="${level2Item.sortCode}">
+                          <a th:href="'#menu' + ${level1Item.sortCode} + '-grade-' + ${level2Item.key1}" th:name="${level2Item.pageUrl}" th:text="${level2Item.name}" th:target="${level2Item.target}"></a>
+                        </li>
+                        <li th:if="${level2Item.key1 == 'etc'}" ><a th:href="${level2Item.pageUrl}" th:text="${level2Item.name}" th:target="${level2Item.target}"></a></li>
+                      </th:block>
+                    </ul>
+
+                    <div class="grade-contents">
+                      <th:block th:each="level2Item, level2Stat: ${gnbList}" th:if="${level1Item.seq eq level2Item.parentSeq and level2Item.level eq 2}">
+                        <div th:id="'menu' + ${level1Item.sortCode} + '-grade-' + ${level2Item.key1}">
+                          <div class="lnb-header">
+                          </div>
+                          <div class="lnb-contents">
+                          </div>
+                        </div>
+                      </th:block>
+                    </div>
+                  </div>
+
+                  <div class="banners">
+                    <a href="" target="_blank">
+                      <div class="banner-inner">
+                        <h2> 애플 넘버스,<br /> 어떤 서비스일까요? </h2>
+                        <p class="desc"> 학생 공동 작업이 가능한 넘버스 앱을 <br /> 활용하여 새로운 학습 방식으로 <br /> 학생들의 참여도를 높여 보세요! </p>
+                        <button type="button" class="banner-button">자세히보기</button>
+                      </div>
+                      <img src="" alt="GNB 배너" />
+                    </a>
+                  </div>
+                </div>
+                <button type="button" class="close-button">닫기</button>
+              </div>
+            </div>
+          </li>
+        </th:block>
+
+        <th:block th:each="level1Item, level1Stat: ${gnbList}" th:if="${not (level1Item.sortCode eq '001' or level1Item.sortCode eq '002') and level1Item.level eq 1}">
+          <li th:data-sort="${level1Item.sortCode}">
+            <a th:href="'#menu' + ${level1Item.sortCode}" th:text="${level1Item.name}" th:if="${level1Item.target == ''}"></a>
+            <a th:href="${level1Item.pageUrl}" th:target="${level1Item.target}" th:text="${level1Item.name}" th:if="${level1Item.target != ''}"></a>
+
+            <div class="lnb-wrap" th:id="'menu' + ${level1Item.sortCode}">
+              <div class="lnb-scroll">
+                <div class="lnb-inner type-line">
+                  <ul class="lnb">
+                    <th:block th:each="level2Item, level2Stat: ${gnbList}" th:if="${level1Item.seq eq level2Item.parentSeq and level2Item.level eq 2}">
+                      <li class="depth-2">
+                        <a th:href="${level2Item.pageUrl}" th:target="${level2Item.target}">
+                          [[${level2Item.name}]]
+                          <span class="blank" th:if="${level2Item.target eq '_blank'}">
+                            <svg>
+                              <title>아이콘 - 새창</title>
+                              <use href="/assets/images/svg-sprite-solid.svg#icon-new-windows"></use>
+                            </svg>
+                          </span>
+                          <span class="new" th:if="${level2Item.newIconYn eq 'Y'}">n</span>
+                        </a>
+
+                        <div class="depth-3">
+                          <th:block th:each="level3Item, level3Stat: ${gnbList}" th:if="${level2Item.seq eq level3Item.parentSeq and level3Item.level eq 3}">
+                            <a th:href="${level3Item.pageUrl}" th:target="${level3Item.target}">[[${level3Item.name}]]<span class="blank" th:if="${level3Item.target eq '_blank'}"><svg><title>아이콘 - 새창</title><use href="/assets/images/svg-sprite-solid.svg#icon-new-windows"></use></svg></span><span class="new" th:if="${level3Item.newIconYn eq 'Y'}">n</span></a>
+                          </th:block>
+                        </div>
+                      </li>
+                    </th:block>
+                  </ul>
+
+                  <div class="banners">
+                    <a href="" target="_blank">
+                      <div class="banner-inner">
+                        <h2> 애플 넘버스,<br /> 어떤 서비스일까요? </h2>
+                        <p class="desc"> 학생 공동 작업이 가능한 넘버스 앱을 <br /> 활용하여 새로운 학습 방식으로 <br /> 학생들의 참여도를 높여 보세요! </p>
+                        <button type="button" class="banner-button">자세히보기</button>
+                      </div>
+                      <img src="" alt="GNB 배너" />
+                    </a>
+                  </div>
+                </div>
+
+                <button type="button" class="close-button">닫기</button>
+              </div>
+            </div>
+          </li>
+        </th:block>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="buttons">
+    <form action="" class="search">
+      <div class="search-inner">
+        <input type="text" name="" id="" placeholder="검색어를 입력해 주세요" />
+        <button type="button" class="icon-button icon-search" title="검색">
+          <svg>
+            <use xlink:href="/assets/images/svg-sprite-solid.svg#icon-search"></use>
+          </svg>
+        </button>
+      </div>
+    </form>
+
+    <div class="site-map">
+      <button type="button" class="icon-button">
+        <svg>
+          <title>사이트 맵 아이콘</title>
+          <use xlink:href="/assets/images/svg-sprite-solid.svg#icon-menu"></use>
+        </svg>
+      </button>
+
+      <div class="site-map-inner">
+        <div class="slider-view-auto fluid">
+          <div class="swiper slides">
+            <div class="swiper-wrapper">
+            </div>
+          </div>
+        </div>
+
+        <ul id="siteMapList" class="depth-items">
+          <th:block th:each="level1Item, level1Stat: ${sitemapList}" th:if="${level1Item.level eq 1}">
+            <li class="depth-1">
+                <h2>
+                    <a    th:if="${level1Item.key1 == '' && level1Item.pageUrl != ''}" th:href="${level1Item.pageUrl}" th:target="${level1Item.target}">[[${level1Item.name}]]</a>
+                    <span th:if="${level1Item.key1 == '' && level1Item.pageUrl == ''}">[[${level1Item.name}]]</span>
+                    <span th:if="${level1Item.key1 != '' && level1Item.pageUrl == ''}">[[${level1Item.name}]]</span>
+                    <span th:if="${level1Item.key1 != '' && level1Item.pageUrl != ''}">[[${level1Item.name}]]</span>
+                </h2>
+              <div class="depth-2">
+                <th:block th:each="level2Item, level2Stat: ${sitemapList}" th:if="${level1Item.seq eq level2Item.parentSeq and level2Item.level eq 2}">
+                  <a th:href="${level2Item.pageUrl}" th:target="${level2Item.target}">
+                    [[${level2Item.name}]]
+                    <span class="blank" th:if="${level2Item.target eq '_blank'}">
+                      <svg>
+                        <title>아이콘 - 새창</title>
+                        <use href="/assets/images/svg-sprite-solid.svg#icon-new-windows"></use>
+                      </svg>
+                    </span>
+                    <span class="new" th:if="${level2Item.newIconYn eq 'Y'}">n</span>
+                  </a>
+                </th:block>
+              </div>
+            </li>
+          </th:block>
+        </ul>
+        <button type="button" class="close-button">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>

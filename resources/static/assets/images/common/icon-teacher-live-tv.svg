@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <g id="televisions-tv-screen-svgrepo-com" transform="translate(-4.29 -10.43)">
+    <g id="그룹_1" data-name="그룹 1" transform="translate(6.649 10.43)">
+      <rect id="사각형_1" data-name="사각형 1" width="0.674" height="6.395" rx="0.337" transform="translate(4.956 5.941) rotate(-151.477)" fill="#838b9a"/>
+      <rect id="사각형_2" data-name="사각형 2" width="6.395" height="0.674" rx="0.337" transform="translate(3.054 5.941) rotate(-118.523)" fill="#838b9a"/>
+    </g>
+    <rect id="사각형_3" data-name="사각형 3" width="16" height="12" rx="2" transform="translate(4.29 14.43)" fill="#6c99ff"/>
+    <g id="그룹_3" data-name="그룹 3" transform="translate(16.763 15.969)">
+      <circle id="타원_3" data-name="타원 3" cx="0.909" cy="0.909" r="0.909" fill="#d1dfff"/>
+      <circle id="타원_4" data-name="타원 4" cx="0.909" cy="0.909" r="0.909" transform="translate(0 2.909)" fill="#d1dfff"/>
+    </g>
+    <g id="그룹_4" data-name="그룹 4" transform="translate(16.49 22.242)">
+      <path id="패스_2" data-name="패스 2" d="M398.247,458.2h-1.818a.273.273,0,1,1,0-.545h1.818a.273.273,0,1,1,0,.545Z" transform="translate(-396.156 -455.472)" fill="#2d60d3"/>
+      <path id="패스_3" data-name="패스 3" d="M398.247,423.876h-1.818a.273.273,0,1,1,0-.546h1.818a.273.273,0,0,1,0,.546Z" transform="translate(-396.156 -422.239)" fill="#2d60d3"/>
+      <path id="패스_4" data-name="패스 4" d="M398.247,389.551h-1.818a.273.273,0,1,1,0-.545h1.818a.273.273,0,1,1,0,.545Z" transform="translate(-396.156 -389.006)" fill="#2d60d3"/>
+    </g>
+    <path id="패스_5" data-name="패스 5" d="M57.32,192.41c1.113.866,1.012,4.825,0,5.8-1.2,1.152-5.269,1.152-6.465,0-1.012-.975-1.113-4.933,0-5.8C52.17,191.386,56,191.386,57.32,192.41Z" transform="translate(-43.635 -174.928)" fill="#fff"/>
+  </g>
+</svg>

@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <link rel="icon" href="/assets/viewer/img/favicon.ico" type="image/x-icon" />
+    <meta charset="utf-8" />
+    <meta content="width=1200" name="viewport" />
+    <title>엠티처 범교과뷰어</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vex-js@4.1.0/dist/css/vex.css"
+        integrity="sha256-/eaLySG/rPCowjMWyStmTPGtaU79NKiqodgU2X/PJ/g=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vex-js@4.1.0/dist/css/vex-theme-default.css"
+        integrity="sha256-k8lNp1XCOztgAfpYiP1+lYwqY82ylXrl+Z5F176FscQ=" crossorigin="anonymous">
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no, viewport-fit=cover">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/video-js.css" />
+    <link rel="stylesheet" type="text/css" href="css/viewer.module.css?d=20230121" />
+    <link rel="stylesheet" type="text/css" href="css/viewer.css" />
+    <link rel="stylesheet" type="text/css" href="css/viewer.custom.1.css" />
+    <link rel="stylesheet" type="text/css" href="css/viewer.custom.2.css" />
+    <link rel="stylesheet" type="text/css" href="css/viewer.custom.3.css" />
+    <link rel="stylesheet" type="text/css" href="css/viewer.custom.4.css" />
+    <link rel="stylesheet" type="text/css" href="css/preview.css" />
+    <link rel="stylesheet" type="text/css" href="css/viewer-sketchbook.css" />
+    <!-- 모바일 뷰어를 위해 css 추가 -->
+    <link rel="stylesheet" type="text/css" href="css/m.preview.css" />
+
+</head>
+
+<body theme="">
+    <div id="viewer-wrap">
+        <header id="viewer-hd">
+            <h1 class="sr-only">엠티처 - 뷰어</h1>
+            <ul id="viewer-tool">
+                <li>
+                    <button type="button" id="drawing-button"><i class="icon-tool5"></i>그리기</button>
+                    <!-- 그리기 도구 -->
+                    <div id="drawing">
+                        <div>
+                            <button type="button" class="icon-drawing" title="그리기">그리기</button>
+                            <button type="button" class="icon-drawing2 active" title="텍스트 입력">텍스트 입력</button>
+                            <button type="button" class="icon-drawing3" title="도형 입력">도형 입력</button>
+                        </div>
+                        <!-- 그리기 색상, 선 굵기 선택 영역 -->
+                        <div id="palette">
+                            <button type="button" class="palette" data-color="#000000"><i
+                                    style="background:#000000">색상1</i></button>
+                            <button type="button" class="palette" data-color="#ffffff"><i
+                                    style="background:#fff; border-color:#d5d5d5">색상2</i></button>
+                            <button type="button" class="palette active" data-color="#f24545"><i
+                                    style="background:#f24545">색상3</i></button>
+                            <button type="button" class="palette" data-color="#ff3be5"><i
+                                    style="background:#ff3be5">색상4</i></button>
+                            <button type="button" class="palette" data-color="#2432cc"><i
+                                    style="background:#2432cc">색상5</i></button>
+                            <button type="button" class="palette" data-color="#4090f3"><i
+                                    style="background:#4090f3">색상6</i></button>
+                            <button type="button" class="palette" data-color="#4aedff"><i
+                                    style="background:#4aedff">색상7</i></button>
+                            <button type="button" class="palette" data-color="#51e37f"><i
+                                    style="background:#51e37f">색상8</i></button>
+                            <button type="button" class="palette" data-color="#ffd342"><i
+                                    style="background:#ffd342">색상9</i></button>
+                            <button type="button" class="palette stroke_width" title="선 굵기"><i
+                                    style="background : #d0d0d0">선
+                                    굵기</i><span class="caret"></span></button>
+                            <div class="stroke_width_wrap">
+                                <button type="button" class="drawing_stroke_width"
+                                    data-strokeWidth="30"><i>선굵기30</i></button>
+                                <button type="button" class="drawing_stroke_width" data-strokeWidth="24"><i
+                                        class="active">선굵기24</i></button>
+                                <button type="button" class="drawing_stroke_width"
+                                    data-strokeWidth="18"><i>선굵기18</i></button>
+                                <button type="button" class="drawing_stroke_width"
+                                    data-strokeWidth="12"><i>선굵기12</i></button>
+                                <button type="button" class="drawing_stroke_width"
+                                    data-strokeWidth="8"><i>선굵기8</i></button>
+                            </div>
+                        </div>
+                        <!-- 텍스트 폰트, 폰트 크기 선택 영역 -->
+                        <div id="font_select">
+                            <div id="font_family">
+                                <span class="ff_text">나눔고딕</span>
+                                <span class="caret"></span>
+                            </div>
+                            <div id="font_size">
+                                <span class="fs_text">70pt</span>
+                                <span class="caret"></span>
+                            </div>
+                            <button type="button" class="icon-font-lg"></button>
+                            <button type="button" class="icon-font-sm"></button>
+                            <button type="button" class="icon-font-color">
+                                <span class="fc_change"></span>
+                                <span class="caret"></span>
+                            </button>
+                            <!-- 폰트 패밀리 선택 -->
+                            <div class="font_family_wrap">
+                                <div class="select_f_fm select_font_family_1" data-font_family="NanumGothic">
+                                    나눔고딕
+                                </div>
+                                <div class="select_f_fm select_font_family_2" data-font_family="NanumSquare">
+                                    나눔스퀘어
+                                </div>
+                                <div class="select_f_fm select_font_family_3" data-font_family="NanumSquare_bold">나눔스퀘어
+                                    Bold
+                                </div>
+                                <div class="select_f_fm select_font_family_4" data-font_family="NanumMyeongjo">
+                                    나눔명조
+                                </div>
+                            </div>
+                            <!-- 폰트 사이즈 선택 -->
+                            <div class="font_size_wrap">
+                                <div class="select_f_fs select_font_size_1" data-font_size="50">50pt
+                                </div>
+                                <div class="select_f_fs select_font_size_2" data-font_size="60">60pt
+                                </div>
+                                <div class="select_f_fs select_font_size_3" data-font_size="70">70pt
+                                </div>
+                                <div class="select_f_fs select_font_size_4" data-font_size="80">80pt
+                                </div>
+                                <div class="select_f_fs select_font_size_5" data-font_size="90">90pt
+                                </div>
+                                <div class="select_f_fs select_font_size_6" data-font_size="100">100pt
+                                </div>
+                            </div>
+                            <!-- 폰트 색상 선택 -->
+                            <div class="font_color_wrap">
+                                <button type="button" class="font_palette active" data-fontColor="#000000"><i
+                                        style="background:#000000" class="active">색상1</i></button>
+                                <button type="button" class="font_palette" data-fontColor="#ffffff"><i
+                                        style="background:#fff; border-color:#d5d5d5">색상2</i></button>
+                                <button type="button" class="font_palette" data-fontColor="#f24545"><i
+                                        style="background:#f24545">색상3</i></button>
+                                <button type="button" class="font_palette" data-fontColor="#ff3be5"><i
+                                        style="background:#ff3be5">색상4</i></button>
+                                <button type="button" class="font_palette" data-fontColor="#2432cc"><i
+                                        style="background:#2432cc">색상5</i></button>
+                                <button type="button" class="font_palette" data-fontColor="#4090f3"><i
+                                        style="background:#4090f3">색상6</i></button>
+                                <button type="button" class="font_palette" data-fontColor="#4aedff"><i
+                                        style="background:#4aedff">색상7</i></button>
+                                <button type="button" class="font_palette" data-fontColor="#51e37f"><i
+                                        style="background:#51e37f">색상8</i></button>
+                                <button type="button" class="font_palette" data-fontColor="#ffd342"><i
+                                        style="background:#ffd342">색상9</i></button>
+                            </div>
+                        </div>
+                        <!-- 화살표, 직선, 형광펜, 스티커 영역 -->
+                        <div id="image_select">
+                            <button type="button" class="img_select icon-arrow"><i>화살표</i></button>
+                            <button type="button" class="img_select icon-line"><i>직선</i></button>
+                            <button type="button" class="img_select icon-hlighter"><i>형광펜</i></button>
+                            <button type="button" class="img_select icon-sticker"><i>스티커</i></button>
+                            <!-- 화살표 보조창 -->
+                            <div class="arrow_wrap">
+                                <button type="button" class="img_select icon-arrow-color"><i>컬러</i><span
+                                        class="caret"></span></button>
+                                <button type="button" class="img_select icon-arrow-direction"><i>방향</i><span
+                                        class="caret"></span></button>
+                                <button type="button" class="img_select icon-arrow-width"><i>굵기</i><span
+                                        class="caret"></span></button>
+                                <button type="button" class="img_select icon-arrow-dash"><i>대시</i><span
+                                        class="caret"></span></button>
+                                <!-- 화살표 컬러 -->
+                                <div class="arrow_color_wrap">
+                                    <button type="button" class="arrow_palette" data-arrowColor="#000000"><i
+                                            style="background:#000000">색상1</i></button>
+                                    <button type="button" class="arrow_palette" data-arrowColor="#ffffff"><i
+                                            style="background:#fff; border-color:#d5d5d5">색상2</i></button>
+                                    <button type="button" class="arrow_palette active" data-arrowColor="#f24545">
+                                        <i style="background:#f24545">색상3</i></button>
+                                    <button type="button" class="arrow_palette" data-arrowColor="#ff3be5"><i
+                                            style="background:#ff3be5">색상4</i></button>
+                                    <button type="button" class="arrow_palette" data-arrowColor="#2432cc"><i
+                                            style="background:#2432cc">색상5</i></button>
+                                    <button type="button" class="arrow_palette" data-arrowColor="#4090f3"><i
+                                            style="background:#4090f3">색상6</i></button>
+                                    <button type="button" class="arrow_palette" data-arrowColor="#4aedff"><i
+                                            style="background:#4aedff">색상7</i></button>
+                                    <button type="button" class="arrow_palette" data-arrowColor="#51e37f"><i
+                                            style="background:#51e37f">색상8</i></button>
+                                    <button type="button" class="arrow_palette" data-arrowColor="#ffd342"><i
+                                            style="background:#ffd342">색상9</i></button>
+                                </div>
+                                <!-- 화살표 방향 -->
+                                <div class="select_arrow_direction_wrap">
+                                    <div class="select_a_d select_arrow_direction_1" data-direction="forward"></div>
+                                    <div class="select_a_d select_arrow_direction_2" data-direction="reverse"></div>
+                                    <div class="select_a_d select_arrow_direction_3" data-direction="bidirectional">
+                                    </div>
+                                </div>
+                                <!-- 화살표 굵기 -->
+                                <div class="select_arrow_width_wrap">
+                                    <div class="select_a_w select_arrow_width_1" data-arrow_width="2"></div>
+                                    <div class="select_a_w select_arrow_width_2" data-arrow_width="4"></div>
+                                    <div class="select_a_w select_arrow_width_3" data-arrow_width="6"></div>
+                                    <div class="select_a_w select_arrow_width_4" data-arrow_width="8"></div>
+                                    <div class="select_a_w select_arrow_width_5" data-arrow_width="10"></div>
+                                </div>
+                                <!-- 화살표 대시 -->
+                                <div class="select_arrow_dash_wrap">
+                                    <div class="select_a_ds select_arrow_dash_1" data-arrow_dash="dash_1"></div>
+                                    <div class="select_a_ds select_arrow_dash_2" data-arrow_dash="dash_2"></div>
+                                    <div class="select_a_ds select_arrow_dash_3" data-arrow_dash="dash_3"></div>
+                                </div>
+                            </div>
+                            <!-- 직선 보조창 -->
+                            <div class="line_wrap">
+                                <button type="button" class="img_select icon-line-color"><i>컬러</i><span
+                                        class="caret"></span></button>
+                                <button type="button" class="img_select icon-line-width"><i>굵기</i><span
+                                        class="caret"></span></button>
+                                <button type="button" class="img_select icon-line-dash"><i>대시</i><span
+                                        class="caret"></span></button>
+                                <!-- 직선 컬러 -->
+                                <div class="line_color_wrap">
+                                    <button type="button" class="line_palette" data-lineColor="#000000"><i
+                                            style="background:#000000">색상1</i></button>
+                                    <button type="button" class="line_palette" data-lineColor="#ffffff"><i
+                                            style="background:#fff; border-color:#d5d5d5">색상2</i></button>
+                                    <button type="button" class="line_palette active" data-lineColor="#f24545"><i
+                                            style="background:#f24545">색상3</i></button>
+                                    <button type="button" class="line_palette" data-lineColor="#ff3be5"><i
+                                            style="background:#ff3be5">색상4</i></button>
+                                    <button type="button" class="line_palette" data-lineColor="#2432cc"><i
+                                            style="background:#2432cc">색상5</i></button>
+                                    <button type="button" class="line_palette" data-lineColor="#4090f3"><i
+                                            style="background:#4090f3">색상6</i></button>
+                                    <button type="button" class="line_palette" data-lineColor="#4aedff"><i
+                                            style="background:#4aedff">색상7</i></button>
+                                    <button type="button" class="line_palette" data-lineColor="#51e37f"><i
+                                            style="background:#51e37f">색상8</i></button>
+                                    <button type="button" class="line_palette" data-lineColor="#ffd342"><i
+                                            style="background:#ffd342">색상9</i></button>
+                                </div>
+                                <!-- 직선 굵기 -->
+                                <div class="select_line_width_wrap">
+                                    <div class="select_l_w select_line_width_1" data-line_width="2"></div>
+                                    <div class="select_l_w select_line_width_2" data-line_width="4"></div>
+                                    <div class="select_l_w select_line_width_3" data-line_width="6"></div>
+                                    <div class="select_l_w select_line_width_4" data-line_width="8"></div>
+                                    <div class="select_l_w select_line_width_5" data-line_width="10"></div>
+                                </div>
+                                <!-- 직선 대시 -->
+                                <div class="select_line_dash_wrap">
+                                    <div class="select_l_ds select_line_dash_1" data-line_dash="dash_1"></div>
+                                    <div class="select_l_ds select_line_dash_2" data-line_dash="dash_2"></div>
+                                    <div class="select_l_ds select_line_dash_3" data-line_dash="dash_3"></div>
+                                </div>
+                            </div>
+                            <!-- 형광펜 보조창 -->
+                            <div class="hlighter_wrap">
+                                <button type="button" class="img_select icon-hlighter-color"><i>색상</i><span
+                                        class="caret"></span></button>
+                                <button type="button" class="img_select icon-hlighter-width"><i>굵기</i><span
+                                        class="caret"></span></button>
+                                <!-- 형광펜 색상 선택 -->
+                                <div class="select_hlighter_color_wrap">
+                                    <button type="button" class="hlighter_palette" data-hlighterColor="#000000"><i
+                                            style="background:#000000">색상1</i></button>
+                                    <button type="button" class="hlighter_palette" data-hlighterColor="#ffffff"><i
+                                            style="background:#fff; border-color:#d5d5d5">색상2</i></button>
+                                    <button type="button" class="hlighter_palette active"
+                                        data-hlighterColor="#f24545"><i style="background:#f24545">색상3</i></button>
+                                    <button type="button" class="hlighter_palette" data-hlighterColor="#ff3be5"><i
+                                            style="background:#ff3be5">색상4</i></button>
+                                    <button type="button" class="hlighter_palette" data-hlighterColor="#2432cc"><i
+                                            style="background:#2432cc">색상5</i></button>
+                                    <button type="button" class="hlighter_palette" data-hlighterColor="#4090f3"><i
+                                            style="background:#4090f3">색상6</i></button>
+                                    <button type="button" class="hlighter_palette" data-hlighterColor="#4aedff"><i
+                                            style="background:#4aedff">색상7</i></button>
+                                    <button type="button" class="hlighter_palette" data-hlighterColor="#51e37f"><i
+                                            style="background:#51e37f">색상8</i></button>
+                                    <button type="button" class="hlighter_palette" data-hlighterColor="#ffd342"><i
+                                            style="background:#ffd342">색상9</i></button>
+                                </div>
+                                <!-- 형광펜 굵기 -->
+                                <div class="select_hlighter_width_wrap">
+                                    <div class="select_h_w select_hlighter_width_1" data-hlighterWidth=12></div>
+                                    <div class="select_h_w select_hlighter_width_2" data-hlighterWidth=18></div>
+                                    <div class="select_h_w select_hlighter_width_3" data-hlighterWidth=24></div>
+                                </div>
+                            </div>
+                            <!-- 스티커 보조창 -->
+                            <div class="sticker_wrap">
+                                <button type="button" class="sticker_select icon-sticker_1"
+                                    data-sticker="sticker_1"><i>매우
+                                        강조</i></button>
+                                <button type="button" class="sticker_select icon-sticker_2"
+                                    data-sticker="sticker_2"><i>강조</i></button>
+                                <button type="button" class="sticker_select icon-sticker_3"
+                                    data-sticker="sticker_3"><i>필기영역</i></button>
+                                <button type="button" class="sticker_select icon-sticker_4"
+                                    data-sticker="sticker_4"><i>주의하기</i></button>
+                                <button type="button" class="sticker_select icon-sticker_5"
+                                    data-sticker="sticker_5"><i>기억하기</i></button>
+                                <button type="button" class="sticker_select icon-sticker_6"
+                                    data-sticker="sticker_6"><i>참
+                                        잘했어요</i></button>
+                            </div>
+                        </div>
+                        <div>
+                            <button type="button" class="icon-drawing4" title="지우개">지우개</button>
+                            <button type="button" class="icon-drawing5" title="삭제">되돌리기</button>
+                        </div>
+                        <div>
+                            <button type="button" class="icon-drawing6" title="안보이게 하기">안보이게 하기</button>
+                        </div>
+                        <div>
+                            <button type="button" class="icon-drawing7" data-toggle="show"
+                                data-target="#drawing">닫기</button>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <button type="button" id="fullscreen">
+                        <i class="icon-fullscreen"></i>전체화면
+                    </button>
+                </li>
+                <li>
+                    <button type="button" id="download" class="hidden">
+                        <i class="icon-download"></i>다운로드
+                    </button>
+                </li>
+                <!--
+                <li>
+                    <button type="button" id="scrap" class="hidden">
+                        <i class="icon-scrap"></i>스크랩
+                    </button>
+                </li>
+                -->
+            </ul>
+            <div id="viewer-nav">
+
+                <div class="account">
+                    <span id="zoom-level">100%</span>
+                    <button type="button" class="icon-tool-account2" title="축소">축소</button>
+                    <button type="button" class="icon-tool-account" title="확대">확대</button>
+                    <!-- <button type="button" class="icon-tool-account3" title="스크랩">스크랩</button> -->
+                </div>
+                <div id="page">
+                    <button type="button" id="prev-content" class="icon-prev" title="이전">이전</button>
+                    <span><b id="current_page">1</b> / <span id="total_page">1</span></span>
+                    <button type="button" id="next-content" class="icon-next" title="다음">다음</button>
+                </div>
+            </div>
+        </header>
+
+        <article id="viewer-content">
+            <div class="icon-prev-content" title="이전"></div>
+            <div class="icon-next-content" title="다음"></div>
+            <!-- module Start-->
+            <div id="module-modal" data-backdrop="static" class="modal fade" data-keyboard="false">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="modal-tool-box">
+                                <span id="module-title"></span>
+                                <a class="carousel-control-prev" href="#carousel-control" role="button"
+                                    data-slide="prev" title="이전">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">이전</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carousel-control" role="button"
+                                    data-slide="next" title="다음">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">다음</span>
+                                </a>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="modal-body content">
+                            <div id="module-body"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+        <aside id="viewer-aside">
+            <!-- <div class="contents-title-bar"></div> -->
+            <div class="icon-aside-open-txt" data-toggle="aside">
+                <i class="icon-aside-opened"></i>
+                <h3>크게보기</h3>
+            </div>
+            <div id="preview-info">
+                <div id="course-info"></div>
+                <div id="file-info"></div>
+            </div>
+            <!-- <h2 id="course_name" class="course-title" style="display:none">학습 목차</h2> -->
+            <div id="viewer-aside-list-inner">
+                <ul id="page_list" class="thumbnails">
+                </ul>
+            </div>
+
+        </aside>
+    </div>
+
+    <script
+        src="https://polyfill.io/v3/polyfill.min.js?features=Promise%2CString.prototype.padStart%2CString.prototype.startsWith"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/konva/7.2.0/konva.min.js"
+        integrity="sha512-Z2K1QFLdmTUdZk7W1h65BOeap9JojncX3j4KZ3Z/oQTZGG/Jg4BNZPEFVIhAU6ovf76w1ebLZJM91Eb4W5867Q=="
+        crossorigin="anonymous"></script>
+    <script src="js/viewer.drawingcanvas.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jquery.ui.touch-punch.min.js"></script>
+    <!-- <script src="js/e-smart-zoom-jquery.min.js"></script> -->
+    <script src="js/e-smart-zoom-jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+
+    <!-- 20240807 추가	-->
+    <script src="https://fastly.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="/js/pc/ele/viewer/js/videojs-ie8.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.20.1/video.min.js" ></script>
+
+    <script src="/js/pc/ele/viewer/js/video.js"></script>
+    <script src="/js/pc/ele/viewer/js/videojs-playlist.js"></script>
+    <!--<script src="/js/pc/ele/viewer/js/viewer.module.js"></script>-->
+    <script src="/assets/viewer/js/viewer.module.js"></script>
+
+<!--    <script src="js/videojs-ie8.min.js"></script>-->
+<!--    <script src="js/video.js"></script>-->
+<!--    <script src="js/videojs-playlist.js"></script>-->
+<!--    <script src="js/viewer.module.js"></script>-->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mobile-detect/1.4.4/mobile-detect.min.js"
+        integrity="sha512-hSVyGuXBHmZy+A+P21DRUAuc7UTfcqc0geieb/H1ZmqiJAoDTfzFYIOBAMTcFUWU/PwLPEoREYG/77ckPB6oSw=="
+        crossorigin="anonymous"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
+    <script src="js/viewer.layout.js"></script>
+    <!-- <script src="js/viewer/viewer.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/underscore@1.11.0/underscore.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"
+        integrity="sha256-xoh0y6ov0WULfXcLMoaA6nZfszdgI8w2CEJ/3k8NBIE=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullscreen.js@0.2.5/dist/fullscreen.min.js"
+        integrity="sha256-pec3tu9/8wJJU3SPl3M8OKKCA0m9FYFMVgU0cF92yxw=" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery-toast@1.0.0/jquery.toast.js"
+        integrity="sha256-rI2yKVJ5ZaS9P5C1SmeVechb9vzKH/JrK2OL+/cF6qo=" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/vex-js@4.1.0/dist/js/vex.combined.js"
+        integrity="sha256-LSKMfbhy3vEb686cTq5ITGkNtRMQ9DocDnlAAn291p0=" crossorigin="anonymous"></script>
+    <script>vex.defaultOptions.className = 'vex-theme-default';</script>
+
+    <!-- <script src="./js/jquery.visible.js"></script> -->
+    <script src="./jquery.getSelector.js"></script>
+    <script src="./utils.js"></script>
+    <script src="./tms.js"></script>
+    <script src="./extraYou.js"></script>
+    <script src="./drawing.js"></script>
+    <script src="./js/Youtube.min.js"></script>
+
+    <script>
+        function mobileDeviceGetHeight() {
+            var vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', vh + 'px');
+
+            portraitElementHeight();
+            hidePageMoveBtn();
+        };
+
+        function hidePageMoveBtn() {
+            $('.icon-prev-content').css('display', 'none');
+            $('.icon-next-content').css('display', 'none');
+        };
+
+        function portraitElementHeight() {
+            var ua = window.navigator.userAgent;
+            var iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
+            var webkit = !!ua.match(/WebKit/i);
+            var whale = !!ua.match(/Whale/i);
+            var iOSSafari = iOS && webkit && !whale && !ua.match(/CriOS/i) && !ua.match(/OPiOS/i);
+
+            var getOrientation = $('body').attr('orientation');
+            var _vh = $('html').css('--vh');
+
+            if (getOrientation == 'portrait') {
+                var target_height = parseFloat(_vh) * 100;
+                var calc_height = target_height - 100;
+
+                $("#viewer-content").css('height', calc_height + 'px');
+                $("#viewer-aside").css('height', calc_height + 'px');
+                $("#viewer-hd").css('top', calc_height + 'px');
+
+                $('#viewer-tool').css({
+                    width: '100vw',
+                });
+            } else {
+                var target_height = parseFloat(_vh) * 100;
+                var calc_height = target_height - 50;
+
+                $("#viewer-content").css('height', calc_height + 'px');
+                $("#viewer-aside").css('height', calc_height + 'px');
+                $("#viewer-hd").css('top', calc_height + 'px');
+
+                $('#viewer-tool').css({
+                    width: '50vw',
+                });
+            }
+        };
+
+        function set_current_orientation() {
+            switch (window.orientation) {
+                case 0:
+                    $('body').attr('orientation', 'portrait');
+                    break;
+                case -90:
+                    $('body').attr('orientation', 'landscape');
+                    break;
+                case 90:
+                    $('body').attr('orientation', 'landscape');
+                    break;
+                case 180:
+                    $('body').attr('orientation', 'portrait');
+                    break;
+            }
+
+            mobileDeviceGetHeight();
+        };
+
+        var PleaseRotateOptions = {
+            forcePortrait: false,
+            message: "기기를 가로로 돌려주세요.",
+            subMessage: "모바일에서는 가로모드만 지원합니다.",
+            allowClickBypass: false,
+            onlyMobile: false
+        };
+
+        var DEVICE_TYPE = null;
+        function detect_mobile_device_type() {
+            var md = new MobileDetect(window.navigator.userAgent);
+            if (md.tablet()) {
+                DEVICE_TYPE = 'tablet';
+            } else if (md.mobile()) {
+                DEVICE_TYPE = 'mobile';
+            }
+            return DEVICE_TYPE;
+        };
+
+        $(document).ready(function () {
+            $.LoadingOverlaySetup({
+                image: "/assets/viewer/img/viewer/loading.svg",
+                imageAnimation: false,
+                imageAutoResize: true,
+                imageResizeFactor: 1,
+                textColor: "#006c45",
+            });
+            $.LoadingOverlay("show");
+
+            set_current_orientation();
+            detect_mobile_device_type();
+
+            if (DEVICE_TYPE == 'mobile' && DEVICE_TYPE != 'tablet') {
+                // var pathname = window.location.pathname;
+                // pathname = pathname.replace("v.html", "mv.html");
+                // location.href = pathname + window.location.hash + "?" + queryString;
+                // return;
+            }
+            $('body').attr('device', DEVICE_TYPE);
+
+            // var theme = "default";
+            // var cookie_theme = getCookie('theme');
+            // if (["default", "theme-dark-2", "theme-green"].includes(cookie_theme)) {
+            //     theme = cookie_theme;
+            // }
+            // $('body').attr('theme', theme);
+
+            if (navigator.userAgent.indexOf("iPhone") != -1 || navigator.userAgent.indexOf("Linux") != -1) {
+                addEventListener("load", function () {
+                    // setTimeout(scrollTo, 0, 0, 1)
+                    setTimeout(window.scrollTo(0, 1))
+                }, false);
+                //  addEventListener("orientationchange", function(){
+                //       setTimeout(scrollTo, 0, 0, 1)
+                //  }, false);
+            }
+            addEventListener("orientationchange", function () {
+                set_current_orientation();
+                setTimeout(window.scrollTo(0, 1))
+                // setTimeout(scrollTo, 0, 0, 1)
+            }, false);
+
+            setTimeout(function () {
+                viewer.ready(DEVICE_TYPE);
+            }, 200);
+
+            setTimeout(function () {
+                viewer.ready(function (res) {
+                    if (res == "close") {
+                        window.close();
+                        return;
+                    }
+                    set_current_orientation();
+                    $('#viewer-wrap').addClass('aside-close');
+                    // 2022.02.09 모바일 대응
+                    if (DEVICE_TYPE == "mobile") {
+                        set_current_orientation();
+                        $('#viewer-wrap').addClass('aside-close');
+                    }
+                });
+            }, 500);
+        });
+
+        $(window).on("resize", function (e) {
+            if (IS_USING_PDF_MODULE) {
+                try {
+                    $("#pdf-iframe").get(0).contentWindow.pdfFit();
+                    // 2022.02.09 모바일 대응
+                    if (DEVICE_TYPE == "mobile") {
+                        set_current_orientation();
+                        $('#viewer-wrap').addClass('aside-close');
+                    }
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+            setTimeout(function () {
+                var smartData = $("#content-scale").data('smartZoomData');
+                if (!smartData) return;
+                var scale = smartData.adjustedPosInfos.scale;
+                if (typeof (scale) == 'string') {
+                    scale = parseFloat(scale);
+                }
+                scale = scale * 100;
+                $("#zoom-level").html(scale.toFixed(0) + "%");
+                // $("#zoom-level").html("X "+scale.toFixed(1));
+            }, 500);
+
+            mobileDeviceGetHeight();
+        });
+        $(document).on("click", ".icon-aside-open-txt", function (e) {
+
+            if (!$("#viewer-wrap").hasClass("aside-close")) {
+                $(this).attr("title", "크게보기");
+                $(".icon-aside-open-txt > h3").html("크게보기");
+            } else {
+                $(this).attr("title", "작게보기");
+                $(".icon-aside-open-txt > h3").html("작게보기");
+            }
+
+            setTimeout(function () {
+                if (IS_USING_PDF_MODULE) {
+                    try {
+                        $("#pdf-iframe").get(0).contentWindow.pdfFit();
+                    } catch (error) {
+                        console.error(error);
+                    }
+                }
+
+                Module.common.adjustToContainer();
+
+                var smartData = $("#content-scale").data('smartZoomData');
+                if (!smartData) return;
+                var scale = smartData.adjustedPosInfos.scale;
+                if (typeof (scale) == 'string') {
+                    scale = parseFloat(scale);
+                }
+                scale = scale * 100;
+                $("#zoom-level").html(scale.toFixed(0) + "%");
+                // $("#zoom-level").html("X "+scale.toFixed(1));
+            }, 1000);
+        });
+
+        $(document).on("click", "#page > button.icon-prev, .icon-prev-content", function (e) {
+            viewer.select_prev();
+        });
+        $(document).on("click", "#page > button.icon-next, .icon-next-content", function (e) {
+            viewer.select_next();
+        });
+        $(document).on("click", "#page_list .span4", function (e) {
+            var index = $(this).attr('index');
+            viewer.select_index(index);
+        });
+        $(document).on("click", ".icon-tool-account", function (e) {
+            if ($("#module-modal").hasClass('show')) {
+                if (IS_USING_PDF_MODULE) {
+                    $("#pdf-iframe").get(0).contentWindow.pdfZoomIn();
+                } else {
+                    Module.common.zoom_in();
+                }
+
+            } else {
+                Module.common.iframe_zoom_in();
+            }
+        });
+        $(document).on("click", ".icon-tool-account2", function (e) {
+            if ($("#module-modal").hasClass('show')) {
+                if (IS_USING_PDF_MODULE) {
+                    $("#pdf-iframe").get(0).contentWindow.pdfZoomOut();
+                } else {
+                    Module.common.zoom_out();
+                }
+            } else {
+                Module.common.iframe_zoom_out();
+            }
+        });
+
+        $(document).on("click", "#download", function (e) {
+            /*
+            var downloads = _.clone(viewer.info.downloads);
+            function do_download_file() {
+                if(!downloads || downloads.length <= 0) {
+                    return;
+                }var down = downloads[0];
+                download_file(down);
+                downloads = _.rest(downloads);
+                setTimeout(do_download_file, 200);
+            }
+            do_download_file();
+            */
+
+            setTimeout(function () {
+                multi_download_file(viewer.info.downloads, viewer.info.title);
+            }, 200);
+        });
+
+        $(document).on("click", "#fullscreen", function (e) {
+            toggleFullScreen();
+            // if (fullscreen.is()) {
+            //     fullscreen.exit();
+            // } else {
+            //     fullscreen.request();
+            // }
+        });
+
+        function multi_download_file(files, file_title) {
+            var fileids = '';
+            for (var i = 0; i < files.length; i++) {
+                var fileId = files[i].replace('/cms/files/download/', '');
+                fileids += 'fileIds=' + fileId + '&';
+            }
+
+            var link = document.createElement('a');
+            link.href = '/cms/files/multi-2/download?' + fileids + 'filename=' + file_title;
+            link.click();
+            link.remove();
+        }
+    </script>
+    <!-- <script src="js/pleaserotate.min.js"></script> -->
+</body>
+
+</html>

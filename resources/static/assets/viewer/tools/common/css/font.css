@@ -1,0 +1,22 @@
+/* Font */
+@font-face{font-family:'Jalnan';src:url(../font/Jalnan.woff) format('woff')}
+@font-face{font-weight:300;font-family:'NotoSans';src:url(../font/NotoSansKR-Light.woff) format('woff')}
+@font-face{font-weight:400;font-family:'NotoSans';src:url(../font/NotoSansKR-Regular.woff) format('woff')}
+@font-face{font-weight:500;font-family:'NotoSans';src:url(../font/NotoSansKR-Medium.woff) format('woff')}
+@font-face{font-weight:700;font-family:'NotoSans';src:url(../font/NotoSansKR-Bold.woff) format('woff')}
+@font-face{font-weight:300;font-family:'NotoSerif';src:url(../font/NotoSerifCJKkr-Light.woff) format('woff')}
+@font-face{font-weight:400;font-family:'NotoSerif';src:url(../font/NotoSerifCJKkr-Regular.woff) format('woff')}
+@font-face{font-weight:500;font-family:'NotoSerif';src:url(../font/NotoSerifCJKkr-Medium.woff) format('woff')}
+@font-face{font-weight:700;font-family:'NotoSerif';src:url(../font/NotoSerifCJKkr-Bold.woff) format('woff')}
+@font-face{font-weight:400;font-family:'roboto';src:url(../font/RobotoBold.woff) format('woff')}
+@font-face{font-weight:700;font-family:'roboto';src:url(../font/RobotoBold.woff) format('woff')}
+@font-face{font-weight:300;font-family:'netmarble';src:url(../font/netmarbleL.woff) format('woff')}
+@font-face{font-weight:400;font-family:'netmarble';src:url(../font/netmarbleM.woff) format('woff')}
+@font-face{font-weight:700;font-family:'netmarble';src:url(../font/netmarbleB.woff) format('woff')}
+@font-face{font-weight:700;font-family:'SangSangTitle';src:url(../font/SangSangTitleOTFB.woff) format('woff')}
+@font-face{font-weight:400;font-family:'SangSangTitle';src:url(../font/SangSangTitleOTFM.woff) format('woff')}
+.font-sans{font-family:'NotoSans',sans-serif !important;font-display:fallback}
+.font-serif{font-family:'NotoSerif',serif !important;font-display:fallback}
+.font-roboto{font-family:'roboto',sans-serif !important;font-display:fallback}
+.font-net{font-family: 'netmarble', sans-serif !important;font-display:fallback}
+.font-sang{font-family: 'SangSangTitle', sans-serif !important;font-display:fallback}

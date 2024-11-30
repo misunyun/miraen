@@ -1,0 +1,269 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+
+    <div class="form-group">
+        <label for="useridForm">user id: </label>
+        <input type="text" class="form-control" id="useridForm">
+
+        <label for="uidForm">uid: </label>
+        <input type="text" class="form-control" id="uidForm">
+
+        <button type="submit" class="btn btn-primary" id="api-connect-button">api-connect</button>
+        <button type="submit" class="btn btn-warning" id="api-disconnect-button">api-disconnect</button>
+        <button type="submit" class="btn" id="api-connected-list-button">api-connected-list</button>
+    </div>
+
+    <div class="form-group">
+        <label for="roomidForm">room id: </label>
+        <input type="text" class="form-control" id="roomidForm">
+        <button type="submit" class="btn btn-primary" id="api-room-list-button">api-room-list</button>
+        <button type="submit" class="btn btn-secondary" id="api-create-room-button">api-create-room</button>
+        <button type="submit" class="btn btn-info" id="api-join-room-button">api-join-room</button>
+        <button type="submit" class="btn btn-dark" id="api-leave-room-button">api-leave-room</button>
+    </div>
+
+    <div class="form-group">
+        <label for="dataidForm">test data: </label>
+        <input type="text" class="form-control" id="dataidForm">
+    </div>
+    <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" id="include-me">
+        <label class="form-check-label" for="include-me">include me</label>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" id="api-sync-init-button">api-sync-init</button>
+        <button type="submit" class="btn btn-secondary" id="api-sync-button">api-sync</button>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+<script>
+    function get_version_of_IE () {
+        var word;
+        var agent = navigator.userAgent.toLowerCase();
+        // IE old version ( IE 10 or Lower )
+        if ( navigator.appName == "Microsoft Internet Explorer" ) word = "msie ";
+        // IE 11
+        else if ( agent.search( "trident" ) > -1 ) word = "trident/.*rv:";
+        // Microsoft Edge
+        else if ( agent.search( "edge/" ) > -1 ) word = "edge/";
+        // 그외, IE가 아니라면 ( If it's not IE or Edge )
+        else return -1;
+
+        var reg = new RegExp( word + "([0-9]{1,})(\\.{0,}[0-9]{0,1})" );
+        if (  reg.exec( agent ) != null  ) return parseFloat( RegExp.$1 + RegExp.$2 );
+        return -1;
+    }
+    var setCookie = function(name, value, day) {
+        var date = new Date();
+        date.setTime(date.getTime() + day * 60 * 60 * 24 * 1000);
+        document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
+    };
+    var getCookie = function(name) {
+        var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+        return value? value[2] : null;
+    };
+    var deleteCookie = function(name) {
+        var date = new Date();
+        document.cookie = name + "= " + "; expires=" + date.toUTCString() + "; path=/";
+    }
+
+    var mirroring_uid_key = "mirroring_uid";
+    var mirroring_uid = null;
+    var USE_COOKIE = false;
+    var rooms = [];
+    var socket = null;
+    var os = navigator.platform;
+    var roomid = null;
+    var userid = null;
+    var sessionid = null;
+
+    function init(_iever) {
+        // socket.io 서버에 접속한다
+        // socket = io.connect({transports: ['websocket']});
+        // socket = io("https://ele.m-teacher.co.kr/");
+        socket = io(
+            "https://ele.m-teacher.co.kr",
+            // "http://miraen.boinit.com:8000", 
+            // "http://localhost:10000", 
+            {
+                transports: ['websocket']
+                , path: '/viewer/socket.io'
+            }
+        );
+        // if(_iever == -1 || _iever > 12) {
+        //     socket = io({transports: ['websocket']});
+        // } else {
+        //     socket = io();
+        //     // socket = io.connect({transports: ['websocket']});
+        // }
+        // var socket = io.connect({transports: ['websocket', 'polling']});
+
+        if(USE_COOKIE) {
+            mirroring_uid = getCookie(mirroring_uid_key);
+        }
+        // console.log(mirroring_uid+", "+os);
+        $("#uidForm").val(mirroring_uid);
+
+        // default events
+        socket.on('disconnect', function(reason) {
+            console.log('on.disconnect', reason);
+            if (reason == 'io server disconnect') {
+                // the disconnection was initiated by the server, you need to reconnect manually
+                // socket.connect();
+            }
+            // else the socket will automatically try to reconnect
+        });
+
+        socket.on('reconnect', function(attemptNumber) {
+            console.log('on.reconnect', attemptNumber);
+
+            userid = $("#useridForm").val();
+            //sessionid = null;
+            socket.emit("api-connect", {
+                userid: userid,
+                os: os,
+                uid: mirroring_uid,
+                roomid: roomid,
+            });
+        });
+
+        // api events
+        socket.on("api-connect", function(res) {
+            console.log("on.api-connect", res);
+
+            var code = res.code;
+            var message = res.message;
+            userid = res.data.userid;
+            mirroring_uid = res.data.uid;
+            roomid = res.data.roomid;
+            if(code == 200) {
+                $("#uidForm").val(mirroring_uid);
+                if(USE_COOKIE) {
+                    setCookie(mirroring_uid_key, mirroring_uid, 365);
+                }
+            }
+
+            for(var i = 0; i < res.data.connected.length; i++) {
+                var client = res.data.connected[i];
+                //다른놈 끊을때.
+                // socket.emit("api-disconnect", {uid:client.uid});
+            }
+
+        });
+
+        socket.on("api-disconnect", function(res) {
+            console.log("on.api-disconnect", res);
+        });
+
+        socket.on("api-connected-list", function(res) {
+            console.log("on.api-connected-list", res);
+        });
+
+        socket.on("api-room-list", function(res) {
+            console.log("on.api-room-list", res);
+        });
+        socket.on("api-create-room", function(res) {
+            console.log("on.api-create-room", res);
+            roomid = res.data.roomid;
+            $("#roomidForm").val(roomid);
+        });
+        socket.on("api-join-room", function(res) {
+            console.log("on.api-join-room", res);
+        });
+        socket.on("api-reconnect-join-room-user", function(res) {
+            console.log("on.api-reconnect-join-room-user", res);
+        });
+        socket.on("api-leave-room", function(res) {
+            console.log("on.api-leave-room", res);
+        });
+
+
+        socket.on("api-sync-init", function(res) {
+            console.log("on.api-sync-init", res);
+            eval(res);
+        });
+        socket.on("api-sync", function(res) {
+            console.log("on.api-sync", res);
+            eval(res);
+        });
+
+    };
+
+    try {
+        var iever = get_version_of_IE();
+        if(iever != -1 && iever < 9) {
+            alert('지원하지 않는 브라우저입니다.(IE'+iever+')\nIE 9 이상을 사용해주세요.');
+        } else {
+            $(function(){
+                init(iever);
+            });
+        }
+    } catch (error) {
+        alert('지원하지 않는 브라우저입니다.\n'+error);
+    }
+
+    $(document).on('click', '#api-connect-button', function(event) {
+        if(!socket) {
+            return;
+        }
+        userid = $("#useridForm").val();
+        //sessionid = null;
+        socket.emit("api-connect", {
+            userid: userid,
+            os: os,
+            uid: mirroring_uid,
+            roomid: roomid,
+        });
+    });
+    $(document).on('click', '#api-disconnect-button', function(event) {
+        socket.emit("api-disconnect", {uid:$("#uidForm").val()});
+    });
+
+    $(document).on('click', '#api-connected-list-button', function(event) {
+        socket.emit("api-connected-list");
+    });
+
+
+    $(document).on('click', '#api-room-list-button', function(event) {
+        socket.emit("api-room-list");
+    });
+    $(document).on('click', '#api-create-room-button', function(event) {
+        socket.emit("api-create-room", {lesson:null});
+    });
+    $(document).on('click', '#api-join-room-button', function(event) {
+        roomid = $("#roomidForm").val();
+        socket.emit("api-join-room", {roomid:roomid});
+    });
+    $(document).on('click', '#api-leave-room-button', function(event) {
+        socket.emit("api-leave-room");
+    });
+
+    $(document).on('click', '#api-sync-init-button', function(event) {
+        var testdata = $("#dataidForm").val();
+        var includeme = $('input:checkbox[id="include-me"]').is(":checked");
+
+        socket.emit("api-sync-init", {includeme: includeme, data:testdata});
+    });
+
+    $(document).on('click', '#api-sync-button', function(event) {
+        var testdata = $("#dataidForm").val();
+        var includeme = $('input:checkbox[id="include-me"]').is(":checked");
+
+        socket.emit("api-sync", {includeme: includeme, data:testdata});
+    });
+
+
+</script>
+</body>
+</html>

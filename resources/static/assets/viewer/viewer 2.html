@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>뷰어</title>
+    <script src="js/promise-polyfill.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="http://boinitdev.iptime.org:10000/socket.io/socket.io.js"></script>
+    <script src="js/viewer/viewer.js"></script>
+</head>
+<body>
+<!--<h2>Viewer Demo</h2>-->
+<!--<p>컨텐츠 영역은 ifram을 사용한다.</p>-->
+<!--<p>미러링 클릭시 컨텐츠 영역만 새로운 window로 띄운다.</p>-->
+
+<header>
+    <h2>뷰어헤더</h2>
+</header>
+
+<section>
+    <input type="text" class="form-control" disabled id="uidForm">
+    <nav id="courseNav">
+        <a class="pageLink" href="javscript:void(0)" onclick="javascript:movePage('page010_01')" >page010_01</a>
+        <a class="pageLink" href="javscript:void(0)" onclick="javascript:movePage('page011_01')">page011_01</a>
+        <a class="pageLink" href="javscript:void(0)" onclick="javascript:movePage('page015_01')">page015_01</a>
+        <a class="pageLink" href="javscript:void(0)" onclick="javascript:movePage('page017_01')">page017_01</a>
+        <a class="pageLink" href="javscript:void(0)" onclick="javascript:movePage('page018_01')">page018_01</a>
+        <a class="pageLink" href="javscript:void(0)" onclick="javascript:movePage('page028_01')">page028_01</a>
+        <a class="pageLink" href="javscript:void(0)" onclick="javascript:movePage('pageSampleMp4')">비디오</a>
+    </nav>
+
+    <article>
+        <iframe id="iframe_content"  style="display:block; width:100vw; height: 100vh"></iframe>
+    </article>
+</section>
+
+<footer>
+    <p>뷰어푸터</p>
+    <label>uid</label>
+    <input type="text" id="uid" name="uid"/>
+    <button id="disconnect" onclick="tempDisconnect()">disconnect</button>
+    <button id="btn_open">수업시작</button>
+    <button id="btn_close" style="display:none">수업종료</button>
+    <button id="btn_roomList">룸목록</button>
+    <button onclick="" >iframe에 이미지 띄우기</button>
+</footer>
+<script>
+
+</script>
+</body>
+</html>

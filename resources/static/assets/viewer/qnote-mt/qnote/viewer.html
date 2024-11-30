@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>question</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-store,no-cache,must-revalidate"/>
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
+    <meta name="viewport" content="user-scalable=no" />
+    <meta name="format-detection" content="telephone=no">
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            TeX: {imageFont: null, extensions: ["mhchem.js", "AMSsymbols.js", "AMSmath.js"]},
+            extensions: ["tex2jax.js", "forminput.js"],
+            skipStartupTypeset: true,
+            showProcessingMessages: false,
+            jax: ["input/TeX","output/HTML-CSS"],
+            playerObject: "player",
+            showMathMenu: false,
+            messageStyle: "none"
+        });
+    </script>
+    <script type="text/javascript" src="core/javascript/MathJax/MathJax.js"></script>
+    <!-- <script type="text/javascript" src="core/javascript/MathJax-2.1-latest/MathJax.js"></script> -->
+    <!-- <script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_CHTML"></script> -->
+    <script type="text/javascript" src="core/javascript/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="core/icplayer/icplayer.nocache.js"></script>
+    <script type="text/javascript" src="core/javascript/semi-responsive-layout-chooser.js"></script>
+    <script type="text/javascript" src="core/javascript/jquery.ba-resize.min.js"></script>
+    <script type="text/javascript" src="core/javascript/screen.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mobile-detect/1.4.4/mobile-detect.min.js"></script>
+    <link href="core/javascript/splitter/jquery.splitter.css" rel="stylesheet">
+    <link href="core/css/viewer/qr_viewer.css" rel="stylesheet">
+    <script src="core/javascript/splitter/jquery.splitter.js"></script>
+
+    <!--    <script type="text/javascript" src="core/javascript/html2canvas.min.js"></script>-->
+    <script src="core/javascript/webfont.js"></script>
+    <script>
+        //  WebFont.load({
+        //     custom: {
+        //         families: ['NanumSquareRoundB', 'NanumSquareRoundEB', 'NanumSquareRound'],
+        //     },
+        //     active: function () {
+        //         fontLoaded = true;
+        //     }
+        // });
+
+        WebFont.load({
+            custom: {
+                families: ['NanumSquareRoundB', 'NanumSquareRoundEB', 'NanumSquareRound'
+                    , '나눔스퀘어라운드 Bold', '나눔스퀘어라운드 ExtraBold', '나눔스퀘어라운드'
+                    , 'VAGRounded BT', "NanumMyeongjoExtraBold", "NanumMyeongjoBold"
+                    , 'NanumGothic', 'NanumGothicExtraBold'],
+            },
+            active: function () {
+                fontLoaded = true;
+
+                
+                
+            }
+        });
+    </script>
+    <style type="text/css">
+       
+       /* @font-face {
+            font-family:"NanumSquareRoundB";
+            src: url(https://miraen-contents.s3.ap-northeast-2.amazonaws.com/dev/viewers/qnote/core/fonts/NanumSquareRoundB.woff) format("woff")
+            , url(https://miraen-contents.s3.ap-northeast-2.amazonaws.com/dev/viewers/qnote/core/fonts/NanumSquareRoundB.woff2) format("woff2");
+        }*/
+         @font-face {
+            font-family:"NanumSquareRoundB";
+            src: url(https://miraen-contents.s3.ap-northeast-2.amazonaws.com/dev/viewers/qnote/core/fonts/NanumSquareRoundB.woff2) format("woff2");
+        }
+
+        @font-face {
+            font-family:"나눔스퀘어라운드 Bold";
+            src: url(https://miraen-contents.s3.ap-northeast-2.amazonaws.com/dev/viewers/qnote/core/fonts/NanumSquareRoundB.woff2) format("woff2")
+            , url(https://miraen-contents.s3.ap-northeast-2.amazonaws.com/dev/viewers/qnote/core/fonts/NanumSquareRoundB.woff) format("woff");
+        }
+
+        @font-face {
+            font-family: "NanumSquareRoundEB";
+            src: url(https://miraen-contents.s3.ap-northeast-2.amazonaws.com/dev/viewers/qnote/core/fonts/NanumSquareRoundEB.woff2) format("woff2")
+            , url(https://miraen-contents.s3.ap-northeast-2.amazonaws.com/dev/viewers/qnote/core/fonts/NanumSquareRoundEB.woff) format("woff");
+        }
+
+        @font-face {
+            font-family: "나눔스퀘어라운드 ExtraBold";
+            src: url(https://miraen-contents.s3.ap-northeast-2.amazonaws.com/dev/viewers/qnote/core/fonts/NanumSquareRoundEB.woff2) format("woff2")
+            , url(https://miraen-contents.s3.ap-northeast-2.amazonaws.com/dev/viewers/qnote/core/fonts/NanumSquareRoundEB.woff) format("woff");
+        }
+
+        @font-face {
+            font-family: "NanumSquareRound";
+            src:  url(https://miraen-contents.s3.ap-northeast-2.amazonaws.com/dev/viewers/qnote/core/fonts/NanumSquareRoundR.woff2) format("woff2")
+            , url(https://miraen-contents.s3.ap-northeast-2.amazonaws.com/dev/viewers/qnote/core/fonts/NanumSquareRoundR.woff) format("woff");
+        }
+
+        @font-face {
+            font-family: "나눔스퀘어라운드";
+            src: url(https://miraen-contents.s3.ap-northeast-2.amazonaws.com/dev/viewers/qnote/core/fonts/NanumSquareRoundR.woff2) format("woff2")
+            , url(https://miraen-contents.s3.ap-northeast-2.amazonaws.com/dev/viewers/qnote/core/fonts/NanumSquareRoundR.woff) format("woff");
+        }
+
+        @font-face {
+            font-family: "VAGRounded BT";
+            src: url(https://miraen-contents.s3.ap-northeast-2.amazonaws.com/dev/viewers/qnote/core/fonts/VAGRoundedBT.woff2) format("woff2")
+            , url(https://miraen-contents.s3.ap-northeast-2.amazonaws.com/dev/viewers/qnote/core/fonts/VAGRoundedBT.woff) format("woff"); 
+        }
+
+        @font-face {
+            font-family: "VAGRoundedBT";
+            src: url(https://miraen-contents.s3.ap-northeast-2.amazonaws.com/dev/viewers/qnote/core/fonts/VAGRoundedBT.woff2) format("woff2")
+            , url(https://miraen-contents.s3.ap-northeast-2.amazonaws.com/dev/viewers/qnote/core/fonts/VAGRoundedBT.woff) format("woff");
+        }
+
+        @font-face {
+            font-family: "NanumMyeongjoExtraBold";
+            src: url(https://miraen-contents.s3.ap-northeast-2.amazonaws.com/dev/viewers/qnote/core/fonts/NanumMyeongjoExtraBold.woff2) format("woff2");
+        }
+
+        @font-face {
+            font-family: "NanumMyeongjoBold";
+            src: url(https://miraen-contents.s3.ap-northeast-2.amazonaws.com/dev/viewers/qnote/core/fonts/NanumMyeongjoBold.woff2) format("woff2");
+        }
+
+        @font-face {
+            font-family: "NanumGothic";
+            src: url(https://miraen-contents.s3.ap-northeast-2.amazonaws.com/dev/viewers/qnote/core/fonts/NanumGothic.woff) format("woff")
+            , url(https://miraen-contents.s3.ap-northeast-2.amazonaws.com/dev/viewers/qnote/core/fonts/NanumGothic.woff2) format("woff2");
+        }
+
+        @font-face {
+            font-family: "NanumGothicExtraBold";
+            src: url(https://miraen-contents.s3.ap-northeast-2.amazonaws.com/dev/viewers/qnote/core/fonts/NanumGothicExtraBold.woff) format("woff")
+            , url(https://miraen-contents.s3.ap-northeast-2.amazonaws.com/dev/viewers/qnote/core/fonts/NanumGothicExtraBold.woff2) format("woff2");
+        }
+        
+    </style>
+    <script src="libs/qnote-viewer-interface.min.js"></script>
+    <script src="./viewer.js"></script>
+    <script src="libs/crossDomain.js"></script>
+    <style>
+
+    </style>
+    <style>
+        body {
+            background: #FFFFFF;
+        }
+        #_QPlayer {
+            display: table;
+        }
+
+        input, div{
+            -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+            -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+            box-sizing: border-box;
+            color: #000000;
+            /*          height: inherit;*/
+        }
+
+        #_QPlayer input{
+            -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+            -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+            box-sizing: border-box;
+            height: inherit;
+        }
+
+        .no-margin {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: #FFFFFF;
+            /*          background-color: #F2F2F2;*/
+        }
+    </style>
+
+</head>
+
+<body id="body" class="no-margin" onload="doStart();" style="background-color: #F2F2F2;">
+<div id="div_load_image" style="display:none;position:absolute; top:50%; left:50%;width:0px;height:0px; z-index:9999; background:#f0f0f0; filter:alpha(opacity=50); opacity:alpha*0.5; margin:auto; padding:0; text-align:center">
+    <img src="./assets/loading.gif">
+</div>
+<div id="author_tool" class="authtool">
+    <!-- <button class="button" onclick="verticalHorizontalWindowSizeChange()">가로/세로 창 변환</button> -->
+    <button class="topButton" onclick="moveQuestion('prev')">이전</button>
+    <p  style="width:50px" id="quesCnt"></p>
+    <button class="topButton" onclick="moveQuestion('next')">다음</button>
+    <button class="topButton" onclick="getEachScore()">채점</button>
+    <button class="topButton" onclick="showSolve('Y')">정답 해설 보기</button>
+    <button class="topButton" onclick="setQuestionEnable('true')">문항 활성화</button>
+    <!-- <button class="button" onclick="setQuestionEnable('false')">문항 비활성화</button> -->
+    <button class="topButton" onclick="showAnswer('Y')">정답 넣기</button>
+    <button class="topButton" onclick="showAnswer('N')">답안 숨기기</button>
+<!--    <button class="topButton" onclick="setBrowserSize()">레이아웃 변경</button>-->
+    <button class="topButton" onclick="showExcelInput('Y')">엑셀 뷰어</button>
+    <button class="topButton" onclick="showJimun('Y')">지문 열기</button>
+    <p>파일명&ensp; : </p>
+    <p id="pFileName"></p>
+</div>
+
+<div id="author_tool2" class="authtool" style="display: none;">
+    <select id="question_state" class="topButton">
+        <option value=""> -- 저작상태 -- </option>
+        <option value="1">대기</option>
+        <option value="2">검수 요청</option>
+        <option value="3">수정 요청</option>
+        <option value="4">재검수 요청</option>
+        <option value="5">검수 완료</option>
+        <!--<option value="6">운영 배포</option>-->
+    </select>
+    <button class="topButton" onclick="questionStateChange('state')">저작상태 변경</button>
+    <select id="difficulty"  class="topButton">
+        <option value=""> -- 난이도 -- </option>
+        <option value="HIGH">상</option>
+        <option value="MID">중</option>
+        <option value="LOW">하</option>
+        <option value="NONE">없음</option>
+    </select>
+    <button class="topButton" onclick="questionStateChange('difficulty')">난이도 변경</button>
+    <select id="question_type"  class="topButton">
+        <option value=""> -- 문항유형 -- </option>
+        <option value="MULTI_CHOICE">선다형</option>
+        <option value="CHOICE">선택형</option>
+        <option value="SHORT_ANSWER">단답형</option>
+        <option value="OX">OX형</option>
+        <option value="CONNECT_LINE">선잇기형</option>
+        <option value="CHOICE_MOVE">선택이동형</option>
+        <option value="DROP_DOWN">드롭다운형</option>
+        <option value="COMBINATION">유형조합형</option>
+        <option value="NONE">없음</option>
+    </select>
+    <button class="topButton" onclick="questionStateChange('type')">문항유형 변경</button>
+    <button class="topButton" onclick="thumNailCreate()">썸네일 추출</button>
+</div>
+<div id="div_top_padding" class="div_top_padding"></div>
+
+<!-- <div id="scaleable-wrapper"  style="transform: scale(1); transform-origin: 0% 0%; left: 0px; top: 0px; opacity: 1;"> -->
+<div id="scaleable-wrapper">
+    <div id="viewer_container">
+        <div id="first" style="background-color : #eeebe8;" >
+            <div id="_jiplayer" class="player"></div>
+        </div>
+        <div id="second" class="question">
+            <div id="step" class="step-name"></div>
+            <div id="_QPlayer" class="player"></div>
+            <!-- <div style="height: 30px; background-color:#FF0000;"></div> -->
+            <div id="marking"></div>
+            <div id="viewer-top" class="viewer-top"></div>
+            <div id="bottomBar" class="bottomBar" ></div>
+        </div>
+        <!-- <div class="bottomBar" ></div> -->
+    </div>
+    <div id="btnSolve" class="comment_char" onclick="showSolve('Y')">해설 보기</div>
+
+
+    <div id="popup_solve" class="popup">
+        <div id="popup_content" class="popup_contents">
+            <div class="scroll_container">
+                <div class="scroll_inner">
+                    <div id="scroll_contents" class="scroll_contents">
+                        <div class="horizontal" >
+                            <p class="font_bold" style="width: 90px; min-width: 90px;">정답</p>
+                            <p id="answer" class="panswer" ></p>
+                            <img id="answerImage" class="answerImage"/>
+                            <div id="_APlayer" class="player" style="display:none; margin-top: -7px;"></div>
+                            <!-- <button id="solveMovie" class="solveMovie" onclick="showSolveMoive()" /> -->
+                        </div>
+                        <div class="dotLine"></div>
+                        <div class="horizontal" >
+                            <p id="solveLabel" class="font_bold" style="width: 90px; min-width: 90px;">해설</p>
+                            <div class="vertical">
+                                <button id="solveMovie" class="solveMovie" onclick="showSolveMoive()"></button>
+                                <p id="solve" class="psolve"></p>    
+                                <img id="solveImage" class="solveImage"></img>
+                                <div id="_SPlayer" class="player" style="display:none; margin-top: -7px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="closeBtn" onclick="showSolve('N')"></div>
+    </div>
+
+    <div id="popup_excel" class="popup" style="overflow-y: visible;">
+        <div class="popup_contents">
+            <div class="scroll_container" style="overflow-y: visible; margin: auto;width: 50%;">
+                <textarea id="taList" style="width: 500px; height: 400px;"></textarea>
+                <button class="font_bold" onclick="loadQuestionList()">확인</button>
+                <div class="closeBtn" onclick="showExcelInput('N')"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="popup_jimun" class="popup" style="overflow-y: visible;">
+        <div class="popup_contents">
+            <div class="scroll_container" style="overflow-y: visible; margin: auto;width: 50%;">
+                <p style="font-size:20px;">지문</p>
+                <textarea id="taJimun" style="height: 180px; width: 500px;"></textarea>
+                <p style="font-size:20px;">문항</p>
+                <textarea id="taJimunQuestion" style="width: 500px; height: 180px;"></textarea>
+                <button class="font_bold" onclick="loadJimunList()">확인</button>
+                <div class="closeBtn" onclick="showJimun('N')"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</body>
+</html>
+
+
+

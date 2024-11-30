@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/html">
+  <th:block th:fragment="eleGnbFragment">
+      <div id="sitemap" class="sitemap" no-dimd>
+          <!-- case01. 로그인 전 -->
+          <div class="login-box" th:if="${!isLogin}">
+              <!--<div class="user-info" th:onclick="'location.href=\'/pages/common/User/Login.mrn?redirectURI='+ @{${returnURI}} + '\''">-->
+              <div class="user-info" th:onclick="|location.href='@{${host_common}+'/pages/common/User/Login.mrn?redirectURI='+${returnURI}}'|">
+                  <div class="gradebox">
+                      <img src="/assets/images/common/icon-miraen-m.svg" alt="미래엔 아이콘" />
+                  </div>
+                  <p class="name">로그인해주세요.</p>
+              </div>
+              <!--<a th:href="'/pages/common/User/Join.mrn?redirectURI=' + ${returnURI}" class="text-underline">회원가입</a>-->
+              <a th:href="@{${host_common}+'/pages/common/User/Join.mrn?redirectURI='+${returnURI}}" class="text-underline">회원가입</a>
+              <button class="icon-button close-button" close-obj="">
+                  <svg>
+                      <title>닫기 아이콘</title>
+                      <use href="/assets/images/svg-sprite-solid.svg#icon-close"></use>
+                  </svg>
+              </button>
+          </div>
+          <!-- case02. 로그인 후 -->
+          <div class="login-box" th:if="${isLogin}">
+              <div class="user-info checked">
+                  <div class="gradebox">
+                      <p th:text="${gradeName}" th:if="${gradeName ne null}"></p>
+                  </div>
+                  <ul class="name">
+                      <li th:text="${jsUserInfo.get('userName')} + ' 선생님'" th:if="${jsUserInfo.get('userName') ne null}"></li>
+                      <li th:text="${schoolName}" th:if="${schoolName ne null}"></li>
+                  </ul>
+              </div>
+              <a href="javascript:void(0);" onclick="logout()" class="text-underline">로그아웃</a>
+              <button class="icon-button close-button" close-obj="">
+                  <svg>
+                      <title>닫기 아이콘</title>
+                      <use href="/assets/images/svg-sprite-solid.svg#icon-close"></use>
+                  </svg>
+              </button>
+          </div>
+          <div class="nav-tab">
+              <button class="icon-button prev">
+                  <svg>
+                      <title>아이콘 - icon-chevron-left</title>
+                      <use xlink:href="/assets/images/svg-sprite-arrow.svg#icon-chevron-left"></use>
+                  </svg>
+              </button>
+              <button class="icon-button next">
+                  <svg>
+                      <title>아이콘 - icon-chevron-right</title>
+                      <use xlink:href="/assets/images/svg-sprite-arrow.svg#icon-chevron-right"></use>
+                  </svg>
+              </button>
+              <div class="buttons type-rounded scrollable-x">
+                  <th:block th:each="level1Item, level1Stat: ${sitemapEleList}" th:if="${level1Item.level eq 1}">
+                      <a th:href="'#' +${level1Item.sortCode}" th:text="${level1Item.name}" th:if="${level1Stat.first}" th:class="active"></a>
+                      <a th:href="'#' +${level1Item.sortCode}" th:text="${level1Item.name}" th:unless="${level1Stat.first}"></a>
+                  </th:block>
+              </div>
+          </div>
+          <div class="nav-container">
+              <div class="nav-list" id="siteMapList">
+                  <th:block th:each="level1Item, level1Stat: ${sitemapEleList}" th:if="${(level1Item.sortCode eq '001' or level1Item.sortCode eq '002') and level1Item.level eq 1}">
+                      <!-- gnb 교과자료/평가자료 .active 추가를 위해 class에 구분 값 추가 -->
+                      <div class="nav-item" th:classappend="${level1Item.sortCode eq '001' ? 'textbook-activity-mobile' : 'test-data-mobile'}">
+                          <div class="nav-title">
+                              <p>[[${level1Item.name}]]</p>
+                              <ul class="text-divider semester">
+                                  <!-- 클릭시 active 스위칭 -->
+                                  <li class="active"><a href="javascript:void(0);"  th:id="gnbTermCode01_ + ${level1Item.sortCode}">1학기</a></li>
+                                  <li ><a href="javascript:void(0);"  th:id="gnbTermCode02_ + ${level1Item.sortCode}">2학기</a></li>
+                              </ul>
+                          </div>
+                          <th:block th:each="level2Item, level2Stat: ${sitemapEleList}" th:if="${level1Item.seq eq level2Item.parentSeq and level2Item.level eq 2}">
+                            <div class="depth2" th:id="${level2Item.key2}">
+                                <p class="title">[[${level2Item.name}]]</p>
+                                <ul class="depth3">
+                                </ul>
+                            </div>
+                          </th:block>
+                      </div>
+                  </th:block>
+                  <th:block th:each="level1Item, level1Stat: ${sitemapEleList}" th:if="${not (level1Item.sortCode eq '001' or level1Item.sortCode eq '002') and level1Item.level eq 1}">
+                      <div class="nav-item">
+                          <div class="nav-title text-primary">[[${level1Item.name}]]</div>
+                          <ul class="depth2">
+                              <th:block th:each="level2Item, level2Stat: ${sitemapEleList}" th:if="${level1Item.seq eq level2Item.parentSeq and level2Item.level eq 2}">
+                                  <li>
+                                      <a th:href="${level2Item.webName1}" th:target="${level2Item.target}">[[${level2Item.name}]]</a>
+                                  </li>
+                              </th:block>
+                          </ul>
+                      </div>
+                  </th:block>
+              </div>
+          </div>
+          <div class="grade-link">
+              <!-- 현재 focus에 따라 각 li에 .active를 부여 해주세요 -->
+              <!-- ex)현재 페이지가 초등이면 초등쪽 li에 active 부여 -->
+              <ul>
+                  <li th:class="${#strings.contains(servletPath, 'ele') ? 'active' : ''}">
+                      <a th:href="@{${host_ele}+'/pages/ele/Main.mrn'}" title="초등메인페이지 새창이동">초등</a>
+                  </li>
+                  <li th:class="${#strings.contains(servletPath, 'mid') ? 'active' : ''}">
+                      <a th:href="@{${host_mid}+'/pages/mid/Main.mrn'}" title="중학등메인페이지 새창이동">중학</a>
+                  </li>
+                  <li th:class="${#strings.contains(servletPath, 'high') ? 'active' : ''}">
+                      <a th:href="@{${host_high}+'/pages/high/Main.mrn'}" title="고등메인페이지 새창이동">고등</a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+  </th:block>
+</html>

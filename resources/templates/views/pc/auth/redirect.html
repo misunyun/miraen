@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<body>
+    <form id="redirect" th:action="${redirectUrl}" method="post">
+        <input type="hidden" name="ticket" th:value="${ticket}">
+        <input type="hidden" name="user_id" th:value="${user_id}">
+    </form>
+</body>
+<script>
+    window.onload = () => {
+        document.getElementById('redirect').submit();
+    }
+</script>
+</html>

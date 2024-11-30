@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+  <th:block th:fragment="eleHeadFragment">
+    <meta charset="UTF-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- !NOTE : 호출되는 css 초등/중등/고등/공통 유틸 구분이 필요합니다. 
+      초등 : elementary.css 
+      중학 : middle.css
+      고등 : high.css
+      공통유틸(마이페이지,고객센터,로그인,회원가입) : common.css
+
+      하단에서 호출되는 title 과 shotcut도 모두 위 기준으로 동일하게 호출 분기 해주세요 
+      img-shortcut-elementary.png 
+      img-shortcut-middle.png
+      img-shortcut-high.png
+      img-shortcut-common.png
+    -->
+    <title>엠티처 초등-미래엔교수활동플랫폼</title>
+    <meta th:if="${ogMenuPathName ne null and ogMenuPathName ne ''}" property="og:description" id="ogDesc" th:content="${ogMenuPathName}" />
+    <!-- 초등용 -->
+    <link href="/assets/mobile/css/elementary.css" rel="stylesheet" />
+
+    <!-- 바로가기 아이콘 -->
+    <link rel="shortcut icon" type="image/png" href="../../../images/common/img-shortcut-elementary.png">
+    <link rel="icon" type="image/png" sizes="180x180" href="../../../images/common/img-shortcut-elementary.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../images/common/img-shortcut-elementary.png">
+    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="../../../images/common/img-shortcut-elementary.png">
+    <meta name="apple-mobile-web-app-title" content="엠티처 초등">
+    <th:block layout:fragment="addCss">
+    </th:block>
+    <!-- ga4 적용 -->
+    <th:block th:replace="~{common/fragments/ga4_head :: ga4HeadFragment}"></th:block>
+
+    <input type="hidden" id="userGrade" th:value="${isLogin ? userInfo.getGrade() : ''}"/>
+
+    <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.1/kakao.js" integrity="sha384-pwDTu8wHS3HUfAgCS+FIgpFJHUJNO/2Eb0MZpYolcWKKVSQ6PDdeuEiwo/a1qdzq" crossorigin="anonymous"></script>
+    <script>
+      Kakao.init('62450d3d843193237da81800f990b57d');
+      console.log(Kakao.isInitialized());
+
+      // 선택된 GNB로 포커스 이동
+      document.addEventListener("DOMContentLoaded", function() {
+        window.onload = function() {
+          const $activeGnb = document.querySelector("#gnbAreaEle a.active");
+          const $activeGnbSub = document.querySelector("section.gnb-sub > nav > a.active");
+
+          if (!!$activeGnb) {
+            $activeGnb.focus();
+            $activeGnb.style.outline = 'none';
+          }
+
+          if (!!$activeGnbSub) {
+            $activeGnbSub.focus();
+            $activeGnbSub.style.outline = 'none';
+          }
+
+          if (location.pathname.indexOf('pages/ele/board') >= 0) {
+            let pathArr = location.pathname.split('/');
+            if (pathArr.length < 8) {
+              // 상세는 제외
+              let depth1 = $('#gnbAreaEle > a').filter('.active').html();
+              let depth2 = $('.history-depth-1.active').html();
+              let depth3 = $('.history-depth-2.active').html();
+              $cmm.setHistoryCookie(7, 'history-ele', `${depth1}:${depth2}:${depth3}:${location.pathname}`, '/pages/ele');
+            }
+          }
+
+          if (location.pathname.indexOf('pages/ele/bbs') >= 0) {
+            let pathArr = location.pathname.split('/');
+            if (pathArr.length < 7) {
+              // 상세는 제외
+              let depth1 = $('#gnbAreaEle > a').filter('.active').html();
+              let depth2 = $('.history-depth-1.active').html();
+              let depth3 = $('.history-depth-2.active').html();
+              $cmm.setHistoryCookie(7, 'history-ele', `${depth1}:${depth2}:${depth3}:${location.pathname}`, '/pages/ele');
+            }
+          }
+        };
+      });
+    </script>
+  </th:block>
+</html>

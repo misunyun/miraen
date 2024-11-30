@@ -1,0 +1,30 @@
+@charset "utf-8";
+
+/* dragdrop */
+.drag-title{font-size: 32px;color: #999;font-weight: 700}
+.center-block{display: block;margin-left: auto;margin-right: auto}
+.drag-item{transform: scale(1);z-index: 10}
+.ui-draggable-dragging{z-index: 15}
+.drag-item img, .answer-image img{max-width: none}
+.drop-false, .drop-true{position: absolute;display: block !important;top: 50%;left: 50%;transform: translate3d(-50%,-50%,0);width: 169px;height: 166px;background: url(../images/common/x.png) no-repeat 50% 50%/auto 100%;animation: fadeOut .2s .2s both;z-index: 20}
+.drop-true{background-image: url(../images/common/o.png)}
+.flex-box-group{display: flex;margin: 0 -10px}
+.flex-box-group>*{flex: 1;margin: 0 10px}
+.dragdrop-basket .dragzone{position: relative;margin: 25px 0 65px;display: inline-block;vertical-align: top;text-align: left;font-size: 40px;font-weight: 500}
+.dragdrop-basket .dragzone>*:not(img){position: absolute}
+.basket{position: relative;display: flex;align-items: center;justify-content: center;height: 139px;border-radius: 30px;font-size: 42px;border: 4px dashed #e874b7;box-shadow:0 0 0 4px #fae2f0,4px 4px 0 2px #f1acd4;background:#fae2f0;font-family:'NotoSans',sans-serif; text-align: center;user-select:none;}
+.basket.active{z-index: 5}
+.basket.ygrn{border-color: #c0ca60;box-shadow:0 0 0 4px #e0e989,4px 4px 0 2px #c0ca60;background: #e0e989}
+.basket.ylw{border-color: #debb5d;box-shadow:0 0 0 4px #fddf90,4px 4px 0 2px #debb5d;background: #fddf90}
+.basket.sky{border-color: #76d7e3;box-shadow:0 0 0 4px #9ceef8,4px 4px 0 2px #76d7e3;background: #9ceef8}
+.basket.purple{border-color: #bba5e6;box-shadow:0 0 0 4px #ddcdfd,4px 4px 0 2px #bba5e6;background: #ddcdfd}
+.basket.grn{border-color: #8dd386;box-shadow:0 0 0 4px #b2eeac,4px 4px 0 2px #8dd386;background: #b2eeac}
+.basket .answer-image{position: absolute;top: 50%;left: 50%;transform: translate3d(-50%,-50%,0)}
+.basket.animated:not(.active){animation: pulse 1s infinite}
+.dropped{pointer-events: none}
+.disabled .drag-item{pointer-events: none}
+.disabled .drag-item[data-answer]{opacity: 0;z-index: -1}
+.dragdrop-basket .drag-item{background-size: 100% auto;background-repeat: no-repeat}
+.dragdrop-basket:not(.disabled) .drag-item:not(.dragging):not(.dropped){background: none !important}
+.dragdrop-basket .dragging>img, .dragdrop-basket .dropped>img,
+.dragdrop-basket.disabled .drag-item>img{visibility: hidden}

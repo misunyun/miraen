@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+    layout:decorate="~{common/layouts/mo/lo_ele_main}" xmlns="http://www.w3.org/1999/html">
+<th:block layout:fragment="content">
+
+    <main id="main-contents">
+        <section class="tabs">
+            <!-- !NOTE .tab의 href의 값과 .pane의 ID 이 동일해야 합니다. -->
+            <div class="tab">
+                <ul>
+                    <!--<li class="active"><a href="#tab1-1">즐겨찾기</a></li>--> <!-- !NOTE li에 active가 붙어있으면 그 탭이 초기에 활성화됨. -->
+                    <!--<li><a href="#tab1-2">AI 클래스</a></li>-->
+                </ul>
+            </div>
+            <div class="pane-wrap">
+                <div id="tab1-1" class="pane">
+                    <!-- tab content -->
+                    <div class="bookmark-wrap fluid">
+                        <div class="split-container">
+                            <h3>나의 즐겨찾기</h3>
+                            <div class="extra" name="setFav">
+                                <input type="hidden" name="subjectLevelCode" value="ELEMENT">
+                                <input type="hidden" name="urlLevel" value="/ele/">
+                                <a href="javascript:void(0);" class="button size-sm"> 설정하기 <svg>
+                                    <title>아이콘 - icon-setting</title>
+                                    <use href="/assets/images/svg-sprite-solid.svg#icon-setting"></use>
+                                </svg>
+                                </a>
+                            </div>
+                        </div>
+                        <div id="mainFavoriteListWrap" class="slides">
+                            <div id="mainFavoriteList" class="swiper-wrapper">
+
+                                    <th:block th:each="mainFavoriteItem, mainFavoriteItemStat : ${mainFavoriteList}">
+
+                                        <!-- 미래엔 교과서 -->
+                                        <div class="swiper-slide" tabindex="0"
+                                             th:if="${mainFavoriteItem['favoriteType'] eq 'MRN' or mainFavoriteItem['favoriteType'] eq 'VIEW'}">
+                                            <div class="item-box">
+                                                <img th:src="${mainFavoriteItem['coverImagePath']}"
+                                                     th:if="${not #strings.isEmpty(mainFavoriteItem['coverImagePath'])}" alt=""
+                                                     class="cover" />
+                                            </div>
+                                            <div class="buttons">
+                                                <a th:href="${mainFavoriteItem['favoriteUrl'] + '&tabType=classTab'}"
+                                                   th:if="${mainFavoriteItem['subjectCode'] ne 'PE' and mainFavoriteItem['subjectCode'] ne 'AR' and mainFavoriteItem['subjectCode'] ne 'MO'}"
+                                                   class="button size-sm">수업하기</a>
+                                                <a th:href="${mainFavoriteItem['favoriteUrl'] + '&tabType=referenceTab'}"
+                                                   class="button size-sm">평가자료</a>
+                                            </div>
+                                        </div>
+
+                                        <!-- case 2/4 타사 : 관리자에서 배경 컬러값을 받아서 넣는다고 합니다. 기본은 그린컬러가 깔립니다.-->
+                                        <div class="swiper-slide" tabindex="0"
+                                             th:if="${mainFavoriteItem['favoriteType'] eq 'OTHER'}">
+                                            <div class="item-box"
+                                                 th:style="'background-color: ' + ${ not #strings.isEmpty(mainFavoriteItem['bgRgbCode']) ? '#' + mainFavoriteItem['bgRgbCode'] : '#fae9d9'}">
+                                                <img th:src="${not #strings.isEmpty(mainFavoriteItem['iconImagePath']) ? mainFavoriteItem['iconImagePath'] : '/assets/images/elementary/icon-main-test-reference.svg'}"
+                                                     alt="평가 자료실 아이콘" />
+                                                <div class="item-inner">
+                                                    <p class="title" th:text="${mainFavoriteItem['textbookName']}">수학 3-1</p>
+                                                    <p th:text="${mainFavoriteItem['publisherName']}"
+                                                       th:if="${not #strings.isEmpty(mainFavoriteItem['publisherName'])}">아이스크림</p>
+
+                                                    <p th:text="${'(' + mainFavoriteItem['leadAuthorName'] + ')'}"
+                                                       th:if="${not #strings.isEmpty(mainFavoriteItem['leadAuthorName'])}">(홍길동)</p>
+                                                </div>
+                                            </div>
+                                            <div class="buttons">
+                                                <a th:href="${mainFavoriteItem['favoriteUrl']}" target="_blank"
+                                                   class="button size-sm">바로가기</a>
+                                            </div>
+                                        </div>
+
+                                        <!-- case 3/4 자사외부 : 아이콘, 사용자가 작성한 제목정보 25자-->
+                                        <div class="swiper-slide" tabindex="0"
+                                             th:if="${mainFavoriteItem['favoriteType'] eq 'MTEACHER'}">
+                                            <div class="item-box"
+                                                 th:style="'background-color: ' + ${ not #strings.isEmpty(mainFavoriteItem['bgRgbCode']) ? '#' + mainFavoriteItem['bgRgbCode'] : '#fae9d9'}">
+                                                <img th:src="${not #strings.isEmpty(mainFavoriteItem['iconImagePath']) ? mainFavoriteItem['iconImagePath'] : '/assets/images/elementary/icon-main-world.svg'}"
+                                                     alt="엠티처 서비스 아이콘" />
+                                                <div class="item-inner text-dark" th:text="${mainFavoriteItem['textbookName']}"></div>
+                                            </div>
+                                            <div class="buttons">
+                                                <a th:href="${mainFavoriteItem['favoriteUrl']}" target="_blank" class="button size-sm">바로가기</a>
+                                            </div>
+                                        </div>
+
+                                        <!-- case 4/4 링크즐겨찾기 : 아이콘, 사용자가 작성한 제목정보 25자-->
+                                        <div class="swiper-slide" tabindex="0"
+                                             th:if="${mainFavoriteItem['favoriteType'] eq 'LINK'}">
+                                            <img src="/assets/images/elementary/icon-favorite-link.svg" alt="즐겨찾기 아이콘" />
+                                            <div class="item-inner">
+                                                <p class="title" th:text="${mainFavoriteItem['favoriteName']}"></p>
+                                            </div>
+                                            <div class="buttons">
+                                                <a th:href="${mainFavoriteItem['favoriteUrl']}" target="_blank" class="button size-sm">바로가기</a>
+                                            </div>
+                                        </div>
+
+                                    </th:block>
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="tab1-2" class="pane">
+                    <!-- tab content -->
+                </div>
+            </div>
+        </section>
+        <section class="slider-banner type-thick fluid">
+            <!-- !NOTE
+              1. 배너 이미지는 데이터로 제어 가능하도록 .banner-inner의 내용이 imag태그 위에 position absolute로 노출 됩니다.
+              2. .banner-inner, .button은 임시 display: none; 되어 있습니다.
+            -->
+            <div class="swiper">
+                <div class="swiper-wrapper">
+
+                    <th:block th:each="mainBannerItem, mainBannerItemStat : ${contentsTabTopBanner}">
+                        <!--<a th:href="${not #strings.isEmpty(mainBannerItem['pcImageLink']) ? mainBannerItem['pcImageLink'] : 'javascript:void(0);'}"-->
+                        <a th:href="${not #strings.isEmpty(mainBannerItem['mobileImageLink']) ? mainBannerItem['mobileImageLink'] : 'javascript:void(0);'}"
+                           th:target="${mainBannerItem['linkType'] eq 'NEW' ? '_blank' : ''}"
+                           th:if="${mainBannerItem['bannerLocation'] eq 'CT200'}" class="swiper-slide">
+                            <div class="banner-inner">
+                                <span th:text="${mainBannerItem['bannerName']}" class="text-xs">반려견과 함께하는</span>
+                                <h2 th:text="${mainBannerItem['bannerName']}">학교종이 댕댕댕</h2>
+                                <p th:text="${mainBannerItem['bannerName']}" class="desc"></p>
+                            </div>
+                            <!--<img th:src="${mainBannerItem['pcImageFileId']}"-->
+                            <img th:src="${mainBannerItem['mobileImageFileId']}"
+                                 th:alt="${mainBannerItem['altText']}">
+                        </a>
+                    </th:block>
+
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </section>
+        <section class="board-list type-thick fluid">
+            <div class="buttons type-rounded scrollable-x">
+                <!--/-- !NOTE 기본 라운드형 버튼 --//-->
+                <button type="button" class="button active" name="grid-selection" id="grid-selection-1" data-id="todayClass">
+                    오늘의 수업
+                </button>
+                <th:block th:if="${koreaMusicYn eq true}">
+                    <th:block th:if="${isKoreabasic eq true}">
+                        <button type="button" class="button" name="grid-selection" id="grid-selection-2" data-id="koreanBasic">
+                            국어기초학습
+                        </button>
+                    </th:block>
+
+                    <th:block th:if="${isKoreabasic eq false}">
+                        <button type="button" class="button" name="grid-selection" id="grid-selection-2" data-id="koreaMusic">
+                            음악 제제곡 듣기
+                        </button>
+                    </th:block>
+                </th:block>
+
+                <th:block th:each="contentsTabItem, contentsTabItemStat : ${contentsTabList}">
+                    <th:block th:if="${contentsTabItem['useYn'] eq 'Y'}">
+                        <button type="button" class="button" name="grid-selection"
+                            th:id="${'grid-selection-' + (contentsTabItemStat.index + 3)}"
+                            th:data-id="${contentsTabItem['commonCode']}" id="grid-selection-3"
+                            th:text="${contentsTabItem['codeName']}">
+                            쉬는시간
+                        </button>
+                    </th:block>
+                </th:block>
+
+            </div>
+
+            <!-- 처음 진입 시, 오늘의 수업 목록 -->
+            <div class="padding-side">
+                <div class="board-items">
+                    <th:block th:each="todayClassItem, todayClassItemStat : ${todayClassList}">
+                        <a href="javascript:void(0);" class="item" data-name="todayClass"
+                           th:data-id="${todayClassItem['referenceFileId']}"
+                           th:data-seq="${todayClassItem['referenceSeq']}"
+                           th:data-type="${todayClassItem['referenceFileUploadMethod']}"
+                           th:data-cmstype="${not #strings.isEmpty(todayClassItem['duration']) ? 'Y' : 'N'}">
+                            <div class="image-wrap">
+                                <img th:src="${#strings.isEmpty(todayClassItem['thumbnailPath']) ? '/assets/images/common/img-no-img.png' : todayClassItem.thumbnailPath}"/>
+                                <span class="badge type-round-box"
+                                    th:text="${#numbers.formatInteger(todayClassItem.duration div 60, 2) + ':' + #numbers.formatInteger(todayClassItem.duration % 60, 2)}"
+                                    th:if="${not #strings.isEmpty(todayClassItem['duration'])}">
+                                    59:59
+                                </span>
+                            </div>
+                            <div class="inner-wrap">
+                                <span class="badge text-elementary size-md" th:title="${todayClassItem['textbookName']}"
+                                    th:text="${todayClassItem['textbookName']}"
+                                    th:if="${not #strings.isEmpty(todayClassItem['textbookName'])}">
+                                    국어 3-1 나
+                                </span>
+                                <ul class="divider-group">
+                                    <li th:text="${todayClassItem['unitName']}">1-1 단원</li>
+                                    <li th:text="${todayClassItem['chasiName']}">12 차시</li>
+                                </ul>
+                                <p class="title" th:text="${todayClassItem['referenceName']}"
+                                   th:if="${not #strings.isEmpty(todayClassItem['referenceName'])}">
+                                    제목이 들어갑니다. 2줄까지 표현되고 말줄임 처리 됩니다. 제목이 들어갑니다. 2줄까지 표현되고 말줄임 처리 됩니다.
+                                </p>
+                            </div>
+                        </a>
+                    </th:block>
+
+                    <button class="more-button button moreBtn" th:classappend="${moreBtnYn ne 'Y' ? 'display-hide' : ''}">
+                        <svg>
+                            <title>아이콘 - icon-reload</title>
+                            <use xlink:href="/assets/images/svg-sprite-arrow.svg#icon-reload"></use>
+                        </svg> 다음 컨텐츠 보기 <span>1<em th:text="${'/' + totalPage}">/</em></span>
+                    </button>
+                </div>
+            </div>
+        </section>
+        <section class="edu-slider type-thick fluid">
+            <div class="split-container">
+                <h3>계기교육</h3>
+                <div class="extra" id="chanceEducationLinkBtn">
+                    <a href="javascript:void(0);" class="button size-sm"> 더보기 <svg>
+                        <title>아이콘 - icon-chevron-right</title>
+                        <use xlink:href="/assets/images/svg-sprite-arrow.svg#icon-chevron-right"></use>
+                    </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="slider-header">
+                <h4 th:text="${monthInfoList['monthInfoTitle']}">8월 재충전의 달</h4>
+            </div>
+            <div class="slides">
+                <div class="swiper-wrapper" id="chanceEducationList">
+                    <th:block th:each="chanceEducationItem, chanceEducationItemStat : ${chanceEducationList}">
+                        <a th:href="${'/pages/ele/board/creativexp/chanceEducation.mrn/1067/' + chanceEducationItem['masterSeq']}"
+                           class="swiper-slide">
+                            <div class="image-wrap">
+                                <img th:src="${#strings.isEmpty(chanceEducationItem['thumbnailFilePath']) ? '/assets/images/common/img-no-img.png' : chanceEducationItem.thumbnailFilePath}"
+                                     th:alt="${chanceEducationItem.title}" />
+
+                                <span class="badge type-round-box" th:text="${chanceEducationItem['eventDateName']}"
+                                      th:if="${chanceEducationItem['eventDateName'] ne null and chanceEducationItem['eventDateName'] ne '-'}">
+                                    12월 28일
+                                </span>
+                            </div>
+                            <div class="inner-wrap">
+                                <p class="text-primary"
+                                   th:text="${chanceEducationItem['chanceEducationType']}">주제수업</p>
+                                <p class="title" th:text="${chanceEducationItem['title']}">제목이 들어갑니다.제목이 들어갑니다.제목이
+                                    들어갑니다.제목이 들어갑니다.제목이 들어갑니다.</p>
+<!--                                <p class="desc" th:text="${chanceEducationItem['summary']}">안전한 TV에서 제공하는 워터파크 물놀이-->
+<!--                                    안전수칙에 대한 영상 감상, 물놀이 안전수칙에 대한</p>-->
+                                <p class="summary" th:text="${chanceEducationItem['source']}">EBS 키즈</p>
+                            </div>
+                        </a>
+                    </th:block>
+
+                </div>
+            </div>
+        </section>
+        <section class="banners type-vertical type-thick fluid">
+            <!-- !NOTE
+              1. 배너 이미지는 데이터로 제어 가능하도록 .banner-inner의 내용이 imag태그 위에 position absolute로 노출 됩니다.
+              2. .banner-inner는 임시 display: none; 되어 있습니다.
+            -->
+            <th:block th:each="mainBannerItem, mainBannerItemStat : ${bottomBanners}">
+                <!--<a th:href="${not #strings.isEmpty(mainBannerItem['pcImageLink']) ? mainBannerItem['pcImageLink'] : 'javascript:void(0);'}"-->
+                <a th:href="${not #strings.isEmpty(mainBannerItem['mobileImageLink']) ? mainBannerItem['mobileImageLink'] : 'javascript:void(0);'}"
+                   th:target="${mainBannerItem['linkType'] eq 'NEW' ? '_blank' : ''}"
+                   th:if="${mainBannerItem['bannerLocation'] eq 'BB400'}">
+                    <div class="banner-inner">
+                        <h2 th:text="${mainBannerItem['bannerName']}">선생님 나눔 자료</h2>
+                        <p th:text="${mainBannerItem['bannerName']}" class="desc">교과, 창의적 체험활동 및 학급 운영에<br/> 필요한
+                            자료를 함께 나누어요!</p>
+                    </div>
+                    <!--<img th:src="${mainBannerItem['pcImageFileId']}" th:alt="${mainBannerItem['altText']}">-->
+                    <img th:src="${mainBannerItem['mobileImageFileId']}" th:alt="${mainBannerItem['altText']}">
+                </a>
+            </th:block>
+
+        </section>
+
+        <section class="notice type-thick">
+            <span class="badge">공지</span>
+            <div class="title-wrap slides">
+                <div class="slider-vertical">
+                    <div class="swiper-wrapper">
+                        <th:block th:each="mainNoticeItem, mainNoticeItemStat : ${mainNoticeList}">
+                            <div class="swiper-slide">
+                                <!--<a th:href="${'/pages/common/customer/notice.mrn/' + mainNoticeItem['boardSeq']}"-->
+                                <a th:href="@{${host_common} + '/pages/common/customer/notice.mrn/' + ${mainNoticeItem['boardSeq']}}"
+                                   th:text="${mainNoticeItem['boardTitle']}" class="guide-items" target="_blank">
+                                    엠티처 &lt;선생님과 함께하는 시간 ‘M카페’로 만나요!&gt; 이벤트
+                                </a>
+                            </div>
+                        </th:block>
+                    </div>
+                </div>
+            </div>
+            <a th:href="@{${host_common} + '/pages/common/customer/notice.mrn?schoolType=ELEMENT'}" class="icon-button" target="_blank">
+                <svg>
+                    <title>아이콘 - icon-chevron-right</title>
+                    <use xlink:href="/assets/images/svg-sprite-arrow.svg#icon-chevron-right"></use>
+                </svg>
+            </a>
+        </section>
+
+        <th:block th:replace="~{common/components/mo/mainBottomServices :: mainBottomServicesFragment}">
+        </th:block>
+
+        <input type="hidden" id="boardGrade" th:value="${isLogin ? userInfo.getGrade() : ''}" />
+        <input type="hidden" id="boardRight" th:value="${isLogin ? userInfo.getRight() : ''}" />
+
+    </main>
+
+    <!-- 즐겨찾기 설정 팝업 -->
+    <th:block th:replace="~{common/fragments/mo/set_favorite_popup :: setFavoritePopupFragment}"></th:block>
+
+</th:block>
+
+<th:block layout:fragment="addCss">
+    <link href="/assets/mobile/css/main.css" rel="stylesheet" />
+</th:block>
+
+<th:block layout:fragment="addScript">
+    <script src="/js/pc/ele/viewer/js/mteacherViewer.js"></script>
+    <script src="/js/popup/readAllContentsModal.js"></script>
+    <script src="/js/mo/ele/main/main.js"></script>
+    <script src="/js/mo/popup/setFavoritePopup.js"></script>
+</th:block>
+
+</html>

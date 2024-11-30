@@ -1,0 +1,87 @@
+@charset "utf-8";
+@import url('../plugins/toastr/toastr.min.css');
+@import url('../plugins/jquery-confirm/jquery-confirm.min.css');
+@import url(//cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css);
+@import url(//cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css);
+@import url(//cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.css);
+@import url(../plugins/bootstrap-datepicker/css/bootstrap-datepicker3.standalone.min.css);
+@import url(//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css);
+@import url(//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css);
+@import url(animate.min.css);
+@import url(../plugins/video/video-js.css);
+@import url(page.css?d=20230209);
+@import url(event.css?d=20230209);
+@import url(search.css?d=20230209);
+@import url(board.css?d=20230209);
+@import url(curriculum.css?d=20230414);
+@import url(layout.css?d=20230721);
+@import url(lesson.css?d=20230502);
+
+header.micro .txt {z-index:1;}
+header.micro .txt a.modal-popup {margin-left:5px;color:#fff;transition:all 0.5s;}
+header.micro .txt a.modal-popup:hover {color:#000;}
+
+/* modal */
+.modal-wrap {position:relative;margin:3% auto;width:1200px;background:#fff;border:1px solid #e3e3e3;display:none;box-shadow:0px 6px 12px 0px rgba(0, 0, 0, 0.24);}
+.modal-head {padding:20px;text-align:center;border-bottom:1px solid #e8e8e8;}
+.modal-head h2 {font-size:26px;font-weight:500;}
+.modal-cont {padding:20px;}
+.modal-close {position:absolute;right:20px;top:16px;font-size:28px;}
+@media only all and (max-width:1024px) {
+	.modal-wrap {width:90%;}
+}
+@media only all and (max-width:640px) {
+	.modal-head {padding:15px;}
+	.modal-head h2 {font-size:18px;}
+	.modal-cont {padding:15px;}
+	.modal-close {right:10px;top:13px;;font-size:22px;}
+	.modal-wrap .future-class-list {margin:0;}
+}
+
+/* 얼랏 jquery-confirm addOn */
+.jconfirm.jconfirm-white .jconfirm-box, .jconfirm.jconfirm-light .jconfirm-box {border-radius: 0px;}
+.jconfirm .jconfirm-box div.jconfirm-title-c {color: #0f8375;}
+.jconfirm .jconfirm-box div.jconfirm-content-pane .jconfirm-content {overflow: visible; color: #444;}
+.jconfirm.jconfirm-white .jconfirm-box .jconfirm-buttons button, .jconfirm.jconfirm-light .jconfirm-box .jconfirm-buttons button {font-weight: normal; border-radius: 0px;}
+@media only all and (max-width:1200px) {
+   .jconfirm.jconfirm-white .jconfirm-box, .jconfirm.jconfirm-light .jconfirm-box{ width:440px !important;}
+}
+@media only all and (max-width:440px) {
+   .jconfirm.jconfirm-white .jconfirm-box, .jconfirm.jconfirm-light .jconfirm-box{ width:430px !important;}
+}
+@media only all and (max-width:400px) {
+   .jconfirm.jconfirm-white .jconfirm-box, .jconfirm.jconfirm-light .jconfirm-box{ width:380px !important;}
+}
+@media only all and (max-width:380px) {
+    .jconfirm.jconfirm-white .jconfirm-box, .jconfirm.jconfirm-light .jconfirm-box{ width:340px !important;}
+}
+
+/* 로딩 공통 */
+.loadingDiv {width: 100%;height: 100%;position: fixed;background-color: rgba(0, 0, 0, 0.1);top: 0;left: 0;z-index: 10000;color: #fff;text-align: center;align-items: center;display: grid;font-size: 30px;}
+.loadingDiv img {margin:auto;}
+.loadingAni {position:fixed;left: 50%; top: 50%;width: 80px;height: 60px; z-index:10001;}
+.loadingAni div {display: inline-block; position: absolute; left: 8px; width: 16px; background: #00cbb4; animation: loadingAni 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;}
+.loadingAni div:nth-child(1) {left: 8px; animation-delay: -0.24s;}
+.loadingAni div:nth-child(2) {left: 32px; animation-delay: -0.12s;}
+.loadingAni div:nth-child(3) {left: 56px; animation-delay: 0;}
+@keyframes loadingAni {0% {top: 8px; height: 64px;} 50%, 100% {top: 24px; height: 32px;}}
+/* animation */
+.animated {-webkit-animation-duration:1s;animation-duration:1s;-webkit-animation-fill-mode:both;animation-fill-mode:both;}
+@-webkit-keyframes fadeUp {0% {opacity:0;-webkit-transform:translateY(20px);transform:translateY(20px);}
+  100% {opacity:1;-webkit-transform:translateY(0);transform:translateY(0);}}
+@keyframes fadeUp {0% {opacity:0;-webkit-transform:translateY(20px);-ms-transform:translateY(20px);transform:translateY(20px);}
+  100% {opacity:1;-webkit-transform:translateY(0);-ms-transform:translateY(0);transform:translateY(0);}}
+@-webkit-keyframes fadeUpBig {0% {opacity:0;-webkit-transform:translateY(40px);transform:translateY(40px);}
+  100% {opacity:1;-webkit-transform:translateY(0);transform:translateY(0);}}
+@keyframes fadeUpBig {0% {opacity:0;-webkit-transform:translateY(40px);-ms-transform:translateY(40px);transform:translateY(40px);}
+  100% {opacity:1;-webkit-transform:translateY(0);-ms-transform:translateY(0);transform:translateY(0);}}
+@keyframes fadeLeft {
+  0% {opacity:0;-webkit-transform:translateX(-40px);-ms-transform:translateX(-40px);transform:translateX(-40px);}
+  100% {opacity:1;-webkit-transform:translateX(0);-ms-transform:translateX(0);transform:translateX(0);}
+}
+
+
+/* video */
+.videoID-dimensions {width:100%;}
+.video-js .vjs-big-play-button {position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);}
+

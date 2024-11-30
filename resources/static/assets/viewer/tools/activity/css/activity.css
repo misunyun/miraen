@@ -1,0 +1,525 @@
+@font-face { 
+    font-weight: 400;
+    font-family: 'NotoSansKR_Bold';
+    font-style: normal;
+    src: url('./../../common/font/NotoSansKR-Bold.woff') format('woff');
+}
+html {
+    height: 100%;
+    margin: 0;
+}
+body {
+    height: 100%;
+    width: 100%;
+    top:0;   
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 auto;
+    padding: 0px;
+    position: absolute;
+    overflow: hidden;
+    box-sizing:border-box;
+    /* scroll bar hidden */
+    -moz-box-sizing:border-box; 
+    -webkit-box-sizing:border-box;
+    -ms-overflow-style: none; 
+    /* unselectable */
+    user-select: none; /* standard syntax */
+    -webkit-user-select: none; /* webkit (safari, chrome) browsers */
+    -moz-user-select: none; /* mozilla browsers */
+    -khtml-user-select: none; /* webkit (konqueror) browsers */
+    -ms-user-select: none; /* IE10+ */
+}
+body::-webkit-scrollbar {
+    display:none; 
+}
+button, input {
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+span {
+    display: inline-block;
+}
+#activity_wrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: url('../images/bg.png') center center fixed;
+    background-repeat: no-repeat;
+    background-size: 136% 110%;
+}
+#activity_result_wrap {
+    display: none;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: url('../images/bg3.png') center center fixed;
+    background-repeat: no-repeat;
+    background-size: 134% 101%;
+}
+#result_chick_2 {
+    position: absolute;
+    top: 2%;
+    left: 0;
+    width: 12%;
+    height: 25%;
+    background-image: url('../images/bg_chick_2.png');
+    background-repeat: no-repeat;
+    background-size: 150% 92%;
+    background-position: -83px 10px;
+    z-index: 10;
+}
+#result_chick_1 {
+    position: absolute;
+    top: 11%;
+    right: 0;
+    width: 12%;
+    height: 21%;
+    background-image: url('../images/bg_chick_1.png');
+    background-repeat: no-repeat;
+    background-size: 150% 100%;
+    background-position: 0px -2px;
+    z-index: 10;
+}
+
+.close {
+    position: absolute;
+    top : 4%;
+    right: 2%;
+    width: 5vh;
+    height: 5vh;
+    background-image: url('./../../../img/viewer/tools_close.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    cursor: pointer;
+    z-index: 11;
+}
+.activity_bg_top {
+    position: absolute;
+    top: 13%;
+    left: 25%;
+    width: 50%;
+    height: 20%;
+    color: #ff7e00;
+    font-family: 'NotoSansKR_Bold';
+    font-size: 7vmin;
+    text-align: center;
+}
+.egg {
+    position: absolute;
+    top: 68%;
+    left: 4%;
+    width: 22%;
+    height: 22%;
+    background-image: url('../images/egg.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    z-index: 10;
+}
+.chick {
+    position: absolute;
+    top: 58%;
+    left: 76%;
+    width: 12%;
+    height: 32%;
+    background-image: url('../images/chick_1.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    z-index: 10;
+}
+.note {
+    position: absolute;
+    top: 51%;
+    left: 89%;
+    width: 9%;
+    height: 10%;
+    background-image: url('../images/note.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    animation: motion 1s linear 0s infinite alternate;
+    z-index: 10;
+}
+.activity_bg_body_left {
+    position: absolute;
+    top: 22%;
+    left: 32.5%;
+    width: 35%;
+    height: 65%;
+}
+.activity_bg_body_right {
+    position: absolute;
+    left: 32.5%;
+    top : 50%;
+    width: 35%;
+    height: 10vh;
+    display: block;
+    background-image: url('../images/start_btn_off.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    text-align: center;
+    cursor: pointer;
+}
+.activity_bg_body_right:hover {
+    color: #f1d0ad;
+    background-image: url('../images/start_btn_on.png');
+}
+.activity_bg_body_right span {
+    color: #fff;
+    font-size: 4vmin;
+    line-height: 10vmin;
+    font-weight: 700;
+    padding-left: 18%;
+}
+.input_area {
+    position: absolute;
+    left: 0%;
+    width: 100%;
+    height: 10vh;
+    display: block;
+}
+.ia_top {
+    top : 6%;
+}
+.ia_bottom {
+    top : 28%;
+}
+.ac_span {
+    width: 50%;
+    color: #6b3d17;
+    font-family: 'NotoSansKR_Bold';
+    font-size: 4vmin;
+    text-align: right;
+}
+.y_color {
+    color: #ff8f17;
+}
+.activity_bg_bottom {
+    position: absolute;
+    left: 31%;
+    top: 25%;
+    width: 38%;
+    height: 30px;
+    font-family: 'NotoSansKR_Bold';
+    font-size: 3vmin;
+    line-height: 5vmin;
+    color: #fff;
+    background-color: rgba(107, 61, 23, 0.8);
+    text-align: center;
+    border-radius: 20px;
+}
+.input_style {
+   width: 36%;
+   height: 100%;
+    border-radius: 20px;
+    color: #6b3d17;
+    border: 3px solid #6b3d17;
+    text-align: center;
+    font-size: 3.5vw;
+    font-weight: 700;
+    margin-left: 3%;
+    box-shadow: 2px 4px #e4e4e4 inset;
+}
+#allUser {
+    top : 6%;
+}
+#inputUser {
+    top : 28%;
+}
+
+#st_btn:hover {
+    background-image: url('../images/st_btn_on.png');
+}
+.result_btn_wrap {
+    position: absolute;
+    bottom: 7%;
+    left: 25%;
+    width: 50%;
+    height: 10%;
+}
+#activity_result_btn {
+    float: left;
+    width: 40%;
+    margin: 0 5%;
+    height: 100%;
+    background-image: url('../images/eggdrop_off.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    color: #fff;
+    font-weight: bold;
+    font-family: 'NotoSansKR_Bold';
+    text-align: center;
+    cursor: pointer;
+}
+#activity_result_btn:hover {
+    background-image: url('../images/eggdrop_on.png');
+}
+#reset_btn {
+    float: left;
+    width: 40%;
+    margin: 0 5%;
+    height: 100%;
+    background-image: url('../images/reset_off.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    color: #fff;
+    font-weight: bold;
+    font-family: 'NotoSansKR_Bold';
+    text-align: center;
+    cursor: pointer;
+}
+#reset_btn:hover {
+    background-image: url('../images/reset_on.png');
+}
+#egg_wrap {
+    position: relative;
+    top: 10%;
+    margin: 0 12.5%;
+    width: 75%;
+    height: 50%;
+}
+.egg_straw {
+    position: relative;
+    width: 9%;
+    height: 16%;
+    float: left;
+    margin: 3% 1% 0 0;
+}
+.result_egg {
+    position: relative;
+    display: inline-block;
+    top: -5%;
+    left: 15%;
+    width: 70%;
+    height: 100%;
+    margin: 0 3% 1.8% 0%;
+    background-image: url('../images/result_egg.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    box-sizing: border-box;
+    z-index: 2;
+    transform: translateZ(0);
+}
+.eggleak_motion {
+    animation: eggleak_motion 0.5s step-start 0s 1 alternate;
+}
+.result_straw {
+    position: relative;
+    top: -40%;
+    width: 100%;
+    height: 30%;
+    background-image: url('../images/straw.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    z-index: 3;
+}
+#result_egg_wrap {
+    position: relative;
+    width: auto;
+    max-width: 90%;
+    min-width: 10%;
+    height: 20%;
+    margin: 0 auto;
+    top: 14%;
+    text-align: center;
+    pointer-events: none;
+}
+/* .result_egg_wrap_motion {
+    animation: result_motion 2s linear 0s 1 alternate;
+} */
+.result_eggs {
+    position: relative;
+    display: inline-block;
+    top: 8%;
+    width: 8%;
+    height: 66%;
+    margin: 0 1%;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    box-sizing: border-box;
+    opacity: 0;
+}
+.result_eggs_1 {
+    background-image: url('../images/result_chick_1.png');
+}
+.result_eggs_2 {
+    background-image: url('../images/result_chick_2.png');
+}
+.result_eggs_3 {
+    background-image: url('../images/result_chick_3.png');
+}
+.result_eggs_4 {
+    background-image: url('../images/result_chick_4.png');
+}
+.re_num {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 50%;
+    margin-top: 40%;
+    color: #6b3d17;
+    font-family: 'roboto';
+    text-align: center;
+}
+.alert_wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 12;
+    display: none;
+}
+.alert_modal_card {
+    width: 25%;
+    height: 100%;
+}
+.alert_body {
+    position: relative;
+    top : 22%;
+    height: 60%;
+    background-color: transparent;
+    overflow: auto;
+    padding: 20px;
+    background-image: url('../images/popup.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+@keyframes motion {
+	0% {transform: rotate(0deg);}
+	100% {transform: rotate(10deg);}
+}
+
+@keyframes eggleak_motion {
+    0% {transform: rotate(-15deg);}
+	16% {transform: rotate(15deg);}
+	32% {transform: rotate(-15deg);}
+	48% {transform: rotate(15deg);}
+	64% {transform: rotate(-10deg);}
+	100% {transform: rotate(0deg);}
+}
+@keyframes result_motion {
+	0% {transform:scale(0.1);}
+	25% {transform:scale(0.5);}
+	50% {transform:scale(0.3);}
+	100% {transform:scale(1);}
+}
+
+@media screen and (min-width: 901px) and (max-width: 1920px) {
+    #activity_wrap {
+        background-size: 100% 100%;
+    }
+    .activity_bg_top {
+       width: 50%;
+       left: 25%;
+       height: 12%;
+       top: 13%;
+       font-size: 7vmin;
+    }
+    .ac_span {
+        display: inline-block;
+        width: 50%;
+        color: #6b3d17;
+        font-family: 'NotoSansKR_Bold';
+        font-size: 4vmin;
+        text-align: right;
+        position: relative;
+        top:-8%;
+    }
+    .egg {
+        left: 16%;
+        width: 17%;
+    }
+    .chick {
+        left: 70%;
+        width: 10%;
+    }
+    .note {
+        top: 51%;
+        left: 79%;
+        width: 5%;
+        height: 8%;
+    }
+    .activity_bg_body_left {
+        top: 30%;
+        left: 32.5%;
+        width: 35%;
+        height: 65%;
+    }
+    /* .activity_bg_body_right {
+        top: 34%;
+        left: 57%;
+        width: 10%;
+        height: 26%;
+    } */
+    /* .activity_bg_body_right span {
+        font-size: 5vmin;
+        line-height: vmin;
+    } */
+    /* .input_area {
+        left: 10%;
+    } */
+    .input_style {
+        width: 28%;
+    }
+    .activity_bg_bottom {
+        height: 5%;
+        font-size:3vmin;
+        line-height: 5vmin;
+    }
+    #egg_wrap {
+        width: 55%;
+        margin: 0 22.5%;
+        top: 10%;
+    }
+    #result_chick_1 {
+    top: 10%;
+    right: 6%;
+    width: 13%;
+    height: 21%;
+    background-size: 100% 100%;
+    background-position: 0 0;
+    }
+    #result_chick_2 {
+    top: 8%;
+    left: 94px;
+    width: 14%;
+    height: 25%;
+    background-size: 100% 100%;
+    background-position: 0 0;
+    }
+    #activity_result_wrap {
+        background-size: 100% 100%;
+    }
+    .result_egg {
+        top: 0%;
+        left: 17.5%;
+        width: 65%;
+        height: 100%;
+        margin: -10px 9% 10% 0%;
+    }
+    #result_egg_wrap {
+        max-width: 70%;;
+    }
+    #activity_result_btn, #reset_btn {
+        font-size: 4vmin;
+        line-height: 10vmin;
+    }
+    .result_eggs {
+        top: -5%;
+        width: 8%;
+        height: 70%;
+        margin: 0 1%;
+    }
+    .re_num {
+        font-size: 5vmin;
+        font-weight: 900;
+    }
+}

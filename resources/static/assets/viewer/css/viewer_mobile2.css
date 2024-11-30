@@ -1,0 +1,1994 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@400;500;700&display=swap');
+@import url(bootstrap.min.css);
+@import url(jquery.mCustomScrollbar.min.css);
+@import url(swiper.min.css);
+@import url(https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css);
+/* Font */
+
+@font-face {
+    font-weight: 300;
+    font-family: 'NanumSquare';
+    src: url("../font/NanumSquareL.woff") format('woff');
+    font-display: fallback
+}
+
+@font-face {
+    font-weight: 400;
+    font-family: 'NanumSquare';
+    src: url("../font/NanumSquareR.woff") format('woff');
+    font-display: fallback
+}
+
+@font-face {
+    font-weight: 500;
+    font-family: 'NanumSquare';
+    src: url("../font/NanumSquareB.woff") format('woff');
+    font-display: fallback
+}
+
+@font-face {
+    font-weight: 700;
+    font-family: 'NanumSquare_bold';
+    src: url("../font/NanumSquareEB.woff") format('woff');
+    font-display: fallback
+}
+
+@font-face {
+    font-weight: 700;
+    font-family: 'NanumGothic_bold';
+    src: url("../font/NanumGothic.woff") format('woff');
+    font-display: fallback
+}
+
+@font-face {
+    font-weight: 400;
+    font-family: 'NanumGothic';
+    src: url("../font/NanumGothic.woff") format('woff');
+    font-display: fallback
+}
+
+@font-face {
+    font-weight: 400;
+    font-family: 'NanumMyeongjo';
+    src: url("../font/NanumMyeongjo.woff") format('woff');
+    font-display: fallback
+}
+
+.font-sans {
+    font-family: 'Noto Sans KR', sans-serif !important
+}
+
+.font-serif {
+    font-family: 'Noto Serif KR', serif !important
+}
+
+/* reset */
+
+html {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+}
+
+body {
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
+    -webkit-text-size-adjust: none;
+    -webkit-transform: translate3D(0, 0, 0);
+    -ms-transform: translate3D(0, 0, 0);
+    transform: translate3D(0, 0, 0);
+}
+
+body,
+input,
+textarea,
+select,
+button,
+table {
+    font-weight: 500;
+    font-family: 'NanumSquare ExtraBold', sans-serif;
+    line-height: 1.5;
+    letter-spacing: -.025em;
+    color: #555
+}
+
+a,
+button,
+input,
+textarea {
+    color: inherit;
+    transition: border-color .4s, background .4s, color .4s, opacity .4s, transform .4s
+}
+
+a {
+    text-decoration: none !important
+}
+
+div,
+button {
+    touch-action: manipulation;
+}
+
+a:hover,
+a:focus,
+a:active {
+    color: inherit
+}
+
+body,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol,
+li,
+dl,
+dt,
+dd,
+table,
+th,
+td,
+form,
+fieldset,
+legend,
+input,
+textarea,
+button,
+select {
+    margin: 0;
+    padding: 0
+}
+
+li {
+    list-style: none
+}
+
+address,
+i {
+    margin: 0;
+    font-style: normal
+}
+
+label {
+    margin: 0;
+    cursor: pointer
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse
+}
+
+button,
+input {
+    border: 0;
+    box-shadow: none;
+    background: none;
+    outline: 0 !important
+}
+
+i {
+    font-style: normal;
+}
+
+img {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto
+}
+
+/* Typhography */
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 700;
+    font-family: 'NanumSquare ExtraBold', sans-serif;
+}
+
+/* button */
+.btn {
+    padding: 2px 10px;
+    border-radius: 0;
+    display: block;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.9s, color 0.3
+}
+
+.btn-box .auth-math-padding-left {
+    padding: 2px 5vw 2px 5px;
+}
+
+.btn-box .auth-math-padding-right {
+    padding: 2px 5px 2px 5vw;
+}
+
+.btn-box .auth-math-padding {
+    padding: 5px;
+}
+
+.btn-box .auth-math-btn-padding {
+    padding: 0 5px;
+}
+
+.btn-box .auth-social-padding-left {
+    padding: 2px 5vw 2px 0px;
+}
+
+.btn-box .auth-social-padding-right {
+    padding: 2px 0px 2px 5vw;
+}
+
+.btn-box .auth-social-padding {
+    padding: 5px;
+}
+
+.btn-box .auth-social-btn-padding {
+    padding: 0 5px;
+}
+
+.btn-pink {
+    border: 3px #ffa4c8 solid;
+}
+
+.btn-sky {
+    border: 3px #2fa9ff solid;
+}
+
+.btn-purple {
+    border: 3px #d278fe solid;
+}
+
+.btn-peach {
+    border: 3px #ffaa8d solid;
+}
+
+.btn-yellow {
+    border: 3px #feb358 solid;
+}
+
+.btn-blue {
+    border: 3px #2f77ff solid;
+}
+
+.btn-green {
+    border: 3px #01b1b9 solid;
+}
+
+.btn-pink:hover {
+    color: #ffa4c8;
+    background-color: #fff
+}
+
+.btn-sky:hover {
+    color: #2fa9ff;
+    background-color: #fff
+}
+
+.btn-purple:hover {
+    color: #d278fe;
+    background-color: #fff
+}
+
+.btn-peach:hover {
+    color: #ffaa8d;
+    background-color: #fff
+}
+
+.btn-yellow:hover {
+    color: #feb358;
+    background-color: #fff
+}
+
+.btn-blue:hover {
+    color: #2f77ff;
+    background-color: #fff
+}
+
+.btn-green:hover {
+    color: #01b1b9;
+    background-color: #fff
+}
+
+/* badge */
+
+.badge {
+    padding: 5px;
+    display: inline-block;
+    border-radius: 0px 0px 0px 0px;
+    margin-right: 7px
+}
+
+.bg-pink {
+    background: #ffa4c8;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600 !important
+}
+
+.bg-pink-point {
+    left: 18% !important
+}
+
+.bg-sky {
+    background: #2fa9ff;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600 !important
+}
+
+.bg-sky-point {
+    left: 50%
+}
+
+.bg-purple {
+    background: #d278fe;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600 !important
+}
+
+.bg-purple-point {
+    left: 85% !important
+}
+
+.ft-purple {
+    color: #d278fe !important
+}
+
+.bg-peach {
+    background: #ffaa8d;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600 !important
+}
+
+.bg-peach-point {
+    left: 18% !important
+}
+
+.bg-yellow {
+    background: #feb358;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600 !important
+}
+
+.bg-yellow-point {
+    left: 50% !important
+}
+
+.bg-green {
+    background: #01b1b9;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600 !important
+}
+
+.bg-green-point {
+    left: 50% !important
+}
+
+.bg-blue {
+    background: #3078ff;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600 !important
+}
+
+.bg-blue-point {
+    left: 50%
+}
+
+.caret {
+    position: relative;
+    top: 5px;
+    margin-left: 8px;
+    border: 6px solid;
+    border-width: 7px 6px;
+    border-color: #666 transparent transparent;
+    vertical-align: middle
+}
+
+/* Icons */
+[class^=icon-] {
+    display: inline-block;
+    overflow: hidden;
+    width: 4vh;
+    height: 4vh;
+    margin: 0 10px 0 0;
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    font-size: 0;
+    line-height: 0;
+    text-decoration: none;
+    vertical-align: middle;
+    text-indent: -1000em
+}
+
+[class^=icon-tool] {
+    margin-right: 8px;
+    background-image: url("../img/viewer/icon-tool.png")
+}
+
+.icon-tool2 {
+    width: 40px;
+    background-image: url("../img/viewer/icon-tool2.png")
+}
+
+.icon-tool3 {
+    background-image: url("../img/viewer/icon-tool3.png")
+}
+
+.icon-tool4 {
+    background-image: url("../img/viewer/icon-tool4.png")
+}
+
+.icon-tool5 {
+    background-image: url("../img/viewer/icon-tool5.png")
+}
+
+.icon-tool6 {
+    background-image: url("../img/viewer/icon-tool6.png")
+}
+
+.active .icon-tool2 {
+    background-image: url("../img/viewer/icon-tool2-on.png")
+}
+
+.active .icon-tool3 {
+    background-image: url("../img/viewer/icon-tool3-on.png")
+}
+
+.active .icon-tool4 {
+    background-image: url("../img/viewer/icon-tool4-on.png")
+}
+
+.active .icon-tool5 {
+    background-image: url("../img/viewer/icon-tool5-on.png")
+}
+
+.active .icon-tool6 {
+    background-image: url("../img/viewer/icon-tool6-on.png")
+}
+
+[class^=icon-tool-study] {
+    width: 40px;
+    height: 40px;
+    background-image: url("../img/viewer/icon-tool-study.png")
+}
+
+.icon-tool-study2 {
+    background-image: url("../img/viewer/icon-tool-study2.png")
+}
+
+.icon-tool-study3 {
+    background-image: url("../img/viewer/icon-tool-study3.png")
+}
+
+.icon-tool-study4 {
+    background-image: url("../img/viewer/icon-tool-study4.png")
+}
+
+.icon-tool-study5 {
+    background-image: url("../img/viewer/icon-tool-study5.png")
+}
+
+.icon-tool-study6 {
+    width: 36px;
+    background-image: url("../img/viewer/icon-tool-study6.png")
+}
+
+.icon-palette {
+    background-image: url("../img/viewer/icon-palette.png")
+}
+
+[class^=icon-tool-account] {
+    width: 40px;
+    height: 40px;
+    background-image: url("../img/viewer/icon-tool-account.png")
+}
+
+.icon-tool-account2 {
+    background-image: url("../img/viewer/icon-tool-account2.png")
+}
+
+.icon-tool-account3 {
+    background-image: url("../img/viewer/icon-tool-account3.png")
+}
+
+.icon-tool-more {
+    width: 40px;
+    height: 40px;
+    margin: 0;
+    background-image: url("../img/viewer/icon-tool-more.png")
+}
+
+.icon-arrow {
+    width: 11px;
+    height: 18px;
+    margin: 0 4px;
+    background-image: url("../img/viewer/icon-arrow.png")
+}
+
+.icon-arrow.left,
+.icon-next {
+    transform: scale(-1, 1)
+}
+
+.icon-prev,
+.icon-next {
+    width: 40px;
+    height: 40px;
+    background-image: url("../img/viewer/icon-prev.png")
+}
+
+[class^=icon-drawing] {
+    width: 40px;
+    height: 40px;
+    margin: 0 5px;
+    background-image: url("../img/viewer/icon-drawing.png")
+}
+
+.icon-drawing2 {
+    background-image: url("../img/viewer/icon-drawing2.png")
+}
+
+.icon-drawing3 {
+    background-image: url("../img/viewer/icon-drawing3.png")
+}
+
+.icon-drawing4 {
+    background-image: url("../img/viewer/icon-drawing4.png")
+}
+
+.icon-drawing5 {
+    background-image: url("../img/viewer/icon-drawing5.png")
+}
+
+.icon-drawing6 {
+    background-image: url("../img/viewer/icon-drawing6.png")
+}
+
+.icon-drawing7 {
+    background-image: url("../img/viewer/icon-drawing7.png")
+}
+
+.icon-drawing.active {
+    background-image: url("../img/viewer/icon-drawing-on.png")
+}
+
+.icon-drawing2.active {
+    background-image: url("../img/viewer/icon-drawing2-on.png")
+}
+
+.icon-drawing3.active {
+    background-image: url("../img/viewer/icon-drawing3-on.png")
+}
+
+.icon-drawing4.active {
+    background-image: url("../img/viewer/icon-drawing4-on.png")
+}
+
+.icon-drawing5.active {
+    background-image: url("../img/viewer/icon-drawing5-on.png")
+}
+
+.icon-drawing6.active {
+    background-image: url("../img/viewer/icon-drawing6-on.png")
+}
+
+[class^=icon-drawing].active {
+    background-color: #00cbb4
+}
+
+[class^=icon-link] {
+    background-image: url(../img/viewer/files/green/ic_link.png);
+}
+
+.icon-link-html {
+    background-image: url(../img/viewer/files/green/ic_smartppt.png);
+}
+
+.icon-link-audio {
+    background-image: url(../img/viewer/files/green/ic_sound.png);
+}
+
+.icon-link-video {
+    background-image: url(../img/viewer/files/green/ic_movie.png);
+}
+
+.icon-link-pic {
+    background-image: url(../img/viewer/files/green/ic_01.png);
+}
+
+.icon-link-png {
+    background-image: url(../img/viewer/files/green/ic_png.png);
+}
+
+.icon-link-gif {
+    background-image: url(../img/viewer/files/green/ic_gif.png);
+}
+
+.icon-link-xls {
+    background-image: url(../img/viewer/files/green/ic_excel.png);
+}
+
+.icon-link-doc {
+    background-image: url(../img/viewer/files/green/ic_word.png);
+}
+
+.icon-link-ppt {
+    background-image: url(../img/viewer/files/green/ic_ppt.png);
+}
+
+.icon-link-pdf {
+    background-image: url(../img/viewer/files/green/ic_pdf.png);
+}
+
+.icon-link-hwp {
+    background-image: url(../img/viewer/files/green/ic_hwp.png);
+}
+
+.icon-link,
+.icon-link-html,
+.icon-link-audio,
+.icon-link-video,
+.icon-link-pic,
+.icon-link-png,
+.icon-link-gif,
+.icon-link-xls,
+.icon-link-doc,
+.icon-link-ppt,
+.icon-link-pdf,
+.icon-link-hwp {
+    background-size: 100% 100%;
+}
+
+.icon-link-sm {
+    position: absolute;
+    top: 3px;
+    right: 10px;
+    /* background-image: url("../img/viewer/icon-link-sm.png"); */
+    background-image: url("../img/viewer/icon-link-sm-sky.png");
+    background-size: auto;
+}
+
+#area-service ul li a.icon-link-sm {
+    background-image: url("../img/viewer/icon-link-sm-peach.png");
+}
+
+.icon-link-pink-sm {
+    position: absolute;
+    top: 3px;
+    right: 10px;
+    background-image: url("../img/viewer/icon-link-pink-sm.png");
+    background-size: auto;
+}
+
+.icon-close {
+    position: absolute;
+    top: 3px;
+    right: 0;
+    width: 56px;
+    height: 56px;
+    background-image: url("../img/viewer/icon-close.png");
+    background-size: auto;
+}
+
+.icon-aside-open {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    z-index: 10;
+    width: 48px;
+    height: 48px;
+    margin-top: -24px;
+    background: url("../img/viewer/icon-aside-open.png") 0 50% no-repeat
+}
+
+/* layout */
+
+/* portrait  */
+[orientation=portrait] #wrap {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    position: relative;
+    z-index: -1;
+}
+
+[orientation=portrait] #wrap .wrap-inner {
+    position: relative;
+    width: 100vw;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#wrap .wrap-inner #hd {
+    width: 100vw;
+    height: calc(9vh - 4px);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #e8e8e8;
+}
+
+#wrap .wrap-inner #ct {
+    width: 100vw;
+    height: 32vh;
+    /* height: 37vh; */
+}
+
+#wrap .wrap-inner #ct #viewer-content {
+    overflow: hidden;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-overflow-style: none;
+    z-index: 1;
+}
+
+#wrap .wrap-inner .btn-box {
+    width: 100vw;
+    height: calc(15vh + 3px);
+}
+
+#wrap .wrap-inner #quick {
+    position: relative;
+    bottom: 0px;
+    width: 100vw;
+    height: 35vh;
+    background-color: #00cbb4;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0;
+}
+
+/* hd */
+#hd .exit {
+    float: left;
+    width: 15px;
+    height: 15px;
+    margin: 11px;
+    background-image: url("../img/viewer/mobile/i-exit@2x.png");
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    display: flex;
+    align-items: center;
+}
+
+#hd .title {
+    height: 40px;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 40px;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: calc(100vw - 40px);
+}
+
+/* ct */
+#ct #viewer-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+#wrap .wrap-inner #ct #viewer-content iframe {
+    position: relative;
+}
+
+#ct #viewer-content #iframe_content {
+    display: block;
+    width: 1363px;
+    height: 952px;
+    margin: auto;
+    border: 0;
+    transform-origin: top;
+}
+
+#ct #viewer-content .popup.tools {
+    background-color: #00cbb4;
+    height: 30px;
+    padding: 0;
+    margin: 0;
+    display: none !important;
+}
+
+#ct #viewer-content #iframe_content_pairbook {
+    border: none;
+    display: none;
+    margin: 0;
+    padding: 0;
+}
+
+#ct #viewer-content #module-modal #pdf-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+#ct #viewer-content #module-modal .video-player.mt40 {
+    margin-top: 0px !important;
+}
+
+/* btn-box */
+.btn-box .btn-box-top {
+    position: relative;
+    width: 100vw;
+    height: 7vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-box .btn-box-top #content-btn {
+    position: relative;
+    left: 5vw;
+    width: 70vw;
+    height: 6vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.btn-box #page {
+    position: relative;
+    padding: 0;
+    right: 5vw;
+    width: 20vw;
+    height: 5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #00cbb4;
+    color: #fff;
+    font-size: 0.85em;
+    text-align: center;
+}
+
+.btn-box b.data-line:after {
+    content: "";
+    display: block;
+    width: 90vw;
+    border-top: 1px solid #b5b3b3;
+    border-bottom: 2px solid #e4e3e3;
+    margin: 0.5vh auto 0px;
+}
+
+.row_2 b.data-line:after {
+    position: absolute;
+    content: "";
+    display: block;
+    top: -8px;
+    left: 16px;
+    width: 92%;
+    height: 3px;
+    border-top: 1px solid #b5b3b3;
+    border-bottom: 2px solid #e4e3e3;
+    margin: 9px auto;
+}
+
+.btn-box .btn-box-bottom {
+    position: relative;
+    width: 100vw;
+    height: 7vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.btn-box .btn-box-bottom .course-btm {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.btn-box-bottom .course-special {
+    display: none;
+    position: absolute;
+    bottom: 50px;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    margin: 0 5px 0px 5px;
+    z-index: 1;
+}
+
+.modal_3 .course-special {
+    display: none;
+}
+
+.modal_3 .course-special.active {
+    display: block;
+}
+
+.btn-box-bottom .course-special.active {
+    display: block;
+}
+
+.btn-box-bottom .course-special header {
+    height: 6vh;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    padding-bottom: 10px;
+}
+
+.btn-box-bottom .course-special h3 {
+    font-size: 1.25em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.btn-box-bottom .course-special h3 a {
+    position: relative;
+    left: 30vw;
+    padding-right: 15px;
+    border-right: 1px solid;
+    font-weight: 400;
+    line-height: 1;
+    opacity: .5;
+}
+
+.btn-box-bottom .course-special .icon-close {
+    position: relative;
+    width: 4vh;
+    height: 4vh;
+    background-image: url(../img/viewer/icon-close.png);
+    background-repeat: no-repeat;
+    margin-bottom: 1vh;
+}
+
+.btn-box-bottom .course-special ul {
+    overflow-y: auto;
+    max-height: 30vh;
+    padding: 0 3vw;
+    background: #fff;
+    font-weight: 500;
+    font-size: 0.85em;
+    color: #333;
+}
+
+.btn-box-bottom .course-special ul li {
+    position: relative;
+    border-bottom: 1px solid #d5d5d5;
+}
+
+.btn-box-bottom .course-special ul li .txt-line2 {
+    width: 70vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.btn-box-bottom .course-special ul li ._page_num {
+    float: right;
+    display: block;
+    overflow: hidden;
+    padding: 10px 0;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+
+.btn-box-bottom .course-special li a {
+    display: inline-block;
+    overflow: hidden;
+    padding: 10px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    vertical-align: top;
+}
+
+.btn-box-bottom .course-special>i {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    margin: -7px;
+    transform: rotate(45deg);
+}
+
+.btn-box-bottom #ebook-page.course-special>i {
+    left: 16%;
+}
+
+.drawing-canvas-wrapper {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    z-index: 1000;
+    display: inline;
+    top: 0px;
+    left: 0px;
+    position: absolute;
+    pointer-events: none;
+    z-index: 20;
+}
+
+/* 내 자료 */
+.btn-box-bottom #data-locker>ul>li>a.type {
+    width: 70px;
+}
+
+.btn-box-bottom #data-locker h3 {
+    width: 50vw;
+}
+
+#data-locker>ul>li>a.txt-line3 {
+    /* width: calc(100% - 160px); */
+    width: calc(100% - 176px);
+}
+
+#data-locker>ul>li>a.date {
+    width: 90px;
+}
+
+#data-locker>ul>li {
+    cursor: pointer;
+}
+
+#data-locker .custom-select,
+#data-locker2 .custom-select {
+    display: inline;
+    max-width: 100px;
+    height: 23px;
+    line-height: 23px;
+    font-size: 12px;
+    padding: 2px;
+    padding-top: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 10px;
+    margin-top: -2px;
+    background-color: transparent;
+    color: white;
+    background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23ffffff' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right .75rem center/8px 10px;
+    background-position-x: 80px;
+}
+
+#data-locker .custom-select .data-locker-options,
+#data-locker2 .custom-select .data-locker-options {
+    color: #000;
+}
+
+.course-special.empty ul {
+    padding: 10px 20px
+}
+
+.course-special.empty ul::before {
+    content: '자료가 없습니다.';
+}
+
+/* quick */
+#quick .more,
+#quick .page {
+    display: none;
+}
+
+#quick .control {
+    position: relative;
+    width: 100vw;
+    height: 25%;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #80debb;
+    padding: 5px 0;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    align-content: center;
+    flex-direction: row;
+    cursor: pointer;
+}
+
+#quick .control #btnCC {
+    background-image: url(../img/viewer/mobile/i-control@2x.png);
+    background-repeat: no-repeat;
+    background-size: 15px auto;
+    padding-left: 30px;
+    color: white;
+    font-size: 1em
+}
+
+#controllList li a.room {
+    display: block;
+    border: solid #00cbb4;
+    margin-bottom: 10px;
+}
+
+#controllList li a.room .icon {
+    background-image: url(./../img/viewer/icon-monitor.png);
+    background-size: auto 48px;
+    background-repeat: no-repeat;
+    width: 48px;
+    height: 48px;
+    display: inline-block;
+    background-position: center;
+    margin-left: 10px;
+    top: -30px;
+    position: relative;
+}
+
+#controllList li a.room .title {
+    display: inline-block;
+    width: calc(100% - 58px);
+    padding: 10px;
+    padding-left: 20px;
+    font-size: 18px;
+}
+
+#quick .quick-mid {
+    position: relative;
+    width: 100vw;
+    height: 50%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#quick .quick-mid .prev #btnPrev {
+    background-image: url(../img/viewer/mobile/i-prev@2x.png);
+    background-repeat: no-repeat;
+    background-size: 30px auto;
+    background-position: top;
+    width: 40px;
+    height: 90px;
+    background-color: transparent;
+    color: white;
+    padding-top: 60px;
+    font-weight: bold;
+}
+
+#quick .quick-mid .next {
+    width: calc(33% - 1px);
+    border-left-width: 1px;
+    border-left-style: solid;
+    border-left-color: #80debb;
+    border-right-width: 1px;
+    border-right-style: solid;
+    border-right-color: #80debb;
+}
+
+#quick .quick-mid .next #btnNext {
+    background-image: url(../img/viewer/mobile/i-next@2x.png);
+    background-repeat: no-repeat;
+    background-size: 30px auto;
+    background-position: top;
+    width: 40px;
+    height: 90px;
+    background-color: transparent;
+    color: white;
+    padding-top: 60px;
+    font-weight: bold;
+}
+
+#quick .quick-mid .toc #btnContents {
+    background-image: url(../img/viewer/mobile/i-menu-h@2x.png);
+    background-repeat: no-repeat;
+    background-size: 30px auto;
+    background-position-x: 5px;
+    background-position-y: 10px;
+    width: 40px;
+    height: 90px;
+    background-color: transparent;
+    color: white;
+    padding-top: 60px;
+    font-weight: bold;
+}
+
+#quick .bookmark {
+    position: relative;
+    width: 100vw;
+    height: 25%;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: #80debb;
+    padding: 5px 0;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    align-content: center;
+    flex-direction: row;
+}
+
+#quick .bookmark #btnBookmark {
+    background-image: url(../img/viewer/mobile/i-bookmark@2x.png);
+    background-repeat: no-repeat;
+    background-size: 20px auto;
+    padding-left: 30px;
+    color: white;
+    font-size: 20px;
+}
+
+/* 목차 */
+#modal-data-contents .modal-header {
+    padding: 0.5rem;
+}
+
+.modal_3 .modal-body {
+    padding: 0.5rem;
+}
+
+.modal_3 .modal-header {
+    padding: 0rem;
+}
+
+.modal_3 .modal-header .close {
+    padding: 0.5rem 0.5rem;
+    margin: -0.5rem -0.5rem -0.5rem auto;
+}
+
+.modal_3 .row .col-md-7 {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.modal_3 .row:nth-child(1).row_1,
+.modal_3 .row:nth-child(3).row_3 {
+    padding: 0 20px;
+}
+
+.modal_3 .row:nth-child(2).row_2 .h20 {
+    height: 10px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+#aside-korean>ul>li>a.active,
+#digital-parish>ul>li>a.active,
+#v-experiment>ul>li>a.active {
+    color: #2fa9ff;
+}
+
+#area-service>ul>li>a.active {
+    color: #ffaa8d;
+}
+
+#modal-contents .modal-dialog {
+    margin: 0;
+    max-width: none;
+    width: 100%;
+}
+
+#modal-data-contents .modal-header {
+    background-image: url('../img/viewer/pop_title.png');
+    background-repeat: no-repeat;
+    background-size: 105% auto;
+    border-radius: 0;
+    border-bottom: none;
+    height: 30px;
+}
+
+#modal-data-contents .modal-content {
+    border-radius: 0;
+}
+
+#modal-contents .modal-content {
+    height: 100vh;
+    border: none;
+    border-radius: 0;
+}
+
+#modal-contents .modal-header {
+    padding: 2.5vw;
+}
+
+#modal-contents .modal-body {
+    background-color: #f7f7f7;
+}
+
+#modal-contents .modal-title {
+    font-size: 1em;
+    margin: 0;
+    position: absolute;
+    padding-left: 30px;
+    padding-right: 30px;
+    width: 100vw;
+    text-align: center;
+}
+
+#modal-contents .modal-header .close {
+    padding: 1rem 1rem;
+    margin: -1rem 0rem -1rem -1rem;
+}
+
+#modal-contents .subject {
+    margin-bottom: 15px;
+    padding: 2px;
+    color: #888888;
+}
+
+#modal-contents .subject.active {
+    background-color: #00cbb4;
+    color: white;
+}
+
+#modal-contents .subject span {
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    font-size: 16px;
+}
+
+/* fontSize */
+.course-btm.row .btn.btn-block.btn-purple.bg-purple,
+.course-btm.row .btn.btn-block.btn-sky.bg-sky,
+.course-btm.row .btn.btn-block.btn-green.bg-green,
+.course-btm.row .btn.btn-block.btn-yellow.bg-yellow,
+.course-btm.row .btn.btn-block.btn-pink.bg-pink,
+.course-btm.row .btn.btn-block.btn-blue.bg-blue,
+.course-btm.row .btn.btn-block.btn-peach.bg-peach {
+    font-size: 0.6rem;
+    height: 4vh;
+}
+
+/* landscape */
+/* Landscape 모드일 때 적용할 CSS */
+@media (orientation: landscape) {
+    [orientation=landscape] {
+        overflow-y: auto;
+        overflow-x: hidden;
+        position: relative;
+        bottom: 0px;
+    }
+
+    [orientation=landscape] .modal-backdrop {
+        z-index: 1 !important;
+    }
+
+    [orientation=landscape] .modal-dialog.modal-dialog-centered {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-content: center;
+        justify-content: flex-start;
+        align-items: center;
+        padding-top: 30px;
+    }
+
+    [orientation=landscape] #ebook-page2.course-special>i {
+        left: 20%;
+    }
+
+    [orientation=landscape] #wrap {
+        width: 100%;
+        height: 100%;
+    }
+
+    [orientation=landscape] #wrap .wrap-inner {
+        position: relative;
+        width: 100vw;
+        height: 100%;
+    }
+
+    [orientation=landscape] #wrap .wrap-inner #hd {
+        display: none;
+    }
+
+    [orientation=landscape] #wrap .wrap-inner .btn-box {
+        display: none;
+    }
+
+    [orientation=landscape] #wrap .wrap-inner #page_list .subject {
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    [orientation=landscape] #wrap .wrap-inner #ct {
+        /* position: fixed; */
+        width: calc(100% - 50px);
+        height: 100vh;
+        /* top: 0px; */
+    }
+
+    [orientation=landscape] #wrap .wrap-inner #quick {
+        position: fixed;
+        right: 0;
+        left: auto;
+        height: 100vh;
+        width: 50px;
+        top: 0px;
+    }
+
+    [orientation=landscape] #wrap .wrap-inner #quick .control {
+        display: none;
+    }
+
+    [orientation=landscape] #wrap .wrap-inner #quick .bookmark {
+        display: none;
+    }
+
+    [orientation=landscape] #wrap .wrap-inner #quick .quick-mid {
+        position: relative;
+        width: 100vw;
+        height: 50%;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        bottom: -35px;
+    }
+
+    [orientation=landscape] #wrap .wrap-inner #quick .toc {
+        display: inline-block;
+        width: 40px;
+        margin: 5px;
+        padding: 0px;
+        position: relative;
+        top: -186%;
+        /* top: -340px; */
+    }
+
+    [orientation=landscape] #wrap .wrap-inner #quick .page {
+        display: inline-block;
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        background: #00cbb4;
+        color: white;
+        font-size: 14px;
+        line-height: 40px;
+        text-align: center;
+    }
+
+    [orientation=landscape] #wrap .wrap-inner #quick .prev {
+        display: inline-block;
+        width: 40px;
+        margin: 5px;
+        padding: 0px;
+        padding-bottom: 10px;
+        /* position: absolute; */
+        bottom: 85px;
+        left: 0px;
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+        border-bottom-color: #80debb;
+    }
+
+    [orientation=landscape] #wrap .wrap-inner #quick .prev #btnPrev {
+        width: 40px;
+        height: 40px;
+        margin: 0px;
+        padding: 0px;
+        text-indent: -10000px;
+        background-size: 15px auto;
+        background-position: center;
+    }
+
+    [orientation=landscape] #wrap .wrap-inner #quick .next {
+        display: inline-block;
+        width: 40px;
+        margin: 5px;
+        padding: 0px;
+        /* position: absolute; */
+        bottom: 30px;
+        left: 0px;
+        background-size: 20px auto;
+        border: none;
+    }
+
+    [orientation=landscape] #wrap .wrap-inner #quick .next #btnNext {
+        width: 40px;
+        height: 40px;
+        margin: 0px;
+        padding: 0px;
+        text-indent: -10000px;
+        background-size: 15px auto;
+        background-position: top;
+    }
+
+    [orientation=landscape] #wrap .wrap-inner #quick .toc #btnContents {
+        width: 40px;
+        height: 40px;
+        margin: 0px;
+        padding: 0px;
+        text-indent: -10000px;
+        background-position: center;
+        background-size: 20px auto;
+    }
+
+    [orientation=landscape] #wrap .wrap-inner #quick .more {
+        display: inline-block;
+        width: 40px;
+        margin: 5px;
+        margin-top: 0px;
+        padding: 0px;
+        padding-top: 5px;
+        position: absolute;
+        top: 50px;
+        left: 0px;
+        border-top-width: 1px;
+        border-top-style: solid;
+        border-top-color: #80debb;
+    }
+
+    [orientation=landscape] #wrap .wrap-inner #quick .more #btnMoreContent {
+        width: 40px;
+        height: 40px;
+        margin: 0px;
+        padding: 0px;
+        text-indent: -10000px;
+        background-image: url(../img/viewer/mobile/i-more-h@2x.png);
+        background-size: 4px auto;
+        background-position: center;
+        background-repeat: no-repeat;
+        cursor: pointer;
+    }
+
+    [orientation=landscape] #wrap .wrap-inner .btn-box-wrapper.active {
+        background-color: #888888;
+        opacity: 0.5;
+        display: inline-block;
+    }
+
+    [orientation=landscape] #wrap .wrap-inner .btn-box.active {
+        display: inline-block;
+        top: calc(50% - 50px);
+        width: 70%;
+        left: 15%;
+        background-color: white;
+        height: 100px;
+    }
+
+    [orientation=landscape] #quick .toc #btnContents {
+        width: 40px;
+        height: 40px;
+        margin: 0px;
+        padding: 0px;
+        text-indent: -10000px;
+        background-position: center;
+        background-size: 20px auto;
+    }
+
+    [orientation=landscape] #modal-contents {
+        width: 15% !important;
+        position: fixed;
+        left: auto !important;
+        right: 50px;
+        top: 0px !important;
+        bottom: 0px;
+    }
+
+    [orientation=landscape] #modal-contents .modal-header {
+        display: none;
+    }
+
+    [orientation=landscape] .slide {
+        padding: 0;
+    }
+
+    [orientation=landscape] .mt40 {
+        margin-top: 0px !important;
+    }
+
+    [orientation=landscape] .h10 {
+        height: 10px;
+    }
+
+    [orientation=landscape] .h20 {
+        height: 20px;
+    }
+
+    [orientation=landscape] .h40 {
+        height: 40px;
+    }
+
+    [orientation=landscape] .text-bold {
+        font-weight: bold;
+    }
+
+    [orientation=landscape] #page2 {
+        position: absolute;
+        padding: 0;
+        top: 4px;
+        right: 15px;
+        width: 65px;
+        background: #00cbb4;
+        color: white;
+        font-size: 17px;
+        line-height: 33px;
+        text-align: center
+    }
+
+    [orientation=landscape] #page2 b {
+        color: #feffaa
+    }
+
+    [orientation=landscape] .course-btm {
+        position: absolute;
+        bottom: 0px;
+        left: 0;
+        right: 0;
+        margin: 0;
+        padding: 5px 10px;
+    }
+
+    [orientation=landscape] .course-btm>* {
+        padding: 5px
+    }
+
+    [orientation=landscape] .course-special {
+        display: none;
+        position: absolute;
+        bottom: 50px;
+        left: 0;
+        right: 0;
+        padding: 10px;
+        margin: 0 5px 0px 5px;
+        z-index: 1;
+    }
+
+    [orientation=landscape] .course-special>i {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        width: 12px;
+        height: 12px;
+        margin: -7px;
+        transform: rotate(45deg);
+    }
+
+    [orientation=landscape] .course-special h3 {
+        padding: 10px 46px 15px 10px;
+        font-size: 19px;
+    }
+
+    [orientation=landscape] .course-special h3 span {
+        position: relative;
+        display: inline-block;
+        width: 60%;
+    }
+
+    [orientation=landscape] .course-special h3 a {
+        position: relative;
+        padding-right: 15px;
+        border-right: 1px solid;
+        font-weight: 400;
+        line-height: 1;
+        opacity: .5;
+        display: inline-block;
+        width: 30%;
+    }
+
+    [orientation=landscape] .course-special ul {
+        overflow-y: auto;
+        max-height: 30vh;
+        padding: 0 3vw;
+        background: #fff;
+        font-weight: 500;
+        font-size: 0.85em;
+        color: #333;
+    }
+
+    [orientation=landscape] .course-special ul li {
+        position: relative;
+        border-bottom: 1px solid #d5d5d5;
+    }
+
+    [orientation=landscape] .course-special ul li .txt-line2 {
+        width: 80%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    [orientation=landscape] .course-special ul li ._page_num {
+        float: right;
+        display: block;
+        overflow: hidden;
+        padding: 10px 0;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        cursor: pointer;
+    }
+
+    [orientation=landscape] .course-special li a,
+    [orientation=landscape] .course-special.empty ul::before {
+        display: inline-block;
+        overflow: hidden;
+        padding: 10px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        vertical-align: top;
+    }
+
+    [orientation=landscape] .course-special>i {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        width: 12px;
+        height: 12px;
+        margin: -7px;
+        transform: rotate(45deg);
+    }
+
+    [orientation=landscape] #ebook-page.course-special>i {
+        left: 16%;
+    }
+
+    [orientation=landscape] .course-btm.row .btn.btn-block.btn-purple.bg-purple,
+    [orientation=landscape] .course-btm.row .btn.btn-block.btn-sky.bg-sky,
+    [orientation=landscape] .course-btm.row .btn.btn-block.btn-green.bg-green,
+    [orientation=landscape] .course-btm.row .btn.btn-block.btn-yellow.bg-yellow,
+    [orientation=landscape] .course-btm.row .btn.btn-block.btn-pink.bg-pink,
+    [orientation=landscape] .course-btm.row .btn.btn-block.btn-blue.bg-blue,
+    [orientation=landscape] .course-btm.row .btn.btn-block.btn-peach.bg-peach {
+        font-size: 0.6rem;
+        height: 7vh;
+    }
+
+    [orientation=landscape] #modal-contents .subject {
+        margin-bottom: 15px;
+        padding: 2px;
+        color: #888888;
+        flex: 0 0 100%;
+        max-width: 100% !important;
+    }
+
+    /* Icons */
+    [orientation=landscape] [class^=icon-] {
+        display: inline-block;
+        overflow: hidden;
+        width: 6vh;
+        height: 6vh;
+        margin: 0 10px 0 0;
+        padding: 0;
+        border: 0;
+        background-color: transparent;
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        font-size: 0;
+        line-height: 0;
+        text-decoration: none;
+        vertical-align: middle;
+        text-indent: -1000em;
+    }
+
+    [orientation=landscape] .icon-close {
+        position: absolute;
+        top: 3px;
+        right: 0;
+        width: 56px;
+        height: 56px;
+        background-image: url(../img/viewer/icon-close.png);
+        background-size: auto;
+    }
+}
+
+/* popover 사용 안 함 */
+.popover {
+    display: none !important;
+}
+
+/* media queries */
+/* ----------- iPad 1, 2, Mini and Air ----------- */
+
+/* Portrait and Landscape */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {}
+
+/* Portrait */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {}
+
+/* Landscape */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {}
+
+/* ----------- iPad 3, 4 and Pro 9.7" ----------- */
+
+/* Portrait and Landscape */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) {}
+
+/* Portrait */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {}
+
+/* Landscape */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {}
+
+/* ----------- iPad Pro 10.5" ----------- */
+
+/* Portrait and Landscape */
+@media only screen and (min-device-width: 834px) and (max-device-width: 1112px) and (-webkit-min-device-pixel-ratio: 2) {}
+
+/* Portrait */
+/* Declare the same value for min- and max-width to avoid colliding with desktops */
+/* Source: https://medium.com/connect-the-dots/css-media-queries-for-ipad-pro-8cad10e17106*/
+@media only screen and (min-device-width: 834px) and (max-device-width: 834px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {}
+
+/* Landscape */
+/* Declare the same value for min- and max-width to avoid colliding with desktops */
+/* Source: https://medium.com/connect-the-dots/css-media-queries-for-ipad-pro-8cad10e17106*/
+@media only screen and (min-device-width: 1112px) and (max-device-width: 1112px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {}
+
+/* ----------- iPad Pro 12.9" ----------- */
+
+/* Portrait and Landscape */
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {}
+
+/* Portrait */
+/* Declare the same value for min- and max-width to avoid colliding with desktops */
+/* Source: https://medium.com/connect-the-dots/css-media-queries-for-ipad-pro-8cad10e17106*/
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {}
+
+/* Landscape */
+/* Declare the same value for min- and max-width to avoid colliding with desktops */
+/* Source: https://medium.com/connect-the-dots/css-media-queries-for-ipad-pro-8cad10e17106*/
+@media only screen and (min-device-width: 1366px) and (max-device-width: 1366px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {}
+
+/* ----------- Galaxy Tab 2 ----------- */
+
+/* Portrait and Landscape */
+@media (min-device-width: 800px) and (max-device-width: 1280px) {}
+
+/* Portrait */
+@media (max-device-width: 800px) and (orientation: portrait) {}
+
+/* Landscape */
+@media (max-device-width: 1280px) and (orientation: landscape) {}
+
+/* ----------- Galaxy Tab S ----------- */
+
+/* Portrait and Landscape */
+@media (min-device-width: 800px) and (max-device-width: 1280px) and (-webkit-min-device-pixel-ratio: 2) {}
+
+/* Portrait */
+@media (max-device-width: 800px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {}
+
+/* Landscape */
+@media (max-device-width: 1280px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {}
+
+/* ----------- iPhone 4 and 4S ----------- */
+
+/* Portrait and Landscape */
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {}
+
+/* Portrait */
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {}
+
+/* Landscape */
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {}
+
+/* ----------- iPhone 5, 5S, 5C and 5SE ----------- */
+
+/* Portrait and Landscape */
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {}
+
+/* Portrait */
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {}
+
+/* Landscape */
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {}
+
+/* ----------- iPhone 6, 6S, 7 and 8 ----------- */
+
+/* Portrait and Landscape */
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {}
+
+/* Portrait */
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {}
+
+/* Landscape */
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {}
+
+/* ----------- iPhone 6+, 7+ and 8+ ----------- */
+
+/* Portrait and Landscape */
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) {}
+
+/* Portrait */
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait) {}
+
+/* Landscape */
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: landscape) {}
+
+/* ----------- iPhone X ----------- */
+
+/* Portrait and Landscape */
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {}
+
+/* Portrait */
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait) {}
+
+/* Landscape */
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: landscape) {}
+
+/* ----------- Galaxy S3 ----------- */
+
+/* Portrait and Landscape */
+@media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 2) {}
+
+/* Portrait */
+@media screen and (device-width: 320px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) {}
+
+/* Landscape */
+@media screen and (device-width: 320px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape) {}
+
+/* ----------- Galaxy S4, S5 and Note 3 ----------- */
+
+/* Portrait and Landscape */
+@media screen and (device-width: 320px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) {}
+
+/* Portrait */
+@media screen and (device-width: 320px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) {}
+
+/* Landscape */
+@media screen and (device-width: 320px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape) {}
+
+/* ----------- Galaxy S6 ----------- */
+
+/* Portrait and Landscape */
+@media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 4) {}
+
+/* Portrait */
+@media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 4) and (orientation: portrait) {}
+
+/* Landscape */
+@media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 4) and (orientation: landscape) {}

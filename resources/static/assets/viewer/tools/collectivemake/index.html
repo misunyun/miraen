@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>모둠 평가판</title>
+    <link rel="icon" href="/assets/viewer/img/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link href="css/collectiveMake.css" type="text/css" rel="stylesheet" />
+
+    <!-- [1] 로그인 했을 경우에만 user_id 설정을 최상위에 삽입
+        이후 모든 이벤트에 user_id가 포함됩니다 -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        var userID = "";
+	if (cmmUserIdx != '') {
+		function gtag(){dataLayer.push(arguments);}
+		gtag('set', {'user_id': userID});
+	}
+    </script>
+    <!-- End user_id setting -->
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		var cmmUserIdx = "${loginInfo.userIdx}";
+		if (cmmUserIdx != '') {
+			function gtag(){dataLayer.push(arguments);}
+			gtag('set', {'user_id': cmmUserIdx});
+		}
+	</script>
+
+    <!-- [2] Google Tag Manager (Head 영역에 삽입되는 스크립트)
+        GA4보다 위에 적용됩니다. -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        '[[https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f)&#93;(https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f))](https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f)](https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f)));
+        })(window,document,'script','dataLayer','GTM-W9LNPGH');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- [3] Google tag (gtag.js)
+         GA4 스크립트가 삽입됩니다 -->
+    <script async src="[[https://www.googletagmanager.com/gtag/js?id=G-VNVPYSBGFT&#93;(https://www.googletagmanager.com/gtag/js?id=G-VNVPYSBGFT)](https://www.googletagmanager.com/gtag/js?id=G-VNVPYSBGFT](https://www.googletagmanager.com/gtag/js?id=G-VNVPYSBGFT)) G-VNVPYSBGFT'"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-VNVPYSBGFT');
+
+    </script>
+    <!-- End GA4 Script -->
+</head>
+
+<body>
+
+<!-- [4] Google Tag Manager (Body 영역에 삽입되는 스크립트)
+    여는 Body 태그 바로 아래에 삽입 (noscript) -->
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W9LNPGH" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+    <!-- main -->
+    <div class="close"></div>
+    <div id="cm_wrap">
+        <div class="cm_bg_top">
+            <span class="color_yellow">모둠 수</span>를 <span class="color_yellow">입력</span>하세요.</br><span
+                class="size_s">(모둠 수는 <span class="font_w">2~6</span>
+                입력 가능)</span>
+        </div>
+        <div class="acorn acorn_1"></div>
+        <div class="acorn acorn_2"></div>
+        <div class="acorn acorn_3"></div>
+        <div id="inputNum">
+            <span>모둠 수</span>
+            <input id="modum" name="modum" class="input_style" min="2" max="6" type="number" maxlength="1"
+                oninput="maxLengthCheck(this)">
+        </div>
+        <div id="reset_btn">확인</div>
+        <div class="squirrel_1"></div>
+    </div>
+    <!-- result -->
+    <div id="cm_result_wrap">
+        <div id="cr_bg_wrap"></div>
+        <!-- <div id="save" class="btn">중간 저장</div> -->
+        <div id="result_view" class="btn">결과 확인</div>
+        <div class="squirrel_2"></div>
+    </div>
+    <!-- modal -->
+    <div id="cm_modal" class="cm_wrap">
+        <div class="modal-background cm_background"></div>
+        <div class="modal-card cm_modal_card">
+            <section class="modal-card-body cm_body">
+                <div class="popup_close"></div>
+                <div class="popup_body">
+                    <div id="best">최고예요</div>
+                    <div id="best_modum"></div>
+                    <div id="reset">처음으로</div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+        integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js"> </script>
+    <script type="text/javascript" src="js/collectiveMake.js"> </script>
+</body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W9LNPGH"height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VNVPYSBGFT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-VNVPYSBGFT');
+</script>
+
+</html>

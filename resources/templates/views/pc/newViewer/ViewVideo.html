@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<!--    <jsp:include page="../Main/Head.jsp"></jsp:include>-->
+    <link rel="icon" href="/assets/viewer/img/favicon.ico" type="image/x-icon" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="title" content="MiraeN | 초등엠티처 | ${title }">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vex-js@4.1.0/dist/css/vex.css"
+          integrity="sha256-/eaLySG/rPCowjMWyStmTPGtaU79NKiqodgU2X/PJ/g=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vex-js@4.1.0/dist/css/vex-theme-default.css"
+          integrity="sha256-k8lNp1XCOztgAfpYiP1+lYwqY82ylXrl+Z5F176FscQ=" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="/assets/viewer/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/viewer/css/video-js.css" />
+<!--    <link href="https://vjs.zencdn.net/5.6.0/video-js.css" rel="stylesheet">-->
+    <link rel="stylesheet" type="text/css" href="/assets/viewer/css/viewer.module.css?d=20230121" />
+    <link rel="stylesheet" type="text/css" href="/assets/viewer/css/viewer.css?d=20230121" />
+    <link rel="stylesheet" type="text/css" href="/assets/viewer/css/viewer.custom.1.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/viewer/css/viewer.custom.2.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/viewer/css/viewer.custom.3.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/viewer/css/viewer.custom.4.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/viewer/css/viewer.custom.5.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/viewerCommon/css/view.video.css">
+    <!-- hls -->
+<!--    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/mediaelement/4.2.16/mediaelementplayer.min.css">-->
+
+    <!-- 검증서버 구글 검색 방지 -->
+<!--
+    <c:if test="${fn:indexOf(ServiceDomainHttps, 'www5.m-teacher.co.kr') ne -1}">
+        <meta name="robots" content="noindex, nofollow" title="${ServiceDomainHttps}">
+        <meta name="googlebot" content="noindex" />
+    </c:if>
+-->
+
+   <!-- <link rel="stylesheet" href="/js/pc/ele/viewer/css/video-js.css">-->
+
+
+
+    <!-- ie 전용 css -->
+<!--    <link rel="stylesheet" href="/css/ie.css">-->
+<!--    <link rel="stylesheet" href="/css/responsive.css?v.230721">-->
+<!--    <script src="/js/jquery-1.11.3.min.js"></script>-->
+<!--    <script src="/js/jquery-ui.js"></script>-->
+<!--    <script src="/js/jquery-visible.js"></script>-->
+<!--    <script src="/js/slick.min.js"></script>-->
+    <!-- <script src="/js/swiper.min.js"></script> -->
+    <script src="/assets/viewer/js/konva.min.js"></script>
+    <!-- <script src="/assets/viewer/js/konva.js"></script> -->
+    <!-- <script src="/assets/viewer/js/konva2.js"></script> -->
+    <script src="/assets/viewer/js/viewer.drawingcanvas.js"></script>
+    <!-- <script src="/assets/viewer/js/viewer.drawingcanvas2.js"></script> -->
+
+    <script src="/assets/viewer/js/jquery.min.js"></script>
+    <script src="/assets/viewer/js/jquery-ui.min.js"></script>
+    <script src="/assets/viewer/js/jquery.ui.touch-punch.min.js"></script>
+    <script src="/assets/viewer/js/math.min.js"></script>
+    <script src="/assets/viewer/js/e-smart-zoom-jquery.js"></script>
+    <script src="/assets/viewer/js/bootstrap.min.js"></script>
+    <script src="/assets/viewer/js/bootstrap.bundle.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <!-- file download -->
+    <script type="text/javascript" src="/assets/viewerCommon/js/jquery.fileDownload.js"></script>
+
+    <!-- hls -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+<!--    <script src="/assets/plugins/video/mediaelement-and-player.js"></script>-->
+
+<!--    <script src="https://fastly.jsdelivr.net/npm/hls.js@latest"></script>-->
+    <script src="/js/pc/ele/viewer/js/videojs-ie8.min.js"></script>
+    <script src="/js/pc/ele/viewer/js/video.js"></script>
+<!--    <script src="/assets/viewer/js/video.js"></script>-->
+    <script src="/js/pc/ele/viewer/js/videojs-playlist.js"></script>
+    <!--<script src="/js/pc/ele/viewer/js/viewer.module.js"></script>-->
+    <script src="/assets/viewer/js/viewer.module.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+
+
+    <!-- validate -->
+<!--    <script type="text/javascript" src="/assets/plugins/jquery-validation/jquery.validate.js"></script>-->
+<!--    <script type="text/javascript" src="/assets/plugins/jquery-validation/additional-methods.js"></script>-->
+<!--    <script type="text/javascript" src="/assets/plugins/jquery-validation/localization/messages_ko.min.js"></script>-->
+
+    <!-- uuid -->
+<!--    <script src="https://cdn.jsdelivr.net/npm/uuid@latest/dist/umd/uuidv4.min.js"></script>-->
+
+    <!-- common -->
+<!--    <script type="text/javascript" src="/assets/js/lng_ko.js?v.230309"></script>-->
+<!--    <script type="text/javascript" src="/assets/js/common_ui.js?v.230309"></script>-->
+<!--    <script type="text/javascript" src="/assets/js/common.js?v.240222"></script>-->
+<!--    <script type="text/javascript" src="/assets/js/commonComponent.js?v.230309"></script>-->
+<!--    <script src="/js/pc/ele/viewer/js/preview-skin.js" type="text/javascript"></script>-->
+<!--    <script src="/js/pc/ele/viewer/js/drawing-skin.js" type="text/javascript"></script>-->
+
+
+    <script>
+        // window.dataLayer = window.dataLayer || [];
+        // var cmmUserIdx = "${loginInfo.userIdx}";
+        // if (cmmUserIdx != '') {
+        //     function gtag(){dataLayer.push(arguments);}
+        //     gtag('set', {'user_id': cmmUserIdx});
+        // }
+    </script>
+</head>
+<!--<body class="no-resize"  th:data-type="${param.type}" th:data-src="${param.src}">-->
+<body class="no-resize"  data-type="" data-src="">
+<div class="video-wrap">
+    <div class="video-player video video-js vjs-default-skin" width="800">
+        <video id="video" class='video-js d-none' width="760"></video>
+        <audio id="maudio01" class='video-js d-none' width="800" height="100" style="padding-top:0px;"></audio>
+    </div>
+</div>
+<script type="text/javascript" src="/assets/viewerCommon/js/biz/Ebook/ViewVideo.js"></script>
+<!--<script type="text/javascript" src="/assets/viewer/js/videoJsYoutube.js"></script>-->
+<!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/videojs-youtube/2.6.1/Youtube.min.js"></script>-->
+</body>
+<!-- Google Tag Manager (noscript) -->
+<!--<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W9LNPGH"height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>-->
+<!-- End Google Tag Manager (noscript) -->
+
+</html>

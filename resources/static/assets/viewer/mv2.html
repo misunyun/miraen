@@ -1,0 +1,1753 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="ko">
+
+<head>
+	<link rel="icon" href="/assets/viewer/img/favicon.ico" type="image/x-icon" sizes="any" />
+	<link rel="shortcut icon" sizes="16x16 32x32 64x64" href="/assets/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="16x16 32x32 64x64" href="/assets/images/favicon.ico">
+
+	<meta charset="utf-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<!-- <meta name="viewport" content="width=device-width,user-scalable=no, viewport-fit=cover"> -->
+	<meta name="viewport"
+		content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<!-- <meta name="viewport" content="width=device-width, minimal-ui, initial-scale=1"> -->
+	<title></title>
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vex-js@4.1.0/dist/css/vex.css"
+		integrity="sha256-/eaLySG/rPCowjMWyStmTPGtaU79NKiqodgU2X/PJ/g=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vex-js@4.1.0/dist/css/vex-theme-default.css"
+		integrity="sha256-k8lNp1XCOztgAfpYiP1+lYwqY82ylXrl+Z5F176FscQ=" crossorigin="anonymous">
+
+	<link rel="stylesheet" type="text/css" href="/assets/viewer/mobile/css/common.css" />
+	<link rel="stylesheet" type="text/css" href="/assets/viewer/mobile/css/video-js.css" />
+	<link rel="stylesheet" type="text/css" href="/assets/viewer/mobile/css/theme.css" />
+	<link rel="stylesheet" type="text/css" href="/assets/viewer/mobile/css/page010.css" />
+	<!-- <link rel="stylesheet" type="text/css" href="css/viewer_mobile.css" /> -->
+	<link rel="stylesheet" type="text/css" href="/assets/viewer/css/viewer_mobile2.css" />
+	<link rel="stylesheet" type="text/css" href="/assets/viewer/css/viewer.module.css?d=20230121" />
+</head>
+
+<body>
+	<div id="wrap">
+		<div class="wrap-inner">
+			<header id="hd">
+				<button id="btnExit" type="button" class="exit"></button>
+				<div class="title"></div>
+			</header>
+			<div id="ct">
+				<!-- 페이지 시작 -->
+				<div id="viewer-content">
+					<iframe id="iframe_content" style="display:block; width: 100%"></iframe>
+					<div class="popup tools">
+						<span class="title"></span>
+						<a class="close"></a>
+					</div>
+					<!-- module Start-->
+					<div id="module-modal" data-backdrop="false" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-body">
+									<div id="module-body"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- module End-->
+					<iframe id="iframe_content_pairbook" src="" allowfullscreen=""></iframe>
+					<iframe id="iframe_tools" src="" allowfullscreen></iframe>
+
+					<div class="drawing-canvas-wrapper">
+						<div class="drawing-canvas"></div>
+					</div>
+				</div>
+				<!-- 페이지 끝 -->
+			</div>
+
+			<!-- <div class="btn-box-wrapper">
+			</div> -->
+			<div class="btn-box">
+				<div class="btn-box-top">
+					<div id="content-btn">
+						<!-- 나중에 막기 -->
+						<!-- <div class="link">
+							<a href="#" class="icon-link-video" title="비디오 보기"></a>
+							<a href="#" class="icon-link" title="링크 보기"></a>
+						</div> -->
+					</div>
+
+					<!-- 페이징 -->
+					<div id="page" class="page">
+						<span><b id="current_page" class="current">1</b> / <span id="total_page"
+								class="total">1</span></span>
+					</div>
+				</div>
+				<b class="data-line"></b>
+				<div class="btn-box-bottom">
+					<!-- 특화 버튼 -->
+					<div class="course-btm row">
+						<!-- 교과서 Start -->
+						<div id="btn-ebook-page" class="col" style="display:none;">
+							<button type="button" class="btn btn-block btn-blue bg-blue" data-toggle="show"
+								data-target="#ebook-page">교과서</button>
+						</div>
+						<!-- 교과서 End -->
+						<!-- 국어 Start -->
+						<div id="btn-korean-activity" class="col" style="display:none;">
+							<button type="button" class="btn btn-block btn-pink bg-pink" data-toggle="show"
+								data-target="#korean-activity">국어활동</button>
+						</div>
+						<div id="btn-aside-korean" class="col" style="display:none;">
+							<button type="button" class="btn btn-block btn-sky bg-sky" data-toggle="show"
+								data-target="#aside-korean">작품문학관</button>
+						</div>
+						<!-- 국어 End -->
+
+						<!-- 사회 Start -->
+						<div id="btn-area-service" class="col" style="display:none;">
+							<button type="button" class="btn btn-block btn-yellow bg-yellow" data-toggle="show"
+								data-target="#area-service">지역 교과서</button>
+						</div>
+						<!-- 사회 End -->
+
+						<!-- 과학 Start -->
+						<div id="btn-experiment" class="col" style="display:none;">
+							<button type="button" class="btn btn-block btn-pink bg-pink" data-toggle="show"
+								data-target="#experiment">실험관찰</button>
+						</div>
+						<div id="btn-v-experiment" class="col" style="display:none;">
+							<button type="button" class="btn btn-block btn-green bg-green" data-toggle="show"
+								data-target="#v-experiment">디지털 실험실</button>
+						</div>
+						<!-- 과학 End -->
+
+						<!-- 수학 Start -->
+						<div id="btn-math-mastery" class="col" style="display:none;">
+							<button type="button" class="btn btn-block btn-pink bg-pink" data-toggle="show"
+								data-target="#math-mastery">수학익힘</button>
+						</div>
+						<div id="btn-ai-math" class="col" style="display:none;">
+							<button type="button" class="btn btn-block btn-pink bg-pink" data-toggle="show"
+								data-target="#ai-math">AI 수학</button>
+						</div>
+						<div id="btn-digital-parish" class="col" style="display:none;">
+							<button type="button" class="btn btn-block btn-sky bg-sky" data-toggle="show"
+								data-target="#digital-parish">스마트 교구</button>
+						</div>
+						<!-- 수학 End -->
+
+						<div id="btn-data-locker" class="col" style="display:none;">
+							<button type="button" class="btn btn-block btn-purple bg-purple" data-toggle="show"
+								data-target="#data-locker">내 자료</button>
+						</div>
+					</div>
+
+					<!-- 국어할동 -->
+					<div id="korean-activity" class="course-special bg-pink">
+						<i class="bg-pink bg-pink-point"></i>
+						<header>
+							<h3>국어활동</h3>
+							<button type="button" class="icon-close" data-toggle="show"
+								data-target="#korean-activity">국어활동</button>
+						</header>
+						<ul>
+							<li><a href="#" class="txt-line2" title="3-1-1 감각적 표현을 살피며 「산 샘물」을 읽어 보기">3-1-1 감각적 표현을 살피며
+									「산
+									샘물」을 읽어 보기</a><a class="icon-link-pink-sm" href="#" title="링크 보기">링크 보기</a></li>
+							<li><a href="#" class="txt-line2" title="3-1-2 감각적 표현을 살피며 「귀신보다 더 무서워」 읽기">3-1-2 감각적 표현을
+									살피며
+									「귀신보다 더 무서워」 읽기</a><a class="icon-link-pink-sm" href="#" title="링크 보기">링크 보기</a>
+							</li>
+							<li><a href="#" class="txt-line2" title="3-1-3 기초 다지기">3-1-3 기초 다지기</a><a
+									class="icon-link-pink-sm" href="#" title="링크 보기">링크 보기</a></li>
+							<li><a href="#" class="txt-line2" title="3-2-1 중심 문장과 뒷받침 문장을 구분하며 「동물들의 보호색」을 읽어 보기">3-2-1
+									중심
+									문장과 뒷받침 문장을 구분하며 「동물들의 보호색」을 읽어 보기</a><a class="icon-link-pink-sm" href="#"
+									title="링크 보기">링크 보기</a></li>
+							<li><a href="#" class="txt-line2" title="3-2-2 「내가 좋아하는 동물, 햄스터」를 읽고 물음에 답해 보기">3-2-2 「내가
+									좋아하는
+									동물, 햄스터」를 읽고 물음에 답해 보기</a><a class="icon-link-pink-sm" href="#" title="링크 보기">링크
+									보기</a>
+							</li>
+							<li><a href="#" class="txt-line2" title="3-2-3 기초 다지기">3-2-3 기초 다지기</a><a
+									class="icon-link-pink-sm" href="#" title="링크 보기">링크 보기</a></li>
+						</ul>
+					</div>
+					<!-- 작품문학관 -->
+					<div id="aside-korean" class="course-special bg-sky">
+						<i class="bg-sky"></i>
+						<header>
+							<h3>작품문학관 <a href="">더보기 &gt;</a></h3>
+							<button type="button" class="icon-close" data-toggle="show"
+								data-target="#aside-korean">작품문학관</button>
+						</header>
+						<ul>
+							<li><a href="#" class="txt-line2" title="3-1-1 봄의 길목에서">3-1-1 봄의 길목에서</a><a
+									class="icon-link-sm" href="#" title="링크 보기">링크 보기</a></li>
+							<li><a href="#" class="txt-line2" title="3-1-1 소나기">3-1-1 소나기</a><a class="icon-link-sm"
+									href="#" title="링크 보기">링크 보기</a></li>
+							<li><a href="#" class="txt-line2" title="3-1-1 공 튀는 소리">3-1-1 공 튀는 소리</a><a
+									class="icon-link-sm" href="#" title="링크 보기">링크 보기</a></li>
+							<li><a href="#" class="txt-line2" title="3-1-1 바삭바삭 갈매기">3-1-1 바삭바삭 갈매기</a><a
+									class="icon-link-sm" href="#" title="링크 보기">링크 보기</a></li>
+							<li><a href="#" class="txt-line2" title="3-1-1 으악, 도깨비다!">3-1-1 으악, 도깨비다!</a><a
+									class="icon-link-sm" href="#" title="링크 보기">링크 보기</a></li>
+							<li><a href="#" class="txt-line2" title="3-1-1 강아지풀">3-1-1 강아지풀</a><a class="icon-link-sm"
+									href="#" title="링크 보기">링크 보기</a></li>
+							<li><a href="#" class="txt-line2" title="3-1-1 아기 고래">3-1-1 아기 고래</a><a class="icon-link-sm"
+									href="#" title="링크 보기">링크 보기</a></li>
+							<li><a href="#" class="txt-line2" title="3-1-1 오성과 한음">3-1-1 오성과 한음</a><a
+									class="icon-link-sm" href="#" title="링크 보기">링크 보기</a></li>
+							<li><a href="#" class="txt-line2" title="3-1-1 아씨방 일곱 동무">3-1-1 아씨방 일곱 동무</a><a
+									class="icon-link-sm" href="#" title="링크 보기">링크 보기</a></li>
+							<li><a href="#" class="txt-line2" title="3-1-1 프린들 주세요">3-1-1 프린들 주세요</a><a
+									class="icon-link-sm" href="#" title="링크 보기">링크 보기</a></li>
+							<li><a href="#" class="txt-line2" title="3-1-1 나비 박사 석주명">3-1-1 나비 박사 석주명</a><a
+									class="icon-link-sm" href="#" title="링크 보기">링크 보기</a></li>
+							<li><a href="#" class="txt-line2" title="3-1-1 구름">3-1-1 구름</a><a class="icon-link-sm"
+									href="#" title="링크 보기">링크 보기</a></li>
+							<li><a href="#" class="txt-line2" title="3-1-1 빗길">3-1-1 빗길</a><a class="icon-link-sm"
+									href="#" title="링크 보기">링크 보기</a></li>
+							<li><a href="#" class="txt-line2" title="3-1-1 그냥 놔두세요">3-1-1 그냥 놔두세요</a><a
+									class="icon-link-sm" href="#" title="링크 보기">링크 보기</a></li>
+							<li><a href="#" class="txt-line2" title="3-1-1 만복이네 떡집">3-1-1 만복이네 떡집</a><a
+									class="icon-link-sm" href="#" title="링크 보기">링크 보기</a></li>
+						</ul>
+					</div>
+					<!-- 지역화서비스 -->
+					<div id="area-service" class="course-special bg-yellow">
+						<i class="bg-yellow bg-yellow-point"></i>
+						<header>
+							<h3>지역 교과서 <a href="" rel="noopener">더보기 &gt;</a></h3>
+							<button type="button" class="icon-close" data-toggle="show" data-target="#area-service">디지털
+								지역
+								교과서</button>
+						</header>
+						<ul>
+							<li><a href="#" class="txt-line2" title="1. 우리 고장의 상징">1. 우리 고장의 상징</a><a
+									class="icon-link-pink-sm" href="#" title="링크 보기">링크 보기</a></li>
+							<li><a href="#" class="txt-line2" title="2. 우리 고장의 여러 장소">2. 우리 고장의 여러 장소</a><a
+									class="icon-link-pink-sm" href="#" title="링크 보기">링크 보기</a></li>
+							<li><a href="#" class="txt-line2" title="3. 하늘에서 내려다본 우리 고장">3. 하늘에서 내려다본 우리 고장</a><a
+									class="icon-link-pink-sm" href="#" title="링크 보기">링크 보기</a></li>
+							<li><a href="#" class="txt-line2" title="4. 고장의 자랑할 만한 장소">4. 고장의 자랑할 만한 장소</a><a
+									class="icon-link-pink-sm" href="#" title="링크 보기">링크 보기</a></li>
+							<li><a href="#" class="txt-line2" title="5. 지명과 관련된 유래">5. 지명과 관련된 유래</a><a
+									class="icon-link-pink-sm" href="#" title="링크 보기">링크 보기</a></li>
+							<li><a href="#" class="txt-line2" title="6. 우리 고장의 옛이야기">6. 우리 고장의 옛이야기</a><a
+									class="icon-link-pink-sm" href="#" title="링크 보기">링크 보기</a></li>
+							<li><a href="#" class="txt-line2" title="7. 우리 고장의 문화유산">7. 우리 고장의 문화유산</a><a
+									class="icon-link-pink-sm" href="#" title="링크 보기">링크 보기</a></li>
+							<li><a href="#" class="txt-line2" title="8. 고장의 문화유산과 관련된 행사">8. 고장의 문화유산과 관련된 행사</a><a
+									class="icon-link-pink-sm" href="#" title="링크 보기">링크 보기</a></li>
+							<li><a href="#" class="txt-line2" title="9. 우리 고장의 문화유산 조사 방법">9. 우리 고장의 문화유산 조사 방법</a><a
+									class="icon-link-pink-sm" href="#" title="링크 보기">링크 보기</a></li>
+						</ul>
+					</div>
+					<!-- 실험관찰 -->
+					<div id="experiment" class="course-special bg-pink">
+						<i class="bg-pink bg-pink-point"></i>
+						<header>
+							<h3>실험관찰</h3>
+							<button type="button" class="icon-close" data-toggle="show"
+								data-target="#experiment">실험관찰</button>
+						</header>
+						<ul>
+							<li><a href="#" class="txt-line2" title="3-1-1 과학자는 어떻게 관찰할까요?">3-1-1 과학자는 어떻게 관찰할까요?</a><a
+									class="icon-link-pink-sm" href="#" title="링크 보기">링크 보기</a></li>
+							<li><a href="#" class="txt-line2" title="3-1-2 과학자는 어떻게 측정할까요?">3-1-2 과학자는 어떻게 측정할까요?</a><a
+									class="icon-link-pink-sm" href="#" title="링크 보기">링크 보기</a></li>
+							<li><a href="#" class="txt-line2" title="3-1-3 과학자는 어떻게 예상할까요?">3-1-3 과학자는 어떻게 예상할까요?</a><a
+									class="icon-link-pink-sm" href="#" title="링크 보기">링크 보기</a></li>
+							<li><a href="#" class="txt-line2" title="3-1-4 과학자는 어떻게 분류할까요?">3-1-4 과학자는 어떻게 분류할까요?</a><a
+									class="icon-link-pink-sm" href="#" title="링크 보기">링크 보기</a></li>
+						</ul>
+					</div>
+					<!-- 디지털 실험실 -->
+					<div id="v-experiment" class="course-special bg-green">
+						<i class="bg-green"></i>
+						<header>
+							<h3>디지털 실험실 <a href="">더보기 &gt;</a></h3>
+							<button type="button" class="icon-close" data-toggle="show" data-target="#v-experiment">디지털
+								실험실</button>
+						</header>
+						<ul>
+							<li><a href="#" class="txt-line2" title="3-1-2 물질의 성질을 이용해 연필꽂이 설계하기">3-1-2 물질의 성질을 이용해 연필꽂이
+									설계하기</a><a class="icon-link-sm" href="#" title="링크 보기">링크 보기</a></li>
+							<li><a href="#" class="txt-line2" title="3-1-4 자석 주위에 놓인 나침반 바늘의 움직임 관찰하기">3-1-4 자석 주위에 놓인
+									나침반
+									바늘의 움직임 관찰하기</a><a class="icon-link-sm" href="#" title="링크 보기">링크 보기</a></li>
+							<li><a href="#" class="txt-line2" title="3-1-5 육지와 바다의 특징 비교하기">3-1-5 육지와 바다의 특징 비교하기</a><a
+									class="icon-link-sm" href="#" title="링크 보기">링크 보기</a></li>
+							<li><a href="#" class="txt-line2" title="3-1-5 달의 모습 관찰하기">3-1-5 달의 모습 관찰하기</a><a
+									class="icon-link-sm" href="#" title="링크 보기">링크 보기</a></li>
+						</ul>
+					</div>
+					<!--수학익힘 -->
+					<div id="math-mastery" class="course-special bg-pink">
+						<i class="bg-pink bg-pink-point"></i>
+						<header>
+							<h3>수학익힘</h3>
+							<button type="button" class="icon-close" data-toggle="show"
+								data-target="#math-mastery">수학익힘</button>
+						</header>
+						<ul>
+							<li><a href="#" class="txt-line2" title="3-1-1 덧셈을 해 볼까요( 1 )">3-1-1 덧셈을 해 볼까요( 1 )</a><a
+									class="icon-link-sm" href="#" title="링크 보기">링크 보기</a></li>
+							<li><a href="#" class="txt-line2" title="3-1-2 덧셈을 해 볼까요( 2 )">3-1-2 덧셈을 해 볼까요( 2 )</a><a
+									class="icon-link-sm" href="#" title="링크 보기">링크 보기</a></li>
+							<li><a href="#" class="txt-line2" title="3-1-3 덧셈을 해 볼까요( 3 )">3-1-3 덧셈을 해 볼까요( 3 )</a><a
+									class="icon-link-sm" href="#" title="링크 보기">링크 보기</a></li>
+							<li><a href="#" class="txt-line2" title="3-2-1 뺄셈을 해 볼까요( 1 )">3-2-1 뺄셈을 해 볼까요( 1 )</a><a
+									class="icon-link-sm" href="#" title="링크 보기">링크 보기</a></li>
+						</ul>
+					</div>
+					<div id="ai-math" class="course-special bg-pink">
+						<i class="bg-pink"></i>
+						<header>
+							<h3><span>AI 수학</span><a href="https://aiclass.m-teacher.co.kr/" target="_blank">더보기
+									&gt;</a></h3>
+							<button type="button" class="icon-close" data-toggle="show" data-target="#ai-math">AI
+								수학</button>
+						</header>
+						<ul>
+							<li><a class="txt-line2"
+									href="https://devlive.m-teacher.co.kr/worksheet.mrn?uuid=3e300944746a11ecb054020017008f76"
+									title="[진단평가] 1. 덧셈과 뺄셈" target="_blank">[진단평가] 1. 덧셈과 뺄셈</a></li>
+						</ul>
+					</div>
+					<!-- 스마트 교구 -->
+					<div id="digital-parish" class="course-special bg-sky">
+						<i class="bg-sky"></i>
+						<header>
+							<h3><span>스마트 교구</span><a href="">더보기 &gt;</a></h3>
+							<button type="button" class="icon-close" data-toggle="show"
+								data-target="#digital-parish">스마트
+								교구</button>
+						</header>
+						<ul>
+							<li><a href="#" class="txt-line2" title="[수모형] 3-1-2 덧셈을 해 볼까요(1)">[수모형] 3-1-2 덧셈을 해
+									볼까요(1)</a><a class="icon-link-sm" href="#" title="링크 보기">링크 보기</a></li>
+							<li><a href="#" class="txt-line2" title="[수모형] 3-1-3 덧셈을 해 볼까요(2)">[수모형] 3-1-3 덧셈을 해
+									볼까요(2)</a><a class="icon-link-sm" href="#" title="링크 보기">링크 보기</a></li>
+							<li><a href="#" class="txt-line2" title="[수모형] 3-1-5 뺄셈을 해 볼까요(1)">[수모형] 3-1-5 뺄셈을 해
+									볼까요(1)</a><a class="icon-link-sm" href="#" title="링크 보기">링크 보기</a></li>
+							<li><a href="#" class="txt-line2" title="[수모형] 3-1-6 뺄셈을 해 볼까요(2)">[수모형] 3-1-6 뺄셈을 해
+									볼까요(2)</a><a class="icon-link-sm" href="#" title="링크 보기">링크 보기</a></li>
+						</ul>
+					</div>
+					<!-- 자료보관함 -->
+					<div id="data-locker" class="course-special bg-purple">
+						<i class="bg-purple bg-purple-point"></i>
+						<header>
+							<!-- <h3>내 자료 <input type="checkbox" id="chk-box"><label for="chk-box">&nbsp직접올린 자료만 보기</label></h3> -->
+							<h3>내 자료
+								<select class="custom-select custom-select-sm">
+									<option class="data-locker-options" selected value="all">모든 자료</option>
+									<option class="data-locker-options" value="scrap">스크랩 자료</option>
+									<option class="data-locker-options" value="my">업로드 자료</option>
+								</select>
+							</h3>
+							<button type="button" class="icon-close" data-toggle="show" data-target="#data-locker">내
+								자료</button>
+						</header>
+						<ul>
+							<li><a href="#"><strong class="ft-purple">직접업로드</strong></a><a href="#" class="txt-line3"
+									title="국어활동 1차시 문제유형"><strong>국어활동 1차시 문제유형</strong></a><a href="#">2020.10.28</a>
+							</li>
+							<li><a href="#"><strong class="ft-purple">직접업로드</strong></a><a href="#" class="txt-line3"
+									title="문학 학습법과 이해"><strong>문학 학습법과 이해</strong></a><a href="#">2020.10.28</a></li>
+							<li><a href="#"><strong class="ft-purple">직접업로드</strong></a><a href="#" class="txt-line3"
+									title="봄의 이미지 자료 모음"><strong>봄의 이미지 자료 모음</strong></a><a href="#">2020.10.28</a>
+							</li>
+							<li><a href="#"><strong class="ft-purple">직접업로드</strong></a><a href="#" class="txt-line3"
+									title="학습 정리 안내"><strong>학습 정리 안내</strong></a><a href="#">2020.10.28</a></li>
+						</ul>
+					</div>
+					<!-- 교과서 바로가기 -->
+					<div id="ebook-page" class="course-special bg-blue">
+						<i class="bg-blue"></i>
+						<header>
+							<h3>교과서 바로가기</h3>
+							<button type="button" class="icon-close" data-toggle="show"
+								data-target="#ebook-page">교과서</button>
+						</header>
+						<ul>
+							<!-- <li data-ebookPage="58~74" data-thisPage="58"><a href="#" class="txt-line2 ebook_list_txt"
+								title="준비하기">준비하기</a><span class="_page_num">58쪽</span></li>
+						<li data-ebookPage="58~74" data-thisPage="60"><a href="#" class="txt-line2 ebook_list_txt"
+								title="1. 나눗셈식을 알아봐요(1)">1.
+								나눗셈식을
+								알아봐요(1)</a>
+							<span class="_page_num">60쪽</span>
+						</li> -->
+						</ul>
+					</div>
+					<!--  -->
+				</div>
+			</div>
+
+			<div id="quick">
+				<div class="control">
+					<button type="button" id="btnCC" class="" data-toggle="modal" data-target="#modal-control">컨트롤
+						연결</button>
+				</div>
+				<div class="quick-mid">
+					<div class="prev">
+						<button type="button" id="btnPrev" class="">이전</button>
+					</div>
+					<div class="next">
+						<button type="button" id="btnNext" class="">다음</button>
+					</div>
+					<div class="toc">
+						<button type="button" id="btnContents" data-toggle="modal"
+							data-target="#modal-contents">목차</button>
+					</div>
+				</div>
+				<div class="bookmark">
+					<button type="button" id="btnBookmark">북마크</button>
+				</div>
+				<div class="more">
+					<button type="button" id="btnMoreContent" data-toggle="modal"
+						data-target="#modal-data-contents">연계콘텐츠</button>
+				</div>
+				<div class="page">
+					<span><b class="current" title="현재 1페이지">1</b> / <span class="total" title="총4페이지">4</span></span>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+	<!-- 컨트롤 -->
+	<div id="modal-control" class="modal fade modal_1" data-backdrop="false">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">컨트롤 연결</h4>
+					<button type="button" id="control_close" class="close" data-dismiss="modal"
+						aria-label="close">&times;</button>
+				</div>
+				<div class="modal-body">
+					<h4>컨트롤 연결을 하면 연결된 화면을 모바일로 제어할 수 있어요!</h4>
+					<p class="description">아래 목록에서 컨트롤 할 기기(화면)을 선택해주세요. 동일한 아이디로 접속한 기기에서만 컨트롤을 사용할 수 있습니다.</p>
+					<ul id="controllList">
+					</ul>
+				</div>
+				<div class="modal-footer">
+					<button id="btnCloseControll" type="button" class="btn btn-danger" data-dismiss="modal"
+						aria-label="close">닫기</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<!-- 목차 -->
+	<div id="modal-contents" class="modal fade modal_2" aria-hidden="true" tabindex="-1" data-backdrop="false">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">목차</h4>
+					<button type="button" id="list_close" class="close" data-dismiss="modal" aria-label="close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<ul id="page_list" class="row row-cols-3 row-cols-sm-1 row-cols-md-4">
+
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 보조자료 -->
+	<div id="modal-data-contents" class="modal fade modal_3" aria-hidden="true" tabindex="-1" data-backdrop="false">
+		<div class="modal-dialog  modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" id="data_contents_close" data-dismiss="modal"
+						aria-label="close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="row row_1">
+						<div class="col-md-3 h40"><span class="align-middle text-bold">보충자료 / 연계자료</span></div>
+						<div class="col-md-7 h40">
+							<div id="content-btn2">
+								<!-- 나중에 막기 -->
+								<!-- <div class="link">
+									<a href="#" class="icon-link-video" title="비디오 보기"></a>
+									<a href="#" class="icon-link" title="링크 보기"></a>
+								</div> -->
+							</div>
+						</div>
+						<div class="col-md-2 h40" style="display: none;">
+							<div id="page2" class="page">
+								<span><b id="current_page2" class="current">3</b> / <span id="total_page2"
+										class="total">5</span></span>
+							</div>
+						</div>
+					</div>
+					<div class="row row_2">
+						<div class="col-md-3 h20"></div>
+						<div id="data-line" class="col-md-9 h20"><b class="data-line"></b></div>
+					</div>
+					<div class="row row_3">
+						<div class="col-md-3 h40" style="display: none;"><span
+								class="align-middle text-bold">보충자료</span></div>
+						<div class="col-md-9 h40">
+							<div class="course-btm row">
+								<!-- 교과서 Start -->
+								<div id="btn-ebook-page2" class="col" style="display:none;">
+									<button type="button" class="btn btn-block btn-blue bg-blue" data-toggle="show"
+										data-target="#ebook-page2">교과서</button>
+								</div>
+								<!-- 국어 Start -->
+								<div id="btn-korean-activity2" class="col" style="display:none;">
+									<button type="button" class="btn btn-block btn-pink bg-pink" data-toggle="show"
+										data-target="#korean-activity2">국어활동</button>
+								</div>
+								<div id="btn-aside-korean2" class="col" style="display:none;">
+									<button type="button" class="btn btn-block btn-sky bg-sky" data-toggle="show"
+										data-target="#aside-korean2">작품문학관</button>
+								</div>
+								<!-- 국어 End -->
+
+								<!-- 사회 Start -->
+								<div id="btn-area-service2" class="col" style="display:none;">
+									<button type="button" class="btn btn-block btn-yellow bg-yellow" data-toggle="show"
+										data-target="#area-service2">지역 교과서</button>
+								</div>
+								<!-- 사회 End -->
+
+								<!-- 과학 Start -->
+								<div id="btn-experiment2" class="col" style="display:none;">
+									<button type="button" class="btn btn-block btn-pink bg-pink" data-toggle="show"
+										data-target="#experiment2">실험관찰</button>
+								</div>
+								<div id="btn-v-experiment2" class="col" style="display:none;">
+									<button type="button" class="btn btn-block btn-green bg-green" data-toggle="show"
+										data-target="#v-experiment2">디지털 실험실</button>
+								</div>
+								<!-- 과학 End -->
+
+								<!-- 수학 Start -->
+								<div id="btn-math-mastery2" class="col" style="display:none;">
+									<button type="button" class="btn btn-block btn-pink bg-pink" data-toggle="show"
+										data-target="#math-mastery2">수학익힘</button>
+								</div>
+								<div id="btn-ai-math2" class="col" style="display:none;">
+									<button type="button" class="btn btn-block btn-pink bg-pink" data-toggle="show"
+										data-target="#ai-math2">AI 수학</button>
+								</div>
+								<div id="btn-digital-parish2" class="col" style="display:none;">
+									<button type="button" class="btn btn-block btn-sky bg-sky" data-toggle="show"
+										data-target="#digital-parish2">스마트 교구</button>
+								</div>
+								<!-- 수학 End -->
+
+								<div id="btn-data-locker2" class="col" style="display:none;">
+									<button type="button" class="btn btn-block btn-purple bg-purple" data-toggle="show"
+										data-target="#data-locker2">내 자료</button>
+								</div>
+							</div>
+							<!-- TODO : 교과서 바로가기 -->
+
+							<!-- 국어할동 -->
+							<div id="korean-activity2" class="course-special bg-pink">
+								<i class="bg-pink bg-pink-point"></i>
+								<header>
+									<h3>국어활동</h3>
+									<button type="button" class="icon-close" data-toggle="show"
+										data-target="#korean-activity2">국어활동</button>
+								</header>
+								<ul></ul>
+							</div>
+							<!-- 작품문학관 -->
+							<div id="aside-korean2" class="course-special bg-sky">
+								<i class="bg-sky"></i>
+								<header>
+									<h3>작품문학관 <a href="">더보기 &gt;</a></h3>
+									<button type="button" class="icon-close" data-toggle="show"
+										data-target="#aside-korean2">작품문학관</button>
+								</header>
+								<ul></ul>
+							</div>
+							<!-- 지역화서비스 -->
+							<div id="area-service2" class="course-special bg-yellow">
+								<i class="bg-yellow bg-yellow-point"></i>
+								<header>
+									<h3>지역 교과서 <a href="">더보기 &gt;</a></h3>
+									<button type="button" class="icon-close" data-toggle="show"
+										data-target="#area-service2">지역 교과서</button>
+								</header>
+								<ul></ul>
+							</div>
+							<!-- 실험관찰 -->
+							<div id="experiment2" class="course-special bg-pink">
+								<i class="bg-pink bg-pink-point"></i>
+								<header>
+									<h3>실험관찰</h3>
+									<button type="button" class="icon-close" data-toggle="show"
+										data-target="#experiment2">실험관찰</button>
+								</header>
+								<ul></ul>
+							</div>
+							<!-- 디지털 실험실 -->
+							<div id="v-experiment2" class="course-special bg-green">
+								<i class="bg-green"></i>
+								<header>
+									<h3>디지털 실험실 <a href="">더보기 &gt;</a></h3>
+									<button type="button" class="icon-close" data-toggle="show"
+										data-target="#v-experiment2">디지털 실험실</button>
+								</header>
+								<ul></ul>
+							</div>
+							<!--수학익힘 -->
+							<div id="math-mastery2" class="course-special bg-pink">
+								<i class="bg-pink bg-pink-point"></i>
+								<header>
+									<h3>수학익힘</h3>
+									<button type="button" class="icon-close" data-toggle="show"
+										data-target="#math-mastery2">수학익힘</button>
+								</header>
+								<ul></ul>
+							</div>
+							<div id="ai-math2" class="course-special bg-pink">
+								<i class="bg-pink"></i>
+								<header>
+									<h3><span>AI 수학</span><a href="https://aiclass.m-teacher.co.kr/" target="_blank">더보기
+											&gt;</a></h3>
+									<button type=" button" class="icon-close" data-toggle="show"
+										data-target="#ai-math2">AI
+										수학</button>
+								</header>
+								<ul>
+									<li><a class="txt-line2"
+											href="https://devlive.m-teacher.co.kr/worksheet.mrn?uuid=3e300944746a11ecb054020017008f76"
+											title="[진단평가] 1. 덧셈과 뺄셈" target="_blank">[진단평가] 1. 덧셈과 뺄셈</a></li>
+								</ul>
+							</div>
+							<!-- 스마트 교구 -->
+							<div id="digital-parish2" class="course-special bg-sky">
+								<i class="bg-sky"></i>
+								<header>
+									<h3><span>스마트 교구</span><a href="">더보기 &gt;</a></h3>
+									<button type="button" class="icon-close" data-toggle="show"
+										data-target="#digital-parish2">스마트 교구</button>
+								</header>
+								<ul></ul>
+							</div>
+							<!-- 자료보관함 -->
+							<div id="data-locker2" class="course-special bg-purple">
+								<i class="bg-purple bg-purple-point"></i>
+								<header>
+									<!-- <h3>내 자료 <input type="checkbox" id="chk-box"><label for="chk-box">&nbsp직접올린 자료만 보기</label></h3> -->
+									<h3>내 자료
+										<select class="custom-select custom-select-sm">
+											<option class="data-locker-options" selected value="all">모든 자료</option>
+											<option class="data-locker-options" value="scrap">스크랩 자료</option>
+											<option class="data-locker-options" value="my">업로드 자료</option>
+										</select>
+									</h3>
+									<button type="button" class="icon-close" data-toggle="show"
+										data-target="#data-locker2">내 자료</button>
+								</header>
+								<ul></ul>
+							</div>
+							<!-- 교과서 바로가기 -->
+							<div id="ebook-page2" class="course-special bg-blue">
+								<i class="bg-blue"></i>
+								<header>
+									<h3>교과서 바로가기</h3>
+									<button type="button" class="icon-close" data-toggle="show"
+										data-target="#ebook-page2">교과서</button>
+								</header>
+								<ul>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script
+		src="https://polyfill.io/v3/polyfill.min.js?features=Promise%2CString.prototype.padStart%2CString.prototype.startsWith"></script>
+	<!-- <script src="js/promise-polyfill.min.js"></script> -->
+	<script src="mobile/js/jquery.min.js"></script>
+	<script src="mobile/js/jquery-ui.min.js"></script>
+	<script src="mobile/js/jquery.ui.touch-punch.min.js"></script>
+	<script src="mobile/js/bootstrap.min.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/konva/7.2.0/konva.min.js"
+		integrity="sha512-Z2K1QFLdmTUdZk7W1h65BOeap9JojncX3j4KZ3Z/oQTZGG/Jg4BNZPEFVIhAU6ovf76w1ebLZJM91Eb4W5867Q=="
+		crossorigin="anonymous"></script>
+	<script src="js/viewer.drawingcanvas.js"></script>
+
+	<script src="js/bootstrap.bundle.min.js"></script>
+	<!-- <script src="js/e-smart-zoom-jquery.min.js"></script> -->
+	<script src="js/e-smart-zoom-jquery.js"></script>
+	<script src="mobile/js/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script src="mobile/js/swiper.min.js"></script>
+	<script src="mobile/js/common.js"></script>
+	<script src="mobile/js/video.js"></script>
+	<script src="mobile/js/Youtube.min.js"></script>
+	<script src="mobile/js/theme.js"></script>
+	<script src="js/videojs-playlist.js"></script>
+	<script src="js/viewer.module.js"></script>
+
+	<!-- <script src="js/viewer/viewer.js"></script> -->
+	<script src="js/viewer.layout.js"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/underscore@1.11.0/underscore.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/mobile-detect/1.4.4/mobile-detect.min.js"
+		integrity="sha512-hSVyGuXBHmZy+A+P21DRUAuc7UTfcqc0geieb/H1ZmqiJAoDTfzFYIOBAMTcFUWU/PwLPEoREYG/77ckPB6oSw=="
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/jquery-toast@1.0.0/jquery.toast.js"
+		integrity="sha256-rI2yKVJ5ZaS9P5C1SmeVechb9vzKH/JrK2OL+/cF6qo=" crossorigin="anonymous"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/vex-js@4.1.0/dist/js/vex.combined.js"
+		integrity="sha256-LSKMfbhy3vEb686cTq5ITGkNtRMQ9DocDnlAAn291p0=" crossorigin="anonymous"></script>
+	<script>vex.defaultOptions.className = 'vex-theme-default';</script>
+
+	<script src="./jquery.getSelector.js"></script>
+	<script src="./utils.js"></script>
+	<script src="./tms.js"></script>
+	<script src="./viewer.1.js"></script>
+	<script src="./viewer.drawing_save_load.js"></script>
+	<script src="./v.drawing.js"></script>
+	<script src="./v.preview.js"></script>
+	<script src="./mirroring.js"></script>
+	<script src="./app.js"></script>
+	<script src="./v.ebook.js"></script>
+	<script src="./v.calculator.js"></script>
+
+	<script>
+		function mobileDeviceGetHeight() {
+			var vh = window.innerHeight * 0.01;
+			document.documentElement.style.setProperty('--vh', vh + 'px');
+
+			portraitElementHeight();
+		};
+
+		// iphone safari는 vh에 address bar 높이를 고려하지 않았습니다.
+		// 다른 모바일 브라우저와의 차별을 위해 iphone safari 접속 시 다른 높이갚을 부여합니다.
+		// safari는 콘텐츠 영역인 #ct에 32vh 적용,
+		// whale은 1vh * 6.5 적용,
+		// chrome은 1vh * 4.5 적용
+		// 세로 모드(portrait)일때만 적용합니다.
+		function portraitElementHeight() {
+			var ua = window.navigator.userAgent;
+			var iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
+			var webkit = !!ua.match(/WebKit/i);
+			var whale = !!ua.match(/Whale/i);
+			var iOSSafari = iOS && webkit && !whale && !ua.match(/CriOS/i) && !ua.match(/OPiOS/i);
+
+			var getOrientation = $('body').attr('orientation');
+
+			if (getOrientation == 'portrait') {
+				if (iOSSafari) {
+					$("#wrap .wrap-inner > #ct").css('height', '32vh');
+				} else {
+					var _scale = null;
+
+					if (whale) {
+						_scale = 6.5;
+					} else {
+						_scale = 4.5;
+					}
+
+					var _vh = $('html').css('--vh');
+					var _height = parseFloat(_vh) * _scale;
+
+					$("#wrap .wrap-inner > #ct").css('height', _height + 'vh');
+				}
+			} else {
+				$("#wrap .wrap-inner > #ct").css('height', '100vh');
+			}
+		};
+
+		function set_current_orientation() {
+			/*
+			var orientation = window.screen.orientation;
+			console.log(orientation.type);
+			if (orientation.type.indexOf("portrait") >= 0) {
+				$('body').attr('orientation', 'portrait');
+				$("#modal-data-contents").modal('hide');
+			} else if (orientation.type.indexOf("landscape") >= 0) {
+				$('body').attr('orientation', 'landscape');
+			}
+			*/
+			switch (window.orientation) {
+				case 0:
+					$('body').attr('orientation', 'portrait');
+					break;
+				case -90:
+					$('body').attr('orientation', 'landscape');
+					break;
+				case 90:
+					$('body').attr('orientation', 'landscape');
+					break;
+				case 180:
+					$('body').attr('orientation', 'portrait');
+					break;
+			}
+
+			mobileDeviceGetHeight();
+		};
+
+		$(document).ready(function () {
+			set_current_orientation();
+			detect_mobile_device_type();
+			$('body').attr('device', DEVICE_TYPE);
+
+			if (navigator.userAgent.indexOf("iPhone") != -1 || navigator.userAgent.indexOf("Linux") != -1) {
+				addEventListener("load", function () {
+					// setTimeout(scrollTo, 0, 0, 1)
+					setTimeout(window.scrollTo(0, 1))
+				}, false);
+				//  addEventListener("orientationchange", function(){
+				//       setTimeout(scrollTo, 0, 0, 1)
+				//  }, false);
+			}
+			addEventListener("orientationchange", function () {
+				set_current_orientation();
+				setTimeout(window.scrollTo(0, 1))
+				// setTimeout(scrollTo, 0, 0, 1)
+			}, false);
+
+			setTimeout(function () {
+				viewer.ready(DEVICE_TYPE);
+			}, 200);
+		});
+
+		$(window).on("resize", function (e) {
+			setTimeout(function () {
+				mobileDeviceGetHeight();
+
+				// 가로 모드 목차 열려있으면 닫기
+				if ($('.modal_2').hasClass('show')) {
+					$('.modal_2 .modal-header > .close').click();
+				}
+				// 가로 모드 연계자료 열려있으면 닫기
+				if ($('.modal_3').hasClass('show')) {
+					$('.modal_3 .modal-header > .close').click();
+				}
+
+				viewer.resize();
+
+			}, 500);
+		});
+
+		$(window).on('popstate', function () {
+			viewer.do_popstate(history.state);
+		});
+
+
+		$(document).on('click', '.modal-backdrop', function (e) {
+			$('.modal').modal('hide');
+		});
+
+
+		$(document).on('click', '#btnCC', function (e) {
+			var _modal_1 = $('.modal_1');
+
+			_modal_1.removeClass('hide');
+			_modal_1.addClass('show');
+			_modal_1.css('display', 'block');
+			$('body').addClass('modal-open');
+		});
+
+		$(document).on('click', '#control_close', function (e) {
+			var _modal_1 = $('.modal_1');
+
+			_modal_1.removeClass('show');
+			_modal_1.addClass('hide');
+			_modal_1.css('display', 'none');
+
+			$('body').removeClass('modal-open');
+		});
+
+		$(document).on('click', '#btnContents', function (e) {
+			var _modal_2 = $('.modal_2');
+
+			_modal_2.removeClass('hide');
+			_modal_2.addClass('show');
+			_modal_2.css('display', 'block');
+			$('body').addClass('modal-open');
+		});
+
+		$(document).on('click', '#list_close', function (e) {
+			var _modal_2 = $('.modal_2');
+
+			_modal_2.removeClass('show');
+			_modal_2.addClass('hide');
+			_modal_2.css('display', 'none');
+
+			$('body').removeClass('modal-open');
+		});
+
+		$(document).on('click', '#btnMoreContent', function (e) {
+			var _modal_3 = $('.modal_3');
+
+			_modal_3.removeClass('hide');
+			_modal_3.addClass('show');
+			_modal_3.css('display', 'block');
+			$('body').addClass('modal-open');
+		});
+
+		$(document).on('click', '#data_contents_close', function (e) {
+			var _modal_3 = $('.modal_3');
+
+			_modal_3.removeClass('show');
+			_modal_3.addClass('hide');
+			_modal_3.css('display', 'none');
+
+			$('body').removeClass('modal-open');
+		});
+
+		$(document).on("click", "#page_list li.subject", function (e) {
+			var obj = $(this).data();
+			app.move_to_subject_by_id(obj.id, obj.type);
+			mirroring.api_sync_obj({
+				target: "app",
+				script: "app.move_to_subject_by_id('" + obj.id + "', '" + obj.type + "');"
+			});
+			$("#modal-contents").modal('hide');
+			$('#list_close').click();
+		});
+
+		$(document).on("click", ".popup.tools a.close", function (e) {
+			app.close_popup_content();
+			mirroring.api_sync_obj({
+				target: "app",
+				script: "app.close_popup_content();"
+			});
+		});
+
+		$(document).on("click", "#btnPrev", function (e) {
+			// app.move_to_prev();
+			// mirroring.api_sync_obj({
+			// 	target: "app",
+			// 	script: "app.move_to_prev();"
+			// });
+
+			// if ($("#module-modal").hasClass('show') && viewer._playlist_data.info.modalDiv != 'CUSTOM') {
+			// 	$('#carousel-control').carousel('prev');
+			// 	Module.image_viewer.control_prev();
+			// } else {
+			// 	var obj = viewer.get_prev();
+			// 	if (!obj) {
+			// 		return;
+			// 	}
+			// 	app.move_to_subject_by_id(obj.id, obj.type);
+			// 	mirroring.api_sync_obj({
+			// 		target: "app",
+			// 		script: "app.move_to_subject_by_id('" + obj.id + "', '" + obj.type + "');"
+			// 	});
+			// 	// 북마크 버튼 초기화
+			// 	$('#btnBookmark').css('background-image', 'url(./img/viewer/mobile/i-bookmark@2x.png)');
+			// 	vibrate();
+			// }
+			current_content_type = get_current_content_type();
+
+			if (current_content_type == 'smartppt') {
+				// smartPPT
+				if ($("#module-modal").hasClass('show') && viewer._playlist_data.info.modalDiv != 'CUSTOM') {
+					$('#carousel-control').carousel('prev');
+					Module.image_viewer.control_prev();
+				} else {
+					var obj = viewer.get_prev();
+					if (!obj) {
+						return;
+					}
+					app.move_to_subject_by_id(obj.id, obj.type);
+					mirroring.api_sync_obj({
+						target: "app",
+						script: "app.move_to_subject_by_id('" + obj.id + "', '" + obj.type + "');"
+					});
+					vibrate();
+					// 북마크 버튼 초기화
+					$('#btnBookmark').css('background-image', 'url(./img/viewer/mobile/i-bookmark@2x.png)');
+				}
+				return;
+			} else if (current_content_type == 'popup') {
+				// popup
+				return;
+			} else if (current_content_type == 'preview') {
+				// preview
+				if (IS_USING_PDF_MODULE) {
+					$("#pdf-iframe").get(0).contentWindow.pdfPrev();
+
+					mirroring.api_sync_obj({
+						target: "app",
+						script: "$('#pdf-iframe').get(0).contentWindow.pdfPrev();"
+					});
+				} else {
+					Module.image_viewer.control_prev();
+				}
+				return;
+			}
+		});
+		$(document).on("click", "#btnNext", function (e) {
+			// app.move_to_next();
+			// mirroring.api_sync_obj({
+			// 	target: "app",
+			// 	script: "app.move_to_next();"
+			// });
+
+			current_content_type = get_current_content_type();
+
+			if (current_content_type == 'smartppt') {
+				// smartPPT
+				if ($("#module-modal").hasClass('show') && viewer._playlist_data.info.modalDiv != 'CUSTOM') {
+					$('#carousel-control').carousel('next');
+					Module.image_viewer.control_next();
+				} else {
+					var obj = viewer.get_next();
+					if (!obj) {
+						return;
+					}
+					app.move_to_subject_by_id(obj.id, obj.type);
+					mirroring.api_sync_obj({
+						target: "app",
+						script: "app.move_to_subject_by_id('" + obj.id + "', '" + obj.type + "');"
+					});
+					vibrate();
+					// 북마크 버튼 초기화
+					$('#btnBookmark').css('background-image', 'url(./img/viewer/mobile/i-bookmark@2x.png)');
+				}
+				return;
+			} else if (current_content_type == 'popup') {
+				// popup
+				return;
+			} else if (current_content_type == 'preview') {
+				// preview
+				if (IS_USING_PDF_MODULE) {
+					$("#pdf-iframe").get(0).contentWindow.pdfNext();
+
+					mirroring.api_sync_obj({
+						target: "app",
+						script: "$('#pdf-iframe').get(0).contentWindow.pdfNext();"
+					});
+				} else {
+					Module.image_viewer.control_next();
+				}
+
+				return;
+			}
+		});
+
+		$(document).on("click", "#btnCC", function (e) {
+			app.show_room_list();
+		});
+
+		$(document).on("click", "#controllList li a.room", function (e) {
+			var item = $(this).data();
+			app.join_room(item);
+
+			$('#control_close').click();
+		});
+
+		$(document).on("click", "#btnExit", function (e) {
+			current_content_type = get_current_content_type();
+
+			// console.log(current_content_type)
+			// console.log(viewer._playing.custom_yn)
+
+			if (current_content_type == 'smartppt') {
+				window.close();
+
+			} else if (current_content_type == 'popup' || current_content_type == 'preview') {
+				app.close_popup_content();
+				mirroring.api_sync_obj({
+					target: "app",
+					script: "app.close_popup_content();"
+				});
+
+				current_content_type == 'preview' && $("#module-modal").modal('hide');
+
+				// 현재 차시 타이틀 가지고 오기
+				// console.log(viewer._playlist_data);
+				// var _cur_title = viewer._playlist_data.info.short_title;
+				// $('.wrap-inner #hd .title').text(_cur_title);
+				viewer.mobileShortTitleSet();
+
+				on_hidden_module_modal();
+
+				mirroring.api_sync_obj({
+					target: "app",
+					script: "on_hidden_module_modal();"
+				});
+
+				Module.common.iframe_zoom('iframe_content', 3);
+			} else if (current_content_type == 'preview') {
+				$("#module-modal").modal('hide');
+			}
+		});
+
+		$(document).on("click", "button[data-target='#korean-activity'],button[data-target='#korean-activity2']", function (e) {
+			if ($('#aside-korean').hasClass("active") === true || $('#aside-korean2').hasClass("active") === true) {
+				$('#aside-korean').removeClass('active');
+				$('#aside-korean2').removeClass('active');
+			}
+			if ($('#data-locker').hasClass("active") === true || $('#data-locker2').hasClass("active") === true) {
+				$('#data-locker').removeClass('active');
+				$('#data-locker2').removeClass('active');
+			}
+		});
+		$(document).on("click", "button[data-target='#aside-korean'],button[data-target='#aside-korean2']", function (e) {
+			if ($('#korean-activity').hasClass("active") === true || $('#korean-activity2').hasClass("active") === true) {
+				$('#korean-activity').removeClass('active');
+				$('#korean-activity2').removeClass('active');
+			}
+			if ($('#data-locker').hasClass("active") === true || $('#data-locker2').hasClass("active") === true) {
+				$('#data-locker').removeClass('active');
+				$('#data-locker2').removeClass('active');
+			}
+		});
+		$(document).on("click", "button[data-target='#area-service'],button[data-target='#area-service2']", function (e) {
+			if ($('#data-locker').hasClass("active") === true || $('#data-locker2').hasClass("active") === true) {
+				$('#data-locker').removeClass('active');
+				$('#data-locker2').removeClass('active');
+			}
+			if ($('#ebook-page').hasClass("active") === true || $('#ebook-page2').hasClass("active") === true) {
+				$('#ebook-page').removeClass('active');
+				$('#ebook-page2').removeClass('active');
+			}
+		});
+		$(document).on("click", "button[data-target='#experiment'],button[data-target='#experiment2']", function (e) {
+			if ($('#v-experiment').hasClass("active") === true || $('#v-experiment2').hasClass("active") === true) {
+				$('#v-experiment').removeClass('active');
+				$('#v-experiment2').removeClass('active');
+			}
+			if ($('#data-locker').hasClass("active") === true || $('#data-locker2').hasClass("active") === true) {
+				$('#data-locker').removeClass('active');
+				$('#data-locker2').removeClass('active');
+			}
+		});
+		$(document).on("click", "button[data-target='#v-experiment'],button[data-target='#v-experiment2']", function (e) {
+			if ($('#experiment').hasClass("active") === true || $('#experiment2').hasClass("active") === true) {
+				$('#experiment').removeClass('active');
+				$('#experiment2').removeClass('active');
+			}
+			if ($('#data-locker').hasClass("active") === true || $('#data-locker2').hasClass("active") === true) {
+				$('#data-locker').removeClass('active');
+				$('#data-locker2').removeClass('active');
+			}
+		});
+		$(document).on("click", "button[data-target='#math-mastery'],button[data-target='#math-mastery2']", function (e) {
+			if ($('#digital-parish').hasClass("active") === true || $('#digital-parish2').hasClass("active") === true) {
+				$('#digital-parish').removeClass('active');
+				$('#digital-parish2').removeClass('active');
+			}
+			if ($('#data-locker').hasClass("active") === true || $('#data-locker2').hasClass("active") === true) {
+				$('#data-locker').removeClass('active');
+				$('#data-locker2').removeClass('active');
+			}
+		});
+		$(document).on("click", "button[data-target='#digital-parish'],button[data-target='#digital-parish2']", function (e) {
+			if ($('#math-masteryr').hasClass("active") === true || $('#math-masteryr2').hasClass("active") === true) {
+				$('#math-mastery').removeClass('active');
+				$('#math-mastery2').removeClass('active');
+			}
+			if ($('#data-locker').hasClass("active") === true || $('#data-locker2').hasClass("active") === true) {
+				$('#data-locker').removeClass('active');
+				$('#data-locker2').removeClass('active');
+			}
+			if ($('#ebook-page').hasClass("active") === true || $('#ebook-page2').hasClass("active") === true) {
+				$('#ebook-page').removeClass('active');
+				$('#ebook-page2').removeClass('active');
+			}
+			if ($('#ai-math').hasClass("active") === true || $('#ai-math2').hasClass("active") === true) {
+				$('#ai-math').removeClass('active');
+				$('#ai-math2').removeClass('active');
+			}
+		});
+		$(document).on("click", "button[data-target='#data-locker'],button[data-target='#data-locker2']", function (e) {
+			if ($('#korean-activity').hasClass("active") === true || $('#korean-activity2').hasClass("active") === true) {
+				$('#korean-activity').removeClass('active');
+				$('#korean-activity2').removeClass('active');
+			}
+			if ($('#aside-korean').hasClass("active") === true || $('#aside-korean2').hasClass("active") === true) {
+				$('#aside-korean').removeClass('active');
+				$('#aside-korean2').removeClass('active');
+			}
+			if ($('#area-service').hasClass("active") === true || $('#area-service2').hasClass("active") === true) {
+				$('#area-service').removeClass('active');
+				$('#area-service2').removeClass('active');
+			}
+			if ($('#experiment').hasClass("active") === true || $('#experiment2').hasClass("active") === true) {
+				$('#experiment').removeClass('active');
+				$('#experiment2').removeClass('active');
+			}
+			if ($('#v-experiment').hasClass("active") === true || $('#v-experiment2').hasClass("active") === true) {
+				$('#v-experiment').removeClass('active');
+				$('#v-experiment2').removeClass('active');
+			}
+			if ($('#math-mastery').hasClass("active") === true || $('#math-mastery2').hasClass("active") === true) {
+				$('#math-mastery').removeClass('active');
+				$('#math-mastery2').removeClass('active');
+			}
+			if ($('#digital-parish').hasClass("active") === true || $('#digital-parish2').hasClass("active") === true) {
+				$('#digital-parish').removeClass('active');
+				$('#digital-parish2').removeClass('active');
+			}
+			if ($('#ebook-page').hasClass("active") === true || $('#ebook-page2').hasClass("active") === true) {
+				$('#ebook-page').removeClass('active');
+				$('#ebook-page2').removeClass('active');
+			}
+			if ($('#ai-math').hasClass("active") === true || $('#ai-math2').hasClass("active") === true) {
+				$('#ai-math').removeClass('active');
+				$('#ai-math2').removeClass('active');
+			}
+		});
+		$(document).on("click", "button[data-target='#ebook-page'], button[data-target='#ebook-page2']", function (e) {
+			if ($('#korean-activity').hasClass("active") === true || $('#korean-activity2').hasClass("active") === true) {
+				$('#korean-activity').removeClass('active');
+				$('#korean-activity2').removeClass('active');
+			}
+			if ($('#aside-korean').hasClass("active") === true || $('#aside-korean2').hasClass("active") === true) {
+				$('#aside-korean').removeClass('active');
+				$('#aside-korean2').removeClass('active');
+			}
+			if ($('#area-service').hasClass("active") === true || $('#area-service2').hasClass("active") === true) {
+				$('#area-service').removeClass('active');
+				$('#area-service2').removeClass('active');
+			}
+			if ($('#experiment').hasClass("active") === true || $('#experiment2').hasClass("active") === true) {
+				$('#experiment').removeClass('active');
+				$('#experiment2').removeClass('active');
+			}
+			if ($('#v-experiment').hasClass("active") === true || $('#v-experiment2').hasClass("active") === true) {
+				$('#v-experiment').removeClass('active');
+				$('#v-experiment2').removeClass('active');
+			}
+			if ($('#math-mastery').hasClass("active") === true || $('#math-mastery2').hasClass("active") === true) {
+				$('#math-mastery').removeClass('active');
+				$('#math-mastery2').removeClass('active');
+			}
+			if ($('#digital-parish').hasClass("active") === true || $('#digital-parish2').hasClass("active") === true) {
+				$('#digital-parish').removeClass('active');
+				$('#digital-parish2').removeClass('active');
+			}
+			if ($('#data-locker').hasClass("active") === true || $('#data-locker2').hasClass("active") === true) {
+				$('#data-locker').removeClass('active');
+				$('#data-locker2').removeClass('active');
+			}
+			if ($('#ai-math').hasClass("active") === true || $('#ai-math2').hasClass("active") === true) {
+				$('#ai-math').removeClass('active');
+				$('#ai-math2').removeClass('active');
+			}
+		});
+		$(document).on("click", "button[data-target='#ai-math'], button[data-target='#ai-math2']", function (e) {
+			if ($('#korean-activity').hasClass("active") === true || $('#korean-activity2').hasClass("active") === true) {
+				$('#korean-activity').removeClass('active');
+				$('#korean-activity2').removeClass('active');
+			}
+			if ($('#aside-korean').hasClass("active") === true || $('#aside-korean2').hasClass("active") === true) {
+				$('#aside-korean').removeClass('active');
+				$('#aside-korean2').removeClass('active');
+			}
+			if ($('#area-service').hasClass("active") === true || $('#area-service2').hasClass("active") === true) {
+				$('#area-service').removeClass('active');
+				$('#area-service2').removeClass('active');
+			}
+			if ($('#experiment').hasClass("active") === true || $('#experiment2').hasClass("active") === true) {
+				$('#experiment').removeClass('active');
+				$('#experiment2').removeClass('active');
+			}
+			if ($('#v-experiment').hasClass("active") === true || $('#v-experiment2').hasClass("active") === true) {
+				$('#v-experiment').removeClass('active');
+				$('#v-experiment2').removeClass('active');
+			}
+			if ($('#math-mastery').hasClass("active") === true || $('#math-mastery2').hasClass("active") === true) {
+				$('#math-mastery').removeClass('active');
+				$('#math-mastery2').removeClass('active');
+			}
+			if ($('#digital-parish').hasClass("active") === true || $('#digital-parish2').hasClass("active") === true) {
+				$('#digital-parish').removeClass('active');
+				$('#digital-parish2').removeClass('active');
+			}
+			if ($('#data-locker').hasClass("active") === true || $('#data-locker2').hasClass("active") === true) {
+				$('#data-locker').removeClass('active');
+				$('#data-locker2').removeClass('active');
+			}
+			if ($('#ebook-page').hasClass("active") === true || $('#ebook-page2').hasClass("active") === true) {
+				$('#ebook-page').removeClass('active');
+				$('#ebook-page2').removeClass('active');
+			}
+		});
+
+
+		$(document).on("click", "button.subject-link", function (e) {
+			// if ($("#module-modal").hasClass('show')) {
+			// 	$("#module-modal").modal('hide');
+			// }
+
+			// $("#module-modal").modal('show');
+
+			// var $ele = $(this);
+			// setTimeout(function () {
+			// 	open_subject_link($ele);
+			// }, 500);
+
+			// 수학교구 초기화
+			if ($('#math_tool_btn').hasClass('active')) {
+				$('#math_tool_btn').removeClass('active');
+				$('#math-tool').removeClass('active');
+			}
+			// 수학교구 초기화 끝
+
+			var $ele = $(this);
+			var data_idx = $ele.attr('data-index');
+			var subject_link_idx = $ele.attr('subject-link-index');
+			if (typeof (subject_link_idx) == "string") {
+				subject_link_idx = parseInt(subject_link_idx);
+			}
+
+			Module.common.set_title(data_idx);
+
+			var obj = viewer._playlist_data.playlist[data_idx];
+
+			var subject_link_info = obj.content[subject_link_idx];
+			var subject_file_type = subject_link_info.type;
+			var subject_file_title = subject_link_info.title;
+			var subject_file_file_id = subject_link_info.file_id;
+			var subject_file_thumbnail = subject_link_info.thumbnail;
+
+			var subject_file_div = subject_link_info.div;
+			var subject_external_url = subject_link_info.url;
+
+			if (subject_file_title) {
+				try {
+					// title을 바꿔줘야 함
+					// var _title = '미래엔_수학3-1_보충자료_1_2차시_준비물꾸러미준비물꾸러미준비물꾸러미준비물꾸러미.pdf';
+					var _title = subject_file_title;
+
+					var input_title = _title.split('_');
+					var title_length = parseInt(input_title.length);
+
+					input_title = input_title[title_length - 1];
+					var result_title = input_title.split('.');
+
+					if (result_title[0].length > 7) {
+						result_title = result_title[0].substr(0, 6);
+						result_title = result_title.concat('...');
+					} else {
+						result_title = result_title[0];
+					}
+
+					subject_file_title = result_title;
+
+					$('#module-title').html(result_title);
+				} catch (error) {
+					console.warn('보조자료 타이틀 형식이 맞지 않습니다.');
+					$('#module-title').html(subject_file_title);
+				}
+				// $('#module-title').html(subject_file_title);
+			}
+
+			app.close_study_tools();
+
+			mirroring.api_sync_obj({
+				target: "app",
+				script: "app.close_study_tools();"
+			});
+
+			load_preview(subject_file_type, subject_file_file_id, subject_file_title, subject_file_thumbnail, subject_file_div, subject_external_url);
+
+			mirroring.api_sync_obj({
+				target: "app",
+				script: "load_preview('" + subject_file_type + "', '" + subject_file_file_id + "', '" + subject_file_title + "', '" + subject_file_thumbnail + "', '" + subject_file_div + "', '" + subject_external_url + "');"
+			});
+		});
+		// $(document).on("change", "#data-locker select, #data-locker2 select", function (e) {
+		// 	viewer.get_my_data();
+		// });
+		$(document).on("click", "#data-locker ul li, #data-locker2 ul li", function (e) {
+			if ($("#module-modal").hasClass('show')) {
+				$("#module-modal").modal('hide');
+			}
+
+			if ($("#iframe_content_pairbook").attr("src")) {
+				$("#iframe_content_pairbook").attr("src", "");
+				$("#iframe_content_pairbook").css("display", "none");
+			}
+
+			$("#module-modal").modal('show');
+
+			// var data = $(this).data();
+			// setTimeout(function () {
+			// 	var subject_file_type = data.fileExtension;
+			// 	var subject_file_title = data.dataTitle;
+			// 	var subject_file_file_id = data.fileId;
+			// 	var subject_file_thumbnail = null;//data.thumbnail;
+
+			// 	$('#module-title').html(subject_file_title);
+			// 	app.close_popup_content();
+
+			// 	$('.icon-prev-content').hide();
+			// 	$('.icon-next-content').hide();
+
+			// 	$('.carousel-control-prev').show();
+			// 	$('.carousel-control-next').show();
+
+			// 	var params = {
+			// 		'file': subject_file_file_id,
+			// 		'source': 'PERIOD',
+			// 		'user': tms._user
+			// 	}
+			// 	$.LoadingOverlay("show");
+			// 	preview_viewer.load_preview(params, function (res) {
+			// 		$.LoadingOverlay("hide");
+			// 		$("#data-locker").removeClass("active");
+			// 		if (res == "close") {
+			// 			$("#module-modal").modal('hide');
+			// 		}
+			// 	});
+			// }, 500);
+
+			// !! close
+
+			// 가로모드 : 모달 창 닫기
+			$('#modal-data-contents .close').click();
+			$('#data-locker header .icon-close').click();
+
+			var data = $(this).data();
+			var subject_file_file_title = data.dataTitle;
+			var subject_file_type = data.fileExtension;
+			var subject_file_title = data.dataTitle;
+			var subject_file_file_id = data.fileId;
+			var subject_file_thumbnail = '';//data.thumbnail;
+
+			// !! title change
+			$('header div').html(subject_file_title);
+
+			load_preview(subject_file_type, subject_file_file_id, subject_file_file_title, subject_file_title, subject_file_thumbnail);
+
+			mirroring.api_sync_obj({
+				target: "app",
+				script: "load_preview('" + subject_file_type + "', '" + subject_file_file_id + "', '" + subject_file_file_title + "','" + subject_file_title + "', '" + subject_file_thumbnail + "');"
+			});
+		});
+
+		$(document).on("click", "#viewer-aside-inner .course-file-common ul li", function (e) {
+			// if ($("#module-modal").hasClass('show')) {
+			// 	$("#module-modal").modal('hide');
+			// }
+
+			// $("#module-modal").modal('show');
+
+			// var data = $(this).data();
+			// setTimeout(function () {
+
+			// 	var subject_file_type = data.fileExtension;
+			// 	var subject_file_title = data.contentsTextbookUnitTitle;
+			// 	var subject_file_file_id = data.fileId;
+			// 	var subject_file_thumbnail = null;//data.thumbnail;
+
+			// 	$('#module-title').html(subject_file_title);
+			// 	app.close_popup_content();
+
+			// 	$('.icon-prev-content').hide();
+			// 	$('.icon-next-content').hide();
+
+			// 	$('.carousel-control-prev').show();
+			// 	$('.carousel-control-next').show();
+
+			// 	var params = {
+			// 		'file': subject_file_file_id,
+			// 		'source': 'PERIOD',
+			// 		'user': tms._user
+			// 	}
+			// 	$.LoadingOverlay("show");
+			// 	preview_viewer.load_preview(params, function (res) {
+			// 		$.LoadingOverlay("hide");
+			// 		$(".course-special").removeClass("active");
+			// 		if (res == "close") {
+			// 			$("#module-modal").modal('hide');
+			// 		}
+			// 	});
+			// }, 500);
+			var data = $(this).data();
+			var subject_file_type = data.fileExtension;
+			var subject_file_title = data.contentsTextbookUnitTitle;
+			var subject_file_file_id = data.fileId;
+			var subject_file_thumbnail = '';//data.thumbnail;
+
+			load_preview(subject_file_type, subject_file_file_id, subject_file_title, subject_file_thumbnail);
+			mirroring.api_sync_obj({
+				target: "app",
+				script: "load_preview('" + subject_file_type + "', '" + subject_file_file_id + "', '" + subject_file_title + "', '" + subject_file_thumbnail + "');"
+			});
+		});
+
+		// 내 교과서 클릭
+		$(document).on('click', '.btn-box #ebook-page ul li, #modal-data-contents #ebook-page2 ul li', function () {
+			if ($('#ebook-page').hasClass('active') || $('#ebook-page2').hasClass('active')) {
+				$('#ebook-page').removeClass('active');
+				$('#ebook-page2').removeClass('active');
+			}
+			// 가로모드 : 모달 창 닫기
+			$('#modal-data-contents .close').click();
+
+			var page = $(this).attr('data-ebookpage');
+			var this_page = $(this).attr('data-thisPage');
+			var this_type = viewer._playlist_data.info.type;
+			var send_page = { 'page': page, 'type': this_type, 'ebook_type': 'ebook', 'this_page': this_page };
+			$("#module-modal").modal('hide');
+
+			ebook.show_ebook();
+
+			mirroring.api_sync_obj({
+				target: "viewer",
+				script: "viewer.showEbook({'page' : '" + page + "', 'type' : '" + this_type + "', 'ebook_type' : 'ebook', 'this_page' : '" + this_page + "'});"
+			});
+
+			$('#iframe_content_pairbook').attr('src', '/assets/viewer/ebookpair.html');
+			$('#iframe_content_pairbook').unbind('load').bind('load', function () {
+				// iframe body fit
+				var iframe_body = $('#iframe_content_pairbook').contents().find('body');
+				iframe_body.width($('#iframe_content_pairbook').width());
+				iframe_body.height($('#iframe_content_pairbook').height());
+
+				ebook.ebook_page_data(send_page);
+
+				if (iframe_canvas) {
+					var _container = $("#viewer-content .drawing-canvas").get(0);
+					iframe_canvas.deactivate();
+					iframe_canvas = new DrawingCanvas({
+						container: _container,
+					});
+				};
+				drawing_canvas = iframe_canvas;
+				if ($("#math-tool").hasClass('active')) {
+					$("#math-tool").removeClass('active');
+					$("#math_tool_btn").removeClass('active');
+				}
+			});
+
+			// title
+			// $(".wrap-inner #hd .title").html('교과서');
+			viewer.mobileEbookTitleSet('ebook');
+		});
+
+		$(document).on("click", "#korean-activity ul li", function (e) {
+			viewer.load_pair_content($(this).data());
+		});
+		$(document).on("click", "#korean-activity2 ul li", function (e) {
+			viewer.load_pair_content($(this).data());
+			$("#modal-data-contents").modal('hide');
+		});
+		$(document).on("click", "#math-mastery ul li", function (e) {
+			viewer.load_pair_content($(this).data());
+		});
+		$(document).on("click", "#math-mastery2 ul li", function (e) {
+			viewer.load_pair_content($(this).data());
+		});
+		$(document).on("click", "#experiment ul li", function (e) {
+			viewer.load_pair_content($(this).data());
+		});
+		$(document).on("click", "#experiment2 ul li", function (e) {
+			viewer.load_pair_content($(this).data());
+		});
+
+		$(document).on("click", "#aside-korean ul li", function (e) {
+			viewer.load_special_content($(this).data(), 'ko');
+		});
+		$(document).on("click", "#aside-korean2 ul li", function (e) {
+			viewer.load_special_content($(this).data(), 'ko');
+
+			// 가로모드 : 모달 창 닫기
+			$('#modal-data-contents .close').click();
+		});
+		$(document).on("click", "#digital-parish ul li", function (e) {
+			if ($('#digital-parish').hasClass('active')) {
+				$('#digital-parish').removeClass('active');
+			}
+
+			viewer.load_special_content($(this).data(), 'mt');
+		});
+		$(document).on("click", "#digital-parish2 ul li", function (e) {
+			if ($('#digital-parish2').hasClass('active')) {
+				$('#digital-parish2').removeClass('active');
+			}
+
+			viewer.load_special_content($(this).data(), 'mt');
+
+			// 가로모드 : 모달 창 닫기
+			$('#modal-data-contents .close').click();
+		});
+		$(document).on("click", "#v-experiment ul li", function (e) {
+			viewer.load_special_content($(this).data(), 'si');
+		});
+		$(document).on("click", "#area-service ul li", function (e) {
+			if ($('#area-service').hasClass('active')) {
+				$('#area-service').removeClass('active');
+			}
+
+			viewer.load_special_content($(this).data(), 'so');
+		});
+
+		$(document).on("click", "#area-service2 ul li", function (e) {
+			if ($('#area-service2').hasClass('active')) {
+				$('#area-service2').removeClass('active');
+			}
+
+			viewer.load_special_content($(this).data(), 'so');
+
+			// 가로모드 : 모달 창 닫기
+			$('#modal-data-contents .close').click();
+		});
+
+		// $('#module-modal').on('hidden.bs.modal', function () {
+		// 	on_hidden_module_modal();
+
+		// 	mirroring.api_sync_obj({
+		// 		target: "app",
+		// 		script: "on_hidden_module_modal();"
+		// 	});
+
+		// 	Module.common.iframe_zoom('iframe_content', 3);
+		// 	return false;
+		// });
+
+		$(document).on("click", ".carousel-control-prev", function (e) {
+			Module.image_viewer.control_prev();
+		});
+		$(document).on("click", ".carousel-control-next", function (e) {
+			Module.image_viewer.control_next();
+		});
+
+		$(document).on('click', '#btnMoreContent', function () {
+			if ($('.modal_2').hasClass('show')) {
+				$('.modal_2 .close').click();
+			}
+		});
+
+		$(document).on("click", "#btnBookmark", function (e) {
+			if (TEST_DATA) {
+				return;
+			}
+
+			current_content_type = get_current_content_type();
+			if (current_content_type == 'smartppt') {
+				var subj = $("#page_list .subject.active");
+				var params = {};
+				var method = 'create';
+				// 저장 data json 생성
+
+				// page 정보
+				var realplaylist = _.filter(viewer._playlist_data.playlist, function (item) {
+					return item.url != '#';
+				});
+
+				var curpage = viewer._current_page;
+				var current_id = viewer._playing.id;
+				var currentindex = _.findIndex(realplaylist, function (item) {
+					return item.id == current_id;
+				});
+				if (currentindex >= 0) {
+					curpage = currentindex + 1;
+				}
+
+				var page = curpage;
+				var thumbnail = viewer._playing.thumbnail;
+				var info_title = viewer._playlist_data.info.title;
+				var playlist_title = viewer._playing.title;
+
+				var data_json = { "thumbnail": thumbnail, "infoTitle": info_title, "playlistTitle": playlist_title, "page": page };
+
+				if (viewer._playlist_data.info.modalDiv == undefined) {
+					params.modalDiv = "DEFAULT";
+				} else {
+					params.modalDiv = viewer._playlist_data.info.modalDiv;
+				}
+
+				if (subj.hasClass('bookmarked')) {
+					params.textbookLessonSeq = viewer._playlist_id;
+					params.modalTextbookLessonBookmarkSeq = subj.attr('modalTextbookLessonBookmarkSeq');
+					params.modalTextbookLessonBookmarkTarget = "SUBJECT";
+					params.modalTextbookLessonBookmarkType = "BOOKMARK";
+					params.textbookLessonSubjectSeq = subj.attr('id');
+					method = 'delete';
+
+					// icon 변경
+					$('#btnBookmark').css('background-image', 'url(./img/viewer/mobile/i-bookmark@2x.png)');
+				} else {
+					params.textbookLessonSeq = viewer._playlist_id;
+					params.modalTextbookLessonBookmarkTarget = "SUBJECT";
+					params.modalTextbookLessonBookmarkType = "BOOKMARK";
+					params.textbookLessonSubjectSeq = subj.attr('id');
+					params.modalTextbookLessonBookmarkData = JSON.stringify(data_json);
+
+					// icon 변경
+					$('#btnBookmark').css('background-image', 'url(./img/viewer/mobile/i-bookmark@2x_on.png)');
+				}
+
+				tms.bookmark(method, params)
+					.then(function (res) {
+						if (!res || res.resultCode != 'success') {
+							show_error_message(res);
+							return;
+						};
+
+						if (method == 'create') {
+							// 정보 일부 가져오기
+							var get_modalTextbookLessonBookmarkSeq = '';
+							tms.bookmark('list', params)
+								.then(function (res) {
+									get_modalTextbookLessonBookmarkSeq = res.resultData[0].modalTextbookLessonBookmarkSeq;
+
+									subj.addClass('bookmarked');
+									subj.attr('modalTextbookLessonBookmarkSeq', get_modalTextbookLessonBookmarkSeq);
+									$(".icon-tool-account3").addClass('bookmarked');
+
+									$.Toast.showToast({
+										title: "북마크를 추가했습니다.",
+										duration: 1000,
+										icon: "",
+										image: ''
+									});
+								});
+						} else {
+							$.Toast.showToast({
+								title: "북마크를 삭제했습니다.",
+								duration: 1000,
+								icon: "",
+								image: ''
+							});
+							subj.removeClass('bookmarked');
+							subj.attr('modalTextbookLessonBookmarkSeq', '');
+							$(".icon-tool-account3").removeClass('bookmarked');
+						}
+					})
+					.catch(function (err) {
+						show_error_message(err);
+					});
+
+			}
+			else {
+				show_alert("북마크는 학습주제에 대해서만 지원합니다.");
+			}
+		});
+	</script>
+</body>
+
+</html>

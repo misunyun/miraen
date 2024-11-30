@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta content="width=1200" name="viewport" />
+<title>엠티처</title>
+<script src="js/promise-polyfill.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<!--<script src="http://boinitdev.iptime.org:10000/socket.io/socket.io.js"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/jquery.ui.touch-punch.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="css/viewer.css" />
+<link rel="stylesheet" type="text/css" href="css/viewer-sketchbook.css" />
+</head>
+<body>
+<div id="viewer-wrap">
+    <header id="viewer-hd">
+        <h1 class="sr-only">엠티처 - 뷰어</h1>
+		<ul id="viewer-tool">
+			<li><button type="button"><i class="icon-tool"></i>미러링</button></li>
+			<li><button type="button" data-toggle="show" data-target="#list-all"><i class="icon-tool2"></i>다른수업</button></li>
+			<li><button type="button" data-toggle="show" data-target="#search"><i class="icon-tool3"></i>자료검색</button></li>
+			<li><button type="button" data-toggle="show" data-target="#history"><i class="icon-tool4"></i>수업기록</button></li>
+			<li>
+				<button type="button" data-toggle="show" data-target="#drawing"><i class="icon-tool5"></i>그리기</button>
+				<!-- 그리기 도구 -->
+				<div id="drawing">
+					<div>
+						<button type="button" class="icon-drawing active" data-toggle="accordion" data-target="#palette" data-group="accordion">그리기</button>
+						<button type="button" class="icon-drawing2" data-toggle="accordion" data-target="#fonts" data-group="accordion">글꼴</button>
+						<button type="button" class="icon-drawing3" data-toggle="accordion" data-target="#figure" data-group="accordion">도형/화살표</button>
+					</div>
+					<!-- 그리기 -->
+					<div id="palette" class="active" data-target-group="accordion">
+						<button type="button" class="palette"><i style="background:#000">색상1</i></button>
+						<button type="button" class="palette"><i style="background:#fff;border-color:#d5d5d5">색상2</i></button>
+						<button type="button" class="palette"><i style="background:#f24545">색상3</i></button>
+						<button type="button" class="palette"><i style="background:#ff3be5">색상4</i></button>
+						<button type="button" class="palette"><i style="background:#2432cc">색상5</i></button>
+						<button type="button" class="palette"><i style="background:#4090f3">색상6</i></button>
+						<button type="button" class="palette"><i style="background:#4aedff">색상7</i></button>
+						<button type="button" class="palette"><i style="background:#51e37f">색상8</i></button>
+						<button type="button" class="palette"><i style="background:#ffd342">색상9</i></button>
+						<button type="button" class="palette"><i class="icon-palette">색상 선택</i><span class="caret"></span></button>
+					</div>
+					<!-- 글꼴 -->
+					<div id="fonts" data-target-group="accordion">
+						<div class="drawing-section">
+							<button type="button" data-toggle="show" data-target="#drawing-font">나눔고딕 Bold<span class="caret"></span></button>
+							<ul id="drawing-font" class="drawing-layer">
+								<li><button type="button" class="selected" style="font-weight:굵기; font-family:폰트네임;">나눔고딕 Bold</button></li>
+								<li><button type="button" style="font-weight:굵기; font-family:폰트네임;">나눔고딕</button></li>
+								<li><button type="button" style="font-weight:굵기; font-family:폰트네임;">나눔스퀘어 ExtraBold</button></li>
+								<li><button type="button" style="font-weight:굵기; font-family:폰트네임;">나눔고딕 Bold</button></li>
+								<li><button type="button" style="font-weight:굵기; font-family:폰트네임;">나눔고딕</button></li>
+								<li><button type="button" style="font-weight:굵기; font-family:폰트네임;">나눔스퀘어 ExtraBold</button></li>
+							</ul>
+						</div>
+						<div class="drawing-section">
+							<button type="button" data-toggle="show" data-target="#drawing-size">32<span class="caret"></span></button>
+							<ul id="drawing-size" class="drawing-layer">
+								<li><button type="button">48</button></li>
+								<li><button type="button" class="selected">36</button></li>
+								<li><button type="button">32</button></li>
+								<li><button type="button">20</button></li>
+								<li><button type="button">16</button></li>
+								<li><button type="button">12</button></li>
+							</ul>
+						</div>
+						<div class="drawing-section">
+							<button type="button"><i class="icon-font-lg">글자 크게</i></button>
+						</div>
+						<div class="drawing-section">
+							<button type="button"><i class="icon-font-sm">글자 작게</i></button>
+						</div>
+						<div class="drawing-section">
+							<button type="button" data-toggle="show" data-target="#drawing-color"><i class="icon-font-color">색상</i><span class="caret"></span></button>
+							<div id="drawing-color" class="drawing-layer">
+								<button type="button" class="palette"><i style="background:#000">색상1</i></button>
+								<button type="button" class="palette"><i style="background:#fff;border-color:#d5d5d5">색상2</i></button>
+								<button type="button" class="palette selected"><i style="background:#f24545">색상3</i></button>
+								<button type="button" class="palette"><i style="background:#ff3be5">색상4</i></button>
+								<button type="button" class="palette"><i style="background:#2432cc">색상5</i></button>
+								<button type="button" class="palette"><i style="background:#4090f3">색상6</i></button>
+								<button type="button" class="palette"><i style="background:#4aedff">색상7</i></button>
+								<button type="button" class="palette"><i style="background:#51e37f">색상8</i></button>
+								<button type="button" class="palette"><i style="background:#ffd342">색상9</i></button>
+							</div>
+						</div>
+					</div>
+					<!-- 도형/화살표 -->
+					<div id="figure" data-target-group="accordion">
+						<div class="drawing-section">
+							<button type="button" data-toggle="show" data-target="#figure-5"><i class="icon-figure">화살표</i></button>
+						</div>
+						<div class="drawing-section">
+							<button type="button"><i class="icon-figure2">선</i></button>
+						</div>
+						<div class="drawing-section">
+							<button type="button"><i class="icon-figure3">밑줄</i></button>
+						</div>
+						<div class="drawing-section">
+							<button type="button"><i class="icon-figure4">이모티콘</i></button>
+						</div>
+						<span id="figure-5" class="active-target">
+							<div class="drawing-section">
+								<button type="button" data-toggle="show" data-target="#figure-5-1"><i class="icon-figure5">화살표</i><span class="caret"></span></button>
+								<ul id="figure-5-1" class="drawing-layer">
+									<li><button type="button" class="active"><i class="icon-figure5-1">오른쪽</i></button></li>
+									<li><button type="button"><i class="icon-figure5-2">왼쪽</i></button></li>
+									<li><button type="button"><i class="icon-figure5-3">양쪽</i></button></li>
+								</ul>
+							</div>
+							<div class="drawing-section">
+								<button type="button" data-toggle="show" data-target="#figure-5-2"><i class="icon-figure6">굵기</i><span class="caret"></span></button>
+								<ul id="figure-5-2" class="drawing-layer">
+									<li><button type="button" class="active"><i class="icon-figure6-1">타입1</i></button></li>
+									<li><button type="button"><i class="icon-figure6-2">타입2</i></button></li>
+									<li><button type="button"><i class="icon-figure6-3">타입3</i></button></li>
+									<li><button type="button"><i class="icon-figure6-4">타입4</i></button></li>
+									<li><button type="button"><i class="icon-figure6-5">타입5</i></button></li>
+								</ul>
+							</div>
+							<div class="drawing-section">
+								<button type="button" data-toggle="show" data-target="#figure-5-3"><i class="icon-figure7">종류</i><span class="caret"></span></button>
+								<ul id="figure-5-3" class="drawing-layer">
+									<li><button type="button" class="active"><i class="icon-figure7-1">타입1</i></button></li>
+									<li><button type="button"><i class="icon-figure7-2">타입2</i></button></li>
+									<li><button type="button"><i class="icon-figure7-3">타입3</i></button></li>
+								</ul>
+							</div>
+						</span>
+					</div>
+					<div>
+						<button type="button" class="icon-drawing4">지우개</button>
+						<button type="button" class="icon-drawing5">되돌리기</button>
+					</div>
+					<div>
+						<button type="button" class="icon-drawing6">안보이게 하기</button>
+					</div>
+					<div>
+						<button type="button" class="icon-drawing7" data-toggle="show" data-target="#drawing">닫기</button>
+					</div>
+				</div>
+			</li>
+			<li>
+				<button type="button" data-toggle="show" data-target="#tool-study"><i class="icon-tool6"></i>수업도구<i class="icon-arrow"></i></button>
+				<!-- 수업 도구 -->
+				<div id="tool-study">
+					<!--
+					<button type="button" class="icon-arrow left" data-toggle="show" data-target="#tool-study">닫기</button>
+					<ul>
+						<li><button type="button" id="tool-study-1" class="icon-tool-study">판서</button></li>
+						<li><button type="button" id="tool-study-2" class="icon-tool-study2">타이머</button></li>
+						<li><button type="button" id="tool-study-3" class="icon-tool-study3">깜깜이</button></li>
+						<li><button type="button" id="tool-study-4" class="icon-tool-study4">주의집중</button></li>
+						<li><button type="button" id="tool-study-5" class="icon-tool-study5">발표자선정</button></li>
+						<li><button type="button" id="tool-study-6" class="icon-tool-study6">모둠점수판</button></li>
+					</ul>
+					-->
+					<div>
+						<button type="button" id="tool-study-1">판서</button>
+					</div>
+					<div>
+						<button type="button" id="tool-study-2">타이머</button>
+					</div>
+					<div>
+						<button type="button" id="tool-study-3">깜깜이</button>
+					</div>
+					<div>
+						<button type="button" id="tool-study-4">주의집중</button>
+					</div>
+					<div>
+						<button type="button" id="tool-study-5">발표자선정</button>
+					</div>
+					<div>
+						<button type="button" id="tool-study-6">모둠점수판</button>
+					</div>
+					<div>
+						<button type="button" class="icon-drawing7" data-toggle="show" data-target="#tool-study">닫기</button>
+					</div>
+				</div>
+			</li>
+		</ul>
+		<div id="viewer-nav">
+			<ul class="account">
+				<li>
+					<button type="button" class="icon-tool-account" data-toggle="show" data-target="#tool-scale">확대/축소</button>
+					<ul id="tool-scale" class="tool-layer">
+						<li><button type="button" class="icon-tool-minus" title="축소">축소</button></li>
+						<li><button type="button" class="icon-tool-plus" title="확대">확대</button></li>
+						<li><button type="button" class="icon-tool-move" title="이동">이동</button></li>
+					</ul>
+				</li>
+				<li><button type="button" class="icon-tool-account2">개인화1</button></li>
+				<li><button type="button" class="icon-tool-account3">개인화1</button></li>
+			</ul>
+			<div id="page">
+				<button type="button" class="icon-prev">이전</button>
+				<span><b>3</b> / 5</span>
+				<button type="button" class="icon-next">다음</button>
+			</div>
+			<div class="more">
+				<button type="button" class="icon-tool-more" data-toggle="show" data-target="#tool-more">더보기</button>
+				<ul id="tool-more" class="more-layer">
+					<li><a href="">설정</a></li>
+					<li><a href="">도움말</a></li>
+				</ul>
+			</div>
+		</div>
+    </header>
+
+	<article id="viewer-content">
+		<iframe id="iframe_content" src="html/korean/3-1/001.html"></iframe>
+	
+		<!-- pdf -->
+		<div id="pdf">
+			<iframe id="pdf-iframe" src="pdf/web/pdf.html?file=a.pdf&page=2"></iframe>
+			<!-- <iframe id="pdf-iframe" src="pdf/web/pdf.html?pdfFile=c.pdf#page=2"></iframe> -->
+		</div>
+	</article>
+
+    <aside id="viewer-aside">
+		<button type="button" class="icon-aside-open" data-toggle="aside" title="목록 열고 닫기">목록 열고 닫기</button>
+		<div id="viewer-aside-inner">
+			<!--
+			<h2 id="course_name"></h2>
+			<ul id="page_list"></ul>
+			-->
+			<!-- 제목 -->
+			<h2 id="course_name" class="course-title">3. 바르고 공손하게 (3~6차시)</h2>
+			<!-- 목차 -->
+			<ul id="page_list" class="course">
+				<li>
+					<h3>도입</h3>
+					<ul>
+						<li><a href="#"><span><strong>생각열기</strong> 바르고 공손하게</span></a></li>
+						<li><a href="#"><span><strong>생각열기</strong> 바르고 공손하게</span></a></li>
+					</ul>
+				</li>
+				<li>
+					<h3>전개</h3>
+					<ul>
+						<li>
+							<a href="#"><span><strong>활동</strong> 바르고 공손하게</span></a>
+							<ul>
+								<li>
+									<a href="#"><span>1. 시 소나기 읽기</span></a>
+									<div class="link">
+										<a class="icon-link-pic" href="#" title="이미지 보기">이미지</a>
+										<a class="icon-link-video" href="#" title="비디오 보기">비디오 보기</a>
+									</div>
+								</li>
+								<li class="active">
+									<a href="#"><span>2. 시 소나기 읽기</span></a>
+									<div class="link">
+										<a class="icon-link" href="#" title="링크 보기">링크 보기</a>
+									</div>
+								</li>
+								<li><a href="#"><span>3. 시 소나기 읽기</span></a></li>
+								<li><a href="#"><span>4. 시 소나기 읽기</span></a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#"><span><b class="badge bg-pink">국어활동</b> 시에 나타난 감각적 표현 확인하기</span></a>
+							<ul>
+								<li><a href="#"><span>1. 시 소나기 읽기</span></a></li>
+								<li><a href="#"><span>2. 시 소나기 읽기</span></a></li>
+								<li><a href="#"><span>3. 시 소나기 읽기</span></a></li>
+								<li><a href="#"><span>4. 시 소나기 읽기</span></a></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<h3>정리</h3>
+					<ul>
+						<li><a href="#"><span><strong>생각열기</strong> 바르고 공손하게</span></a></li>
+						<li><a href="#"><span><strong>생각열기</strong> 바르고 공손하게</span></a></li>
+					</ul>
+				</li>
+			</ul>
+			<!-- 자료 -->
+			<div class="course-file">
+				<h3>최신 수업 자료</h3>
+				<ul class="row">
+					<li><a href="#"><strong>핵심정리</strong> 바르고 공손하게</a></li>
+					<li><a href="#"><strong>잠깐퀴즈</strong> 바르고 공손하게</a></li>
+				</ul>
+			</div>
+			<div class="course-file">
+				<h3>단원 공통 자료</h3>
+				<ul class="row row-cols-2">
+					<li><a href="#"><strong>차시 지도안</strong></a></li>
+					<li><a href="#"><strong>차시 지도안</strong></a></li>
+					<li><a href="#"><strong>차시 지도안</strong></a></li>
+					<li><a href="#"><strong>차시 지도안</strong></a></li>
+					<li><a href="#"><strong>차시 지도안</strong></a></li>
+				</ul>
+			</div>
+		</div>
+		<!-- 특화 버튼 -->
+		<div class="course-btm row">
+			<div class="col">
+				<button type="button" class="btn btn-block bg-pink">국어할동</button>
+			</div>
+			<div class="col">
+				<button type="button" class="btn btn-block bg-sky" data-toggle="show" data-target="#aside-korean">작품문학관</button>
+			</div>
+			<div class="col">
+				<button type="button" class="btn btn-block bg-purple" data-toggle="show" data-target="#aside-files">자료보관함</button>
+			</div>
+			<!--
+			<div class="col">
+				<button type="button" class="btn btn-block bg-peach">사회 – 지역화 서비스</button>
+			</div>-->
+		</div>
+		<!-- 작품문학관 -->
+		<div id="aside-korean" class="course-special bg-sky">
+			<i class="bg-sky"></i>
+			<header>
+				<button type="button" class="icon-close" data-toggle="show" data-target="#aside-korean">작품문학관</button>
+				<h3>작품문학관 <a href="">더보기 &gt;</a></h3>
+			</header>
+			<!-- 데이터가 없는 경우
+			<div class="no-data">
+				<i class="icon-no-data"></i>
+				<p>수업과 연계된 정보가 없습니다.</p>
+			</div>-->
+			<ul>
+				<li><a href="#">3-1-1 시 소나기 읽기</a><a class="icon-link-sm" href="#" title="링크 보기">링크 보기</a></li>
+				<li><a href="#">3-1-1 시 소나기 읽기</a><a class="icon-link-sm" href="#" title="링크 보기">링크 보기</a></li>
+				<li><a href="#">3-1-1 시 소나기 읽기</a><a class="icon-link-sm" href="#" title="링크 보기">링크 보기</a></li>
+				<li><a href="#">3-1-1 시 소나기 읽기</a><a class="icon-link-sm" href="#" title="링크 보기">링크 보기</a></li>
+				<li><a href="#">3-1-1 시 소나기 읽기</a><a class="icon-link-sm" href="#" title="링크 보기">링크 보기</a></li>
+				<li><a href="#">3-1-1 시 소나기 읽기</a><a class="icon-link-sm" href="#" title="링크 보기">링크 보기</a></li>
+				<li><a href="#">3-1-1 시 소나기 읽기</a><a class="icon-link-sm" href="#" title="링크 보기">링크 보기</a></li>
+				<li><a href="#">3-1-1 시 소나기 읽기</a><a class="icon-link-sm" href="#" title="링크 보기">링크 보기</a></li>
+			</ul>
+		</div>
+		<!-- 자료보관함 -->
+		<div id="aside-files" class="course-special bg-purple">
+			<i class="bg-purple"></i>
+			<header>
+				<button type="button" class="icon-close" data-toggle="show" data-target="#aside-files">자료보관함</button>
+				<h3>자료보관함 <span><input type="checkbox" id="aside-files-checkbox"><label for="aside-files-checkbox">직접올린 자료만 보기</label></span></h3>
+			</header>
+			<!-- 데이터가 없는 경우
+			<div class="no-data">
+				<i class="icon-no-data"></i>
+				<p>수업과 연계된 정보가 없습니다.</p>
+			</div>-->
+			<ul class="list-course-files">
+				<li>
+					<a href="#"><strong>직접 업로드</strong><span class="title">3-1-1 시 소나기 읽기</span><span class="date">2020.10.01</span></a>
+				</li>
+				<li>
+					<a href="#"><strong>직접 업로드</strong><span class="title">3-1-1 시 소나기 읽기</span><span class="date">2020.10.01</span></a>
+				</li>
+				<li>
+					<a href="#"><strong>직접 업로드</strong><span class="title">3-1-1 시 소나기 읽기</span><span class="date">2020.10.01</span></a>
+				</li>
+			</ul>
+		</div>
+    </aside>
+</div>
+
+<!-- 다른수업 -->
+<div id="list-all">
+	<section class="num">
+		<h3>학년</h3>
+		<ul>
+			<li><a href="#">1학년</a></li>
+			<li class="active"><a href="#">2학년</a></li>
+			<li><a href="#">3학년</a></li>
+			<li><a href="#">4학년</a></li>
+			<li><a href="#">5학년</a></li>
+			<li><a href="#">6학년</a></li>
+		</ul>
+	</section>
+	<section class="num">
+		<h3>학기</h3>
+		<ul>
+			<li class="active"><a href="#">1학기</a></li>
+			<li><a href="#">2학기</a></li>
+		</ul>
+	</section>
+	<section class="num">
+		<h3>과목</h3>
+		<ul>
+			<li><a href="#">국어</a></li>
+			<li><a href="#">국어</a></li>
+			<li class="active"><a href="#">국어</a></li>
+			<li><a href="#">국어</a></li>
+			<li><a href="#">국어</a></li>
+			<li><a href="#">국어</a></li>
+			<li><a href="#">국어</a></li>
+			<li><a href="#">국어</a></li>
+			<li><a href="#">국어</a></li>
+			<li><a href="#">국어</a></li>
+			<li><a href="#">국어</a></li>
+		</ul>
+	</section>
+	<section>
+		<h3>단원</h3>
+		<ul>
+			<li><a href="#"><b>1.</b> <span>세계 여러 나라의 자연과 문화</span></a></li>
+			<li class="active"><a href="#"><b>1.</b> <span>세계 여러 나라의 자연과 문화</span></a></li>
+		</ul>
+	</section>
+	<section>
+		<h3>수업구분</h3>
+		<ul>
+			<li><a href="#"><b>1.1.</b> <span>단원도입</span></a></li>
+			<li class="active"><a href="#"><b>1.1.</b> <span>단원도입</span></a></li>
+		</ul>
+	</section>
+	<section>
+		<h3>수업</h3>
+		<ul>
+			<li><a href="#"><b>①</b> <span>우리땅 독도를 알아보기 (2~3차시)</span></a></li>
+			<li><a href="#"><b>②</b> <span>우리땅 독도를 알아보기 (2~3차시)</span></a></li>
+			<li class="active"><a href="#"><b>③</b> <span>지구촌 평화에 기여하는 통일 한국의 모습 그려 보기 (7차시)지구촌 평화에 기여하는 통일 한국의 모습 그려 보기 (7차시)</span></a></li>
+		</ul>
+	</section>
+</div>
+
+<!-- 수업기록
+<div id="history" class="panel">
+	<div class="panel-content">
+		<button type="button" class="icon-close">닫기</button>
+		<h3>수업기록</h3>
+		<ul class="nav">
+			<li><a class="active" href="#history-1" data-toggle="tab">북마크리스트</a></li>
+			<li><a href="#history-2" data-toggle="tab">수업노트</a></li>
+			<li><a href="#history-3" data-toggle="tab">판서노트</a></li>
+		</ul>
+		<div class="tab-content">
+			<div id="history-1" class="tab-pane active">
+				<div class="panel-scroll">
+
+				</div>
+			</div>
+			<div id="history-2" class="tab-pane">
+				<div class="panel-scroll">
+
+				</div>
+			</div>
+			<div id="history-3" class="tab-pane">
+				<div class="panel-scroll">
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div> -->
+
+<!-- 자료검색
+<div id="search" class="panel">
+	<div class="panel-content">
+		<h3>자료검색</h3>
+	
+	</div>
+</div> -->
+
+<!-- 임시 pdf 버튼 -->
+<div style="position: fixed;bottom:50px;left:50%;z-index:9999;background: #fff;border:4px solid #000">
+<h6>pdf 버튼</h6>
+	<button type="button" id="btn-pdf-prev" onClick="$('#pdf-iframe')[0].contentWindow.pdfPrev()">이전</button>
+	<button type="button" id="btn-pdf-next" onClick="$('#pdf-iframe')[0].contentWindow.pdfNext()">다음</button>
+	<button type="button" id="btn-pdf-zoomIn" onClick="$('#pdf-iframe')[0].contentWindow.pdfZoomIn()">확대</button>
+	<button type="button" id="btn-pdf-zoomout" onClick="$('#pdf-iframe')[0].contentWindow.pdfZoomOut()">축소</button>
+	<button type="button" id="btn-pdf-zoomout" onClick="$('#pdf-iframe')[0].contentWindow.pdfFit()">핏</button>
+<script>
+function pdfLink(title,link){
+	alert(title,link);
+}
+</script>
+</div>
+
+<script src="js/viewer.layout.js"></script>
+<script src="js/viewer/viewer.js"></script>
+
+</body>
+</html>

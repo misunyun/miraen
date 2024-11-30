@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorate="~{common/layouts/lo_ele_totalboard}" xmlns="http://www.w3.org/1999/html">
+<th:block layout:fragment="content">
+
+    <div class="breadcrumbs">
+        <ul>
+            <li class="home">
+                <a href="/pages/ele/Main.mrn" class="icon-button" title="첫페이지로">
+                    <svg>
+                        <use xlink:href="/assets/images/svg-sprite-solid.svg#icon-home"></use>
+                    </svg>
+                </a>
+            </li>
+            <li th:if="${rootMenuPath ne ''}"><a th:href="${rootMenuUrl}" th:text="${rootMenuPath}"></a></li>
+            <li th:if="${parentMenuPath ne ''}"><a th:href="${parentMenuUrl}" th:text="${parentMenuPath}"></a></li>
+            <li class="current" th:text="${boardInfo.tabNm}"></li>
+        </ul>
+    </div>
+    <div class="container">
+        <div th:if="${rootMenuPath eq '특화자료실'}">
+            <th:block th:replace="~{common/fragments/aside_ele_specialieddata :: aside_ele_specializeddata(title=${title},categorySeq=${categorySeq},mainId=${mainId},domain=${domain})}">
+            </th:block><!-- aside_ele_specialieddata -->
+        </div>
+        <div th:if="${rootMenuPath eq '기초학력'}">
+            <th:block th:replace="~{common/fragments/aside_ele_basiclearning :: aside_ele_basiclearning}"></th:block>
+        </div>
+        <div th:if="${rootMenuPath eq '쉬는 시간'}">
+            <th:block th:replace="~{common/fragments/aside_ele_breaktime :: aside_ele_basiclearning}"></th:block>
+        </div>
+        <div th:if="${rootMenuPath eq '학교자율시간'}">
+           <th:block th:replace="~{common/fragments/aside_ele_schflextm :: aside_ele_schflextm(title=${title},categorySeq=${categorySeq},mainId=${mainId},domain=${domain})}" />
+        </div>
+
+        <th:block th:replace="~{common/components/totalboardDetail :: totalboardDetailFragment}"></th:block>
+
+        <input type="hidden" name="mainInfoList" th:value="${jsTotalboardMainInfoList}" />
+        <input type="hidden" name="thumbnailLongYn" th:value="${thumbnailLongYn}" />
+        <input type="hidden" name="thumbLogArr" th:value="${thumbLogArr}" />
+        <input type="hidden" name="categorySeq" th:value="${categorySeq}" />
+        <input type="hidden" name="mainId" th:value="${mainId}" />
+        <input type="hidden" name="gnbCateType" th:value="${gnbCateType}" />
+        <input type="hidden" name="tabSeq" th:value="${tabIdx}" />
+    </div>
+</th:block>
+</html>

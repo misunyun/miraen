@@ -1,0 +1,51 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+  <th:block th:fragment="ga4HeadFragment">
+    <!-- [1] 로그인 했을 경우에만 user_id 설정을 최상위에 삽입
+        이후 모든 이벤트에 user_id가 포함됩니다 -->        
+    <script th:inline="javascript">
+      /*<![CDATA[*/
+      var isLogin = (/*[[${isLogin}]]*/);
+      if(!!isLogin) {
+        window.dataLayer = window.dataLayer || [];
+        var cmmUserIdx = [[${miraenId}]];
+        if (cmmUserIdx != '' || cmmUserIdx != null) {
+          function gtag(){dataLayer.push(arguments);}
+          gtag('set', {'user_id': cmmUserIdx});
+        }  
+      }
+      
+      /*]]>*/
+    </script>
+    <!-- [2] Google Tag Manager (Head 영역에 삽입되는 스크립트)
+        GA4보다 위에 적용됩니다. -->
+    <script th:inline="javascript">
+      /*<![CDATA[*/
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer',[[${GTMID}]]);
+      /*]]>*/
+    </script>
+      <!-- End Google Tag Manager -->
+  
+      <!-- [3] Google tag (gtag.js)
+         GA4 스크립트가 삽입됩니다 -->
+      <!-- <script async th:src="'[[https://www.googletagmanager.com/gtag/js?id='+${GTMID}+'&#93;(https://www.googletagmanager.com/gtag/js?id='+${GTMID}'+)](https://www.googletagmanager.com/gtag/js?id='+${GTMID}+'](https://www.googletagmanager.com/gtag/js?id='+${GTMID}+')) '+${GTMID}'"></script> -->
+      <!-- <script async src="[[https://www.googletagmanager.com/gtag/js?id=G-할당받은&#93;
+ (https://www.googletagmanager.com/gtag/js?id=G-할당받은)]
+ (https://www.googletagmanager.com/gtag/js?id=G-할당받은]
+ (https://www.googletagmanager.com/gtag/js?id=G-할당받은)) GA4 코드'"></script> -->
+      <script async th:src="'https://www.googletagmanager.com/gtag/js?id=' + ${GA4ID}"></script>
+      <script th:inline="javascript">
+        /*<![CDATA[*/
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+  
+          gtag('config', [[${GA4ID}]]);
+        /*]]>*/
+      </script>
+      <!-- End GA4 Script --> 
+  </th:block>
+</html>

@@ -1,0 +1,15 @@
+body {margin:0; padding:0; background:#efefef;}
+.header {width: 100%;height: 32px;padding: 5px 10px;background: #00cbb4; display: block;}
+.header .txtTitle {display: inline-block; color: #fff; font-size: 16px;}
+.header .block-right {float:right; color: #fff; font-size: 14px; margin-right:50px;}
+#download {font-size: 14px; color: #fff; font-weight: normal; padding-left: 25px; margin-left: 25px; background-repeat: no-repeat; background-image: url(/assets/images/view/viewer/icons/ffffff/download.png); background-position-y: center; background-position-x: left; background-size: auto 20px; vertical-align: top;}
+.prev-icon {background-image: url(/assets/images/view/viewer/icon-prev.png);}
+.next-icon {background-image: url(/assets/images/view/viewer/icon-prev.png);transform: scale(-1,1);}
+.prev-icon, .next-icon{width: 20px; height: 20px;background-repeat: no-repeat;background-size: auto 20px; display: block;}
+.sr-only {position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;}
+
+#pdf-iframe {display: block; border: none; height: calc( 100vh - 32px); width: 100vw;}
+.content {width: 100%; height: calc( 100% - 32px); text-align: center;}
+/* .content img { height: 100%;} */
+.block-image {display:flex;justify-content:center;align-items:center;height:100%;}
+.block-image img {max-height:100%;}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+  <th:block th:fragment="eleHeadFragment">
+    <meta charset="UTF-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- !NOTE : 호출되는 css 초등/중등/고등/공통 유틸 구분이 필요합니다. 
+      초등 : elementary.css 
+      중학 : middle.css
+      고등 : high.css
+      공통유틸(마이페이지,고객센터,로그인,회원가입) : common.css
+
+      하단에서 호출되는 title 과 shotcut도 모두 위 기준으로 동일하게 호출 분기 해주세요 
+      img-shortcut-elementary.png 
+      img-shortcut-middle.png
+      img-shortcut-high.png
+      img-shortcut-common.png
+    -->
+    <title>엠티처 초등-미래엔교수활동플랫폼</title>
+    <meta property="og:image" content="https://download.mirae-n.com/mteacher_logo.png">
+    <meta th:if="${ogMenuPathName ne null and ogMenuPathName ne ''}" property="og:description" id="ogDesc" th:content="${ogMenuPathName}" />
+
+    <!-- 초등용 -->
+    <link href="/assets/pc/css/elementary.css" rel="stylesheet" />
+
+    <!-- 바로가기 아이콘 -->
+    <link rel="shortcut icon" type="image/png" href="/assets/images/common/img-shortcut-elementary.png">
+    <link rel="icon" type="image/png" sizes="180x180" href="/assets/images/common/img-shortcut-elementary.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/common/img-shortcut-elementary.png">
+    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="/assets/images/common/img-shortcut-elementary.png">
+    <meta name="apple-mobile-web-app-title" content="엠티처 초등">
+    <th:block layout:fragment="addCss">
+    </th:block>
+    <!-- ga4 적용 -->
+    <th:block th:replace="~{common/fragments/ga4_head :: ga4HeadFragment}"></th:block>
+    
+  </th:block>
+</html>

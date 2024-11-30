@@ -1,0 +1,57 @@
+#viewer-wrap {
+    overflow: hidden;
+    height: 100vh;
+    width: 100%;
+    padding: 0;
+    transition: padding .5s;
+}
+#viewer-content {
+    display: none;
+}
+#mirroring-start {
+    height: 100vh;
+    width: 100%;
+    
+}
+.mirroing-div {
+    background: url(./../img/viewer/mirroring_top.png);
+    background-position-x: center;
+    background-position-y: top;
+    background-repeat: no-repeat;
+    background-color: #f7f7f7;
+}
+.mirroing-div * {
+    text-align: center;
+    
+}
+.mirroing-div .animation {
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+.mirroing-div .animation img {
+    width: 80%;
+}
+.mirroing-div .description {
+    margin-bottom: 20px;
+}
+.mirroing-div .description .shortcut {
+    color: #00cbb4;
+    border-bottom: solid 2px #00cbb4;
+}
+.mirroing-div .buttons {
+    padding: 20px;
+    margin-bottom: 30px;
+}
+.mirroing-div .buttons a.button {
+    background-color: #00cbb4;
+    color: white;
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    cursor: pointer;
+}
+
+
+.popover {
+    display: none !important;    
+}

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="icon" href="/assets/viewer/img/favicon.ico" type="image/x-icon" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>엠티처 뷰어</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+</head>
+
+<body>
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    엠티처 뷰어 프로토타입
+                </h1>
+                <p class="has-text-lightgrey">
+                    현재 크롬에 최적화 되어 있습니다.
+                </p>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <div class="field" style="max-width: 400px;">
+                <div class="field-body">
+                    <div class="field">
+                        <p class="control has-icons-left">
+                            <input type="text" class="input" id="userid" placeholder="아이디를 입력해주세요. 그리고 꼭 기억해주세요."/>
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-user"></i>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <h2 class="subtitle has-text-grey">
+                사용할 아이디를 입력한 후 수업을 선택해주세요.
+            </h2>
+        </div>
+    </section>
+    <section class="section has-background-info">
+        <div class="container">
+            <h1 class="title has-text-white">
+                수업 프로토타입
+            </h1>
+            <div class="content">
+                <ul class="has-text-white" >
+                    <li><a class="has-text-white" href="javascript:open_viewer('playlist=modal.ko.4.1.1.1-2', true);">4학년 > 1학기 > 국어 > 1. 생각과 느낌을 나누어요 > [1~2차시] 생각이나 느낌이 서로 다른 까닭 말하기</a></li>
+                    <li><a class="has-text-white" href="javascript:open_viewer('playlist=modal.sc.5.1.1.1', true);">5학년 > 1학기 > 과학 > 1. 과학자는 어떻게 탐구할까요? > [1차시] 탐구 문제를 정해 볼까요?</a></li>
+                    <li><a class="has-text-white" href="javascript:open_viewer('playlist=modal.sc.5.1.1.2', true);">5학년 > 1학기 > 과학 > 1. 과학자는 어떻게 탐구할까요? > [2차시] 실험을 계획해 볼까요?</a></li>
+                    <li><a class="has-text-white" href="javascript:open_viewer('playlist=modal.ma.3.1.1.1', true);">3학년 > 1학기 > 수학 > 1. 덧셈과 뺄셈 > [1차시] 단원 도입</a></li>
+                    <li><a class="has-text-white" href="javascript:open_viewer('playlist=modal.ma.3.1.1.2', true);">3학년 > 1학기 > 수학 > 1. 덧셈과 뺄셈 > [2차시] 덧셈을 해 볼까요(1)</a></li>
+                    <li><a class="has-text-white" href="javascript:open_viewer('playlist=modal.so.3.1.1.1', true);">3학년 > 1학기 > 사회 > 1. 우리 고장의 모습 > 1. 우리가 생각하는 고장의 모습 > [1차시] 단원 시작하기</a></li>
+                    <li><a class="has-text-white" href="javascript:open_viewer('playlist=modal.so.3.1.1.2', true);">3학년 > 1학기 > 사회 > 1. 우리 고장의 모습 > 1. 우리가 생각하는 고장의 모습 > [2차시] 우리 고장의 여러 장소 이야기해 보기</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container">
+            <h1 class="title has-text-white">
+                수업 테스트
+            </h1>
+            <div class="content">
+                <ul class="has-text-white" >
+                    <li><a class="has-text-white" href="javascript:open_viewer('playlist=modal.ko.3.1.1-2', true);">국어 > 3학년 > 1학기 > 1. 재미가 톡톡톡 > 느낌을 살려 사물 표현하기(1~2차시)</a></li>
+                    <li><a class="has-text-white" href="javascript:open_viewer('playlist=modal.sc.3.1.1', true);">과학 > 3학년 > 1학기 > 1. 과학자는 어떻게 탐구할까요? > 과학자는 어떻게 탐구할까요?(1차시)</a></li>
+                    <li><a class="has-text-white" href="javascript:open_viewer('playlist=modal.so.3.1.1', true);">사회 > 3학년 > 1학기 > 1. 우리 고장의 모습 > 단원 학습 내용 예상하기(1차시)</a></li>
+                    <li><a class="has-text-white" href="javascript:open_viewer('playlist=modal.ma.3.1.1', true);">수학 > 3학년 > 1학기 > 1. 덧셈과 뺄셈 > 단원 도입(1차시)</a></li>
+                    <li><a class="has-text-white" href="javascript:open_viewer('playlist=modal.ma.3.1.2', true);">수학 > 3학년 > 1학기 > 1. 덧셈과 뺄셈 > 단원 도입(2차시)</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <h1 class="title">컨텐츠 프로토타입 수정사항 반영 (준비학습, 오늘의 퀴즈 수정진행중)</h1>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <h1 class="title">리모콘 기능 안내</h1>
+            <div class="">
+                <p>1. PC에서 이 페이지에 접속 한 후 아이디를 입력한 후 수업을 선택해주세요.</p>
+                <p>2. 모바일에서도 이 페이지에 접속한 후 아이디를 입력한 후 PC에서 선택한 수업을 선택해주세요. </p>
+                <p>3. 모바일에서 컨트롤 연결을 누른 후 연결할 PC를 선택해주세요.(현재는 연결할 PC의 이름이 어렵습니다. 추후 개선 예정)</p>
+                <p>4. 모바일에서 "이전", "다음" 버튼을 이용하여 페이지를 이동할 수 있습니다.</p>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <h1 class="title">변경 사항</h1>
+            <div class="">
+                <h2 class="subtitle">2020.11.13</h2>
+                <p>1. 파비콘 교체</p>
+                <p>2. 학습목차, 도움자료 구분</p>
+                <p>3. 자료보관함 -> 내 자료 문구 수정</p>
+                <p>4. 네비게이션 주제 이동 바(원) 크기 수정</p>
+                <p>5. 수업도구 아이콘 -> 텍스트(그리기와 동일한 형태)</p>
+                <p>6. 주제 마우스 오버시 글자색 변경</p>
+                <p>7. 컨텐츠 영역 페이지 이동 버튼 추가</p>
+                <p>8. 네비게이션 열고 닫기 버튼 스타일 및 위치 변경</p>
+                <p>9. 컨텐츠 영역 비율 조정</p>
+            </div>
+            <br><br>
+            <div class="">
+                <h2 class="subtitle">2020.11.11</h2>
+                <p>1. 팝업닫기시 전에 클릭한 주제로 이동</p>
+                <p>2. 페이지 카운트 수정</p>
+                <p>3. 네비게이션 바 틀러지는 현상 수정</p>
+                <p>4. 주제 마우스 오버시 썸네일 툴팁 추가 (국어 : 단원열기.. 주제에서 확인가능)</p>
+                <p>5. 모바일 페이지 특화자료 버튼 추가</p>
+                <p>6. 미러링 동기화 개선</p>
+            </div>
+            <br><br>
+            <div class="">
+                <h2 class="subtitle">2020.11.06</h2>
+                <p>1. 컨텐츠 좌우 영역 수정</p>
+                <p>2. 네비게이션 크기 수정 및 음영 추가</p>
+                <p>3. 주제 이동 수정</p>
+                <p>4. 컨텐츠 팝업 수정</p>
+                <p>5. 혁신 수업 자료 상단 구분선 추가 및 스타일 수정</p>
+                <p>6. 하단 매뉴 폰트 사이즈 수정</p>
+                <p>7. 리모콘 기능 추가</p>
+            </div>
+        </div>
+    </section>
+    <script src="js/jquery.min.js"></script>
+    <script>
+        var viewer_url = "./v.html";
+        // var mobile_viewer_url = "./mv.html";
+        var mobile_viewer_url = "./v.html";
+        function is_mobile() {
+            var filter = "win16/win32/win64/mac/macintel";
+            if (navigator.platform) {
+                return filter.indexOf(navigator.platform.toLowerCase()) < 0;
+            }
+            return false;
+        }
+        function get_viewer_url() {
+            if(is_mobile()) {
+                return mobile_viewer_url;
+            }
+            return viewer_url;
+        }
+        function open_viewer(param, test_data) {
+            var userid = $("#userid").val().trim();
+            if(userid.length <= 0) {
+                alert("사용할 아이디를 입력하신 후 이용해주세요.");
+                return;
+            }
+            var url = get_viewer_url() + '?' + param + '&user=' + userid;
+            if(test_data) {
+                url += '&test_data=1';
+            }    
+            var popup = window.open(url, 'smartppt', 'height=' + screen.height + ',width=' + screen.width + ',fullscreen=yes');
+            popup.moveTo(0,0);
+        }
+
+    </script>
+</body>
+
+</html>

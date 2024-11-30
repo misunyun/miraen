@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="~{common/fragments/ele_head :: eleHeadFragment}"></head>
+
+    <body class="theme-elementary">
+        <th:block th:replace="~{common/fragments/ga4_body :: ga4BodyFragment}"></th:block>
+        <div class="wrapper">
+            <!-- <th:block th:replace="~{common/fragments/quick_menu_ele :: quick_menu_eleFragment}"></th:block> -->
+            <th:block th:replace="~{common/fragments/ele_header :: eleHeaderFragment}"></th:block>
+
+            <div class="gnb-dim"></div>
+
+            <th:block layout:fragment="content"></th:block>
+
+            <th:block th:replace="~{common/fragments/footer :: footerFragment}"></th:block>
+            <!-- top button -->
+            <a href="#top" class="icon-button top-button" title="위로 이동">
+                <svg>
+                    <use xlink:href="/assets/images/svg-sprite-arrow.svg#icon-arrow-up"></use>
+                </svg>
+            </a>
+        </div>
+
+        <div id="popupBookMark" class="popup">
+            <div class="popup-container size-xxl">
+                <form id="setFavoriteForm" target="setFavoritePopup" method="GET"
+                      action="/pages/common/mypage/setFavorite.mrn"></form>
+                <iframe name="setFavoritePopup" id="setFavoritePopup"></iframe>
+            </div>
+        </div>
+
+        <th:block th:replace="~{common/fragments/common_fragment}"></th:block>
+        <th:block layout:fragment="screenScript" th:if="${not #strings.isEmpty(jsPath)}">
+            <script th:src="${jsPath}"></script>
+        </th:block>
+    </body>
+    
+</html>

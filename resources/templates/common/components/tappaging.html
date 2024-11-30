@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/lo_ele_totalboard}">
+  <th:block th:fragment="tappagingFragment">
+  <div class="page-buttons">
+
+    <button type="button" class="button size-xl moreBtn" name =plus th:value="${pagingNow}" th:disabled="${(pagingNow+1) eq (pagingLast+1)} ? 'true' : 'false'">
+      <span th:text="${'더보기' + (pagingNow+1) + '/' + (pagingLast+1)}"></span>
+      <svg>
+        <title>더보기 아이콘</title>
+        <use xlink:href="/assets/images/svg-sprite-solid.svg#icon-plus"></use>
+      </svg>
+    </button>
+
+
+  </div>
+  
+  <script th:inline="javascript">
+		/*<![CDATA[*/
+		
+    console.log("pageNow>>", /*[[${pagingNow}]]*/);
+    // console.log((/*[[${servletPath}]]*/).split('/')[3], (/*[[${servletPath}]]*/).split('/')[4]);
+		
+		/*]]>*/
+	</script>
+</th:block>
+</html>

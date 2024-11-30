@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="format-detection" content="telephone=no" />
+  <title>미래엔 디지털 지도 수업 자료실</title>
+  <!-- 기존 엠티처에서 사용중인 JS (includeJS) -->
+  <script src="/static/assets/js/jquery-3.7.0.min.js"></script>
+  <script src="/static/assets/js/plugin/select2.min.js"></script>
+  <script src="/static/assets/js/plugin/swiper-bundle-v8.js"></script>
+  <script src="/static/assets/js/plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+  <!-- 신규(추가필요) -->
+  <link rel="stylesheet" type="text/css" href="/static/assets/pc/css/map.css" rel="stylesheet" />
+  <script src="/static/assets/js/ui.map.js"></script>
+</head>
+
+<body class="dmap">
+  <div class="dmap-wrap">
+    <!-- header -->
+    <div class="dmap-head">
+      <div class="inner">
+        <h1 class="logo"><a href="#"><span class="img"><span class="blind">MiraeN</span></span><span class="txt">디지털 지도 수업 자료실</span></a></h1>
+        <div class="aside">
+          <button type="button" class="btn-ai-share"><span>AI클래스 공유</span></button>
+        </div>
+      </div>
+    </div>
+    <!-- //header -->
+    <!-- content -->
+    <div class="dmap-body">
+      <!-- 좌측 메뉴 -->
+      <div class="menu-left on"><!-- D: 좌측메뉴 펼침 시 on 클래스 추가 -->
+        <div class="menu-cont">
+          <div class="chapter-box">
+            <div class="inner">
+              <strong class="tit">단원/차시 선택</strong>
+            </div>
+          </div>
+          <div class="menu-box">
+            <div class="dmap-search">
+              검색영역
+            </div>
+            <button type="button" class="btn-close-menu on"><span class="blind">메뉴 접기</span></button><!-- D: 좌측메뉴 펼침 시 on 클래스 추가 -->
+          </div>
+        </div>
+      </div>
+      <!-- //좌측 메뉴 -->
+      <!-- 지도 영역 -->
+      <div class="dmap-cont">
+        <!-- 우측메뉴 넣는 곳 -->
+        <div class="dmap-area">
+          <div class="map-api">
+            <!-- 지도 넣는 곳 : 이 안에 지도 관련 API 삽입 -->
+          </div>
+        </div>
+      </div>
+      <!-- //지도 영역 -->
+      <!-- 우측 메뉴 -->
+      <div class="side-menu">
+        <div class="special-place">
+          <div class="place-box">
+            <div class="place-item my-map">
+              <strong>MY 지도</strong>
+              <span class="f-switch">
+                <input type="checkbox" id="myMap" checked />
+                <label for="myMap"></label>
+              </span>
+            </div>
+            <div class="place-item teacher-map">
+              <strong>다른 선생님 지도</strong>
+              <span class="f-switch">
+                <input type="checkbox" id="teacherMap">
+                <label for="teacherMap"></label>
+              </span>
+            </div>
+          </div>
+        </div>
+        <!-- 맵 툴박스 -->
+        <div class="map-toolbox">
+          <ul class="map-control">
+            <li><button type="button" class="btn-location"><span>학교 위치</span></button></li><!-- D: 선택 시 버튼에 on 클래스 추가 -->
+          </ul>
+          <ul class="map-control">
+            <li><button type="button" class="btn-blankmap"><span>백지도</span></button></li>
+            <li>
+              <button type="button" class="btn-sns-share"><span>SNS 공유</span></button>
+              <div class="map-layer">
+                <div class="layer-tit">SNS 공유</div>
+                <div class="layer-cont">
+                  <div class="sns-list">
+                    <ul>
+                      <li><a href="#" class="sns-blog"><span>블로그</span></a></li>
+                      <li><a href="#" class="sns-cafe"><span>카페</span></a></li>
+                      <li><a href="#" class="sns-keep"><span>Keep</span></a></li>
+                      <li><a href="#" class="sns-band"><span>밴드</span></a></li>
+                      <li><a href="#" class="sns-line"><span>LINE</span></a></li>
+                      <li><a href="#" class="sns-x"><span>X</span></a></li>
+                      <li><a href="#" class="sns-facebook"><span>페이스북</span></a></li>
+                      <li><a href="#" class="sns-kakao"><span>카카오톡</span></a></li>
+                    </ul>
+                  </div>
+                  
+                </div>
+
+              </div>
+            </li>
+            <li><button type="button" class="btn-print"><span>인쇄</span></button></li>
+          </ul>
+          <ul class="map-control">
+            <li><button type="button" class="btn-distance"><span>거리재기</span></button></li>
+            <li><button type="button" class="btn-panorama"><span>거리뷰</span></button></li>
+            <li><button type="button" class="btn-satellite"><span>위성지도</span></button></li>
+          </ul>
+          <!-- 지도 확대축소 -->
+          <div class="map-zoom">
+            <button type="button" class="btn-zoom-in"><span class="blind">확대</span></button>
+            <div class="zoom-range">
+              <input type="range" class="range" min="0" max="100" value="77" step="0.1" />
+            </div>
+            <button type="button" class="btn-zoom-out"><span class="blind">축소</span></button>
+          </div>
+          <!-- //지도 확대축소 -->
+        </div>
+        <!-- //맵 툴박스 -->
+      </div>
+    </div>
+    <!-- //content -->
+  </div>
+</body>
+</html>

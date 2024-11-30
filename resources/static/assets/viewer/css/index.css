@@ -1,0 +1,598 @@
+@charset "utf-8";
+
+/* Font */
+@font-face{font-weight:300;font-family:'NotoSans';src:url(../font/NotoSansKR-Light.woff) format('woff')}
+@font-face{font-weight:400;font-family:'NotoSans';src:url(../font/NotoSansKR-Regular.woff) format('woff')}
+@font-face{font-weight:500;font-family:'NotoSans';src:url(../font/NotoSansKR-Medium.woff) format('woff')}
+@font-face{font-weight:700;font-family:'NotoSans';src:url(../font/NotoSansKR-Bold.woff) format('woff')}
+@font-face{font-weight:300;font-family:'NotoSerif';src:url(../font/NotoSerifCJKkr-Light.woff) format('woff')}
+@font-face{font-weight:400;font-family:'NotoSerif';src:url(../font/NotoSerifCJKkr-Regular.woff) format('woff')}
+@font-face{font-weight:500;font-family:'NotoSerif';src:url(../font/NotoSerifCJKkr-Medium.woff) format('woff')}
+@font-face{font-weight:700;font-family:'NotoSerif';src:url(../font/NotoSerifCJKkr-Bold.woff) format('woff')}
+@font-face{font-weight:400;font-family:'roboto';src:url(../font/RobotoBold.woff) format('woff')}
+@font-face{font-weight:700;font-family:'roboto';src:url(../font/RobotoBold.woff) format('woff')}
+@font-face{font-weight:300;font-family:'netmarble';src:url(../font/netmarbleL.woff) format('woff')}
+@font-face{font-weight:400;font-family:'netmarble';src:url(../font/netmarbleM.woff) format('woff')}
+@font-face{font-weight:700;font-family:'netmarble';src:url(../font/netmarbleB.woff) format('woff')}
+@font-face{font-weight:700;font-family:'SangSangTitle';src:url(../font/SangSangTitleOTFB.woff) format('woff')}
+@font-face{font-weight:400;font-family:'SangSangTitle';src:url(../font/SangSangTitleOTFM.woff) format('woff')}
+.font-sans{font-family:'NotoSans',sans-serif !important;font-display:fallback}
+.font-serif{font-family:'NotoSerif',serif !important;font-display:fallback}
+.font-roboto{font-family:'roboto',sans-serif !important;font-display:fallback}
+.font-net{font-family: 'netmarble', sans-serif !important;font-display:fallback}
+.font-sang{font-family: 'SangSangTitle', sans-serif !important;font-display:fallback}
+
+body {
+    height: 100%;
+    width: 100%;
+    top:0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 auto;
+    font-family: 'SangSangTitle';
+    background-color: #85C1E9;
+}
+a {
+    color: #5DADE2;
+    text-decoration: none; 
+    outline: none;
+    font-size : 3vh;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+}
+a:hover, a:active {
+    text-decoration: none; 
+    color:#5DADE2;
+}
+/*
+##Device = Desktops
+##Screen = 1281px to higher resolution desktops
+##Device = 데스크탑
+##Screen = 1281px 이상 해상도 데스크탑
+*/
+
+@media (min-width: 1281px) {
+    h1 {
+        background-color: #F4D03F;
+        box-sizing: border-box;
+        margin: 0;
+        padding-left: 5%;
+        line-height: 10vh;
+    }
+    h2 { 
+        background-color: #ABEBC6;
+        box-sizing: border-box;
+        margin: 0;
+        padding-left: 5%;
+        line-height: 7vh;
+    }
+    .red {
+        color: #CB4335;
+        font-weight: bold;
+    }
+    h3 { 
+        width: 25%;
+        margin: 0;
+        padding-left: 5%;
+        line-height: 10vh;
+        display: inline-block;
+        font-size: 3vh;
+    } 
+    
+    .inputData {
+        width: 70%;
+        margin: 0;
+        display: inline-block;
+        line-height: 10vh;
+    }
+    .inputData #id {
+        border-radius: 10px;
+        outline: none;
+        border: none;
+        width: 20%;
+        height: 5vh;
+        padding-left: 2%;
+        background-color: #EBF5FB;
+    }
+    ul {
+        padding-left: 20%;
+        font-size: 2vh;
+        font-weight: bold;
+        line-height: 5vh;
+    }
+    #course_div {
+        width: 100%;
+        height: 50vh;
+        padding: 0;
+        margin: 0;
+    }
+    #course_div > li {
+        position: relative;
+        width: 40%;
+        line-height: 4vh;
+        float: left;
+        margin-left: 7.5%;
+        border-radius: 25px;
+        background-color: #FFF;
+        box-sizing: border-box;
+        box-shadow: -3px -3px 0px 3px #2E86C1 inset;
+    }
+    #course_div > li > div {
+        padding-left: 10%;
+        font-size: 3vh;
+        line-height: 10vh;
+    }
+    #course_div > li > div > span {
+        color: #000;
+        font-size: 4vh;
+    }
+    #course_div > li > ul {
+        height: 35vh;
+    }
+    ul, li, span {
+        color: #fff;
+        list-style: none;
+    }
+}
+    
+    /*
+    ##Device = Laptops, Desktops
+    ##Screen = B/w 1025px to 1280px
+    ##Device = 랩탑, 데스크탑
+    ##Screen = 1025px에서 1280px 사이
+    */
+    
+    @media (min-width: 1025px) and (max-width: 1280px) {
+        h1 {
+            background-color: #F4D03F;
+            box-sizing: border-box;
+            margin: 0;
+            padding-left: 5%;
+            line-height: 10vh;
+        }
+        h2 { 
+            background-color: #ABEBC6;
+            box-sizing: border-box;
+            margin: 0;
+            padding-left: 5%;
+            line-height: 7vh;
+        }
+        .red {
+            color: #CB4335;
+            font-weight: bold;
+        }
+        h3 { 
+            width: 30%;
+            margin: 0;
+            padding-left: 5%;
+            line-height: 10vh;
+            display: inline-block;
+            font-size: 3vh;
+        } 
+        
+        .inputData {
+            width: 65%;
+            margin: 0;
+            display: inline-block;
+            line-height: 10vh;
+        }
+        .inputData #id {
+            border-radius: 10px;
+            outline: none;
+            border: none;
+            width: 20%;
+            height: 5vh;
+            padding-left: 2%;
+            background-color: #EBF5FB;
+        }
+        ul {
+            padding-left: 20%;
+            font-size: 2vh;
+            font-weight: bold;
+            line-height: 5vh;
+        }
+        #course_div {
+            width: 100%;
+            height: 50vh;
+            padding: 0;
+            margin: 0;
+        }
+        #course_div > li {
+            position: relative;
+            width: 40%;
+            line-height: 4vh;
+            float: left;
+            margin-left: 7.5%;
+            border-radius: 25px;
+            background-color: #FFF;
+            box-sizing: border-box;
+            box-shadow: -3px -3px 0px 3px #2E86C1 inset;
+        
+        }
+        #course_div > li > div {
+            padding-left: 10%;
+            font-size: 3vh;
+            line-height: 10vh;
+        }
+        #course_div > li > div > span {
+            color: #000;
+            font-size: 4vh;
+        }
+        #course_div > li > ul {
+            height: 35vh;
+        }
+        ul, li, span {
+            color: #fff;
+            list-style: none;
+        }
+    }
+    
+    /*
+    ##Device = Tablets, Ipads (portrait),
+    ##Screen = B/w 768px to 1024px
+    ##Device = 태블릿, 아이패드(세로),
+    ##Screen = 768px에서 1024px 사이
+    */
+    
+    @media (min-width: 768px) and (max-width: 1024px) {
+        h1 {
+            background-color: #F4D03F;
+            box-sizing: border-box;
+            margin: 0;
+            padding-left: 5%;
+            line-height: 10vh;
+        }
+        h2 { 
+            background-color: #ABEBC6;
+            box-sizing: border-box;
+            margin: 0;
+            padding-left: 5%;
+            line-height: 7vh;
+        }
+        .red {
+            color: #CB4335;
+            font-weight: bold;
+        }
+        h3 { 
+            width: 95%;
+            margin: 0;
+            padding-left: 5%;
+            line-height: 6vh;
+            display: inline-block;
+            font-size: 3vh;
+        } 
+        
+        .inputData {
+            width: 90%;
+            padding-left: 8%;
+            margin: 0;
+            display: inline-block;
+            line-height: 8vh;
+        }
+        .inputData #id {
+            border-radius: 10px;
+            outline: none;
+            border: none;
+            width: 94%;
+            height: 5vh;
+            padding-left: 2%;
+            background-color: #EBF5FB;
+        }
+        ul {
+            padding-left: 20%;
+            font-size: 2vh;
+            font-weight: bold;
+            line-height: 5vh;
+        }
+        #course_div {
+            width: 100%;
+            height: 50vh;
+            padding: 0;
+            margin: 0;
+        }
+        #course_div > li {
+            position: relative;
+            width: 87%;
+            line-height: 4vh;
+            margin-left: 7.5%;
+            border-radius: 25px;
+            background-color: #FFF;
+            box-sizing: border-box;
+            box-shadow: -3px -3px 0px 3px #2E86C1 inset;
+        
+        }
+        #course_div > li > div {
+            padding-left: 10%;
+            font-size: 3vh;
+            line-height: 10vh;
+        }
+        #course_div > li > div > span {
+            color: #000;
+            font-size: 4vh;
+        }
+        #course_div > li > ul {
+            height: 35vh;
+        }
+        ul, li, span {
+            color: #fff;
+            list-style: none;
+        }
+    }
+    
+    /*
+    ##Device = Tablets, Ipads (landscape)
+    ##Screen = B/w 768px to 1024px
+    ##Device = 태블릿, 아이패드(가로)
+    ##Screen = 768px에서 1024px 사이
+    */
+    
+    @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+        h1 {
+            background-color: #F4D03F;
+            box-sizing: border-box;
+            margin: 0;
+            padding-left: 5%;
+            line-height: 10vh;
+        }
+        h2 { 
+            background-color: #ABEBC6;
+            box-sizing: border-box;
+            margin: 0;
+            padding-left: 5%;
+            line-height: 7vh;
+        }
+        .red {
+            color: #CB4335;
+            font-weight: bold;
+        }
+        h3 { 
+            width: 95%;
+            margin: 0;
+            padding-left: 5%;
+            line-height: 6vh;
+            display: inline-block;
+            font-size: 3vh;
+        } 
+        
+        .inputData {
+            width: 90%;
+            padding-left: 8%;
+            margin: 0;
+            display: inline-block;
+            line-height: 8vh;
+        }
+        .inputData #id {
+            border-radius: 10px;
+            outline: none;
+            border: none;
+            width: 94%;
+            height: 5vh;
+            padding-left: 2%;
+            background-color: #EBF5FB;
+        }
+        ul {
+            padding-left: 20%;
+            font-size: 2vh;
+            font-weight: bold;
+            line-height: 5vh;
+        }
+        #course_div {
+            width: 100%;
+            height: 50vh;
+            padding: 0;
+            margin: 0;
+        }
+        #course_div > li {
+            position: relative;
+            width: 40%;
+            line-height: 4vh;
+            float: left;
+            margin-left: 7.5%;
+            border-radius: 25px;
+            background-color: #FFF;
+            box-sizing: border-box;
+            box-shadow: -3px -3px 0px 3px #2E86C1 inset;
+        
+        }
+        #course_div > li > div {
+            padding-left: 10%;
+            font-size: 3vh;
+            line-height: 10vh;
+        }
+        #course_div > li > div > span {
+            color: #000;
+            font-size: 4vh;
+        }
+        #course_div > li > ul {
+            height: 35vh;
+        }
+        ul, li, span {
+            color: #fff;
+            list-style: none;
+        }
+    }
+    
+    /*
+    ##Device = Low Resolution Tablets, Mobiles (Landscape)
+    ##Screen = B/w 481px to 767px
+    ##Device = 저해상도 태블릿, 모바일(가로)
+    ##Screen = 481px에서 767px 사이
+    */
+    
+    @media (min-width: 481px) and (max-width: 767px) {
+        h1 {
+            background-color: #F4D03F;
+            box-sizing: border-box;
+            margin: 0;
+            padding-left: 5%;
+            line-height: 10vh;
+        }
+        h2 { 
+            background-color: #ABEBC6;
+            box-sizing: border-box;
+            margin: 0;
+            padding-left: 5%;
+            line-height: 7vh;
+        }
+        .red {
+            color: #CB4335;
+            font-weight: bold;
+        }
+        h3 { 
+            width: 95%;
+            margin: 0;
+            padding-left: 5%;
+            line-height: 8vh;
+            display: inline-block;
+            font-size: 3vh;
+        } 
+        
+        .inputData {
+            width: 90%;
+            padding-left: 10%;
+            margin: 0;
+            display: inline-block;
+            line-height: 5vh;
+        }
+        .inputData #id {
+            border-radius: 10px;
+            outline: none;
+            border: none;
+            width: 85%;
+            height: 5vh;
+            padding-left: 2%;
+            background-color: #EBF5FB;
+        }
+        ul {
+            padding-left: 20%;
+            font-size: 2vh;
+            font-weight: bold;
+            line-height: 5vh;
+        }
+        #course_div {
+            width: 100%;
+            height: 50vh;
+            padding: 0;
+            margin: 0;
+        }
+        #course_div > li {
+            position: relative;
+            width: 80%;
+            line-height: 4vh;
+            margin: 5% 10%;
+            border-radius: 25px;
+            background-color: #FFF;
+            box-sizing: border-box;
+            box-shadow: -3px -3px 0px 3px #2E86C1 inset;
+        }
+        #course_div > li > div {
+            padding-left: 10%;
+            font-size: 3vh;
+            line-height: 10vh;
+        }
+        #course_div > li > div > span {
+            color: #000;
+            font-size: 4vh;
+        }
+        #course_div > li > ul {
+            height: 35vh;
+        }
+        ul, li, span {
+            color: #fff;
+            list-style: none;
+        }
+    }
+    
+    /*
+    ##Device = Most of the Smartphones Mobiles (Portrait)
+    ##Screen = B/w 320px to 479px
+    ##Device = 대부분의 스마트폰 모바일 기기(세로)
+    ##Screen = 320px에서 479px 사이
+    */
+    
+    @media (min-width: 320px) and (max-width: 480px) {
+        h1 {
+            background-color: #F4D03F;
+            box-sizing: border-box;
+            margin: 0;
+            padding-left: 5%;
+            line-height: 10vh;
+        }
+        h2 { 
+            background-color: #ABEBC6;
+            box-sizing: border-box;
+            margin: 0;
+            padding-left: 5%;
+            line-height: 7vh;
+        }
+        .red {
+            color: #CB4335;
+            font-weight: bold;
+        }
+        h3 { 
+            width: 95%;
+            margin: 0;
+            padding-left: 5%;
+            line-height: 8vh;
+            display: inline-block;
+            font-size: 3vh;
+        } 
+        
+        .inputData {
+            width: 90%;
+            padding-left: 10%;
+            margin: 0;
+            display: inline-block;
+            line-height: 5vh;
+        }
+        .inputData #id {
+            border-radius: 10px;
+            outline: none;
+            border: none;
+            width: 85%;
+            height: 5vh;
+            padding-left: 2%;
+            background-color: #EBF5FB;
+        }
+        ul {
+            padding-left: 20%;
+            font-size: 2vh;
+            font-weight: bold;
+            line-height: 5vh;
+        }
+        #course_div {
+            width: 100%;
+            height: 50vh;
+            padding: 0;
+            margin: 0;
+        }
+        #course_div > li {
+            position: relative;
+            width: 80%;
+            line-height: 4vh;
+            margin: 5% 10%;
+            border-radius: 25px;
+            background-color: #FFF;
+            box-sizing: border-box;
+            box-shadow: -3px -3px 0px 3px #2E86C1 inset;
+        }
+        #course_div > li > div {
+            padding-left: 10%;
+            font-size: 3vh;
+            line-height: 10vh;
+        }
+        #course_div > li > div > span {
+            color: #000;
+            font-size: 4vh;
+        }
+        #course_div > li > ul {
+            height: 35vh;
+        }
+        ul, li, span {
+            color: #fff;
+            list-style: none;
+        }
+    }

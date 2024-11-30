@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorate="~{common/layouts/lo_worksheet_popup}" xmlns="http://www.w3.org/1999/html">
+<th:block th:fragment="mteacherUrl">
+
+  <div class="popup" id="mteacher-shortcut">
+    <div class="popup-container size-lg">
+      <button class="icon-button close-button" data-id="close" close-obj>
+        <svg>
+          <title>아이콘 - icon-close</title>
+          <use href="/assets/images/svg-sprite-solid.svg#icon-close"></use>
+        </svg>
+      </button>
+      <div class="header">
+        <h3>엠티처 바로 접속</h3>
+      </div>
+      <div class="body">
+        <h3>엠티처를 가장 빠르게 이용하는 방법</h3>
+        <div class="box-light-gray box-shortcut">
+          <a th:href="@{${host_ele}+'/pages/ele/Main.mrn'}" class="ele" title="엠티처 초등 바로가기">엠티처 초등 바로가기</a>
+          <a th:href="@{${host_mid}+'/pages/mid/Main.mrn'}" class="mid" title="엠티처 중학 바로가기">엠티처 중학 바로가기</a>
+          <a th:href="@{${host_high}+'/pages/high/Main.mrn'}" class="high" title="엠티처 고등 바로가기">엠티처 고등 바로가기</a>
+        </div>
+        <div class="box-outlined-gray">
+          <h2>설치 방법</h2>
+          <p class="margin-top-sm">나의 학교급을 마우스로 선택 후, 아래와 같이 바탕화면으로 드래그해 주세요.</p>
+          <div class="margin-top-md"><img src="/assets/images/common/img-shortcut-example.png" alt="엠티처 바로가기 설치 방법"></div>
+        </div>
+      </div>
+      <div class="footer">
+        <button class="button size-xl type-primary" data-id="close" close-obj>닫기</button>
+      </div>
+    </div>
+  </div>
+
+</th:block>
+
+
+</html>

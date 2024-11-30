@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block th:fragment="shareFragment">
+    <div class="popup" id="popup-share-sns">
+        <div class="popup-container">
+            <button class="icon-button close-button" name="shareCloseBtn">
+                <svg>
+                    <title>닫기 아이콘</title>
+                    <use href="/assets/images/svg-sprite-solid.svg#icon-close"></use>
+                </svg>
+            </button>
+            <div class="header"> SNS 공유하기 </div>
+            <form action="submit" class="form">
+                <div class="body">
+                    <!-- contents -->
+                    <div class="share-sns">
+                        <a name="twitterShareBtn" href="javascript:void(0)" class="button type-text">
+                            <img src="/assets/images/common/icon-sns-x.svg" alt="엑스 아이콘">
+                        </a>
+                        <a name="facebookShareBtn" href="javascript:void(0)" class="button type-text">
+                            <img src="/assets/images/common/icon-sns-FB-round.svg" alt="페이스북 아이콘">
+                        </a>
+                        <a name="kakaoShareBtn" href="javascript:void(0)" class="button type-text">
+                            <img src="/assets/images/common/icon-sns-kakao.svg" alt="카카오톡 아이콘">
+                        </a>
+                        <a name="bandShareBtn" href="javascript:void(0)" class="button type-text">
+                            <img src="/assets/images/common/icon-sns-band.svg" alt="밴드 아이콘">
+                        </a>
+                        <a name="blogShareBtn" href="javascript:void(0)" class="button type-text">
+                            <img src="/assets/images/common/icon-sns-blog.svg" alt="블로그 아이콘">
+                        </a>
+                    </div>
+                    <div class="forms">
+                        <fieldset>
+                            <input type="text" class="size-xl" title="링크경로 입력란" name="" id="user-pnum" value="" readonly="readonly">
+                            <button type="button" id="shareCopyBtn" class="button size-xl type-gray">복사하기</button>
+                            <!-- <span class="caution">오류 메시지 나타납니다.</span> -->
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="footer">
+                    <button type="button" class="button size-xl type-primary" name="shareCloseBtn">닫기</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+
+        /*document.getElementById('copyBtn').addEventListener('click', ()=> {
+            let copyText = document.getElementById('user-pnum');
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            document.execCommand("Copy");
+            alert('복사됨');
+        });
+        document.querySelector('.close-button').addEventListener('click', ()=> {
+
+        });*/
+
+
+        let $eleBtn = document.querySelectorAll('.share-sns a');
+        for(let i=0; i<$eleBtn.length; i++) {
+            $eleBtn[i].addEventListener('click', (e)=> {
+                console.log(e.target.name);
+                if(e.currentTarget.name === 'kakaoShareBtn') {
+                    // https://accounts.kakao.com/login/?continue=https%3A%2F%2Fsharer.kakao.com%2Fpicker%2Flink%3Fapp_key%3D62450d3d843193237da81800f990b57d%26short_key%3D9bfc4b16-1db3-4653-9aab-2094872ff8b7#login
+                    console.log('kakao', location.href);
+                    Kakao.Share.sendScrap({
+                        requestUrl: document.getElementById('user-pnum').value,
+                    });
+                }else if(e.currentTarget.name === 'twitterShareBtn') {
+                    // https://twitter.com/i/flow/login?redirect_after_login=%2Fintent%2Ftweet%3Ftext%3Dhttps%253A%252F%252Fele.m-teacher.co.kr%252FCreative%252Fbbs%252FCreativeTongilList.mrn%252F286%253FpageRowLength%253D16%2526boardTypeCSeq%253D434%2526emcSeq%253D25%2526searchTxt%253D%2526searchUserId%253D%2526orderByCd%253D01%2526ecmTabCSeq%253D824%2526page%253D1%2526viewType%253D01
+                    let newTab = 'https://twitter.com/intent/tweet?url=' + document.getElementById('user-pnum').value
+                    window.open(newTab, 'about:blank');
+                }else if(e.currentTarget.name === 'facebookShareBtn') {
+                    // https://www.facebook.com/login.php?skip_api_login=1&api_key=966242223397117&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fsharer%2Fsharer.php%3Fu%3Dhttps%253A%252F%252Fele.m-teacher.co.kr%252FCreative%252Fbbs%252FCreativeTongilList.mrn%252F286%253FpageRowLength%253D16%2526boardTypeCSeq%253D434%2526emcSeq%253D25%2526searchTxt%253D%2526searchUserId%253D%2526orderByCd%253D01%2526ecmTabCSeq%253D824%2526page%253D1%2526viewType%253D01&cancel_url=https%3A%2F%2Fwww.facebook.com%2Fdialog%2Fclose_window%2F%3Fapp_id%3D966242223397117%26connect%3D0%23_%3D_&display=popup&locale=ko_KR
+                    let newTab = 'https://www.facebook.com/login.php?skip_api_login=1&api_key=1703792656559007&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fsharer%2Fsharer.php%3Fu%3D' + encodeURIComponent(document.getElementById('user-pnum').value) + '&cancel_url=https%3A%2F%2Fwww.facebook.com%2Fdialog%2Fclose_window%2F%3Fapp_id%3D1703792656559007%26connect%3D0%23_%3D_&display=popup&locale=ko_KR';
+                    window.open(newTab, 'about:blank');
+                }else if(e.currentTarget.name === 'bandShareBtn') {
+                    // https://auth.band.us/login_page?display=popup&next_url=https%3A%2F%2Fband.us%2Fplugin%2Fshare%3Fbody%3D%25ED%2586%25B5%25EC%259D%25BC%2520%25EA%25B5%2590%25EC%259C%25A1%2520%257C%2520%25ED%2595%2599%25EC%2583%259D%25EB%2593%25A4%25EC%259D%25B4%2520%25EC%2583%259D%25EA%25B0%2581%25ED%2595%2598%25EB%258A%2594%2520%25ED%2586%25B5%25EC%259D%25BC%2520%25ED%259B%2584%2520%25EC%259C%25A0%25EB%25A7%259D%2520%25EC%25A7%2581%25EC%2597%2585%250Ahttps%253A%252F%252Fele.m-teacher.co.kr%252FCreative%252Fbbs%252FCreativeTongilList.mrn%252F286%253FpageRowLength%253D16%2526boardTypeCSeq%253D434%2526emcSeq%253D25%2526searchTxt%253D%2526searchUserId%253D%2526orderByCd%253D01%2526ecmTabCSeq%253D824%2526page%253D1%2526viewType%253D01%26route%3Dhttps%253A%252F%252Fele.m-teacher.co.kr%252FCreative%252Fbbs%252FCreativeTongilList.mrn%252F286%253FpageRowLength%253D16%2526boardTypeCSeq%253D434%2526emcSeq%253D25%2526searchTxt%253D%2526searchUserId%253D%2526orderByCd%253D01%2526ecmTabCSeq%253D824%2526page%253D1%2526viewType%253D01
+                    // https://band.us/plugin/share?body=<문자열>&route=<밴드 공유 버튼을 사용하는 서비스의 도메인>
+                    let newTab = 'https://band.us/plugin/share?body=' + document.getElementById('user-pnum').value + '&route=' + document.getElementById('user-pnum').value;
+                    window.open(newTab, 'about:blank');
+                }else if(e.currentTarget.name === 'blogShareBtn') {
+                    // http://blog.naver.com/openapi/share?url=<공유할웹URL>
+                    // https://blog.naver.com/openapi/share?url=https%3A%2F%2Fele.m-teacher.co.kr%2FCreative%2Fbbs%2FCreativeTongilList.mrn%2F286%3FpageRowLength%3D16%26boardTypeCSeq%3D434%26emcSeq%3D25%26searchTxt%3D%26searchUserId%3D%26orderByCd%3D01%26ecmTabCSeq%3D824%26page%3D1%26viewType%3D01&title=%ED%86%B5%EC%9D%BC%20%EA%B5%90%EC%9C%A1%20%7C%20%ED%95%99%EC%83%9D%EB%93%A4%EC%9D%B4%20%EC%83%9D%EA%B0%81%ED%95%98%EB%8A%94%20%ED%86%B5%EC%9D%BC%20%ED%9B%84%20%EC%9C%A0%EB%A7%9D%20%EC%A7%81%EC%97%85
+                    let newTab = 'https://blog.naver.com/openapi/share?url=' + document.getElementById('user-pnum').value
+                    window.open(newTab, 'about:blank');
+                }
+            });
+        }
+
+
+
+    </script>
+</th:block>
+</html>

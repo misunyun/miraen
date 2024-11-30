@@ -1,0 +1,30 @@
+[
+    {
+        "course_num" : 1,
+        "course_id" : 1,
+        "course_name": "수업1",
+        "pages" : [
+            {"page_num": 1, "page_id": "1-1" , "page_name":"1. 스스로 확인해요", "page_path": "pages/1-1.html"},
+            {"page_num": 2, "page_id": "1-2" , "page_name":"2. 스스로 확인해요", "page_path": "pages/1-2.html"},
+            {"page_num": 3, "page_id": "1-3" , "page_name":"3. 물체의 기능과 물체의 성질 관계 짓기", "page_path": "pages/1-3.html"},
+            {"page_num": 4, "page_id": "1-4" , "page_name":"4. 스스로 확인해요", "page_path": "pages/1-4.html"},
+            {"page_num": 4, "page_id": "1-5" , "page_name":"5. 오디오", "page_path": "pages/1-5.html"},
+            {"page_num": 4, "page_id": "pageSampleMp4" , "page_name":"6. 비디오", "page_path": "pages/pageSampleMp4.html"}
+
+        ]
+    },
+    {
+        "course_num" : 2,
+        "course_id" : 2,
+        "course_name" : "수업2",
+        "pages" : [
+            {"page_num": 5, "page_id": "2-1" , "page_name":"1. 재미있게 닫기 - 개념을 정리해요", "page_path": "pages/2-1.html"},
+            {"page_num": 6, "page_id": "2-2" , "page_name":"2. 창의융합 지식 톡톡 우리나라 지폐에 숨어 있는 비밀", "page_path": "pages/2-2.html"},
+            {"page_num": 7, "page_id": "2-3" , "page_name":"3. 자전거를 이루는 물질", "page_path": "pages/2-3.html"},
+            {"page_num": 7, "page_id": "2-4" , "page_name":"4. 문제로 닫기", "page_path": "pages/2-4.html"},
+            {"page_num": 7, "page_id": "2-5" , "page_name":"5. 배추흰나비의 생김새", "page_path": "pages/2-5.html"},
+            {"page_num": 7, "page_id": "2-6" , "page_name":"6. 사슴벌레와 사마귀의 한살이", "page_path": "pages/2-6.html"}
+        ]
+    }
+]
+

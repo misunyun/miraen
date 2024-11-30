@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/html">
+  <th:block th:fragment="midGnbFragment">
+  <div class="gnb-wrap">
+    <div class="gnb-inner">
+      <h1 class="logo">
+        <a href="/pages/mid/Main.mrn">엠티처 중학</a>
+      </h1>
+      <nav class="gnb">
+        <ul>
+          
+            <li>
+              <a href="#subject">국어</a>
+              <div class="lnb-wrap" id="subject">
+                <div class="mybook">
+                  <div class="mybook-inner">
+                    <a href="#" class="button"> 내 교과서 <svg>
+                        <title>아이콘 설정하기</title>
+                        <use xlink:href="/assets/images/svg-sprite-solid.svg#icon-setting"></use>
+                      </svg>
+                    </a>
+                    <ul>
+                      <!-- <li class="alert-button">
+                        <a href="#">국어 1-1(신유식)</a>
+                        <button type="button" class="icon-button" title="삭제">
+                          <svg>
+                            <title>아이콘 설정하기</title>
+                            <use xlink:href="/assets/images/svg-sprite-solid.svg#icon-close"></use>
+                          </svg>
+                        </button>
+                      </li> -->
+                    </ul>
+                  </div>
+                </div>
+                <div class="lnb-inner">
+                  <div class="lnb type-text-box">
+                    <div class="lnb-header">
+                      <div class="buttons type-rounded">
+                        <span>
+                          <input type="radio" name="'subject' + ${level1Item.key1} + '-revision-01'" id="'subject' + ${level1Item.key1} + '-revision-01-2015'" checked />
+                          <label for="'subject' + ${level1Item.key1} + '-revision-01-2015'">2015 개정</label>
+                        </span>
+                        <span>
+                          <input type="radio" name="'subject' + ${level1Item.key1} + '-revision-01'" id="'subject' + ${level1Item.key1} + '-revision-01-2022'" data-revision="2022">
+                          <label for="'subject' + ${level1Item.key1} + '-revision-01-2022'">2022 개정</label>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="lnb-contents">
+                      <!-- <a href="#" class="text-data">영어1 (최연희)</a>
+                      <a href="#" class="text-data">영어2 (최연희)</a>
+                      <a href="#" class="text-data">영어3 (최연희)</a> -->
+                    </div>
+                  </div>
+                  <div class="banners">
+                    <a href="" target="_blank">
+                        <div class="banner-inner">
+                        <h2> 2024년 신학기, 새로운 엠티처를 만나세요! </h2>
+                        <p className="desc">원하는 자료를 빠르게 찾는 교과서 자료실부터, 수업을 분석하고 리포팅하는 AI 클래스까지. 더욱 편리하고 알찬 수업을 위해 엠티처가 새롭게 태어납니다.</p>
+                        <button type="button" className="banner-button">자세히보기</button>
+                        </div>
+                        <img src="" alt="GNB 배너" />
+                    </a>
+                  </div>
+                  <button type="button" class="close-button">닫기</button>
+                </div>
+              </div>
+            </li>
+          
+            <li>
+              <a href="#subject">영어</a>
+              <div class="lnb-wrap" id="subject">
+                <div class="mybook">
+                  <div class="mybook-inner">
+                    <a href="#" class="button"> 내 교과서 <svg>
+                        <title>아이콘 설정하기</title>
+                        <use xlink:href="/assets/images/svg-sprite-solid.svg#icon-setting"></use>
+                      </svg>
+                    </a>
+                    <ul>
+                      <!-- <li class="alert-button">
+                        <a href="#">국어 1-1(신유식)</a>
+                        <button type="button" class="icon-button" title="삭제">
+                          <svg>
+                            <title>아이콘 설정하기</title>
+                            <use xlink:href="/assets/images/svg-sprite-solid.svg#icon-close"></use>
+                          </svg>
+                        </button>
+                      </li> -->
+                    </ul>
+                  </div>
+                </div>
+                <div class="lnb-inner">
+                  <div class="lnb type-text-box">
+                    <div class="lnb-header">
+                      <div class="buttons type-rounded">
+                        <span>
+                          <input type="radio" name="'subject' + ${level1Item.key1} + '-revision-01'" id="'subject' + ${level1Item.key1} + '-revision-01-2015'" checked />
+                          <label for="'subject' + ${level1Item.key1} + '-revision-01-2015'">2015 개정</label>
+                        </span>
+                        <span>
+                          <input type="radio" name="'subject' + ${level1Item.key1} + '-revision-01'" id="'subject' + ${level1Item.key1} + '-revision-01-2022'" data-revision="2022">
+                          <label for="'subject' + ${level1Item.key1} + '-revision-01-2022'">2022 개정</label>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="lnb-contents">
+                      <!-- <a href="#" class="text-data">영어1 (최연희)</a>
+                      <a href="#" class="text-data">영어2 (최연희)</a>
+                      <a href="#" class="text-data">영어3 (최연희)</a> -->
+                    </div>
+                  </div>
+                  <div class="banners">
+                    <a href="" target="_blank">
+                        <div class="banner-inner">
+                        <h2> 2024년 신학기, 새로운 엠티처를 만나세요! </h2>
+                        <p className="desc">원하는 자료를 빠르게 찾는 교과서 자료실부터, 수업을 분석하고 리포팅하는 AI 클래스까지. 더욱 편리하고 알찬 수업을 위해 엠티처가 새롭게 태어납니다.</p>
+                        <button type="button" className="banner-button">자세히보기</button>
+                        </div>
+                        <img src="" alt="GNB 배너" />
+                    </a>
+                  </div>
+                  <button type="button" class="close-button">닫기</button>
+                </div>
+              </div>
+            </li>
+          
+            <li>
+              <a href="#subject">수학</a>
+              <div class="lnb-wrap" id="subject">
+                <div class="mybook">
+                  <div class="mybook-inner">
+                    <a href="#" class="button"> 내 교과서 <svg>
+                        <title>아이콘 설정하기</title>
+                        <use xlink:href="/assets/images/svg-sprite-solid.svg#icon-setting"></use>
+                      </svg>
+                    </a>
+                    <ul>
+                      <!-- <li class="alert-button">
+                        <a href="#">국어 1-1(신유식)</a>
+                        <button type="button" class="icon-button" title="삭제">
+                          <svg>
+                            <title>아이콘 설정하기</title>
+                            <use xlink:href="/assets/images/svg-sprite-solid.svg#icon-close"></use>
+                          </svg>
+                        </button>
+                      </li> -->
+                    </ul>
+                  </div>
+                </div>
+                <div class="lnb-inner">
+                  <div class="lnb type-text-box">
+                    <div class="lnb-header">
+                      <div class="buttons type-rounded">
+                        <span>
+                          <input type="radio" name="'subject' + ${level1Item.key1} + '-revision-01'" id="'subject' + ${level1Item.key1} + '-revision-01-2015'" checked />
+                          <label for="'subject' + ${level1Item.key1} + '-revision-01-2015'">2015 개정</label>
+                        </span>
+                        <span>
+                          <input type="radio" name="'subject' + ${level1Item.key1} + '-revision-01'" id="'subject' + ${level1Item.key1} + '-revision-01-2022'" data-revision="2022">
+                          <label for="'subject' + ${level1Item.key1} + '-revision-01-2022'">2022 개정</label>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="lnb-contents">
+                      <!-- <a href="#" class="text-data">영어1 (최연희)</a>
+                      <a href="#" class="text-data">영어2 (최연희)</a>
+                      <a href="#" class="text-data">영어3 (최연희)</a> -->
+                    </div>
+                  </div>
+                  <div class="banners">
+                    <a href="" target="_blank">
+                        <div class="banner-inner">
+                        <h2> 2024년 신학기, 새로운 엠티처를 만나세요! </h2>
+                        <p className="desc">원하는 자료를 빠르게 찾는 교과서 자료실부터, 수업을 분석하고 리포팅하는 AI 클래스까지. 더욱 편리하고 알찬 수업을 위해 엠티처가 새롭게 태어납니다.</p>
+                        <button type="button" className="banner-button">자세히보기</button>
+                        </div>
+                        <img src="" alt="GNB 배너" />
+                    </a>
+                  </div>
+                  <button type="button" class="close-button">닫기</button>
+                </div>
+              </div>
+            </li>
+          
+            <li>
+              <a href="#subject">사회/역사/도덕</a>
+              <div class="lnb-wrap" id="subject">
+                <div class="mybook">
+                  <div class="mybook-inner">
+                    <a href="#" class="button"> 내 교과서 <svg>
+                        <title>아이콘 설정하기</title>
+                        <use xlink:href="/assets/images/svg-sprite-solid.svg#icon-setting"></use>
+                      </svg>
+                    </a>
+                    <ul>
+                      <!-- <li class="alert-button">
+                        <a href="#">국어 1-1(신유식)</a>
+                        <button type="button" class="icon-button" title="삭제">
+                          <svg>
+                            <title>아이콘 설정하기</title>
+                            <use xlink:href="/assets/images/svg-sprite-solid.svg#icon-close"></use>
+                          </svg>
+                        </button>
+                      </li> -->
+                    </ul>
+                  </div>
+                </div>
+                <div class="lnb-inner">
+                  <div class="lnb type-text-box">
+                    <div class="lnb-header">
+                      <div class="buttons type-rounded">
+                        <span>
+                          <input type="radio" name="'subject' + ${level1Item.key1} + '-revision-01'" id="'subject' + ${level1Item.key1} + '-revision-01-2015'" checked />
+                          <label for="'subject' + ${level1Item.key1} + '-revision-01-2015'">2015 개정</label>
+                        </span>
+                        <span>
+                          <input type="radio" name="'subject' + ${level1Item.key1} + '-revision-01'" id="'subject' + ${level1Item.key1} + '-revision-01-2022'" data-revision="2022">
+                          <label for="'subject' + ${level1Item.key1} + '-revision-01-2022'">2022 개정</label>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="lnb-contents">
+                      <!-- <a href="#" class="text-data">영어1 (최연희)</a>
+                      <a href="#" class="text-data">영어2 (최연희)</a>
+                      <a href="#" class="text-data">영어3 (최연희)</a> -->
+                    </div>
+                  </div>
+                  <div class="banners">
+                    <a href="" target="_blank">
+                        <div class="banner-inner">
+                        <h2> 2024년 신학기, 새로운 엠티처를 만나세요! </h2>
+                        <p className="desc">원하는 자료를 빠르게 찾는 교과서 자료실부터, 수업을 분석하고 리포팅하는 AI 클래스까지. 더욱 편리하고 알찬 수업을 위해 엠티처가 새롭게 태어납니다.</p>
+                        <button type="button" className="banner-button">자세히보기</button>
+                        </div>
+                        <img src="" alt="GNB 배너" />
+                    </a>
+                  </div>
+                  <button type="button" class="close-button">닫기</button>
+                </div>
+              </div>
+            </li>
+          
+            <li>
+              <a href="#subject">과학/기술·과정</a>
+              <div class="lnb-wrap" id="subject">
+                <div class="mybook">
+                  <div class="mybook-inner">
+                    <a href="#" class="button"> 내 교과서 <svg>
+                        <title>아이콘 설정하기</title>
+                        <use xlink:href="/assets/images/svg-sprite-solid.svg#icon-setting"></use>
+                      </svg>
+                    </a>
+                    <ul>
+                      <!-- <li class="alert-button">
+                        <a href="#">국어 1-1(신유식)</a>
+                        <button type="button" class="icon-button" title="삭제">
+                          <svg>
+                            <title>아이콘 설정하기</title>
+                            <use xlink:href="/assets/images/svg-sprite-solid.svg#icon-close"></use>
+                          </svg>
+                        </button>
+                      </li> -->
+                    </ul>
+                  </div>
+                </div>
+                <div class="lnb-inner">
+                  <div class="lnb type-text-box">
+                    <div class="lnb-header">
+                      <div class="buttons type-rounded">
+                        <span>
+                          <input type="radio" name="'subject' + ${level1Item.key1} + '-revision-01'" id="'subject' + ${level1Item.key1} + '-revision-01-2015'" checked />
+                          <label for="'subject' + ${level1Item.key1} + '-revision-01-2015'">2015 개정</label>
+                        </span>
+                        <span>
+                          <input type="radio" name="'subject' + ${level1Item.key1} + '-revision-01'" id="'subject' + ${level1Item.key1} + '-revision-01-2022'" data-revision="2022">
+                          <label for="'subject' + ${level1Item.key1} + '-revision-01-2022'">2022 개정</label>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="lnb-contents">
+                      <!-- <a href="#" class="text-data">영어1 (최연희)</a>
+                      <a href="#" class="text-data">영어2 (최연희)</a>
+                      <a href="#" class="text-data">영어3 (최연희)</a> -->
+                    </div>
+                  </div>
+                  <div class="banners">
+                    <a href="" target="_blank">
+                        <div class="banner-inner">
+                        <h2> 2024년 신학기, 새로운 엠티처를 만나세요! </h2>
+                        <p className="desc">원하는 자료를 빠르게 찾는 교과서 자료실부터, 수업을 분석하고 리포팅하는 AI 클래스까지. 더욱 편리하고 알찬 수업을 위해 엠티처가 새롭게 태어납니다.</p>
+                        <button type="button" className="banner-button">자세히보기</button>
+                        </div>
+                        <img src="" alt="GNB 배너" />
+                    </a>
+                  </div>
+                  <button type="button" class="close-button">닫기</button>
+                </div>
+              </div>
+            </li>
+          
+            <li>
+              <a href="#subject">음악/미술/체육</a>
+              <div class="lnb-wrap" id="subject">
+                <div class="mybook">
+                  <div class="mybook-inner">
+                    <a href="#" class="button"> 내 교과서 <svg>
+                        <title>아이콘 설정하기</title>
+                        <use xlink:href="/assets/images/svg-sprite-solid.svg#icon-setting"></use>
+                      </svg>
+                    </a>
+                    <ul>
+                      <!-- <li class="alert-button">
+                        <a href="#">국어 1-1(신유식)</a>
+                        <button type="button" class="icon-button" title="삭제">
+                          <svg>
+                            <title>아이콘 설정하기</title>
+                            <use xlink:href="/assets/images/svg-sprite-solid.svg#icon-close"></use>
+                          </svg>
+                        </button>
+                      </li> -->
+                    </ul>
+                  </div>
+                </div>
+                <div class="lnb-inner">
+                  <div class="lnb type-text-box">
+                    <div class="lnb-header">
+                      <div class="buttons type-rounded">
+                        <span>
+                          <input type="radio" name="'subject' + ${level1Item.key1} + '-revision-01'" id="'subject' + ${level1Item.key1} + '-revision-01-2015'" checked />
+                          <label for="'subject' + ${level1Item.key1} + '-revision-01-2015'">2015 개정</label>
+                        </span>
+                        <span>
+                          <input type="radio" name="'subject' + ${level1Item.key1} + '-revision-01'" id="'subject' + ${level1Item.key1} + '-revision-01-2022'" data-revision="2022">
+                          <label for="'subject' + ${level1Item.key1} + '-revision-01-2022'">2022 개정</label>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="lnb-contents">
+                      <!-- <a href="#" class="text-data">영어1 (최연희)</a>
+                      <a href="#" class="text-data">영어2 (최연희)</a>
+                      <a href="#" class="text-data">영어3 (최연희)</a> -->
+                    </div>
+                  </div>
+                  <div class="banners">
+                    <a href="" target="_blank">
+                        <div class="banner-inner">
+                        <h2> 2024년 신학기, 새로운 엠티처를 만나세요! </h2>
+                        <p className="desc">원하는 자료를 빠르게 찾는 교과서 자료실부터, 수업을 분석하고 리포팅하는 AI 클래스까지. 더욱 편리하고 알찬 수업을 위해 엠티처가 새롭게 태어납니다.</p>
+                        <button type="button" className="banner-button">자세히보기</button>
+                        </div>
+                        <img src="" alt="GNB 배너" />
+                    </a>
+                  </div>
+                  <button type="button" class="close-button">닫기</button>
+                </div>
+              </div>
+            </li>
+          
+            <li>
+              <a href="#subject">외국어</a>
+              <div class="lnb-wrap" id="subject">
+                <div class="mybook">
+                  <div class="mybook-inner">
+                    <a href="#" class="button"> 내 교과서 <svg>
+                        <title>아이콘 설정하기</title>
+                        <use xlink:href="/assets/images/svg-sprite-solid.svg#icon-setting"></use>
+                      </svg>
+                    </a>
+                    <ul>
+                      <!-- <li class="alert-button">
+                        <a href="#">국어 1-1(신유식)</a>
+                        <button type="button" class="icon-button" title="삭제">
+                          <svg>
+                            <title>아이콘 설정하기</title>
+                            <use xlink:href="/assets/images/svg-sprite-solid.svg#icon-close"></use>
+                          </svg>
+                        </button>
+                      </li> -->
+                    </ul>
+                  </div>
+                </div>
+                <div class="lnb-inner">
+                  <div class="lnb type-text-box">
+                    <div class="lnb-header">
+                      <div class="buttons type-rounded">
+                        <span>
+                          <input type="radio" name="'subject' + ${level1Item.key1} + '-revision-01'" id="'subject' + ${level1Item.key1} + '-revision-01-2015'" checked />
+                          <label for="'subject' + ${level1Item.key1} + '-revision-01-2015'">2015 개정</label>
+                        </span>
+                        <span>
+                          <input type="radio" name="'subject' + ${level1Item.key1} + '-revision-01'" id="'subject' + ${level1Item.key1} + '-revision-01-2022'" data-revision="2022">
+                          <label for="'subject' + ${level1Item.key1} + '-revision-01-2022'">2022 개정</label>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="lnb-contents">
+                      <!-- <a href="#" class="text-data">영어1 (최연희)</a>
+                      <a href="#" class="text-data">영어2 (최연희)</a>
+                      <a href="#" class="text-data">영어3 (최연희)</a> -->
+                    </div>
+                  </div>
+                  <div class="banners">
+                    <a href="" target="_blank">
+                        <div class="banner-inner">
+                        <h2> 2024년 신학기, 새로운 엠티처를 만나세요! </h2>
+                        <p className="desc">원하는 자료를 빠르게 찾는 교과서 자료실부터, 수업을 분석하고 리포팅하는 AI 클래스까지. 더욱 편리하고 알찬 수업을 위해 엠티처가 새롭게 태어납니다.</p>
+                        <button type="button" className="banner-button">자세히보기</button>
+                        </div>
+                        <img src="" alt="" />
+                    </a>
+                  </div>
+                  <button type="button" class="close-button">닫기</button>
+                </div>
+              </div>
+            </li>
+          
+            <li>
+              <a href="#subject">진로/정보</a>
+              <div class="lnb-wrap" id="subject">
+                <div class="mybook">
+                  <div class="mybook-inner">
+                    <a href="#" class="button"> 내 교과서 <svg>
+                        <title>아이콘 설정하기</title>
+                        <use xlink:href="/assets/images/svg-sprite-solid.svg#icon-setting"></use>
+                      </svg>
+                    </a>
+                    <ul>
+                      <!-- <li class="alert-button">
+                        <a href="#">국어 1-1(신유식)</a>
+                        <button type="button" class="icon-button" title="삭제">
+                          <svg>
+                            <title>아이콘 설정하기</title>
+                            <use xlink:href="/assets/images/svg-sprite-solid.svg#icon-close"></use>
+                          </svg>
+                        </button>
+                      </li> -->
+                    </ul>
+                  </div>
+                </div>
+                <div class="lnb-inner">
+                  <div class="lnb type-text-box">
+                    <div class="lnb-header">
+                      <div class="buttons type-rounded">
+                        <span>
+                          <input type="radio" name="'subject' + ${level1Item.key1} + '-revision-01'" id="'subject' + ${level1Item.key1} + '-revision-01-2015'" checked />
+                          <label for="'subject' + ${level1Item.key1} + '-revision-01-2015'">2015 개정</label>
+                        </span>
+                        <span>
+                          <input type="radio" name="'subject' + ${level1Item.key1} + '-revision-01'" id="'subject' + ${level1Item.key1} + '-revision-01-2022'" data-revision="2022">
+                          <label for="'subject' + ${level1Item.key1} + '-revision-01-2022'">2022 개정</label>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="lnb-contents">
+                      <!-- <a href="#" class="text-data">영어1 (최연희)</a>
+                      <a href="#" class="text-data">영어2 (최연희)</a>
+                      <a href="#" class="text-data">영어3 (최연희)</a> -->
+                    </div>
+                  </div>
+                  <div class="banners">
+                    <a href="" target="_blank">
+                        <div class="banner-inner">
+                        <h2> 2024년 신학기, 새로운 엠티처를 만나세요! </h2>
+                        <p className="desc">원하는 자료를 빠르게 찾는 교과서 자료실부터, 수업을 분석하고 리포팅하는 AI 클래스까지. 더욱 편리하고 알찬 수업을 위해 엠티처가 새롭게 태어납니다.</p>
+                        <button type="button" className="banner-button">자세히보기</button>
+                        </div>
+                        <img src="" alt="GNB 배너" />
+                    </a>
+                  </div>
+                  <button type="button" class="close-button">닫기</button>
+                </div>
+              </div>
+            </li>
+          
+        </ul>
+      </nav>
+    </div>
+    <div class="buttons">
+      <!-- 검색 -->
+      <form action="" class="search">
+        <div class="search-inner">
+          <input type="text" name="" id="" placeholder="검색어를 입력해 주세요" />
+          <button type="button" class="icon-button icon-search" title="검색">
+            <svg>
+              <use xlink:href="/assets/images/svg-sprite-solid.svg#icon-search"></use>
+            </svg>
+          </button>
+        </div>
+      </form>
+      <!-- 사이트 맵 -->
+      <div class="site-map">
+        <button type="button" class="icon-button">
+          <svg>
+            <title>메가 메뉴 아이콘</title>
+            <use xlink:href="/assets/images/svg-sprite-solid.svg#icon-menu"></use>
+          </svg>
+        </button>
+        <div class="site-map-inner">
+          <ul class="depth-items type-vertical">
+            
+              <li class="depth-1">
+                <h2>국어</h2>
+                <div class="depth-2">
+                  
+                </div>
+              </li>
+            
+              <li class="depth-1">
+                <h2>영어</h2>
+                <div class="depth-2">
+                  
+                </div>
+              </li>
+            
+              <li class="depth-1">
+                <h2>수학</h2>
+                <div class="depth-2">
+                  
+                </div>
+              </li>
+            
+              <li class="depth-1">
+                <h2>사회/역사/도덕</h2>
+                <div class="depth-2">
+                  
+                </div>
+              </li>
+            
+              <li class="depth-1">
+                <h2>과학/기술·과정</h2>
+                <div class="depth-2">
+                  
+                </div>
+              </li>
+            
+              <li class="depth-1">
+                <h2>음악/미술/체육</h2>
+                <div class="depth-2">
+                  
+                </div>
+              </li>
+            
+              <li class="depth-1">
+                <h2>외국어</h2>
+                <div class="depth-2">
+                  
+                </div>
+              </li>
+            
+              <li class="depth-1">
+                <h2>진로/정보</h2>
+                <div class="depth-2">
+                  
+                </div>
+              </li>
+            
+              <li class="depth-1">
+                <h2>특화 자료실</h2>
+                <div class="depth-2">
+                  
+                    <a href="">수업혁신자료</a>
+                  
+                    <a href="">자유학년제</a>
+                  
+                    <a href="">창의적 체험활동</a>
+                  
+                </div>
+              </li>
+            
+              <li class="depth-1">
+                <h2>온라인 수업자료</h2>
+                <div class="depth-2">
+                  
+                    <a href="">교과서 E-Book</a>
+                  
+                    <a href="">개념 클립 영상</a>
+                  
+                    <a href="">온라인 수업용 PPT</a>
+                  
+                </div>
+              </li>
+            
+              <li class="depth-1">
+                <h2>콘텐츠 플러스</h2>
+                <div class="depth-2">
+                  
+                    <a href="">애플 넘버스 자료실</a>
+                  
+                    <a href="/pages/mid/board/contentsplus/literatureBook.mrn/901">문화책방</a>
+                  
+                    <a href="">역사 매트릭스 자료실</a>
+                  
+                    <a href="/pages/mid/board/contentsplus/specialKoreanData.mrn">특수교육 국어 자료실</a>
+                  
+                    <a href="">꿈나침판</a>
+                  
+                </div>
+              </li>
+            
+              <li class="depth-1">
+                <h2>티처 LIVE</h2>
+                <div class="depth-2">
+                  
+                    <a href="">LIVE 강연</a>
+                  
+                    <a href="">혁신수업N</a>
+                  
+                    <a href="">콘텐츠</a>
+                  
+                    <a href="">자료나눔</a>
+                  
+                </div>
+              </li>
+            
+              <li class="depth-1">
+                <h2>교사용 DVD 다운로드</h2>
+                <div class="depth-2">
+                  
+                </div>
+              </li>
+            
+              <li class="depth-1">
+                <h2>AI진로직학센터</h2>
+                <div class="depth-2">
+                  
+                </div>
+              </li>
+            
+              <li class="depth-1">
+                <h2>고객센터</h2>
+                <div class="depth-2">
+                  
+                    <a href="/pages/common/customer/notice.mrn">공지사항</a>
+                  
+                    <a href="/pages/common/customer/useinfo.mrn">이용안내</a>
+                  
+                    <a href="/pages/common/customer/event.mrn">이벤트</a>
+                  
+                    <a href="/pages/common/customer/faq.mrn">자주 찾는 질문</a>
+                  
+                    <a href="/pages/common/customer/request.mrn">1:1문의</a>
+                  
+                    <a href="/pages/common/customer/serviceinfo.mrn">참고서/교과서 구입 안내</a>
+                  
+                    <a href="/pages/common/customer/program.mrn">필수 프로그램</a>
+                  
+                </div>
+              </li>
+            
+          </ul>
+          <button type="button" class="close-button">닫기</button>
+        </div>
+      </div>
+    </div>      
+  </div>
+  </th:block>
+</html>

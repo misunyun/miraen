@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorate="~{common/layouts/lo_auth}"
+      xmlns="http://www.w3.org/1999/html">
+<!-- <link href="/assets/pc/css/pages/common/members.css" rel="stylesheet" /> -->
+<th:block layout:fragment="content">
+  <input type="hidden" class="th-value" data-th-key="kakaoId" th:value="${kakaoId}">
+  <input type="hidden" class="th-value" data-th-key="facebookId" th:value="${facebookId}">
+  <input type="hidden" class="th-value" data-th-key="naverId" th:value="${naverId}">
+  <input type="hidden" class="th-value" data-th-key="nhnId" th:value="${nhnId}">
+  <input type="hidden" class="th-value" data-th-key="nhnServerDomain" th:value="${nhnServerDomain}">
+  <input type="hidden" class="th-value" data-th-key="whalespaceId" th:value="${whalespaceId}">
+  <input type="hidden" class="th-value" data-th-key="googleId" th:value="${googleId}">
+  <input type="hidden" class="th-value" data-th-key="serviceDomain" th:value="${serviceDomain}">
+  <input type="hidden" class="th-value" data-th-key="redirectUrl" th:value="${redirectUrl}">
+  <input type="hidden" id="uuuuri" class="th-value" data-th-key="redirectUri" th:value="${redirectUri}">
+
+  <body class="theme-elementary">
+    <div class="vertical-center" style="display: none">
+      <div class="inner">
+        <div class="login-box">
+          <div class="sns-box">
+            <button type="button" id="naver" class="naver btn-sns-login" data-sns-type="naver" title="네이버 로그인"></button>
+            <button type="button" id="kakao" class="kakao btn-sns-login" data-sns-type="kakao" title="카카오 로그인"></button>
+            <button type="button" id="facebook" class="facebook btn-sns-login" data-sns-type="facebook" title="페이스북 로그인"></button>
+            <button type="button" id="google" class="google btn-sns-login" data-sns-type="google" title="구글 로그인"></button>
+            <button type="button" id="whale" class="whale btn-sns-login" data-sns-type="whale" title="웨일 로그인"></button>
+            <button type="button" id="iamteacher" class="iamteacher btn-sns-login" data-sns-type="iamteacher" title="아이엠티처 로그인"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</th:block>
+<th:block layout:fragment="addScript">
+  <script src="/js/pc/auth/login.js"></script>
+
+  <script th:inline="javascript">
+    const snsType = [[${snsType}]];
+
+    window.addEventListener('load', function () {
+      const button = $(`#${snsType}`);
+
+      button.trigger("click");
+    });
+  </script>
+</th:block>
+</html>

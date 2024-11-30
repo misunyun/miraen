@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorate="~{common/layouts/lo_mid_totalboard}" xmlns="http://www.w3.org/1999/html">
+<th:block layout:fragment="content">
+
+    <div class="breadcrumbs">
+        <ul>
+            <li class="home">
+                <a href="/pages/mid/Main.mrn" class="icon-button" title="첫페이지로">
+                    <svg>
+                        <use xlink:href="/assets/images/svg-sprite-solid.svg#icon-home"></use>
+                    </svg>
+                </a>
+            </li>
+            <li th:if="${rootMenuPath ne ''}"><a th:href="${rootMenuUrl}" th:text="${rootMenuPath}"></a></li>
+            <li th:if="${parentMenuPath ne ''}"><a th:href="${parentMenuUrl}" th:text="${parentMenuPath}"></a></li>
+            <li class="current" th:text="${boardInfo.tabNm}"></li>
+        </ul>
+    </div>
+    <div class="container">
+        <th:block th:replace="~{common/fragments/aside_mid_common :: aside_mid_common(categorySeq=${categorySeq},rootMenuPath=${rootMenuPath})}"> </th:block>
+
+        <th:block th:replace="~{common/components/totalboardDetail :: totalboardDetailFragment}"></th:block>
+
+        <input type="hidden" name="gnbCateType" th:value="${gnbCateType}" />
+        <input type="hidden" name="mainId" th:value="${mainId}" />
+        <input type="hidden" name="thumbnailLongYn" th:value="${thumbnailLongYn}" />
+    </div>
+</th:block>
+</html>

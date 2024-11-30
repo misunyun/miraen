@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorate="~{common/layouts/lo_viewer}" xmlns="http://www.w3.org/1999/html">
+
+<th:block layout:fragment="content">
+    <div id="viewer-wrap" class="aside-close">
+        <!-- [P] 하단 컨트롤 부 -->
+        <header id="viewer-hd">
+            <h1 class="sr-only">엠티처 - 뷰어</h1>
+            <ul id="viewer-tool">
+                <li>
+                    <button type="button" id="mteacher-button"><i class="icon-mteacher-mint"></i>엠티처</button>
+                </li>
+                <li>
+                    <button type="button" id="drawing-button"><i class="icon-tool5"></i>그리기</button>
+                    <!-- 그리기 도구 -->
+                    <div id="drawing">
+                        <div>
+                            <button type="button" class="icon-drawing" title="그리기">그리기</button>
+                            <button type="button" class="icon-drawing2 active" title="텍스트 입력">텍스트 입력</button>
+                            <button type="button" class="icon-drawing3" title="도형 입력">도형 입력</button>
+                        </div>
+                        <!-- 그리기 색상, 선 굵기 선택 영역 -->
+                        <div id="palette">
+                            <button type="button" class="palette" data-color="#000000"><i
+                                    style="background:#000000">색상1</i></button>
+                            <button type="button" class="palette" data-color="#ffffff"><i
+                                    style="background:#fff; border-color:#d5d5d5">색상2</i></button>
+                            <button type="button" class="palette active" data-color="#f24545"><i
+                                    style="background:#f24545">색상3</i></button>
+                            <button type="button" class="palette" data-color="#ff3be5"><i
+                                    style="background:#ff3be5">색상4</i></button>
+                            <button type="button" class="palette" data-color="#2432cc"><i
+                                    style="background:#2432cc">색상5</i></button>
+                            <button type="button" class="palette" data-color="#4090f3"><i
+                                    style="background:#4090f3">색상6</i></button>
+                            <button type="button" class="palette" data-color="#4aedff"><i
+                                    style="background:#4aedff">색상7</i></button>
+                            <button type="button" class="palette" data-color="#51e37f"><i
+                                    style="background:#51e37f">색상8</i></button>
+                            <button type="button" class="palette" data-color="#ffd342"><i
+                                    style="background:#ffd342">색상9</i></button>
+                            <button type="button" class="palette stroke_width" title="선 굵기"><i
+                                    style="background : #000">선
+                                    굵기</i><span class="caret"></span></button>
+                            <div class="stroke_width_wrap">
+                                <button type="button" class="drawing_stroke_width"
+                                    data-strokeWidth="30"><i>선굵기30</i></button>
+                                <button type="button" class="drawing_stroke_width" data-strokeWidth="24">
+                                    <i>선굵기24</i></button>
+                                <button type="button" class="drawing_stroke_width"
+                                    data-strokeWidth="18"><i>선굵기18</i></button>
+                                <button type="button" class="drawing_stroke_width"
+                                    data-strokeWidth="12"><i>선굵기12</i></button>
+                                <button type="button" class="drawing_stroke_width active" data-strokeWidth="8"><i
+                                        class="active">선굵기8</i></button>
+                            </div>
+                        </div>
+                        <!-- 텍스트 폰트, 폰트 크기 선택 영역 -->
+                        <div id="font_select">
+                            <div id="font_family">
+                                <span class="ff_text">나눔고딕</span>
+                                <span class="caret"></span>
+                            </div>
+                            <div id="font_size">
+                                <span class="fs_text">70pt</span>
+                                <span class="caret"></span>
+                            </div>
+                            <button type="button" class="icon-font-lg"></button>
+                            <button type="button" class="icon-font-sm"></button>
+                            <button type="button" class="icon-font-color">
+                                <span class="fc_change"></span>
+                                <span class="caret"></span>
+                            </button>
+                            <!-- 폰트 패밀리 선택 -->
+                            <div class="font_family_wrap">
+                                <div class="select_f_fm select_font_family_1" data-font_family="NanumGothic">
+                                    나눔고딕
+                                </div>
+                                <div class="select_f_fm select_font_family_2" data-font_family="NanumSquare">
+                                    나눔스퀘어
+                                </div>
+                                <div class="select_f_fm select_font_family_3" data-font_family="NanumSquare_bold">나눔스퀘어
+                                    Bold
+                                </div>
+                                <div class="select_f_fm select_font_family_4" data-font_family="NanumMyeongjo">
+                                    나눔명조
+                                </div>
+                            </div>
+                            <!-- 폰트 사이즈 선택 -->
+                            <div class="font_size_wrap">
+                                <div class="select_f_fs select_font_size_1" data-font_size="50">50pt
+                                </div>
+                                <div class="select_f_fs select_font_size_2" data-font_size="60">60pt
+                                </div>
+                                <div class="select_f_fs select_font_size_3" data-font_size="70">70pt
+                                </div>
+                                <div class="select_f_fs select_font_size_4" data-font_size="80">80pt
+                                </div>
+                                <div class="select_f_fs select_font_size_5" data-font_size="90">90pt
+                                </div>
+                                <div class="select_f_fs select_font_size_6" data-font_size="100">100pt
+                                </div>
+                            </div>
+                            <!-- 폰트 색상 선택 -->
+                            <div class="font_color_wrap">
+                                <button type="button" class="font_palette active" data-fontColor="#000000"><i
+                                        style="background:#000000" class="active">색상1</i></button>
+                                <button type="button" class="font_palette" data-fontColor="#ffffff"><i
+                                        style="background:#fff; border-color:#d5d5d5">색상2</i></button>
+                                <button type="button" class="font_palette" data-fontColor="#f24545"><i
+                                        style="background:#f24545">색상3</i></button>
+                                <button type="button" class="font_palette" data-fontColor="#ff3be5"><i
+                                        style="background:#ff3be5">색상4</i></button>
+                                <button type="button" class="font_palette" data-fontColor="#2432cc"><i
+                                        style="background:#2432cc">색상5</i></button>
+                                <button type="button" class="font_palette" data-fontColor="#4090f3"><i
+                                        style="background:#4090f3">색상6</i></button>
+                                <button type="button" class="font_palette" data-fontColor="#4aedff"><i
+                                        style="background:#4aedff">색상7</i></button>
+                                <button type="button" class="font_palette" data-fontColor="#51e37f"><i
+                                        style="background:#51e37f">색상8</i></button>
+                                <button type="button" class="font_palette" data-fontColor="#ffd342"><i
+                                        style="background:#ffd342">색상9</i></button>
+                            </div>
+                        </div>
+                        <!-- 화살표, 직선, 형광펜, 스티커 영역 -->
+                        <div id="image_select">
+                            <button type="button" class="img_select icon-arrow"><i>화살표</i></button>
+                            <button type="button" class="img_select icon-line"><i>직선</i></button>
+                            <button type="button" class="img_select icon-hlighter"><i>형광펜</i></button>
+                            <button type="button" class="img_select icon-sticker"><i>스티커</i></button>
+                            <!-- 화살표 보조창 -->
+                            <div class="arrow_wrap">
+                                <button type="button" class="img_select icon-arrow-color"><i>컬러</i><span
+                                        class="caret"></span></button>
+                                <button type="button" class="img_select icon-arrow-direction"><i>방향</i><span
+                                        class="caret"></span></button>
+                                <button type="button" class="img_select icon-arrow-width"><i>굵기</i><span
+                                        class="caret"></span></button>
+                                <button type="button" class="img_select icon-arrow-dash"><i>대시</i><span
+                                        class="caret"></span></button>
+                                <!-- 화살표 컬러 -->
+                                <div class="arrow_color_wrap">
+                                    <button type="button" class="arrow_palette" data-arrowColor="#000000"><i
+                                            style="background:#000000">색상1</i></button>
+                                    <button type="button" class="arrow_palette" data-arrowColor="#ffffff"><i
+                                            style="background:#fff; border-color:#d5d5d5">색상2</i></button>
+                                    <button type="button" class="arrow_palette active" data-arrowColor="#f24545">
+                                        <i style="background:#f24545">색상3</i></button>
+                                    <button type="button" class="arrow_palette" data-arrowColor="#ff3be5"><i
+                                            style="background:#ff3be5">색상4</i></button>
+                                    <button type="button" class="arrow_palette" data-arrowColor="#2432cc"><i
+                                            style="background:#2432cc">색상5</i></button>
+                                    <button type="button" class="arrow_palette" data-arrowColor="#4090f3"><i
+                                            style="background:#4090f3">색상6</i></button>
+                                    <button type="button" class="arrow_palette" data-arrowColor="#4aedff"><i
+                                            style="background:#4aedff">색상7</i></button>
+                                    <button type="button" class="arrow_palette" data-arrowColor="#51e37f"><i
+                                            style="background:#51e37f">색상8</i></button>
+                                    <button type="button" class="arrow_palette" data-arrowColor="#ffd342"><i
+                                            style="background:#ffd342">색상9</i></button>
+                                </div>
+                                <!-- 화살표 방향 -->
+                                <div class="select_arrow_direction_wrap">
+                                    <div class="select_a_d select_arrow_direction_1" data-direction="forward"></div>
+                                    <div class="select_a_d select_arrow_direction_2" data-direction="reverse"></div>
+                                    <div class="select_a_d select_arrow_direction_3" data-direction="bidirectional">
+                                    </div>
+                                </div>
+                                <!-- 화살표 굵기 -->
+                                <div class="select_arrow_width_wrap">
+                                    <div class="select_a_w select_arrow_width_1" data-arrow_width="2"></div>
+                                    <div class="select_a_w select_arrow_width_2" data-arrow_width="4"></div>
+                                    <div class="select_a_w select_arrow_width_3" data-arrow_width="6"></div>
+                                    <div class="select_a_w select_arrow_width_4" data-arrow_width="8"></div>
+                                    <div class="select_a_w select_arrow_width_5" data-arrow_width="10"></div>
+                                </div>
+                                <!-- 화살표 대시 -->
+                                <div class="select_arrow_dash_wrap">
+                                    <div class="select_a_ds select_arrow_dash_1" data-arrow_dash="dash_1"></div>
+                                    <div class="select_a_ds select_arrow_dash_2" data-arrow_dash="dash_2"></div>
+                                    <div class="select_a_ds select_arrow_dash_3" data-arrow_dash="dash_3"></div>
+                                </div>
+                            </div>
+                            <!-- 직선 보조창 -->
+                            <div class="line_wrap">
+                                <button type="button" class="img_select icon-line-color"><i>컬러</i><span
+                                        class="caret"></span></button>
+                                <button type="button" class="img_select icon-line-width"><i>굵기</i><span
+                                        class="caret"></span></button>
+                                <button type="button" class="img_select icon-line-dash"><i>대시</i><span
+                                        class="caret"></span></button>
+                                <!-- 직선 컬러 -->
+                                <div class="line_color_wrap">
+                                    <button type="button" class="line_palette" data-lineColor="#000000"><i
+                                            style="background:#000000">색상1</i></button>
+                                    <button type="button" class="line_palette" data-lineColor="#ffffff"><i
+                                            style="background:#fff; border-color:#d5d5d5">색상2</i></button>
+                                    <button type="button" class="line_palette active" data-lineColor="#f24545"><i
+                                            style="background:#f24545">색상3</i></button>
+                                    <button type="button" class="line_palette" data-lineColor="#ff3be5"><i
+                                            style="background:#ff3be5">색상4</i></button>
+                                    <button type="button" class="line_palette" data-lineColor="#2432cc"><i
+                                            style="background:#2432cc">색상5</i></button>
+                                    <button type="button" class="line_palette" data-lineColor="#4090f3"><i
+                                            style="background:#4090f3">색상6</i></button>
+                                    <button type="button" class="line_palette" data-lineColor="#4aedff"><i
+                                            style="background:#4aedff">색상7</i></button>
+                                    <button type="button" class="line_palette" data-lineColor="#51e37f"><i
+                                            style="background:#51e37f">색상8</i></button>
+                                    <button type="button" class="line_palette" data-lineColor="#ffd342"><i
+                                            style="background:#ffd342">색상9</i></button>
+                                </div>
+                                <!-- 직선 굵기 -->
+                                <div class="select_line_width_wrap">
+                                    <div class="select_l_w select_line_width_1" data-line_width="2"></div>
+                                    <div class="select_l_w select_line_width_2" data-line_width="4"></div>
+                                    <div class="select_l_w select_line_width_3" data-line_width="6"></div>
+                                    <div class="select_l_w select_line_width_4" data-line_width="8"></div>
+                                    <div class="select_l_w select_line_width_5" data-line_width="10"></div>
+                                </div>
+                                <!-- 직선 대시 -->
+                                <div class="select_line_dash_wrap">
+                                    <div class="select_l_ds select_line_dash_1" data-line_dash="dash_1"></div>
+                                    <div class="select_l_ds select_line_dash_2" data-line_dash="dash_2"></div>
+                                    <div class="select_l_ds select_line_dash_3" data-line_dash="dash_3"></div>
+                                </div>
+                            </div>
+                            <!-- 형광펜 보조창 -->
+                            <div class="hlighter_wrap">
+                                <button type="button" class="img_select icon-hlighter-color"><i>색상</i><span
+                                        class="caret"></span></button>
+                                <button type="button" class="img_select icon-hlighter-width"><i>굵기</i><span
+                                        class="caret"></span></button>
+                                <!-- 형광펜 색상 선택 -->
+                                <div class="select_hlighter_color_wrap">
+                                    <button type="button" class="hlighter_palette" data-hlighterColor="#000000"><i
+                                            style="background:#000000">색상1</i></button>
+                                    <button type="button" class="hlighter_palette" data-hlighterColor="#ffffff"><i
+                                            style="background:#fff; border-color:#d5d5d5">색상2</i></button>
+                                    <button type="button" class="hlighter_palette active"
+                                        data-hlighterColor="#f24545"><i style="background:#f24545">색상3</i></button>
+                                    <button type="button" class="hlighter_palette" data-hlighterColor="#ff3be5"><i
+                                            style="background:#ff3be5">색상4</i></button>
+                                    <button type="button" class="hlighter_palette" data-hlighterColor="#2432cc"><i
+                                            style="background:#2432cc">색상5</i></button>
+                                    <button type="button" class="hlighter_palette" data-hlighterColor="#4090f3"><i
+                                            style="background:#4090f3">색상6</i></button>
+                                    <button type="button" class="hlighter_palette" data-hlighterColor="#4aedff"><i
+                                            style="background:#4aedff">색상7</i></button>
+                                    <button type="button" class="hlighter_palette" data-hlighterColor="#51e37f"><i
+                                            style="background:#51e37f">색상8</i></button>
+                                    <button type="button" class="hlighter_palette" data-hlighterColor="#ffd342"><i
+                                            style="background:#ffd342">색상9</i></button>
+                                </div>
+                                <!-- 형광펜 굵기 -->
+                                <div class="select_hlighter_width_wrap">
+                                    <div class="select_h_w select_hlighter_width_1" data-hlighterWidth=12></div>
+                                    <div class="select_h_w select_hlighter_width_2" data-hlighterWidth=18></div>
+                                    <div class="select_h_w select_hlighter_width_3" data-hlighterWidth=24></div>
+                                </div>
+                            </div>
+                            <!-- 스티커 보조창 -->
+                            <div class="sticker_wrap">
+                                <button type="button" class="sticker_select icon-sticker_1"
+                                    data-sticker="sticker_1"><i>매우
+                                        강조</i></button>
+                                <button type="button" class="sticker_select icon-sticker_2"
+                                    data-sticker="sticker_2"><i>강조</i></button>
+                                <button type="button" class="sticker_select icon-sticker_3"
+                                    data-sticker="sticker_3"><i>필기영역</i></button>
+                                <button type="button" class="sticker_select icon-sticker_4"
+                                    data-sticker="sticker_4"><i>주의하기</i></button>
+                                <button type="button" class="sticker_select icon-sticker_5"
+                                    data-sticker="sticker_5"><i>기억하기</i></button>
+                                <button type="button" class="sticker_select icon-sticker_6"
+                                    data-sticker="sticker_6"><i>참
+                                        잘했어요</i></button>
+                            </div>
+                        </div>
+                        <div>
+                            <button type="button" class="icon-drawing4" title="지우개">지우개</button>
+                            <button type="button" class="icon-drawing5" title="삭제">되돌리기</button>
+                        </div>
+                        <div>
+                            <button type="button" class="icon-drawing6" title="안보이게 하기">안보이게 하기</button>
+                        </div>
+                        <!-- <div> -->
+                            <button type="button" class="icon-drawing7" data-toggle="show" data-target="#drawing">닫기</button>
+                        <!-- </div> -->
+                    </div>
+                </li>
+                <li>
+                    <button type="button" id="fullscreen">
+                        <i class="icon-fullscreen"></i>전체화면
+                    </button>
+                </li>
+                <li>
+                    <button type="button" id="download" class="hidden">
+                        <i class="icon-download"></i>다운로드
+                    </button>
+                </li>
+                <li>
+                    <button type="button" id="scrap" class="hidden">
+                        <i class="icon-scrap"></i>스크랩
+                    </button>
+                </li>
+            </ul>
+            <div id="viewer-nav">
+                <div id="page">
+                    <button type="button" id="prev-content" class="icon-prev" title="이전">이전</button>
+                    <span><b id="current_page">1</b> / <span id="total_page">1</span></span>
+                    <button type="button" id="next-content" class="icon-next" title="다음">다음</button>
+                </div>
+                <div class="account">
+                    <button type="button" class="icon-tool-account2" title="축소">축소</button>
+                    <span id="zoom-level">100%</span>
+                    <button type="button" class="icon-tool-account" title="확대">확대</button>
+                    <!-- <button type="button" class="icon-tool-account3" title="스크랩">스크랩</button> -->
+                </div>
+            </div>
+        </header>
+        <aside id="viewer-aside">
+            <!-- <div class="contents-title-bar"></div> -->
+            <div class="icon-aside-open-txt" data-toggle="aside">
+                <i class="icon-aside-opened ">
+                    <span class="txt">목차닫힘</span>
+                </i>
+                <h3>작게보기</h3>
+                <i class="icon-aside-opened close">
+                    <span class="txt">목차열림</span>
+                </i>
+            </div>
+            <div class="scroll_wrap">
+                <div id="preview-info">
+                    <div id="course-info"></div>
+                    <div id="file-info">
+                        <!-- !NOTE : 동영상, 음악은 뱃지가 들어갑니다. 분기처리 필요합니다.-->
+                        <span class="badge"></span>
+                        <!-- <span class="badge">음악</span> -->
+                    </div>
+                </div>
+                <!-- <h2 id="course_name" class="course-title" style="display:none">학습 목차</h2> -->
+                <div id="viewer-aside-list-inner">
+                    <ul id="page_list" class="thumbnails">
+                    </ul>
+                </div>
+            </div>
+
+        </aside>
+        <article id="viewer-content">
+            <div class="icon-prev-content" title="이전"></div>
+            <div class="icon-next-content" title="다음"></div>
+            <!-- module Start-->
+            <div id="module-modal" data-backdrop="static" class="modal fade" data-keyboard="false">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="modal-tool-box">
+                                <span id="module-title"></span>
+                                <a class="carousel-control-prev" href="#carousel-control" role="button"
+                                    data-slide="prev" title="이전">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">이전</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carousel-control" role="button"
+                                    data-slide="next" title="다음">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">다음</span>
+                                </a>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="modal-body content">
+                            <div id="module-body"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+    </div>
+
+</th:block>
+
+</html>
+
+

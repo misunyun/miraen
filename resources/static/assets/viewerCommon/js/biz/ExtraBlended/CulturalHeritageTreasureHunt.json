@@ -1,0 +1,255 @@
+{
+	"area": {
+		"downloadAll": "d68cf3e770c74e669714f0017a0e4579",
+		"originFileName": "미래엔_사회_활동자료_지역별문화유산카드.pdf",
+		"data": [
+			{
+				"region": "서울특별시",
+				"code"	: "01",
+				"download": "379ba27314a64a568db33e535a3c453e",
+				"originFileName": "미래엔_사회_활동자료_서울문화유산카드.pdf",
+				"card": [
+					"/assets/images/culture/area_1_1.png",
+					"/assets/images/culture/area_1_2.png"
+				]
+			},
+			{
+				"region": "경기도",
+				"code"	: "02",
+				"download": "e8119e9dacc5458c9215eed716ddfd58",
+				"originFileName": "미래엔_사회_활동자료_경기도문화유산카드.pdf",
+				"card": [
+					"/assets/images/culture/area_2_1.png",
+					"/assets/images/culture/area_2_2.png"
+				]
+			},
+			{
+				"region": "인천광역시",
+				"code"	: "03",
+				"download": "e4455aa0dde54563bd23378db5a844f7",
+				"originFileName": "미래엔_사회_활동자료_인천문화유산카드.pdf",
+				"card": [
+					"/assets/images/culture/area_3_1.png",
+					"/assets/images/culture/area_3_2.png"
+				]
+			},
+			{
+				"region": "대전광역시",
+				"code"	: "04",
+				"download": "dcdd0b37a9504f588a65e673ae59aed3",
+				"originFileName": "미래엔_사회_활동자료_대전문화유산카드.pdf",
+				"card": [
+					"/assets/images/culture/area_4_1.png",
+					"/assets/images/culture/area_4_2.png"
+				]
+			},
+			{
+				"region": "대구광역시",
+				"code"	: "05",
+				"download": "65194f311c1f4e7fb6432f918cf74f09",
+				"originFileName": "미래엔_사회_활동자료_대구문화유산카드.pdf",
+				"card": [
+					"/assets/images/culture/area_5_1.png",
+					"/assets/images/culture/area_5_2.png"
+				]
+			},
+			{
+				"region": "울산광역시",
+				"code"	: "06",
+				"download": "68bd304f715e469caa5b006cfdec0a4e",
+				"originFileName": "미래엔_사회_활동자료_울산문화유산카드.pdf",
+				"card": [
+					"/assets/images/culture/area_6_1.png",
+					"/assets/images/culture/area_6_2.png"
+				]
+			},
+			{
+				"region": "부산광역시",
+				"code"	: "07",
+				"download": "211f320a2c984b93a3b6d8e41e90d810",
+				"originFileName": "미래엔_사회_활동자료_부산문화유산카드.pdf",
+				"card": [
+					"/assets/images/culture/area_7_1.png",
+					"/assets/images/culture/area_7_2.png"
+				]
+			},
+			{
+				"region": "광주광역시",
+				"code"	: "08",
+				"download": "df2f9a356f294ef8bc6dd406a22759c3",
+				"originFileName": "미래엔_사회_활동자료_광주문화유산카드.pdf",
+				"card": [
+					"/assets/images/culture/area_8_1.png",
+					"/assets/images/culture/area_8_2.png"
+				]
+			},
+			{
+				"region": "세종특별자치시",
+				"code"	: "09",
+				"download": "f941d7ede580447dbe54942bc77c3d0e",
+				"originFileName": "미래엔_사회_활동자료_세종문화유산카드.pdf",
+				"card": [
+					"/assets/images/culture/area_9_1.png",
+					"/assets/images/culture/area_9_2.png"
+				]
+			},
+			{
+				"region": "제주특별자치도",
+				"code"	: "10",
+				"download": "232caf38c86a416fa25c8fe4f8410caa",
+				"originFileName": "미래엔_사회_활동자료_제주도문화유산카드.pdf",
+				"card": [
+					"/assets/images/culture/area_10_1.png",
+					"/assets/images/culture/area_10_2.png"
+				]
+			},
+			{
+				"region": "강원도",
+				"code"	: "11",
+				"download": "65010a8d3ebf4434b088d3d816595bcf",
+				"originFileName": "미래엔_사회_활동자료_강원도문화유산카드.pdf",
+				"card": [
+					"/assets/images/culture/area_11_1.png",
+					"/assets/images/culture/area_11_2.png"
+				]
+			},
+			{
+				"region": "충청북도",
+				"code"	: "12",
+				"download": "839e710a33374827b0bfddf90966d0b6",
+				"originFileName": "미래엔_사회_활동자료_충청북도문화유산카드.pdf",
+				"card": [
+					"/assets/images/culture/area_12_1.png",
+					"/assets/images/culture/area_12_2.png"
+				]
+			},
+			{
+				"region": "충청남도",
+				"code"	: "13",
+				"download": "b570545c279a44b89fb95602721b84f6",
+				"originFileName": "미래엔_사회_활동자료_충청남도문화유산카드.pdf",
+				"card": [
+					"/assets/images/culture/area_13_1.png",
+					"/assets/images/culture/area_13_2.png"
+				]
+			},
+			{
+				"region": "전라북도",
+				"code"	: "14",
+				"download": "90cac1f182ba45d7b84310d5bbb3b9fc",
+				"originFileName": "미래엔_사회_활동자료_전라북도문화유산카드.pdf",
+				"card": [
+					"/assets/images/culture/area_14_1.png",
+					"/assets/images/culture/area_14_2.png"
+				]
+			},
+			{
+				"region": "전라남도",
+				"code"	: "15",
+				"download": "990152b12a4e498d8bccf7fd643b2e53",
+				"originFileName": "미래엔_사회_활동자료_전라남도문화유산카드.pdf",
+				"card": [
+					"/assets/images/culture/area_15_1.png",
+					"/assets/images/culture/area_15_2.png"
+				]
+			},
+			{
+				"region": "경상북도",
+				"code"	: "16",
+				"download": "63935875543047b185d468a69374c8f7",
+				"originFileName": "미래엔_사회_활동자료_경상북도문화유산카드.pdf",
+				"card": [
+					"/assets/images/culture/area_16_1.png",
+					"/assets/images/culture/area_16_2.png"
+				]
+			},
+			{
+				"region": "경상남도",
+				"code"	: "17",
+				"download": "f64cef28928d45559f234cedefefa69c",
+				"originFileName": "미래엔_사회_활동자료_경상남도문화유산카드.pdf",
+				"card": [
+					"/assets/images/culture/area_17_1.png",
+					"/assets/images/culture/area_17_2.png"
+				]
+			}
+		]
+	},
+
+	"time": {
+		"downloadAll": "6264b39fe56e4731a16768e08bdef637",
+		"originFileName": "미래엔_사회_활동자료_시대별문화유산카드.pdf",
+		"data": [
+			{
+				"region": "선사 시대 ~ 삼국 시대",
+				"code"	: "01",
+				"download": "3939e3f2aea9415fb86c79f9c40fd00c",
+				"originFileName": "미래엔_사회_활동자료_선사삼국시대문화유산카드.pdf",
+				"card": [
+					"/assets/images/culture/time_1_1.png",
+					"/assets/images/culture/time_1_2.png",
+					"/assets/images/culture/time_1_3.png",
+					"/assets/images/culture/time_1_4.png",
+					"/assets/images/culture/time_1_5.png",
+					"/assets/images/culture/time_1_6.png",
+					"/assets/images/culture/time_1_7.png",
+					"/assets/images/culture/time_1_8.png",
+					"/assets/images/culture/time_1_9.png"
+				]
+			},
+			{
+				"region": "통일 신라 ~ 고려",
+				"code"	: "02",
+				"download": "a275600386024b46b9de385adb8d5d80",
+				"originFileName": "미래엔_사회_활동자료_통일신라고려시대문화유산카드.pdf",
+				"card": [
+					"/assets/images/culture/time_2_1.png",
+					"/assets/images/culture/time_2_2.png",
+					"/assets/images/culture/time_2_3.png",
+					"/assets/images/culture/time_2_4.png",
+					"/assets/images/culture/time_2_5.png",
+					"/assets/images/culture/time_2_6.png",
+					"/assets/images/culture/time_2_7.png",
+					"/assets/images/culture/time_2_8.png",
+					"/assets/images/culture/time_2_9.png"
+				]
+			},
+			{
+				"region": "조선",
+				"code"	: "03",
+				"download": "fda4931684964064bd4b2fd26c7be716",
+				"originFileName": "미래엔_사회_활동자료_조선시대문화유산카드.pdf",
+				"card": [
+					"/assets/images/culture/time_3_1.png",
+					"/assets/images/culture/time_3_2.png",
+					"/assets/images/culture/time_3_3.png",
+					"/assets/images/culture/time_3_4.png",
+					"/assets/images/culture/time_3_5.png",
+					"/assets/images/culture/time_3_6.png",
+					"/assets/images/culture/time_3_7.png",
+					"/assets/images/culture/time_3_8.png",
+					"/assets/images/culture/time_3_9.png"
+				]
+			},
+			{
+				"region": "근현대",
+				"code"	: "04",
+				"download": "6fb3c58759a74a87a49661dd81ba0a1d",
+				"originFileName": "미래엔_사회_활동자료_근현대시대문화유산카드.pdf",
+				"card": [
+					"/assets/images/culture/time_4_1.png",
+					"/assets/images/culture/time_4_2.png",
+					"/assets/images/culture/time_4_3.png",
+					"/assets/images/culture/time_4_4.png",
+					"/assets/images/culture/time_4_5.png",
+					"/assets/images/culture/time_4_6.png",
+					"/assets/images/culture/time_4_7.png",
+					"/assets/images/culture/time_4_8.png",
+					"/assets/images/culture/time_4_9.png"
+				]
+			}
+		]
+	}
+}
+
+

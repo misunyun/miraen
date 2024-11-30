@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/index.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jquery.ui.touch-punch.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <h1>📖 엠티처 뷰어 미러링 테스트</h1>
+    <h2 class="">1. 사용하실 <span class="red">ID를 입력</span>하신 후 수업내의 <span class="red">페이지를 선택</span>해주세요.<br/>
+        2. 뷰어 하단의 <span class="red">"수업 시작"</span> 버튼을 눌러 듀얼 모드를 시작해주세요.<br/>
+        3. 모바일에서는 <span class="red">컨트롤 연결</span> 버튼을 이용하여 듀얼 모드와 연결하고 <span class="red">리모트 컨트롤</span> 해주세요.</h2>
+    <h3>✔ ID 입력 후 페이지선택</h3><div class="inputData"><input type="text" id="id" name="id" value="" placeholder="ID 입력"></div>
+    <br />
+    <ul id="course_div">
+
+    </ul>
+</body>
+<script>
+    $(document).ready(function () {
+
+        $.getJSON('data/page.json')
+            .done(function (data) {
+                console.log('data', data)
+
+                var el = "";
+                data.forEach(function (item, index) {
+                    el += "<li>"
+                    el += "<div>"
+                    el += "<span>" + item.course_name + "</span>"
+                    el += "</div>"
+                    el += "<ul>"
+                    item['pages'].forEach(function (subitem, index) {
+                        el += "<li><a href=\"javascript:open_viewer_by_page_id('" + item.course_id + "','" + subitem.page_id + "')\">" + subitem.page_name + "</a></li>"
+                    })
+                    el += "</ul>"
+
+                    el += "</li>"
+
+                })
+
+                $("#course_div").html(el)
+
+
+            })
+            .fail(function (e) {
+                console.log('error', e)
+            })
+
+    })
+    function open_viewer_by_page_id(course_id, page_id) {
+
+
+        var id = $("#id").val();
+        if (id == undefined || id == null || $.trim(id) == '') {
+            alert('ID 를 입력하세요')
+            return;
+        }
+
+        localStorage['id'] = id;
+
+
+
+        //모바알인지 웹인지에 따라 다른 페이지로 redirect
+        var isMobile = false;
+        var filter = "win16/win32/win64/mac/macintel";
+
+        if (navigator.platform) {
+            isMobile = filter.indexOf(navigator.platform.toLowerCase()) < 0;
+        }
+
+
+        if (isMobile) {
+            location.href = "viewerM.html?courseId=" + course_id + "&pageId=" + page_id
+        } else {
+            location.href = "viewer.html?courseId=" + course_id + "&pageId=" + page_id
+        }
+
+
+    }
+
+
+</script>
+
+</html>

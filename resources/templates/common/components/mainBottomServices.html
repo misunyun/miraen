@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layouts/lo_ele_totalboard}">
+<th:block th:fragment="mainBottomServicesFragment">
+  <section class="services">
+    <a th:href="@{${host_common}+'/pages/common/customer/faq.mrn'}" target="_blank">
+      <i id="faq" class="icon-button">
+        <svg>
+          <use xlink:href="/assets/images/svg-sprite-solid.svg#icon-faq"></use>
+        </svg>
+      </i>
+      <h3>자주 찾는 질문</h3>
+      <p class="desc"> 자주 찾는 질문과 답을<br /> 쉽게 확인하세요 </p>
+    </a>
+    <a th:href="@{${host_common}+'/pages/common/customer/request.mrn'}" target="_blank">
+      <i id="ask" class="icon-button">
+        <svg>
+          <use xlink:href="/assets/images/svg-sprite-solid.svg#icon-ask"></use>
+        </svg>
+      </i>
+      <h3>1:1 문의</h3>
+      <p class="desc"> 신속하고 빠르게<br /> 답변드릴게요</p>
+    </a>
+    <a href="https://g.m-teacher.co.kr/pages/common/customer/useinfo.mrn" target="_blank">
+      <i id="remote" class="icon-button">
+        <svg>
+          <use xlink:href="/assets/images/svg-sprite-solid.svg#icon-caution-line"></use>
+        </svg>
+      </i>
+      <h3>서비스 안내</h3>
+      <p class="desc"> 미래엔의 교수활동플랫폼을<br /> 만나보세요 </p>
+    </a>
+    <a th:href="@{${host_common}+'/pages/common/customer/serviceinfo.mrn'}" target="_blank">
+      <i id="map" class="icon-button">
+        <svg>
+          <use xlink:href="/assets/images/svg-sprite-solid.svg#icon-map"></use>
+        </svg>
+      </i>
+      <h3>전국 지사 안내</h3>
+      <p class="desc"> 미래엔 교과서<br /> 구입안내 </p>
+    </a>
+    <a href="https://pf.kakao.com/_xixbxkJl" target="_blank">
+      <i id="kakao" class="icon-button">
+        <svg>
+          <use xlink:href="/assets/images/svg-sprite-solid.svg#icon-kakao"></use>
+        </svg>
+      </i>
+      <h3>카카오톡 상담</h3>
+      <p class="desc"> 카카오톡에서<br />
+        <span>‘엠티처’</span> 검색
+      </p>
+    </a>
+    <a>
+      <i id="telephone" class="icon-button">
+        <svg>
+          <use xlink:href="/assets/images/svg-sprite-solid.svg#icon-telephone"></use>
+        </svg>
+      </i>
+      <h3>전화문의</h3>
+      <p class="desc">
+        <span>1800-8890</span><br /> 평일 오전 9시~오후 6시
+      </p>
+    </a>
+  </section>
+
+
+</th:block>
+
+</html>

@@ -1,0 +1,50 @@
+@charset "utf-8";
+
+#tab1{margin: 0 35px 0 40px;position: relative}
+.dragzone{padding: 28px 0 0 10px;margin-right: -35px;font-size: 0}
+.box{display: inline-flex;vertical-align: top;background: #c0f8ff;text-align: center;font-size: 40px;width: 520px;height: 190px;align-items: center;justify-content: center;border-radius: 30px;border: 4px dashed #62e3ee}
+.dragzone>[class*=item]{display: inline-block;vertical-align: top;position: relative}
+.dragzone>[class*=item]>span{position: absolute;font-size: 32px;line-height: 25px}
+.drag-item{background-repeat: no-repeat;background-size: 100% auto}
+.drag-item.dropped{transform: scaleX(1)}
+.item1{margin: -17px 0 0 114px}
+.item2{margin: -14px 0 0 70px}
+.item3{margin: 35px 0 0 -11px}
+.item4{margin: 7px 0 0 -5px}
+.item5{margin: 22px 0 0 16px}
+.item6{margin: -88px 0 0 17px}
+.drag-item1{width: 182px;height: 185.5px;background-image: url(../images/page063_01/item1.png)}
+.drag-item2{width: 296px;height: 171px;background-image: url(../images/page063_01/item2.png)}
+.drag-item3{width: 321px;height: 192px;background-image: url(../images/page063_01/item3.png)}
+.drag-item4{width: 236.5px;height: 161px;background-image: url(../images/page063_01/item4.png)}
+.drag-item5{width: 280.5px;height: 155px;background-image: url(../images/page063_01/item5.png)}
+.drag-item6{width: 228.5px;height: 254.5px;background-image: url(../images/page063_01/item6.png)}
+.drag-item1.dragging, .drag-item1.dropped{background-image: url(../images/page063_01/item1_off.png)}
+.drag-item2.dragging, .drag-item2.dropped{background-image: url(../images/page063_01/item2_off.png)}
+.drag-item3.dragging, .drag-item3.dropped{background-image: url(../images/page063_01/item3_off.png)}
+.drag-item4.dragging, .drag-item4.dropped{background-image: url(../images/page063_01/item4_off.png)}
+.drag-item5.dragging, .drag-item5.dropped{background-image: url(../images/page063_01/item5_off.png)}
+.drag-item6.dragging, .drag-item6.dropped{background-image: url(../images/page063_01/item6_off.png)}
+.drag-item1.ui-draggable-dragging, .drag-item1.drag-item-clone{background-image: url(../images/page063_01/item1_on.png)}
+.drag-item2.ui-draggable-dragging, .drag-item2.drag-item-clone{background-image: url(../images/page063_01/item2_on.png)}
+.drag-item3.ui-draggable-dragging, .drag-item3.drag-item-clone{background-image: url(../images/page063_01/item3_on.png)}
+.drag-item4.ui-draggable-dragging, .drag-item4.drag-item-clone{background-image: url(../images/page063_01/item4_on.png)}
+.drag-item5.ui-draggable-dragging, .drag-item5.drag-item-clone{background-image: url(../images/page063_01/item5_on.png)}
+.drag-item6.ui-draggable-dragging, .drag-item6.drag-item-clone{background-image: url(../images/page063_01/item6_on.png)}
+.icon-arrow{width: 23px;height: 25px;background-image: url(../images/page063_01/arrow.png);vertical-align: top;margin-right: 10px}
+.item1 .icon-arrow{margin: 0 0 0 10px}
+.item3 .icon-arrow{margin: 0 0 0 10px;transform: scaleY(-1)}
+.dropzone{position: relative;width: 100%;height: 235px}
+.drop-box{overflow: hidden;width: 565px;height: 235px;background-repeat: no-repeat;background-size: 100% auto}
+.drop-box-grn{background-image: url(../images/page063_01/box1.png);float: left}
+.drop-box-red{background-image: url(../images/page063_01/box2.png);float: right}
+.ui-droppable-hover.drop-box-grn{background-image: url(../images/page063_01/box1_hover.png)}
+.ui-droppable-hover.drop-box-red{background-image: url(../images/page063_01/box2_hover.png)}
+.drop-box .dropbox{margin: 0 25px;height: 210px}
+.drop-box .cover{position: absolute;bottom: 0;width: 565px;height: 155px;color: #fff;text-align: center;display: flex;align-items: center;justify-content: center;line-height: 1;pointer-events: none;background-repeat: no-repeat;background-size: 100% auto;padding-bottom: 15px;z-index: 50}
+.drop-box-grn .cover{left: 0;background-image: url(../images/page063_01/box1_cover.png)}
+.drop-box-red .cover{right: 0;background-image: url(../images/page063_01/box2_cover.png)}
+.dropzone .drag-item-clone{position: absolute}
+.drop-false, .drop-true{animation-delay: .5s;width: 363px;height: 363px}
+.drop-true{background-image: url(../images/page063_01/true.png)}
+.drop-false{background-image: url(../images/page063_01/false.png)}
