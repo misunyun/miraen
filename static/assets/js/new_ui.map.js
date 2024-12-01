@@ -6,12 +6,98 @@ $(document).ready(function () {
     $('.f-input').each(function(){
         inputUi(this);
     });
+
+    // 기본 클릭 이벤트
+    $("[target-obj]:not([method-type]").click(function(){
+        openPopup({id: $(this).attr("target-obj"), target: $(this)});        
+    });
+
+    // 토글 클릭 이벤트
+    $("[target-obj][method-type='toggle']").click(function(){
+        if($(this).hasClass("active")){
+            $(this).removeClass("active");
+            closePopup({id: $(this).attr("target-obj")});
+        } else if(!$(this).hasClass("active")){
+            $(this).addClass("active");
+            openPopup({id: $(this).attr("target-obj"), target: $(this)});
+        }
+    });
+
+    // 닫기 버튼 클릭 이벤트
+    $("[close-obj]").click(function(){
+        closePopup({id: $(this).attr("close-obj")});
+    });
+
+    $(".filters [href]").click(function(e){
+        e.preventDefault();
+        let target = $(`${$(this).attr("href")}`);
+        let pos = target.offset().top - ($(".header-contents").height() + 15);
+        $(window).scrollTop(pos);
+    });
 });
 
+/* -------- 우측 지도 컨트롤러 -------- */
+window.onload = function(){
+
+    // init-show
+    if($("[init-show]").length > 0){
+      openPopup({id: $("[init-show]").attr("id")});
+    }
+
+    //학교 위치 (현재 위치 변경)
+    $('.map-toolbox .btn-location').on('click', function(){
+        if (!$(this).hasClass("on")) {
+        $(this).addClass('on');
+        } else {
+        $(this).removeClass('on');
+        }
+    });
+
+    //백지도
+    $('.map-toolbox .btn-blankmap').on('click', function(){
+        if (!$(this).hasClass("on")) {
+        $('.map-toolbox').find('.on').removeClass('on');
+        $(this).addClass('on');
+        } else {
+        $(this).removeClass('on');
+        }
+    });
+
+    //sns 공유
+    $('.map-toolbox .btn-sns-share').on('click', function(){
+        if (!$(this).hasClass("on")) {
+        $(this).addClass('on');
+        } else {
+        $(this).removeClass('on');
+        }
+    });
+
+    //인쇄
+    $('.map-toolbox .btn-print').on('click', function(){
+        window.print();
+    });
+
+    //좌측 메뉴 접기/펼치기
+    $(".btn-close-menu").on("click", function(e) {
+        if (!$(this).hasClass("on")) {
+            $(this).addClass("on");
+            $('.menu-left').addClass("on");
+            $('.selbox').addClass("on");
+            $(this).find('span.blind').text('메뉴 접기');
+        } else {
+            $(this).removeClass("on");
+            $('.menu-left').removeClass("on");
+            $(this).find('span.blind').text('메뉴 펼치기');
+            $('.selbox').removeClass("on");
+        }
+    });
+}
+
+
 const renderCommonUI = function(){
-  tabs('.tab');1
-  accordion('.accordion');
-  zoomRange();
+    tabs('.tab');
+    accordion('.accordion');
+    zoomRange();
 }
 
 const renderPlugin = function () {
@@ -216,57 +302,6 @@ const selectFunc = function(){
   })
 }
 
-/* -------- 우측 지도 컨트롤러 -------- */
-window.onload = function(){
-  //학교 위치 (현재 위치 변경)
-  $('.map-toolbox .btn-location').on('click', function(){
-    if (!$(this).hasClass("on")) {
-      $(this).addClass('on');
-    } else {
-      $(this).removeClass('on');
-    }
-  });
-
-  //백지도
-  $('.map-toolbox .btn-blankmap').on('click', function(){
-    if (!$(this).hasClass("on")) {
-      $('.map-toolbox').find('.on').removeClass('on');
-      $(this).addClass('on');
-    } else {
-      $(this).removeClass('on');
-    }
-  });
-
-  //sns 공유
-  $('.map-toolbox .btn-sns-share').on('click', function(){
-    if (!$(this).hasClass("on")) {
-      $(this).addClass('on');
-    } else {
-      $(this).removeClass('on');
-    }
-  });
-
-  //인쇄
-  $('.map-toolbox .btn-print').on('click', function(){
-    window.print();
-  });
-
-  //좌측 메뉴 접기/펼치기
-  $(".btn-close-menu").on("click", function(e) {
-    if (!$(this).hasClass("on")) {
-        $(this).addClass("on");
-        $('.menu-left').addClass("on");
-        $('.selbox').addClass("on");
-        $(this).find('span.blind').text('메뉴 접기');
-    } else {
-        $(this).removeClass("on");
-        $('.menu-left').removeClass("on");
-        $(this).find('span.blind').text('메뉴 펼치기');
-        $('.selbox').removeClass("on");
-    }
-  });
-}
-
 
 /* -----------------popup------------------ */
 let popupArr = [];
@@ -326,79 +361,6 @@ const closePopup = function(obj){
   }
 }
 
-// init-show
-$(window).on("load", function(){
-  if($("[init-show]").length > 0){
-    openPopup({id: $("[init-show]").attr("id")});
-  }
-})
-
-// 기본 클릭 이벤트
-$(document).on("click","[target-obj]:not([method-type])", function(){
-  openPopup({id: $(this).attr("target-obj"), target: $(this)});
-});
-
-// 토글 클릭 이벤트
-$(document).on("click","[target-obj][method-type='toggle']", function(){
-  if($(this).hasClass("active")){
-    $(this).removeClass("active");
-    closePopup({id: $(this).attr("target-obj")});
-  } else if(!$(this).hasClass("active")){
-    $(this).addClass("active");
-    openPopup({id: $(this).attr("target-obj"), target: $(this)});
-  }
-});
-
-// 닫기 버튼 클릭 이벤트
-$(document).on("click", "[close-obj]", function(){
-  closePopup({id: $(this).attr("close-obj")});
-});
-
-$(document).on("click", ".filters [href]", function(e){
-  e.preventDefault();
-  let target = $(`${$(this).attr("href")}`);
-  let pos = target.offset().top - ($(".header-contents").height() + 15);
-  $(window).scrollTop(pos);
-});
-
-/*
-// .selbox 넓이를 조정하는 함수
-function adjustSelboxWidth() {
-  var windowWidth = $(window).width();
-  var menuWidth = $('.menu-left').outerWidth();
-
-  if ($('.menu-left').hasClass('on')) {
-    $('.btn-close-menu').addClass('on');
-    $('.selbox').width(windowWidth - menuWidth);
-  } else {
-    $('.btn-close-menu').removeClass('on');
-    $('.selbox').width(windowWidth);
-  }
-}
-
-$('.btn-close-menu').on('click', function () {
-  if ($(this).hasClass('on')) {
-    $(this).removeClass('on');
-    $('.menu-left').removeClass('on');
-    $('.selbox').removeAttr("style");
-  } else {
-    $(this).addClass('on');
-    $('.menu-left').addClass('on');
-    $('.selbox').removeAttr("style");
-  }
-});
-
-// 윈도우 리사이즈 이벤트
-$(window).resize(function () {
-  adjustSelboxWidth();
-});
-
-// 초기 실행
-$(document).ready(function () {
-  adjustSelboxWidth();
-});
-*/
-
 /* 지도 Range */
 const zoomRange = function(){
   $('.zoom-range input[type=range]').on('input', function(e) {
@@ -411,40 +373,6 @@ const zoomRange = function(){
     });
   }).trigger('input');
 }
-
-
-
-/* input */
-// $(document).ready(function () {
-//   if ($(".f-input").length === 0) return;
-
-//   $(".f-input").each(function() {
-//     const $item = $(this);
-//     const $btnClear = $item.find(".btn-clear");
-//     const $input = $item.find("input");
-
-//     function activeClass() {
-//       if ($input.val().length > 0) {
-//         $item.addClass("active");
-//       } else {
-//         $item.removeClass("active");
-//       }
-//     }
-
-//     $input.on("input focus", function() {
-//       activeClass();
-//     });
-
-//     $input.on("focusout", function() {
-//       $item.removeClass("active");
-//     });
-
-//     $btnClear.on("click", function() {
-//       $input.val("").focus();
-//       $item.removeClass("active");
-//     });
-//   });
-// });
 
 const inputUi = function(_target){ //_target은 변수로 다른 이름으로 수정해도 상관없어요. 앞으로 지정할 대상아이를 현재는 지정을 안해서 이름이 없으니까 _target이라는 가명으로 부르기로 한다. 이런 느낌이에요. 예)_t 또는 뿌요미가 편한 이름. 앞에 '_'는 별도의 의미는 없어. 그냥 구분 표식 같은거에요.
     
